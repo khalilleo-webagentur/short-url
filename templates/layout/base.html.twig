@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="csrf-token" content="cf6f861916b2e16b2cf884a222ac134f2fb7620d" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="NO-CACHE">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta property="og:locale" content="de_DE" />
+
+    <title> {% block title %}{% endblock %} </title>
+
+    <meta content="index,follow" name="robots">
+    <meta name="keywords" content="Short Links, tiny, click, URL shortner, short URL">
+    <meta name="description" content="Short Link is a free tool to shorten a URL or reduce a link. Use our URL Shortener to create a shortened link." />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/assets/img/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/assets/img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/img/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('/assets/img/favicon/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('/assets/img/favicon/safari-pinned-tab.svg') }}" color="#b7c402">
+    <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+    <meta name="msapplication-TileColor" content="#212529">
+    <meta name="msapplication-config" content="{{ asset('/assets/img/favicon/browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="ELE" name="application-name">
+    <meta content="#ffffff" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
+    <meta name="author" content="khalilleo Team">
+    <meta name="created" content="03-03-2024" />
+    <meta content="telephone=no" name="format-detection" />
+
+    <base target="_self">
+
+    <link rel='dns-prefetch' href='//www.ele.click' />
+
+    {% block stylesheets %}
+    <link href="{{asset('assets/css/bootstrap-icons.min.css?v=1.10.5')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/bootstrap.min.css?v=5.3.0')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('assets/css/cookie-banner.css?v=1.0.0')}}">
+
+    <style>
+        .alert-fixed-z-index {
+            position: fixed;
+            top: 11px;
+            right: 1px;
+            z-index: 1030
+        }
+
+        .d-dark-color {
+            background-color: #00000042;
+        }
+
+        ::placeholder {
+            color: #696969 !important;
+        }
+
+        .bg-placeholder {
+            color: #cecece !important;
+        }
+
+        .d-color {
+            color: #a9d158;
+        }
+
+        .pointer {
+            cursor: pointer;
+        }
+
+        @media (max-width: 868px) {
+            .md-text-center {
+                text-align: center !important;
+            }
+            .md-d-none {
+                display: none;
+            }
+        }
+    </style>
+
+    {% endblock %}
+
+    <noscript>
+        <meta http-equiv="refresh" content="3;url=/noscript.html">
+    </noscript>
+
+</head>
+
+<body>
+    {% block body %}{% endblock %}
+
+    {% block javascripts %}
+    <script src="{{asset('assets/js/bootstrap.bundle.min.js?v=5.1.0')}}"></script>
+    <script async src="{{asset('assets/js/cookie-banner.js?v=1.0.0')}}"></script>
+    {% endblock %}
+</body>
+
+</html>
