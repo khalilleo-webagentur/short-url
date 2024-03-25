@@ -1,2 +1,3 @@
 # short-url
-Short a URL to be abbreviated link.
+
+Short Link is a free tool to shorten a URL or reduce a link.
