@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="csrf-token" content="cf6f861916b2e16b2cf884a222ac134f2fb7620d" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="NO-CACHE">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="referrer" content="origin">
+    <meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta property="og:locale" content="de_DE" />
+
+    <title> {% block title %}{% endblock %} </title>
+
+    <meta content="noindex,nofollow" name="robots">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/assets/img/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/assets/img/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/img/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('/assets/img/favicon/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('/assets/img/favicon/safari-pinned-tab.svg') }}" color="#b7c402">
+    <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="{{ asset('/assets/img/favicon/browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="ELE" name="application-name">
+    <meta content="#ffffff" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
+    <meta name="author" content="khalilleo Team">
+    <meta name="created" content="03-03-2024" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel='dns-prefetch' href='//www.example.de' />
+
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('lte/css/root.min.css?v=3.4.0')}}">
+    <link rel="stylesheet" href="{{asset('lte/css/app.css?v=1.0.0')}}">
+
+    <style>
+        .alert-fixed-z-index {
+            position: fixed;
+            top: 2px;
+            right: 1px;
+            z-index: 1060
+        }
+    </style>
+
+    {% endblock %}
+    
+    <noscript>
+        <meta http-equiv="refresh" content="3;url=/{{path('app_noscript')}}">
+    </noscript>
+</head>
+<body>
+
+    <div class="hold-transition sidebar-mini layout-fixed">
+        <div class="wrapper">
+            {% include 'admin/layout/navbar.html.twig' %}
+            {% include 'component/lte_custom_type_message_top_fixed.html.twig' %}
+            {% include 'admin/layout/sidebar.html.twig' %}
+            {% block body %} {% endblock %}
+        </div>
+        {% include 'admin/layout/footer.html.twig' %}
+    </div>
+
+    {% block javascripts %}
+    <script src="{{asset('lte/js/root.min.js?v=3.4.0')}}"></script>
+    <script src="{{asset('lte/js/app.js?v=1.0.0')}}"></script>
+    {% endblock %}
+</body>
+</html>
