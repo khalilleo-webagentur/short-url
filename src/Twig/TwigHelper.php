@@ -1,0 +1,127 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Twig;
+
+use App\Service\ConfigService;
+use DateTime;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
+class TwigHelper extends AbstractExtension
+{
+    public function __construct(
+        private readonly ConfigService $configService
+    ) {
+    }
+
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction('formatSizeUnits', [$this, 'formatSizeUnits']),
+            new TwigFunction('dateTime', [$this, 'dateTime']),
+            new TwigFunction('replaceLinkWithHref', [$this, 'replaceLinkInText']),
+            new TwigFunction('count', [$this, 'getCount']),
+            new TwigFunction('appName', [$this, 'getAppName']),
+            new TwigFunction('year', [$this, 'getYear']),
+            new TwigFunction('faThumbsUp', [$this, 'getThumbsUp']),
+            new TwigFunction('faThumbsDown', [$this, 'getThumbsDown']),
+            new TwigFunction('appAuthor', [$this, 'getAppAuthor']),
+            new TwigFunction('madeBy', [$this, 'getMadeBy']),
+            new TwigFunction('version', [$this, 'getVersion']),
+        ];
+    }
+
+    public function formatSizeUnits($bytes)
+    {
+        if ($bytes >= 1073741824) {
+            $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        } elseif ($bytes >= 1048576) {
+            $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        } elseif ($bytes >= 1024) {
+            $bytes = number_format($bytes / 1024, 2) . ' KB';
+        } elseif ($bytes > 1) {
+            $bytes = $bytes . ' bytes';
+        } elseif ($bytes == 1) {
+            $bytes = $bytes . ' byte';
+        } else {
+            $bytes = '0 bytes';
+        }
+
+        return $bytes;
+    }
+
+    public function dateTime(string $format = 'd.m.Y'): string
+    {
+        return (new DateTime('now'))->format($format);
+    }
+
+    public function getStripTags(string $text): string
+    {
+        return strip_tags($text);
+    }
+
+    public function replaceLinkInText(string $text): string
+    {
+        preg_match_all('#\bhttps?://[^,\s()<>]+(?:\(\w+\)|([^,[:punct:]\s]|/))#', $text, $matches);
+
+        if (count($matches[0]) <= 0) {
+            return $text;
+        }
+
+        $result = '';
+
+        foreach ($matches[0] as $link) {
+            $result = str_replace($link, '<a href="' . $link . '" target="_blank">' . $link . '</a>', $text);
+        }
+
+        return $result;
+    }
+
+    public function getCount(mixed $obj): int
+    {
+        if (is_countable($obj)) {
+            return count($obj);
+        }
+
+        return 0;
+    }
+
+    public function getYear(): string
+    {
+        return (new DateTime())->format('Y');
+    }
+
+    public function getThumbsUp(): void
+    {
+        echo "<span class='fa fa-thumbs-up text-success'></span>";
+    }
+
+    public function getThumbsDown(?string $color = null): void
+    {
+        $color = $color ?? 'text-danger';
+
+        echo "<span class='fa fa-thumbs-down $color'></span>";
+    }
+
+    public function getAppName(): string
+    {
+        return $this->configService->getParameter('app_name');
+    }
+
+    public function getMadeBy(): string
+    {
+        return $this->configService->getParameter('app_made_by');
+    }
+
+    public function getAppAuthor(): string
+    {
+        return $this->configService->getParameter('app_author');
+    }
+
+    public function getVersion(): string
+    {
+        return 'v' . $this->configService->getParameter('app_version');
+    }
+}
