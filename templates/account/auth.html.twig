@@ -1,0 +1,56 @@
+{% extends 'layout/base_without.html.twig' %}
+
+{% block title %} Sign In {% endblock %}
+
+{% block body %}
+
+<div class="container-fluid bg-dark" style="height: 100vh;">
+    <div class="d-flex flex-column">
+        <div class="container">
+            <div class="row mt-5 justify-content-center">
+                <div class="col-sm-12 col-lg-4 mt-5">
+
+                    <div class="shadow p-5">
+
+                        <div class="text-center">
+                            <a href="{{app.request.schemeAndHttpHost}}">
+                                <img src="{{asset('assets/img/Logo_Text_71x16.png')}}" alt="ELE">
+                            </a>
+
+                            <h3 class="my-3 text-center text-white">Sign In</h3>
+
+                            <p class="text-center text-white-50 mb-3">
+                                For security reasons, we will send you a security code by e-mail which you can use to
+                                access your profile.
+                            </p>
+                        </div>
+
+                        {% include 'component/form_alert.html.twig' %}
+
+                        <form action="{{ path('app_auth_send') }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            <div class="mb-3">
+                                <input class="form-control" type="email" placeholder="Work email" aria-label="Email"
+                                    name="_username" required style="height: 46px; border-radius: 0;">
+                                <small class="text-secondary">Enter the email to receive your login code</small>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-success w-100" style="height: 46px; border-radius: 0;">Sign
+                                    In</button>
+                            </div>
+                        </form>
+
+                        <div class="my-3">
+                            <p class="text-white-50">
+                                Need an account? <a href="{{path('app_register')}}" class="d-color">Create one</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
