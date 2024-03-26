@@ -23,6 +23,7 @@ class RegisterController extends AbstractController
     private const LOGIN_ROUTE = 'app_login';
     private const REGISTER_ROUTE = 'app_register';
     private const PROFILE_ROUTE = 'app_profile';
+    private const AUTH_ROUTE = 'app_auth';
 
     public function __construct(
         private readonly UserService $userService,
@@ -54,6 +55,11 @@ class RegisterController extends AbstractController
         if (!$name || !$email || !$confirm) {
             $this->addFlash('warning', 'All fields are required.');
             return $this->redirectToRoute(self::REGISTER_ROUTE);
+        }
+
+        if ($this->userService->getByEmail($email)) {
+            $this->addFlash('warning', 'Your account exists. Try to login!');
+            return $this->redirectToRoute(self::AUTH_ROUTE);
         }
 
         $token = $this->tokenGeneratorService->randomTokenForVerification();
