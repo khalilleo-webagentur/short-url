@@ -39,7 +39,7 @@ final class HandelTwoFactorAuthMail extends AbstractMail implements MailInterfac
                 'otp' => $otp,
             ]);
 
-        Mailer:: catch(sprintf('Six-digit-code [%s] for [%s] [%s]', $otp, $username, $userEmail));
+        Mailer:: catch(sprintf('Login Security-code %s for [%s] %s', $otp, $username, $userEmail));
 
         $this->mailer->send($email);
     }

@@ -96,13 +96,18 @@
 
 </head>
 
-<body>
+<body class="bg-dark">
+
     {% block body %}{% endblock %}
 
     {% block javascripts %}
     <script src="{{asset('assets/js/bootstrap.bundle.min.js?v=5.1.0')}}"></script>
-    <script async src="{{asset('assets/js/cookie-banner.js?v=1.0.0')}}"></script>
+    <script src="{{asset('assets/js/jquery.min.js?v=3.2.0')}}"></script>
+    <script async src="{{asset('assets/js/sweetalert.min.js?v=1.0.0')}}"></script>
+    <script async src="{{asset('assets/js/cookie-banner.js?v=1.0.0')}}" defer></script>
+    <script async src="{{asset('assets/js/app.js?v=1.0.0')}}"></script>
     {% endblock %}
+    
 </body>
 
 </html>
