@@ -36,8 +36,12 @@
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" name="confirm" required id="confirm">
                             <label class="form-check-label text-white-50" for="confirm">
-                                I accept {{appName()}}'s <a href="#" class="text-white-50">Terms of Service</a> and
-                                <a href="#" class="text-white-50">Privacy Policy</a>.
+                                I accept {{appName()}}'s <a class="text-white-50"
+                                    href="{{path('app_legal_privacy_policy')}}" rel="nofollow">
+                                    Terms of Service</a>, <a href="{{path('app_legal_imprint')}}" class="text-white-50"
+                                    rel="nofollow">
+                                    Privacy Policy
+                                </a>.
                             </label>
                         </div>
 
@@ -48,7 +52,7 @@
                     </form>
 
                     <div class="my-3">
-                        <p class="text-white-50"> Already have an account? 
+                        <p class="text-white-50"> Already have an account?
                             <a href="{{path('app_login')}}" class="d-color">Login</a>
                         </p>
                     </div>

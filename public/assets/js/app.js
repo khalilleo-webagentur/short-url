@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
-    setTimeout(function () {
-        $(".alert").alert('close').fadeOut();
-    }, 6000);
+    // setTimeout(function () {
+    //     $(".alert").alert('close').fadeOut();
+    // }, 6000);
 
     $('#clipboard').on('click', function (e) {
         let link = $('#link').text();

@@ -10,7 +10,7 @@
 
 <header class="bg-dark">
     <div class="px-4 px-lg-5 pb-5">
-        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center py-5">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center py-3">
             <div class="col-lg-6">
 
                 <h1 class="d-color font-weight-bold mt-5 pt-5">
@@ -81,7 +81,6 @@
             <div class="col-lg-6">
                 <div class="md-d-none py-3 text-center mt-5 pt-5" style="opacity: 0.03;">
                     <img src="{{asset('assets/img/ele.png')}}" alt="">
-
                 </div>
             </div>
         </div>
@@ -94,7 +93,7 @@
                             <span class="card-img-top bi bi-hand-thumbs-up fs-2 pt-3"></span>
                             <div class="card-body">
                                 <h5 class="card-title">Simple and Easy</h5>
-                                <p>Easy to use and user friendly</p>
+                                <p>Easy to use and user-friendly</p>
                             </div>
                         </div>
                     </div>
@@ -103,7 +102,7 @@
                             <span class="card-img-top bi bi-link-45deg fs-2 pt-3"></span>
                             <div class="card-body">
                                 <h5 class="card-title">Shortened</h5>
-                                <p>long link to shortened one</p>
+                                <p>Long link to shortened one</p>
                             </div>
                         </div>
                     </div>
@@ -131,10 +130,11 @@
     </div>
 </header>
 
-<div id="cb-cookie-banner" class="alert alert-light text-center mb-0 small" role="alert">
-    &#x1F36A; This website uses cookies to ensure you get the best experience on our website.
-    <a href="{{path('app_legal_privacy_policy')}}" target="blank" rel="nofollow,noindex">Learn more</a>
-    <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
+<div id="cb-cookie-banner" class="alert alert-secondary text-center mb-0 small text-white-50" role="alert"
+    style="background-color: #000000e3;">
+    This website uses cookies to ensure you get the best experience on our website.
+    <a href="{{path('app_legal_privacy_policy')}}" class="d-color" target="blank" rel="nofollow,noindex">Learn more</a>
+    <button type="button" class="btn btn-outline-success btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
         Okay
     </button>
 </div>
