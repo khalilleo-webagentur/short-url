@@ -7,7 +7,7 @@ $(document).ready(function () {
     $('#clipboard').on('click', function (e) {
         let link = $('#link').text();
         copyContent(link);
-        swal('', 'Link (' + link + ') is copied to cliepboard.', 'success');
+        swal('', 'Link (' + link + ') is copied to clipboard.', 'success');
     });
 });
 
@@ -15,6 +15,6 @@ async function copyContent(text) {
     try {
         await navigator.clipboard.writeText(text);
     } catch (err) {
-        console.error('Failed to copy: ', err);
+        swal('', 'clipboard is not avialble on your Browser.', 'warning');
     }
 }
