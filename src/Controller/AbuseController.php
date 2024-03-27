@@ -36,7 +36,7 @@ class AbuseController extends AbstractController
 
         $option = $this->validate($request->request->get('sMaliciousOption'));
 
-        if (!$link || !$option || !in_array(ucfirst($option), ['Span', 'Phishing', 'Malicious', 'Porn', 'Other'], true)) {
+        if (!$link || !$option || !in_array(ucfirst($option), ['Spam', 'Phishing', 'Malicious', 'Porn', 'Other'], true)) {
             $this->addFlash('warning', 'Malicious link and option are required.');
             return $this->redirectToRoute(self::ABOUSE_ROUTE);
         }
