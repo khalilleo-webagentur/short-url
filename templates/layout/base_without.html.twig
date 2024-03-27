@@ -38,6 +38,34 @@
             background: #cff3ff;
         }
 
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="datetime"]:focus,
+        input[type="datetime-local"]:focus,
+        input[type="date"]:focus,
+        input[type="month"]:focus,
+        input[type="time"]:focus,
+        input[type="week"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        input[type="url"]:focus,
+        input[type="search"]:focus,
+        input[type="tel"]:focus,
+        input[type="color"]:focus,
+        .form-select:focus,
+        .form-control .btn:active,
+        .btn:focus .uneditable-input:focus {
+            border-color: none;
+            outline: 0 none;
+            border: 1px solid #a9d158 !important;
+            box-shadow: none !important;
+        }
+
+        ::placeholder {
+            color: #696969 !important;
+        }
+
         .d-dark-color {
             background-color: #0000001c;
         }
