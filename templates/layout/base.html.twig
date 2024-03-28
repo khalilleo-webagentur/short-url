@@ -15,8 +15,11 @@
 
     <title> {% block title %}{% endblock %} </title>
 
+    {% if app.request.get('_route') == 'app_home' %}
     <meta content="index,follow" name="robots">
     <meta name="keywords" content="Short Links, tiny, click, URL shortner, short URL">
+    {% endif %}
+
     <meta name="description"
         content="Short Link is a free tool to shorten a URL or reduce a link. Use our URL Shortener to create a shortened link." />
 
@@ -50,6 +53,18 @@
     <link rel="stylesheet" href="{{asset('assets/css/cookie-banner.css?v=1.0.0')}}">
 
     <style>
+        .modal-header {
+            border-bottom: 0;
+        }
+
+        .modal-footer {
+            border-top: 0;
+        }
+
+        .form-label {
+            margin-bottom: 0;
+        }
+
         .alert-fixed-z-index {
             position: fixed;
             top: 11px;

@@ -6,28 +6,47 @@
 
 {% include 'layout/navbar.html.twig' %}
 
-<div class="container-fluid bg-dark">
+<div class="container-fluid">
 
     <div class="row py-3 d-dark-color shadow">
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6">
             <h5 class="text-white-50 pt-1"> List of URLs</h5>
         </div>
-        <div class="col-4">
-            <div class="input-group md-d-none">
-                <input type="text" class="form-control bg-placeholder" placeholder="Search .." aria-label="Search" aria-describedby="button-addon2"
-                style="background-color: transparent; border: 1px solid #6c757d;">
+        <div class="col-lg-4 md-d-none">
+            <div class="input-group">
+                <input type="text" class="form-control bg-placeholder" placeholder="Search .." aria-label="Search"
+                    aria-describedby="button-addon2" style="background-color: transparent; border: 1px solid #6c757d;">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                     <span class="bi bi-search"></span>
                 </button>
-              </div>
+            </div>
         </div>
-        <div class="col-4 text-end">
-            <button class="btn btn-outline-secondary btn-sm mt-1 me-1">
-                New <span class="bi bi-plus"></span>
-            </button>
-            <button class="btn btn-outline-secondary btn-sm mt-1">
-                Delete <span class="bi bi-trash small"></span>
-            </button>
+
+        <div class="col-lg-4 col-md-6">
+            <div class="d-flex float-end">
+                <button class="btn btn-outline-secondary btn-sm mt-1 me-2" data-bs-toggle="modal"
+                    data-bs-target="#newModal">
+                    <span class="md-d-none">New</span> <span class="bi bi-plus"></span>
+                </button>
+
+                <div class="dropdown mt-1 me-2">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <span class="bi bi-three-dots"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li class="small">
+                            <a class="dropdown-item active" href="#"><span class="bi bi-download pe-1"></span> Export</a>
+                        </li>
+                        <li class="small"><a class="dropdown-item" href="#"><span class="bi bi-gear pe-1"></span>
+                                Settings</a></li>
+                        <!-- <li>
+                    <hr class="dropdown-divider">
+                </li> -->
+                        <!-- <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -76,6 +95,8 @@
         </div>
     </div>
 </div>
+
+{% include 'profile/modal/new.html.twig' %}
 
 {% include 'layout/footer.html.twig' %}
 

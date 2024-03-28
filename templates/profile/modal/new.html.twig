@@ -1,0 +1,33 @@
+<div class="modal fade" id="newModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="newModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #000;">
+      <div class="modal-header">
+        <h1 class="modal-title d-color fs-5" id="newModalLabel">Add new Link</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="mb-3">
+          <label for="iTitle" class="form-label text-white-50">Title:</label>
+          <input type="text" class="form-control" id="iiTitle" placeholder="" name="iTitle"
+          style="height: 42px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;">
+          <small class="text-secondary text-white-50">Search Links will depend on the title.</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="iLink" class="form-label text-white-50">Long Link:</label>
+          <input type="text" class="form-control" id="iLink" placeholder="" name="iLink"
+          style="height: 42px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;" required>
+          <small class="text-secondary text-white-50">This feld is required.</small>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+          style="border-radius: 2px;height: 40px;">Cancel</button>
+        <button type="button" class="btn btn-outline-success" style="border-radius: 2px;height: 40px;">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
