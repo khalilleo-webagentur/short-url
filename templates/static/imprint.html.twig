@@ -1,28 +1,45 @@
-{% extends 'layout/base_without.html.twig' %}
+{% extends 'layout/base.html.twig' %}
 
 {% block title %} impressum {% endblock %}
 
 {% block body %}
 <div class="d-flex flex-column h-100">
 
-    {% include 'layout/navbar_without.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
+
+    <!-- ___FIRMENNAME
+__STRASSE_UND_HAUSNUMER
+__PLZ
+__ORT
+__LAND
+____TELEFON
+__EMAIL_ADDRESSE
+__WEBSEITE -->
 
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
 
-                <h3>impressum</h3>
+                <h1>Impressum</h1>
+                <h2 id="m46">Diensteanbieter</h2>
+                ___FIRMENNAME
+                __STRASSE_UND_HAUSNUMER
+                __STRASSE_UND_HAUSNUMER
+                __PLZ
+                __LAND
 
-                Photo by <a
-                    href="https://unsplash.com/@benjaminlehman?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">benjamin
-                    lehman</a> on <a
-                    href="https://unsplash.com/photos/woman-in-black-dress-illustration-mnYSDdwunVY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+                <h2 id="m56">Kontaktmöglichkeiten</h2>E-Mail-Adresse: __EMAIL_ADDRESSE
+                Telefon: ____TELEFON
 
+                <p class="seal"><a href="https://datenschutz-generator.de/"
+                        title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken." target="_blank"
+                        rel="noopener noreferrer nofollow">Erstellt mit kostenlosem Datenschutz-Generator.de von Dr.
+                        Thomas Schwenke</a></p>
             </div>
         </div>
     </div>
 
-    {% include 'layout/footer_without.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 </div>
 {% endblock %}
