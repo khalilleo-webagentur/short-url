@@ -6,7 +6,7 @@ namespace App\Traits;
 
 trait RemoteTrait
 {
-    private function getRemot(): string
+    private function getRemote(): string
     {
         $ipAddress = '';
 
@@ -36,6 +36,16 @@ trait RemoteTrait
         return $ipAddress;
     }
 
+    private function getAgent(): string
+    {
+        return $_SERVER['HTTP_USER_AGENT'];
+    }
+
+    private function getOS(): string
+    {
+        return PHP_OS;
+    }
+
     private function isValidIpAddress(string $ip): bool
     {
         return !(
@@ -47,19 +57,5 @@ trait RemoteTrait
                     FILTER_FLAG_NO_PRIV_RANGE |
                     FILTER_FLAG_NO_RES_RANGE
             ) === false);
-    }
-
-    private function getOS(): string
-    {
-        return PHP_OS;
-    }
-
-    private function getAgent()
-    {
-        $browser_info = get_browser(null, true);
-
-        echo "Browser: " . $browser_info->browser . "\n";
-        echo "Browser Version: " . $browser_info->version . "\n";
-        echo "Platform: " . $browser_info->platform . "\n";
     }
 }
