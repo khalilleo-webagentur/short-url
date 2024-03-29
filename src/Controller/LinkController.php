@@ -68,8 +68,6 @@ class LinkController extends AbstractController
                 ->setUser($user)
                 ->setUrl($url)
                 ->setToken($token)
-                ->setIpAdress($this->getRemot() ?: 'Local')
-                ->setUserAgent($userAgent)
         );
 
         return $this->redirectToRoute('app_home_url', ['token' => $token]);

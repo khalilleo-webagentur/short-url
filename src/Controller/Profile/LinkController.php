@@ -71,8 +71,6 @@ class LinkController extends AbstractController
                 ->setTitle($title)
                 ->setUrl($link)
                 ->setToken($token)
-                ->setIpAdress('jkljl')
-                ->setUserAgent('jkljl')
         );
 
         $this->addFlash('success', 'Link has been created.');

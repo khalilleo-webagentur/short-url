@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\LinkRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,12 +26,6 @@ class Link
     #[ORM\Column]
     private int $counter = 0;
 
-    #[ORM\Column(length: 150)]
-    private ?string $ipAdress = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $userAgent = null;
-
     #[ORM\ManyToOne(inversedBy: 'links')]
     private ?User $user = null;
 
@@ -45,9 +41,13 @@ class Link
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
 
+    #[ORM\OneToMany(targetEntity: LinkStatistic::class, mappedBy: 'link')]
+    private Collection $linkStatistics;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
+        $this->linkStatistics = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,30 +87,6 @@ class Link
     public function setCounter(int $counter): static
     {
         $this->counter = $counter;
-
-        return $this;
-    }
-
-    public function getIpAdress(): ?string
-    {
-        return $this->ipAdress;
-    }
-
-    public function setIpAdress(string $ipAdress): static
-    {
-        $this->ipAdress = $ipAdress;
-
-        return $this;
-    }
-
-    public function getUserAgent(): ?string
-    {
-        return $this->userAgent;
-    }
-
-    public function setUserAgent(string $userAgent): static
-    {
-        $this->userAgent = $userAgent;
 
         return $this;
     }
@@ -171,6 +147,36 @@ class Link
     public function setTitle(?string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LinkStatistic>
+     */
+    public function getLinkStatistics(): Collection
+    {
+        return $this->linkStatistics;
+    }
+
+    public function addLinkStatistic(LinkStatistic $linkStatistic): static
+    {
+        if (!$this->linkStatistics->contains($linkStatistic)) {
+            $this->linkStatistics->add($linkStatistic);
+            $linkStatistic->setLink($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLinkStatistic(LinkStatistic $linkStatistic): static
+    {
+        if ($this->linkStatistics->removeElement($linkStatistic)) {
+            // set the owning side to null (unless already changed)
+            if ($linkStatistic->getLink() === $this) {
+                $linkStatistic->setLink(null);
+            }
+        }
 
         return $this;
     }
