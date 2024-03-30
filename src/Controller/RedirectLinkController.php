@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RedirectLinkController extends AbstractController
 {
+    private const HOME_ROUTE = 'app_home';
+
     public function __construct(
         private readonly LinkService $linkService,
         private readonly LinkStatisticService $linkStatisticService
@@ -23,14 +25,14 @@ class RedirectLinkController extends AbstractController
     {
         if (!$token) {
             $this->addFlash('notice', 'URL cannot be found.');
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
         $link = $this->linkService->getByToken($token);
 
         if (!$link) {
             $this->addFlash('notice', 'URL cannot be found.');
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
         $this->linkService->save(
@@ -38,7 +40,9 @@ class RedirectLinkController extends AbstractController
                 ->setCounter($link->getCounter() + 1)
         );
 
-        $this->linkStatisticService->create($link);
+        if ($link->isPublic()) {
+            $this->linkStatisticService->create($link);
+        }
 
         return $this->redirect($link->getUrl());
     }

@@ -46,6 +46,8 @@ class LinkController extends AbstractController
     #[Route('/new', name: 'app_profile_my_urls_new', methods: 'POST')]
     public function new(Request $request): RedirectResponse
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $link = $this->validateURL($request->request->get('iLink'));
 
         if (!$link) {
@@ -65,12 +67,15 @@ class LinkController extends AbstractController
 
         $title = $this->validate($request->request->get('iTitle'));
 
+        $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+
         $this->linkService->save(
             $model
                 ->setUser($user)
                 ->setTitle($title)
                 ->setUrl($link)
                 ->setToken($token)
+                ->setIsPublic($isPublic)
         );
 
         $this->addFlash('success', 'Link has been created.');

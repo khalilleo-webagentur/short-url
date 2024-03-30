@@ -63,6 +63,7 @@
                             <th class="col text-white-50">Title</th>
                             <th class="col text-white-50">Short-URL</th>
                             <th class="col text-white-50">URL</th>
+                            <th class="col text-white-50">Public</th>
                             <th class="col text-white-50">Count</th>
                             <th class="col text-white-50">Modified</th>
                             <th class="col text-white-50">Created</th>
@@ -82,6 +83,7 @@
                                 </a>
                             </td>
                             <td class="text-white-50" title="{{link.url}}">{{link.url|slice(0, 35) ~ ' ...'}}</td>
+                            <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') : circle('text-white-50') }}</td>
                             <td class="text-white-50">{{ link.counter}}</td>
                             <td class="text-white-50">{{link.updatedAt|date('d.m.Y')}}</td>
                             <td class="text-white-50">{{link.createdAt|date('d.m.Y')}}</td>

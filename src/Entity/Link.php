@@ -30,6 +30,9 @@ class Link
     private ?User $user = null;
 
     #[ORM\Column]
+    private bool $isPublic = true;
+
+    #[ORM\Column]
     private bool $isReported = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -99,6 +102,18 @@ class Link
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function isPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

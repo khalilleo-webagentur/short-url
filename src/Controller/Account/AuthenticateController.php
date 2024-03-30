@@ -20,6 +20,11 @@ class AuthenticateController extends AbstractController
 {
     use FormValidationTrait;
 
+    private const HOME_ROUTE = 'app_home';
+    private const LOGIN_ROUTE = 'app_login';
+    private const AUTHENTICATE_ROUTE = 'app_auth';
+    private const PROFILE_ROUTE = 'app_profile';
+
     public function __construct(
         private readonly UserService $userService,
         private readonly TokenGeneratorService $tokenGeneratorService,
@@ -31,7 +36,7 @@ class AuthenticateController extends AbstractController
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('app_profile');
+            return $this->redirectToRoute(self::PROFILE_ROUTE);
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -51,19 +56,19 @@ class AuthenticateController extends AbstractController
 
         if (!$email) {
             $this->addFlash('warning', 'Email field is required.');
-            return $this->redirectToRoute('app_auth');
+            return $this->redirectToRoute(self::AUTHENTICATE_ROUTE);
         }
 
         $user = $this->userService->getByEmail($email);
 
         if (!$user) {
-            $this->addFlash('warning', 'If your email exists then a new OTP just being sent to your email.');
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('notice', 'If your email exists then a new OTP just being sent to your email.');
+            return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
         if ($user && !$user->isVerified()) {
             $this->addFlash('warning', 'Your account is not verified yet. Please verify your email.');
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
         $otp = $this->tokenGeneratorService->randomToken();
@@ -77,6 +82,6 @@ class AuthenticateController extends AbstractController
 
         $this->addFlash('notice', 'A new OTP is being sent to your email.');
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute(self::LOGIN_ROUTE);
     }
 }

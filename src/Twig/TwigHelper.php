@@ -25,6 +25,8 @@ class TwigHelper extends AbstractExtension
             new TwigFunction('count', [$this, 'getCount']),
             new TwigFunction('appName', [$this, 'getAppName']),
             new TwigFunction('year', [$this, 'getYear']),
+            new TwigFunction('circle', [$this, 'circle']),
+            new TwigFunction('checkCircle', [$this, 'checkCircle']),
             new TwigFunction('faThumbsUp', [$this, 'getThumbsUp']),
             new TwigFunction('faThumbsDown', [$this, 'getThumbsDown']),
             new TwigFunction('appAuthor', [$this, 'getAppAuthor']),
@@ -93,16 +95,26 @@ class TwigHelper extends AbstractExtension
         return (new DateTime())->format('Y');
     }
 
+    public function circle(string $color): void
+    {
+        echo "<span class='bi bi-circle-fill $color'></span>";
+    }
+
+    public function checkCircle(string $color): void
+    {
+        echo "<span class='bi bi-check2-circle fs-6 $color'></span>";
+    }
+
     public function getThumbsUp(): void
     {
-        echo "<span class='fa fa-thumbs-up text-success'></span>";
+        echo "<span class='bi bi-hand-thumbs-up-fill text-success'></span>";
     }
 
     public function getThumbsDown(?string $color = null): void
     {
         $color = $color ?? 'text-danger';
 
-        echo "<span class='fa fa-thumbs-down $color'></span>";
+        echo "<span class='bi bi-hand-thumbs-down-fill $color'></span>";
     }
 
     public function getAppName(): string
