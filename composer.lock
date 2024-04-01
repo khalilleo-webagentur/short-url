@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8598101b8276b8d0636c36aa0eddf010",
+    "content-hash": "307f7ad90c74a7846fbf16ec9a86942c",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1290,6 +1290,51 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "khalilleo-webagentur/browser-detect",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/khalilleo-webagentur/browser-detect.git",
+                "reference": "43dbadcbc50e384efbe385f9edac0832da14a798"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/khalilleo-webagentur/browser-detect/zipball/43dbadcbc50e384efbe385f9edac0832da14a798",
+                "reference": "43dbadcbc50e384efbe385f9edac0832da14a798",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Khalilleo\\BrowserDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Khalilleo",
+                    "email": "info@khalilleo.com"
+                }
+            ],
+            "description": "PHP library for Browser Detection in simple way.",
+            "keywords": [
+                "Mobil",
+                "browser",
+                "browser detection"
+            ],
+            "support": {
+                "issues": "https://github.com/khalilleo-webagentur/browser-detect/issues",
+                "source": "https://github.com/khalilleo-webagentur/browser-detect/tree/v1.0.0"
+            },
+            "time": "2024-04-01T11:38:47+00:00"
         },
         {
             "name": "khalilleo-webagentur/monolog",

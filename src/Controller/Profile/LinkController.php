@@ -6,6 +6,7 @@ namespace App\Controller\Profile;
 
 use App\Entity\Link;
 use App\Service\LinkService;
+use App\Service\LinkStatisticService;
 use App\Service\TokenGeneratorService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,10 +20,11 @@ class LinkController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const PROFILE_HOME = 'app_profile_my_urls';
+    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService $linkService,
+        private readonly LinkStatisticService $linkStatisticService,
         private readonly TokenGeneratorService $tokenGeneratorService
     ) {
     }
@@ -52,7 +54,7 @@ class LinkController extends AbstractController
 
         if (!$link) {
             $this->addFlash('warning', 'Link field is required.');
-            return $this->redirectToRoute(self::PROFILE_HOME);
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
         $token = $this->tokenGeneratorService->randomToken();
@@ -80,6 +82,36 @@ class LinkController extends AbstractController
 
         $this->addFlash('success', 'Link has been created.');
 
-        return $this->redirectToRoute(self::PROFILE_HOME);
+        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+    }
+
+    #[Route('/delete', name: 'app_profile_my_urls_delete', methods: 'POST')]
+    public function delete(Request $request): RedirectResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $user = $this->getUser();
+
+        $id = $this->validateNumber($request->request->get('id'));
+
+        if ($id <= 0) {
+            $this->addFlash('warning', 'Unkown Id.');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        $link = $this->linkService->getByUserAndId($user, $id);
+
+        if (!$link) {
+            $this->addFlash('warning', 'Unkown link');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        $this->linkStatisticService->deleteAllByLink($link);
+
+        $this->linkService->delete($link);
+
+        $this->addFlash('success', 'Link has been deleted.');
+
+        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
 }

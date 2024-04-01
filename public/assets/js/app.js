@@ -9,6 +9,12 @@ $(document).ready(function () {
         copyContent(link);
         swal('', 'Link (' + link + ') is copied to clipboard.', 'success');
     });
+
+    $('.three-dots').on('click', function () {
+        $('.dataId').val($(this).attr('data-id'));
+        console.log($(this).attr('data-id'));
+    });
+
 });
 
 async function copyContent(text) {

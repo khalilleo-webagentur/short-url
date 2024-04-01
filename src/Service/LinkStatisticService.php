@@ -37,4 +37,18 @@ final class LinkStatisticService
 
         return $model;
     }
+
+    public function deleteAllByLink(Link $model): void
+    {
+        if (count($model->getLinkStatistics()) > 0) {
+            foreach ($model->getLinkStatistics() as $statistic) {
+                $this->delete($statistic);
+            }
+        }
+    }
+
+    public function delete(LinkStatistic $model): void
+    {
+        $this->linkStatisticRepository->remove($model, true);
+    }
 }

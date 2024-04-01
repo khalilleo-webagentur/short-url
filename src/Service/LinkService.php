@@ -16,9 +16,14 @@ final class LinkService
     ) {
     }
 
-    public function getById(int $id): ?User
+    public function getById(int $id): ?Link
     {
         return $this->linkRepository->find($id);
+    }
+
+    public function getByUserAndId(User $user, int $id): ?Link
+    {
+        return $this->linkRepository->findOneBy(['user' => $user, 'id' => $id]);
     }
 
     public function getByToken(string $token): ?Link
@@ -39,5 +44,10 @@ final class LinkService
         $this->linkRepository->save($model->setUpdatedAt(new DateTime()), true);
 
         return $model;
+    }
+
+    public function delete(Link $model): void
+    {
+        $this->linkRepository->remove($model, true);
     }
 }
