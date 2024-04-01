@@ -50,12 +50,10 @@ class DummyURLsCommand extends Command
 
             $this->linkService->save(
                 $link
-                    ->setUser($user ?? null)
+                    ->setUser($user)
                     ->setTitle($faker->text(7))
                     ->setUrl($faker->url())
                     ->setToken($this->tokenGeneratorService->randomToken())
-                    ->setIpAdress('local')
-                    ->setUserAgent('local')
             );
 
             $i++;
