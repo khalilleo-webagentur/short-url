@@ -12,7 +12,11 @@
 
     <div class="row py-3 d-dark-color shadow">
         <div class="col-12">
-            <h5 class="text-white-50 pt-1"> Edit URL</h5>
+            <h5 class="text-white-50 pt-1"> Edit URL
+                <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none small">
+                    Close <span class="bi bi-x-square-fill ps-1"></span>
+                </a>
+            </h5>
         </div>
     </div>
 
@@ -41,8 +45,9 @@
                     </label>
                 </div>
                 <div class="gap-2">
-                    <button class="btn btn-primary w-25" type="submit" style="height: 42px; border-radius: 0;">Save
-                        changes</button>
+                    <button class="btn btn-primary px-3" type="submit" style="height: 42px; border-radius: 0;">
+                        Save changes
+                    </button>
                 </div>
             </form>
         </div>
