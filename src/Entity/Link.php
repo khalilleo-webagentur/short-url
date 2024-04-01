@@ -17,7 +17,16 @@ class Link
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\ManyToOne(inversedBy: 'links')]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(targetEntity: LinkStatistic::class, mappedBy: 'link')]
+    private Collection $linkStatistics;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
+
+    #[ORM\Column(length: 100, unique: true)]
     private ?string $token = null;
 
     #[ORM\Column(length: 255)]
@@ -25,9 +34,6 @@ class Link
 
     #[ORM\Column]
     private int $counter = 0;
-
-    #[ORM\ManyToOne(inversedBy: 'links')]
-    private ?User $user = null;
 
     #[ORM\Column]
     private bool $isPublic = true;
@@ -41,16 +47,22 @@ class Link
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $title = null;
-
-    #[ORM\OneToMany(targetEntity: LinkStatistic::class, mappedBy: 'link')]
-    private Collection $linkStatistics;
-
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
         $this->linkStatistics = new ArrayCollection();
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
     }
 
     public function getId(): ?int
@@ -150,18 +162,6 @@ class Link
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(?string $title): static
-    {
-        $this->title = $title;
 
         return $this;
     }
