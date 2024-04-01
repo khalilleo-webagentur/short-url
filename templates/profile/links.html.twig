@@ -11,12 +11,12 @@
 <div class="container-fluid">
 
     <div class="row py-3 d-dark-color shadow">
-        <div class="col-lg-4 col-md-6">
+        <div class="col-4 col-lg-4">
             <h5 class="text-white-50 pt-1"> List of URLs</h5>
         </div>
-        <div class="col-lg-4 md-d-none">
+        <div class="col-4">
             {% if count(links) > 0 %}
-            <div class="input-group">
+            <div class="input-group md-d-none">
                 <input type="text" class="form-control bg-placeholder" placeholder="Search .." aria-label="Search"
                     aria-describedby="button-addon2" style="background-color: transparent; border: 1px solid #6c757d;">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">
@@ -26,7 +26,7 @@
             {% endif %}
         </div>
 
-        <div class="col-lg-4 col-md-6">
+        <div class="col-4">
             <div class="d-flex float-end">
                 <button class="btn btn-outline-secondary btn-sm mt-1 me-2" data-bs-toggle="modal"
                     data-bs-target="#newModal">
@@ -95,13 +95,13 @@
                             <td class="text-white-50">{{link.createdAt|date('d.m.Y')}}</td>
                             <td>
                                 <div class="dropdown three-dots" data-id="{{link.id}}">
-                                    <div class="btn-sm text-white-50" type="button" data-bs-toggle="dropdown"
+                                    <div class="text-primary" type="button" data-bs-toggle="dropdown"
                                         aria-expanded="false">
                                         <span class="bi bi-three-dots"></span>
                                     </div>
                                     <ul class="dropdown-menu dropdown-menu-dark">
                                         <li class="small">
-                                            <a class="dropdown-item active" href="#">
+                                            <a class="dropdown-item active" href="{{path('app_profile_my_urls_edit', {id:link.id}) }}">
                                                 <span class="bi bi-pencil-square pe-2"></span> Edit
                                             </a>
                                         </li>

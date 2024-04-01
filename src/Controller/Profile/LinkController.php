@@ -85,6 +85,57 @@ class LinkController extends AbstractController
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
 
+    #[Route('/eidt/{id}', name: 'app_profile_my_urls_edit')]
+    public function edit(?string $id): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $link = $this->linkService->getByUserAndId($this->getUser(), $this->validateNumber($id));
+
+        if (!$link) {
+            $this->addFlash('warning', 'Unkown link');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        return $this->render('profile/edit.html.twig', [
+            'link' => $link
+        ]);
+    }
+
+    #[Route('/store/{id}', name: 'app_profile_my_urls_store', methods: 'POST')]
+    public function store(?string $id, Request $request): RedirectResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $link = $this->linkService->getByUserAndId($this->getUser(), $this->validateNumber($id));
+
+        if (!$link) {
+            $this->addFlash('warning', 'Unkown link');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        $url = $this->validateURL($request->request->get('iUrl'));
+
+        if (!$url) {
+            $this->addFlash('warning', 'Long link field is required.');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        $title = $this->validate($request->request->get('iTitle'));
+        $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+
+        $this->linkService->save(
+            $link
+                ->setTitle($title)
+                ->setUrl($url)
+                ->setIsPublic($isPublic)
+        );
+
+        $this->addFlash('success', 'Link has been upadted.');
+
+        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+    }
+
     #[Route('/delete', name: 'app_profile_my_urls_delete', methods: 'POST')]
     public function delete(Request $request): RedirectResponse
     {

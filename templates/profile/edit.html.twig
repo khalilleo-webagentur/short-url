@@ -1,0 +1,54 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %} My URLs {% endblock %}
+
+{% block body %}
+
+{% include 'layout/navbar.html.twig' %}
+
+{% include 'component/custom_type_message_top_fixed.html.twig' %}
+
+<div class="container-fluid">
+
+    <div class="row py-3 d-dark-color shadow">
+        <div class="col-12">
+            <h5 class="text-white-50 pt-1"> Edit URL</h5>
+        </div>
+    </div>
+
+    <div class="row pb-5">
+        <div class="col-lg-6">
+            <form action="{{path('app_profile_my_urls_store', {id: link.id})}}" method="post">
+                <div class="mb-3">
+                    <label for="iTitle" class="form-label text-white-50">Title:</label>
+                    <input type="text" class="form-control" id="iTitle" placeholder="Title (Optional)"
+                        style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
+                        required name="iTitle" style="height: 46px; border-radius: 0;" value="{{link.title}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="iUrl" class="form-label text-white-50">Long URL:</label>
+                    <input type="text" class="form-control" id="iUrl" placeholder="Long link (Required)"
+                        style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
+                        required name="iUrl" style="height: 46px; border-radius: 0;" value="{{link.url}}">
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"
+                        type="checkbox" name="isPublic" id="isPublic" {{ link.isPublic ? 'checked' : '' }}>
+                    <label class="form-check-label text-white-50" for="isPublic">
+                        Log statistic for this Link
+                    </label>
+                </div>
+                <div class="gap-2">
+                    <button class="btn btn-primary w-25" type="submit" style="height: 42px; border-radius: 0;">Save
+                        changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'layout/footer.html.twig' %}
+
+{% endblock %}
