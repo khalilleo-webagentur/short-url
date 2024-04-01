@@ -17,15 +17,15 @@
         <div class="col-4">
             {% if count(links) > 0 %}
             <form action="{{path('app_search_urls')}}" method="post">
-            <div class="input-group md-d-none">
+                <div class="input-group md-d-none">
                     <input type="search" class="form-control bg-placeholder" name="keyword" placeholder="Search .."
                         aria-label="Search" required aria-describedby="button-search"
                         style="background-color: transparent; border: 1px solid #6c757d;">
                     <button class="btn btn-outline-secondary" type="submit" id="button-search">
                         <span class="bi bi-search"></span>
                     </button>
-            </div>
-        </form>
+                </div>
+            </form>
             {% endif %}
         </div>
 
@@ -33,7 +33,12 @@
             <div class="d-flex float-end">
                 <button class="btn btn-outline-secondary btn-sm mt-1 me-2" data-bs-toggle="modal"
                     data-bs-target="#newModal">
-                    <span class="md-d-none">New</span> <span class="bi bi-plus"></span>
+                    <span class="md-d-none">New </span> <span class="bi bi-plus-circle"></span>
+                </button>
+
+                <button class="btn btn-outline-secondary btn-sm mt-1 me-2" data-bs-toggle="modal"
+                    data-bs-target="#anonomyzeModel">
+                    <span class="md-d-none">Anonomyze </span> <span class="bi bi-fingerprint"></span>
                 </button>
 
                 {% if count(links) > 0 %}
@@ -63,7 +68,7 @@
         <div class="col-lg-12">
 
             {% if count(links) > 0 %}
-                {% include 'profile/partial/table_content.html.twig' %}
+            {% include 'profile/partial/table_content.html.twig' %}
             {% else %}
             <p class="text-white-50">No data found.</p>
             {% endif %}
@@ -73,6 +78,8 @@
 </div>
 
 {% include 'profile/modal/new.html.twig' %}
+
+{% include 'profile/modal/anonomyze.html.twig' %}
 
 {% include 'profile/modal/delete.html.twig' %}
 

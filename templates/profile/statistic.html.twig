@@ -30,6 +30,7 @@
                             <th class="col text-white-50">Browser Name</th>
                             <th class="col text-white-50">Browser Lang</th>
                             <th class="col text-white-50">Platform</th>
+                            <th class="col text-white-50">IP</th>
                             <th class="col text-white-50">Referer</th>
                             <th class="col text-white-50">is Mobile</th>
                             <th class="col text-white-50">is Desktop</th>
@@ -43,6 +44,7 @@
                             <td class="text-white-50">{{row.browserName}}</td>
                             <td class="text-white-50">{{row.browserLang|capitalize}}</td>
                             <td class="text-white-50">{{row.platform|capitalize}}</td>
+                            <td class="text-white-50">{{row.ipAddress ? row.ipAddress : '127.0.0.1'}}</td>
                             <td class="text-white-50">{{row.referer}}</td>
                             <td class="text-white-50">
                                 {{row.isMobile ? circle('text-success small') : circle('text-secondary small')}}

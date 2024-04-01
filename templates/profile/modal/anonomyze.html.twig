@@ -1,0 +1,27 @@
+<div class="modal fade" id="anonomyzeModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="anonomyzeModelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #000;">
+      <div class="modal-header">
+        <h1 class="modal-title d-color fs-5" id="anonomyzeModelLabel">Anonomyze</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="{{path('app_profile_anonomyze')}}" method="post">
+        <div class="modal-body">
+          <div class="mb-3">
+            <p class="text-white-50">This will anonomyze all IP-adresses from all Statistic.</p>
+            <p class="text-white-50">Are you sure to do that?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+            style="border-radius: 2px;height: 40px;">Cancel</button>
+          <button type="submit" class="btn btn-outline-warning"
+            style="border-radius: 2px;height: 40px;">Anonomyze</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
