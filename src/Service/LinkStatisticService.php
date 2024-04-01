@@ -9,6 +9,7 @@ use App\Entity\LinkStatistic;
 use App\Repository\LinkStatisticRepository;
 use App\Traits\RemoteTrait;
 use DateTime;
+use Khalilleo\BrowserDetect\UserAgent;
 
 final class LinkStatisticService
 {
@@ -23,11 +24,17 @@ final class LinkStatisticService
     {
         $model = new LinkStatistic();
 
+        $userAgent = new UserAgent();
+
         $this->save(
             $model
                 ->setLink($link)
                 ->setIpAddress($this->getRemote())
-                ->setUserAgent($this->getAgent())
+                ->setBrowserName($userAgent->getBrowserName())
+                ->setBrowserLang($userAgent->getBrowserLang())
+                ->setPlatform($userAgent->getPlatform())
+                ->setReferer($userAgent->getReferer())
+                ->setIsMobile($userAgent->isMobile())
         );
     }
 

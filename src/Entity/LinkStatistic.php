@@ -18,8 +18,20 @@ class LinkStatistic
     #[ORM\ManyToOne(inversedBy: 'linkStatistics')]
     private ?Link $link = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $userAgent = null;
+    #[ORM\Column(length: 100)]
+    private ?string $browserName = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $browserLang = null;
+
+    #[ORM\Column(length: 30)]
+    private ?string $platform = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $referer = null;
+
+    #[ORM\Column]
+    private bool $isMobile = false;
 
     #[ORM\Column(length: 100)]
     private ?string $ipAddress = null;
@@ -52,14 +64,62 @@ class LinkStatistic
         return $this;
     }
 
-    public function getUserAgent(): ?string
+    public function getBrowserName(): ?string
     {
-        return $this->userAgent;
+        return $this->browserName;
     }
 
-    public function setUserAgent(string $userAgent): static
+    public function setBrowserName(string $browserName): static
     {
-        $this->userAgent = $userAgent;
+        $this->browserName = $browserName;
+
+        return $this;
+    }
+
+    public function getBrowserLang(): ?string
+    {
+        return $this->browserLang;
+    }
+
+    public function setBrowserLang(string $browserLang): static
+    {
+        $this->browserLang = $browserLang;
+
+        return $this;
+    }
+
+    public function getPlatform(): ?string
+    {
+        return $this->platform;
+    }
+
+    public function setPlatform(string $platform): static
+    {
+        $this->platform = $platform;
+
+        return $this;
+    }
+
+    public function getReferer(): ?string
+    {
+        return $this->referer;
+    }
+
+    public function setReferer(string $referer): static
+    {
+        $this->referer = $referer;
+
+        return $this;
+    }
+
+    public function isMobile(): bool
+    {
+        return $this->isMobile;
+    }
+
+    public function setIsMobile(bool $isMobile): static
+    {
+        $this->isMobile = $isMobile;
 
         return $this;
     }

@@ -57,8 +57,6 @@ class LinkController extends AbstractController
             $token = $this->tokenGeneratorService->randomToken();
         }
 
-        $userAgent = $request->server->get('HTTP_USER_AGENT');
-
         $user = $this->getUser();
 
         $model = new Link();
