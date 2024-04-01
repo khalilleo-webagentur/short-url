@@ -20,6 +20,14 @@ final class LinkStatisticService
     ) {
     }
 
+    /**
+     * @return LinkStatistic[]
+     */
+    public function getAllByLink(Link $link): array
+    {
+        return $this->linkStatisticRepository->findBy(['link' => $link]);
+    }
+
     public function create(Link $link): void
     {
         $model = new LinkStatistic();

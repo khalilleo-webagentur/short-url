@@ -37,9 +37,15 @@
                         </div>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li class="small">
-                                <a class="dropdown-item active"
+                                <a class="dropdown-item"
                                     href="{{path('app_profile_my_urls_edit', {id:link.id}) }}">
                                     <span class="bi bi-pencil-square pe-2"></span> Edit
+                                </a>
+                            </li>
+                            <li class="small">
+                                <a class="dropdown-item"
+                                    href="{{path('app_url_statistic_index', {id:link.id})}}">
+                                    <span class="bi bi-pie-chart pe-2"></span> Statistic
                                 </a>
                             </li>
                             <li class="small">
