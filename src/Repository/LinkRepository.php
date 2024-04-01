@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Link;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,5 +38,23 @@ class LinkRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @return Link[]
+     */
+    public function searchByUser(User $user, string $title): array
+    {
+        $text = '%' . $title . '%';
+
+        $qb = $this->createQueryBuilder('t1')
+            ->where('t1.user = :user')
+            ->setParameter('user', $user);
+
+        return $qb->andWhere($qb->expr()->like('t1.title', ':title'))
+            ->setParameter('title', $text)
+            ->orderBy('t1.id', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }

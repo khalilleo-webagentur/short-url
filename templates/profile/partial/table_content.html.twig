@@ -1,0 +1,57 @@
+<div class="table-responsive py-3">
+    <table class="table table-dark caption-top">
+        <thead class="small">
+            <tr>
+                <th class="col text-white-50">#</th>
+                <th class="col text-white-50">Title</th>
+                <th class="col text-white-50">Short-URL</th>
+                <th class="col text-white-50">URL</th>
+                <th class="col text-white-50">Public</th>
+                <th class="col text-white-50">Count</th>
+                <th class="col text-white-50">Modified</th>
+                <th class="col text-white-50">Created</th>
+                <th class="col text-white-50">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for i, link in links %}
+            <tr class="small">
+                <td class="text-white-50">{{i+1}}</td>
+                <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
+                <td class="text-white-50" title="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}">
+                    <a href="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}" class="ps-1" target="_blank">
+                        <span class="bi bi-box-arrow-up-right text-secondary"></span>
+                    </a>
+                </td>
+                <td class="text-white-50" title="{{link.url}}">{{link.url|slice(0, 35) ~ ' ...'}}</td>
+                <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') :
+                    circle('text-white-50') }}</td>
+                <td class="text-white-50">{{ link.counter}}</td>
+                <td class="text-white-50">{{link.updatedAt|date('d.m.Y')}}</td>
+                <td class="text-white-50">{{link.createdAt|date('d.m.Y')}}</td>
+                <td>
+                    <div class="dropdown three-dots" data-id="{{link.id}}">
+                        <div class="text-white-50" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="bi bi-three-dots"></span>
+                        </div>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li class="small">
+                                <a class="dropdown-item active"
+                                    href="{{path('app_profile_my_urls_edit', {id:link.id}) }}">
+                                    <span class="bi bi-pencil-square pe-2"></span> Edit
+                                </a>
+                            </li>
+                            <li class="small">
+                                <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                    <span class="bi bi-trash pe-2"></span>Delete
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

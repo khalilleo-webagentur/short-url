@@ -161,7 +161,7 @@ class LinkController extends AbstractController
 
         $this->linkService->delete($link);
 
-        $this->addFlash('success', 'Link has been deleted.');
+        $this->addFlash('success', 'Link and all associated statistics if any has been deleted.');
 
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
