@@ -32,7 +32,10 @@ class JobController extends AbstractController
         foreach ($this->linkService->getAllByUser($this->getUser()) as $link) {
 
             foreach ($this->linkStatisticService->getAllByLink($link) as $row) {
-                $this->linkStatisticService->save($row->setIpAddress('_anonomyzed'));
+
+                if ($row->getIpAddress() !== '_anonomyzed') {
+                    $this->linkStatisticService->save($row->setIpAddress('_anonomyzed'));
+                }
             }
         }
 
