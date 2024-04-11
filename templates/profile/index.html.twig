@@ -22,6 +22,11 @@
                         <div class="col-10">
                             <p class="float-end small md-d-none">
                                 <a href="{{path('app_profile_my_urls')}}" class="text-white-50">My URLs</a>
+
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <span class="small text-secondary px-1">|</span>
+                                <a href="{{path('app_admin_index')}}" class="text-white-50">Dashboard</a>
+                                {% endif %}
                             </p>
                             <p class="text-white-50 pt-3">Username: {{app.user.name}}</p>
                             <p class="text-white-50">Email: {{app.user.email}}</p>
