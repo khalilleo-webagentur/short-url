@@ -6,16 +6,6 @@
 
 {% include 'layout/navbar.html.twig' %}
 
-
-<!-- ___FIRMENNAME
-__STRASSE_UND_HAUSNUMER
-__PLZ
-__ORT
-__LAND
-____TELEFON
-__EMAIL_ADDRESSE
-__WEBSEITE -->
-
 <div class="container-fluid">
     <div class="container">
         <div class="row justify-content-center pt-3">
@@ -24,8 +14,8 @@ __WEBSEITE -->
 
                 <p class="text-white-50">Wir freuen uns sehr über Ihr Interesse an unserem Unternehmen. Datenschutz hat
                     einen besonders hohen
-                    Stellenwert für die Geschäftsleitung der ___FIRMENNAME. Eine Nutzung der Internetseiten der
-                    ___FIRMENNAME ist
+                    Stellenwert für die Geschäftsleitung der {{appName()}}. Eine Nutzung der Internetseiten der
+                    {{appName()}} ist
                     grundsätzlich ohne jede Angabe personenbezogener Daten möglich. Sofern eine betroffene Person
                     besondere Services unseres Unternehmens über unsere Internetseite in Anspruch nehmen möchte, könnte
                     jedoch eine Verarbeitung personenbezogener Daten erforderlich werden. Ist die Verarbeitung
@@ -35,13 +25,13 @@ __WEBSEITE -->
                 <p class="text-white-50">Die Verarbeitung personenbezogener Daten, beispielsweise des Namens, der
                     Anschrift, E-Mail-Adresse
                     oder Telefonnummer einer betroffenen Person, erfolgt stets im Einklang mit der
-                    Datenschutz-Grundverordnung und in Übereinstimmung mit den für die ___FIRMENNAME geltenden
+                    Datenschutz-Grundverordnung und in Übereinstimmung mit den für die {{appName()}} geltenden
                     landesspezifischen Datenschutzbestimmungen. Mittels dieser Datenschutzerklärung möchte unser
                     Unternehmen die Öffentlichkeit über Art, Umfang und Zweck der von uns erhobenen, genutzten und
                     verarbeiteten personenbezogenen Daten informieren. Ferner werden betroffene Personen mittels dieser
                     Datenschutzerklärung über die ihnen zustehenden Rechte aufgeklärt.</p>
 
-                <p class="text-white-50">Die ___FIRMENNAME hat als für die Verarbeitung Verantwortlicher zahlreiche
+                <p class="text-white-50">Die {{appName()}} hat als für die Verarbeitung Verantwortlicher zahlreiche
                     technische und organisatorische
                     Maßnahmen umgesetzt, um einen möglichst lückenlosen Schutz der über diese Internetseite
                     verarbeiteten personenbezogenen Daten sicherzustellen. Dennoch können Internetbasierte
@@ -50,7 +40,7 @@ __WEBSEITE -->
                     Daten auch auf alternativen Wegen, beispielsweise telefonisch, an uns zu übermitteln.</p>
 
                 <h4 class="text-white-50">1. Begriffsbestimmungen</h4>
-                <p class="text-white-50">Die Datenschutzerklärung der ___FIRMENNAME beruht auf den Begrifflichkeiten,
+                <p class="text-white-50">Die Datenschutzerklärung der {{appName()}} beruht auf den Begrifflichkeiten,
                     die durch den Europäischen
                     Richtlinien- und Verordnungsgeber beim Erlass der Datenschutz-Grundverordnung (DS-GVO) verwendet
                     wurden. Unsere Datenschutzerklärung soll sowohl für die Öffentlichkeit als auch für unsere Kunden
@@ -166,16 +156,16 @@ __WEBSEITE -->
                     Europäischen Union geltenden Datenschutzgesetze und anderer Bestimmungen mit datenschutzrechtlichem
                     Charakter ist die:</p>
 
-                <p class="text-white-50">___FIRMENNAME</p>
-                <p class="text-white-50">__STRASSE_UND_HAUSNUMER</p>
-                <p class="text-white-50">__ORT</p>
-                <p class="text-white-50">__LAND</p>
-                <p class="text-white-50">Tel.: __TELEFON</p>
-                <p class="text-white-50">E-Mail: __EMAIL_ADDRESSE</p>
-                <p class="text-white-50">Website: __WEBSEITE</p>
+                <p class="text-white-50">{{appName()}}</p>
+                <p class="text-white-50">{{street}}</p>
+                <p class="text-white-50">{{city}}</p>
+                <p class="text-white-50">{{country}}</p>
+                <p class="text-white-50">Tel.: {{phonenumber}}</p>
+                <p class="text-white-50">E-Mail: {{email}}</p>
+                <p class="text-white-50">Website: {{app.request.schemeAndHttpHost}}</p>
 
                 <h4 class="text-white-50">3. Erfassung von allgemeinen Daten und Informationen</h4>
-                <p class="text-white-50">Die Internetseite der ___FIRMENNAME erfasst mit jedem Aufruf der Internetseite
+                <p class="text-white-50">Die Internetseite der {{appName()}} erfasst mit jedem Aufruf der Internetseite
                     durch eine betroffene Person
                     oder ein automatisiertes System eine Reihe von allgemeinen Daten und Informationen. Diese
                     allgemeinen Daten und Informationen werden in den Logfiles des Servers gespeichert. Erfasst werden
@@ -188,13 +178,13 @@ __WEBSEITE -->
                     im Falle von Angriffen auf unsere informationstechnologischen Systeme dienen.</p>
 
                 <p class="text-white-50">Bei der Nutzung dieser allgemeinen Daten und Informationen zieht die
-                    ___FIRMENNAME keine Rückschlüsse auf
+                    {{appName()}} keine Rückschlüsse auf
                     die betroffene Person. Diese Informationen werden vielmehr benötigt, um (1) die Inhalte unserer
                     Internetseite korrekt auszuliefern, (2) die Inhalte unserer Internetseite sowie die Werbung für
                     diese zu optimieren, (3) die dauerhafte Funktionsfähigkeit unserer informationstechnologischen
                     Systeme und der Technik unserer Internetseite zu gewährleisten sowie (4) um Strafverfolgungsbehörden
                     im Falle eines Cyberangriffes die zur Strafverfolgung notwendigen Informationen bereitzustellen.
-                    Diese anonym erhobenen Daten und Informationen werden durch die ___FIRMENNAME daher einerseits
+                    Diese anonym erhobenen Daten und Informationen werden durch die {{appName()}} daher einerseits
                     statistisch
                     und ferner mit dem Ziel ausgewertet, den Datenschutz und die Datensicherheit in unserem Unternehmen
                     zu erhöhen, um letztlich ein optimales Schutzniveau für die von uns verarbeiteten personenbezogenen
@@ -241,13 +231,13 @@ __WEBSEITE -->
                     betroffenen Person in diesem Zusammenhang als Ansprechpartner zur Verfügung.</p>
 
                 <h4 class="text-white-50">5. Abonnement unseres Newsletters</h4>
-                <p class="text-white-50">Auf der Internetseite der ___FIRMENNAME wird den Benutzern die Möglichkeit
+                <p class="text-white-50">Auf der Internetseite der {{appName()}} wird den Benutzern die Möglichkeit
                     eingeräumt, den Newsletter
                     unseres Unternehmens zu abonnieren. Welche personenbezogenen Daten bei der Bestellung des
                     Newsletters an den für die Verarbeitung Verantwortlichen übermittelt werden, ergibt sich aus der
                     hierzu verwendeten Eingabemaske.</p>
 
-                <p class="text-white-50">Die ___FIRMENNAME informiert ihre Kunden und Geschäftspartner in regelmäßigen
+                <p class="text-white-50">Die {{appName()}} informiert ihre Kunden und Geschäftspartner in regelmäßigen
                     Abständen im Wege eines
                     Newsletters über Angebote des Unternehmens. Der Newsletter unseres Unternehmens kann von der
                     betroffenen Person grundsätzlich nur dann empfangen werden, wenn (1) die betroffene Person über eine
@@ -280,12 +270,12 @@ __WEBSEITE -->
                     oder dies dem für die Verarbeitung Verantwortlichen auf andere Weise mitzuteilen.</p>
 
                 <h4 class="text-white-50">6. Newsletter-Tracking</h4>
-                <p class="text-white-50">Die Newsletter der ___FIRMENNAME enthalten sogenannte Zählpixel. Ein Zählpixel
+                <p class="text-white-50">Die Newsletter der {{appName()}} enthalten sogenannte Zählpixel. Ein Zählpixel
                     ist eine Miniaturgrafik, die
                     in solche E-Mails eingebettet wird, welche im HTML-Format versendet werden, um eine
                     Logdatei-Aufzeichnung und eine Logdatei-Analyse zu ermöglichen. Dadurch kann eine statistische
                     Auswertung des Erfolges oder Misserfolges von Online-Marketing-Kampagnen durchgeführt werden. Anhand
-                    des eingebetteten Zählpixels kann die ___FIRMENNAME erkennen, ob und wann eine E-Mail von einer
+                    des eingebetteten Zählpixels kann die {{appName()}} erkennen, ob und wann eine E-Mail von einer
                     betroffenen
                     Person geöffnet wurde und welche in der E-Mail befindlichen Links von der betroffenen Person
                     aufgerufen wurden.</p>
@@ -298,10 +288,10 @@ __WEBSEITE -->
                     Personen sind jederzeit berechtigt, die diesbezügliche gesonderte, über das Double-Opt-In-Verfahren
                     abgegebene Einwilligungserklärung zu widerrufen. Nach einem Widerruf werden diese personenbezogenen
                     Daten von dem für die Verarbeitung Verantwortlichen gelöscht. Eine Abmeldung vom Erhalt des
-                    Newsletters deutet die ___FIRMENNAME automatisch als Widerruf.</p>
+                    Newsletters deutet die {{appName()}} automatisch als Widerruf.</p>
 
                 <h4 class="text-white-50">7. Kontaktmöglichkeit über die Internetseite</h4>
-                <p class="text-white-50">Die Internetseite der ___FIRMENNAME enthält aufgrund von gesetzlichen
+                <p class="text-white-50">Die Internetseite der {{appName()}} enthält aufgrund von gesetzlichen
                     Vorschriften Angaben, die eine
                     schnelle elektronische Kontaktaufnahme zu unserem Unternehmen sowie eine unmittelbare Kommunikation
                     mit uns ermöglichen, was ebenfalls eine allgemeine Adresse der sogenannten elektronischen Post
@@ -420,23 +410,23 @@ __WEBSEITE -->
                         </ul>
                         <p class="text-white-50">Sofern einer der oben genannten Gründe zutrifft und eine betroffene
                             Person die Löschung von
-                            personenbezogenen Daten, die bei der ___FIRMENNAME gespeichert sind, veranlassen möchte,
+                            personenbezogenen Daten, die bei der {{appName()}} gespeichert sind, veranlassen möchte,
                             kann sie
                             sich hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung Verantwortlichen wenden.
-                            Der Mitarbeiter der ___FIRMENNAME wird veranlassen, dass dem Löschverlangen unverzüglich
+                            Der Mitarbeiter der {{appName()}} wird veranlassen, dass dem Löschverlangen unverzüglich
                             nachgekommen wird.</p>
 
-                        <p class="text-white-50">Wurden die personenbezogenen Daten von der ___FIRMENNAME öffentlich
+                        <p class="text-white-50">Wurden die personenbezogenen Daten von der {{appName()}} öffentlich
                             gemacht und ist unser
                             Unternehmen als Verantwortlicher gemäß Art. 17 Abs. 1 DS-GVO zur Löschung der
-                            personenbezogenen Daten verpflichtet, so trifft die ___FIRMENNAME unter Berücksichtigung der
+                            personenbezogenen Daten verpflichtet, so trifft die {{appName()}} unter Berücksichtigung der
                             verfügbaren Technologie und der Implementierungskosten angemessene Maßnahmen, auch
                             technischer Art, um andere für die Datenverarbeitung Verantwortliche, welche die
                             veröffentlichten personenbezogenen Daten verarbeiten, darüber in Kenntnis zu setzen, dass
                             die betroffene Person von diesen anderen für die Datenverarbeitung Verantwortlichen die
                             Löschung sämtlicher Links zu diesen personenbezogenen Daten oder von Kopien oder
                             Replikationen dieser personenbezogenen Daten verlangt hat, soweit die Verarbeitung nicht
-                            erforderlich ist. Der Mitarbeiter der ___FIRMENNAME wird im Einzelfall das Notwendige
+                            erforderlich ist. Der Mitarbeiter der {{appName()}} wird im Einzelfall das Notwendige
                             veranlassen.
                         </p>
                     </li>
@@ -464,10 +454,10 @@ __WEBSEITE -->
                         </ul>
                         <p class="text-white-50">Sofern eine der oben genannten Voraussetzungen gegeben ist und eine
                             betroffene Person die
-                            Einschränkung von personenbezogenen Daten, die bei der ___FIRMENNAME gespeichert sind,
+                            Einschränkung von personenbezogenen Daten, die bei der {{appName()}} gespeichert sind,
                             verlangen
                             möchte, kann sie sich hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung
-                            Verantwortlichen wenden. Der Mitarbeiter der ___FIRMENNAME wird die Einschränkung der
+                            Verantwortlichen wenden. Der Mitarbeiter der {{appName()}} wird die Einschränkung der
                             Verarbeitung
                             veranlassen.</p>
                     </li>
@@ -496,7 +486,7 @@ __WEBSEITE -->
 
                         <p class="text-white-50">Zur Geltendmachung des Rechts auf Datenübertragbarkeit kann sich die
                             betroffene Person
-                            jederzeit an einen Mitarbeiter der ___FIRMENNAME wenden.</p>
+                            jederzeit an einen Mitarbeiter der {{appName()}} wenden.</p>
 
                     </li>
                     <li>
@@ -508,26 +498,26 @@ __WEBSEITE -->
                             Daten, die aufgrund von Art. 6 Abs. 1 Buchstaben e oder f DS-GVO erfolgt, Widerspruch
                             einzulegen. Dies gilt auch für ein auf diese Bestimmungen gestütztes Profiling.</p>
 
-                        <p class="text-white-50">Die ___FIRMENNAME verarbeitet die personenbezogenen Daten im Falle des
+                        <p class="text-white-50">Die {{appName()}} verarbeitet die personenbezogenen Daten im Falle des
                             Widerspruchs nicht mehr, es
                             sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die den
                             Interessen, Rechten und Freiheiten der betroffenen Person überwiegen, oder die Verarbeitung
                             dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen.</p>
 
-                        <p class="text-white-50">Verarbeitet die ___FIRMENNAME personenbezogene Daten, um Direktwerbung
+                        <p class="text-white-50">Verarbeitet die {{appName()}} personenbezogene Daten, um Direktwerbung
                             zu betreiben, so hat die
                             betroffene Person das Recht, jederzeit Widerspruch gegen die Verarbeitung der
                             personenbezogenen Daten zum Zwecke derartiger Werbung einzulegen. Dies gilt auch für das
                             Profiling, soweit es mit solcher Direktwerbung in Verbindung steht. Widerspricht die
-                            betroffene Person gegenüber der ___FIRMENNAME der Verarbeitung für Zwecke der Direktwerbung,
+                            betroffene Person gegenüber der {{appName()}} der Verarbeitung für Zwecke der Direktwerbung,
                             so
-                            wird die ___FIRMENNAME die personenbezogenen Daten nicht mehr für diese Zwecke verarbeiten.
+                            wird die {{appName()}} die personenbezogenen Daten nicht mehr für diese Zwecke verarbeiten.
                         </p>
 
                         <p class="text-white-50">Zudem hat die betroffene Person das Recht, aus Gründen, die sich aus
                             ihrer besonderen
                             Situation ergeben, gegen die sie betreffende Verarbeitung personenbezogener Daten, die bei
-                            der ___FIRMENNAME zu wissenschaftlichen oder historischen Forschungszwecken oder zu
+                            der {{appName()}} zu wissenschaftlichen oder historischen Forschungszwecken oder zu
                             statistischen
                             Zwecken gemäß Art. 89 Abs. 1 DS-GVO erfolgen, Widerspruch einzulegen, es sei denn, eine
                             solche Verarbeitung ist zur Erfüllung einer im öffentlichen Interesse liegenden Aufgabe
@@ -535,7 +525,7 @@ __WEBSEITE -->
 
                         <p class="text-white-50">Zur Ausübung des Rechts auf Widerspruch kann sich die betroffene Person
                             direkt an jeden
-                            Mitarbeiter der ___FIRMENNAME oder einen anderen Mitarbeiter wenden. Der betroffenen Person
+                            Mitarbeiter der {{appName()}} oder einen anderen Mitarbeiter wenden. Der betroffenen Person
                             steht
                             es ferner frei, im Zusammenhang mit der Nutzung von Diensten der Informationsgesellschaft,
                             ungeachtet der Richtlinie 2002/58/EG, ihr Widerspruchsrecht mittels automatisierter
@@ -560,7 +550,7 @@ __WEBSEITE -->
                         <p class="text-white-50">Ist die Entscheidung (1) für den Abschluss oder die Erfüllung eines
                             Vertrags zwischen der
                             betroffenen Person und dem Verantwortlichen erforderlich oder (2) erfolgt sie mit
-                            ausdrücklicher Einwilligung der betroffenen Person, trifft die ___FIRMENNAME angemessene
+                            ausdrücklicher Einwilligung der betroffenen Person, trifft die {{appName()}} angemessene
                             Maßnahmen,
                             um die Rechte und Freiheiten sowie die berechtigten Interessen der betroffenen Person zu
                             wahren, wozu mindestens das Recht auf Erwirkung des Eingreifens einer Person seitens des
