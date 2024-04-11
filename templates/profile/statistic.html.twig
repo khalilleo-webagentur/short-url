@@ -35,7 +35,6 @@
                             <th class="col text-white-50">Platform</th>
                             <th class="col text-white-50">is Mobile</th>
                             <th class="col text-white-50">is Desktop</th>
-                            <th class="col text-white-50 md-d-none">Referer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +52,6 @@
                             <td class="text-white-50">
                                 {{row.isMobile ? circle('text-secondary small') : circle('text-success small')}}
                             </td>
-                            <td class="text-white-50 md-d-none">{{row.referer}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
