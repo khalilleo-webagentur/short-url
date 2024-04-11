@@ -6,6 +6,8 @@ namespace App\Twig;
 
 use App\Service\ConfigService;
 use DateTime;
+use DateTimeInterface;
+use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -19,6 +21,7 @@ class TwigHelper extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('timeAgo', [$this, 'timeAgo']),
             new TwigFunction('formatSizeUnits', [$this, 'formatSizeUnits']),
             new TwigFunction('dateTime', [$this, 'dateTime']),
             new TwigFunction('replaceLinkWithHref', [$this, 'replaceLinkInText']),
@@ -33,6 +36,48 @@ class TwigHelper extends AbstractExtension
             new TwigFunction('madeBy', [$this, 'getMadeBy']),
             new TwigFunction('version', [$this, 'getVersion']),
         ];
+    }
+
+    public function timeAgo(DateTimeInterface $datetime, bool $fullDateTime = false): string
+    {
+        $now = new DateTime();
+        $ago = '';
+
+        try {
+            $ago = new DateTime($datetime->format('Y-m-d H:i:s'));
+        } catch (Exception $e) {
+        }
+
+        $differentTime = $now->diff($ago);
+
+        $differentTime->w = floor($differentTime->d / 7);
+        $differentTime->d -= $differentTime->w * 7;
+
+        $components = [
+            'y' => 'year',
+            'm' => 'month',
+            'w' => 'week',
+            'd' => 'day',
+            'h' => 'hour',
+            'i' => 'minute',
+            's' => 'second',
+        ];
+
+        foreach ($components as $key => &$value) {
+            if ($differentTime->$key) {
+                $value = $differentTime->$key . ' ' . $value . ($differentTime->$key > 1 ? 's' : '');
+            } else {
+                unset($components[$key]);
+            }
+        }
+
+        unset($value);
+
+        if (!$fullDateTime) {
+            $components = array_slice($components, 0, 1);
+        }
+
+        return $components ? implode(', ', $components) . ' ago' : 'just now';
     }
 
     public function formatSizeUnits($bytes)

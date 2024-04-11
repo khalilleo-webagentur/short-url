@@ -41,7 +41,9 @@
 
                         {% for i, row in statistics %}
                         <tr class="small">
-                            <td class="text-white-50">{{row.createdAt|date('d.m.Y H:i')}}</td>
+                            <td class="text-white-50">
+                                <span title="{{row.createdAt|date}}">{{timeAgo(row.createdAt)}}</span>
+                            </td>
                             <td class="text-white-50">{{row.ipAddress ? row.ipAddress : '127.0.0.1'}}</td>
                             <td class="text-white-50">{{row.browserName}}</td>
                             <td class="text-white-50">{{row.browserLang|capitalize}}</td>
