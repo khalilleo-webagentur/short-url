@@ -20,7 +20,7 @@
                 <td class="text-white-50">{{i+1}}</td>
                 <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
                 <td class="text-white-50" title="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}">
-                    <a href="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}" class="ps-1" target="_blank">
+                    <span class="cUrlCode" data-description="{{link.token}}" title="Copy to Clipboard">{{link.token}}</span> <a href="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}" class="ps-1" target="_blank">
                         <span class="bi bi-box-arrow-up-right text-secondary"></span>
                     </a>
                 </td>

@@ -15,6 +15,12 @@ $(document).ready(function () {
         console.log($(this).attr('data-id'));
     });
 
+    $('.cUrlCode').on('click', function () {
+        let code = $(this).attr('data-description');
+        copyContent(code);
+        swal('', 'URL-Code (' + code + ') is copied to clipboard.', 'success');
+    });
+
 });
 
 async function copyContent(text) {
