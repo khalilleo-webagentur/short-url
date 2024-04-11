@@ -44,6 +44,14 @@ final class LinkService
         return $this->linkRepository->findBy(['user' => $user], ['id' => 'DESC']);
     }
 
+    /**
+     * @return Link[]
+     */
+    public function getAll(): array
+    {
+        return $this->linkRepository->findBy([], ['id' => 'DESC']);
+    }
+
     public function save(Link $model): Link
     {
         $this->linkRepository->save($model->setUpdatedAt(new DateTime()), true);

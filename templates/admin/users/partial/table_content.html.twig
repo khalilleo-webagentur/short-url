@@ -17,15 +17,15 @@
                 <td>{{ row.name|capitalize }}</td>
                 <td>{{ row.email }}</td>
                 <td>{{ row.token }}</td>
-                <td>{{ row.isVerified ? faThumbsUp('text-success') : faThumbsDown() }}</td>
+                <td>{{ row.isVerified ? faThumbsUp() : faThumbsDown() }}</td>
 
-                <td title="{{ row.updatedAt|date('Y-m-d H:i') }}">{{ timeAgo(row.updatedAt) }}</td>
+                <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
 
-                <td title="{{ row.createdAt|date('Y-m-d H:i') }}">{{ timeAgo(row.createdAt) }}</td>
+                <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
 
                 <td>
                     <a href="#">
-                        <span class="fa fa-edit"></span>
+                        <span class="fa fa-edit fa-sm"></span>
                     </a>
                 </td>
             </tr>
