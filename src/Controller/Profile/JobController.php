@@ -39,6 +39,8 @@ class JobController extends AbstractController
             }
         }
 
+        $this->addFlash('notice', 'IPs has been anonomyzed in all statistics.');
+
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
 }

@@ -170,6 +170,12 @@ trait FormValidationTrait
         return $results;
     }
 
+    private function replaceSpecialChars(string $text, string $replace = '-'): string
+    {
+        $string = str_replace(' ', $replace, $text);
+
+        return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+    }
 
     private function escape(?string $input): ?string
     {

@@ -37,6 +37,16 @@
                         required name="iUrl" style="height: 46px; border-radius: 0;" value="{{link.url}}">
                 </div>
 
+                <div class="mb-3">
+                    {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
+                    <small class="float-end d-color">{{shortLink}}</small>
+                    <label for="iUrl" class="form-label text-white-50">URL Code:</label>
+                    <input type="text" class="form-control" id="iCode" placeholder="URL Code (Required)"
+                        style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
+                        required name="iCode" style="height: 46px; border-radius: 0;" value="{{link.token}}">
+                        <small class="text-secondary">Allowed special chars is Hyphen.</small>
+                </div>
+
                 <div class="form-check mb-3">
                     <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"
                         type="checkbox" name="isPublic" id="isPublic" {{ link.isPublic ? 'checked' : '' }}>

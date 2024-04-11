@@ -107,7 +107,9 @@ class LinkController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $link = $this->linkService->getByUserAndId($this->getUser(), $this->validateNumber($id));
+        $user = $this->getUser();
+
+        $link = $this->linkService->getByUserAndId($user, $this->validateNumber($id));
 
         if (!$link) {
             $this->addFlash('warning', 'Unkown link');
@@ -121,13 +123,30 @@ class LinkController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
+        $token = $this->validate($request->request->get('iCode'));
+
+        if (!$token) {
+            $this->addFlash('warning', 'Token link field is required.');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        if ($token !== $link->getToken()) {
+
+            if ($this->linkService->getByToken($token)) {
+                $this->addFlash('warning', 'Token is not valid. Please try another one!');
+                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            }
+        }
+
         $title = $this->validate($request->request->get('iTitle'));
+        
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
 
         $this->linkService->save(
             $link
                 ->setTitle($title)
                 ->setUrl($url)
+                ->setToken($this->replaceSpecialChars($token))
                 ->setIsPublic($isPublic)
         );
 
