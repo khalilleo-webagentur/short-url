@@ -150,7 +150,7 @@ class LinkController extends AbstractController
                 ->setIsPublic($isPublic)
         );
 
-        $this->addFlash('success', 'Link has been upadted.');
+        $this->addFlash('success', 'Link has been updated.');
 
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }

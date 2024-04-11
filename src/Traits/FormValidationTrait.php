@@ -37,13 +37,13 @@ trait FormValidationTrait
             return null;
         }
 
-        if (!preg_match("@^https?://@", $input)) {
-            $input = 'https://' . $input;
+        if (!str_contains($input, 'https') && !str_contains($input, 'http')) {
+            $input = "https://" . $input;
         }
 
         $input = $this->escape($input);
 
-        return filter_var($input, FILTER_VALIDATE_URL) ? $input : null;
+        return (bool)filter_var($input, FILTER_VALIDATE_URL) === true ? $input : null;
     }
 
     private function validateCheckbox(?string $input): bool
@@ -90,7 +90,6 @@ trait FormValidationTrait
     private function passwordError(?string $input, bool $allowSimplePassword = false): ?string
     {
         if ($input === null || strlen($input) < '8') {
-            // Password must contain at least 8 characters.
             return "Das Passwort muss mindestens 8 Zeichen enthalten.";
         }
 
@@ -102,16 +101,12 @@ trait FormValidationTrait
         $error = null;
 
         if (!preg_match("#\d+#", $password)) {
-            // Password must contain at least 1 number.
             $error = "Das Passwort muss mindestens 1 Zahl enthalten.";
         } elseif (!preg_match("#[A-Z]+#", $password)) {
-            // Password must contain at least 1 capital letter.
             $error = "Das Passwort muss mindestens 1 Großbuchstaben enthalten.";
         } elseif (!preg_match("#[a-z]+#", $password)) {
-            // Password must contain at least 1 lowercase letter.
             $error = "Das Passwort muss mindestens einen Kleinbuchstaben enthalten.";
         } elseif (!preg_match('/[\'$_+%*?=@#~!]/', $password)) {
-            // Password must contain at least 1 special character.
             $error = "Das Passwort muss mindestens 1 Sonderzeichen enthalten.";
         }
 
@@ -123,16 +118,12 @@ trait FormValidationTrait
         $error = null;
 
         if (empty($input)) {
-            // Username is required
             $error = 'Benutzername ist erforderlich.';
         } elseif (strlen($input) < '3') {
-            // Username is to short. Min 3 chars.
             $error = 'Der Benutzername ist zu kurz. Mindestens 3 Zeichen.';
         } elseif (strlen($input) > '20') {
-            // Username is to long. Max 20 chars.
             $error = 'Der Benutzername ist zu lang. Maximal 20 Zeichen.';
         } elseif (preg_match('/[\'^$%&*()}{@#~?>,<|=-]/', $input)) {
-            // Username contains invalid chars. Please use underscores.
             $error = 'Benutzername enthält ungültige Zeichen. Bitte verwenden Sie Unterstriche.';
         }
 
