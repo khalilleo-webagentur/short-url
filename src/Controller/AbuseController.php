@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Mails\Admin\NotifiyAbuseLinkMail;
 use App\Service\MonologService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +31,7 @@ class AbuseController extends AbstractController
     }
 
     #[Route('/report-new-abuse/qD5xJ0oH6hW4fF3xD2cE3qA1jE6jB7rL', name: 'app_report_abuse_new', methods: 'POST')]
-    public function new(Request $request): Response
+    public function new(Request $request, NotifiyAbuseLinkMail $notifiyAbuseLinkMail): Response
     {
         $link = $this->validate($request->request->get('iMaliciousLink'));
 
@@ -47,7 +48,7 @@ class AbuseController extends AbstractController
             sprintf('Malicious Link: Link [%s], Option [%s] and Message [%s]', $link, $option, $message)
         );
 
-        // @TODO send webmaster an email to be informed ..
+        $notifiyAbuseLinkMail->send([]);
 
         $this->addFlash('success', 'Malicious link has been reported. It will be deleted immediately after a Review.');
 

@@ -2,6 +2,8 @@ parameters:
   app_name: "L1."
   full_app_name: "Link One"
   no_reply: "no-reply@khalilleo.com"
+  webmaster_name: "Webmaster"
+  webmaster_email: "demo@khalilleo.com"
   app_author: "Khalilleo Teams"
   app_created: "2024-03-03"
   app_version: "1.0.3"
