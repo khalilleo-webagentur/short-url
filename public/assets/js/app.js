@@ -23,7 +23,7 @@ $(document).ready(function () {
         $('.cUrlCode').on('click', function () {
             let code = $(this).attr('data-description');
             copyContent(code);
-            swal('', 'URL-Code (' + code + ') is copied to clipboard.', 'success');
+            swal('', 'URL (' + code + ') is copied to clipboard.', 'success');
         });
     }
 

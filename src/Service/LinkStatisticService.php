@@ -25,7 +25,7 @@ final class LinkStatisticService
      */
     public function getAllByLink(Link $link): array
     {
-        return $this->linkStatisticRepository->findBy(['link' => $link]);
+        return $this->linkStatisticRepository->findBy(['link' => $link], ['id' => 'DESC']);
     }
 
     public function create(Link $link): void

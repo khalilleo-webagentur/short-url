@@ -19,9 +19,12 @@
             <tr class="small">
                 <td class="text-white-50">{{i+1}}</td>
                 <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
-                <td class="text-white-50" title="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}">
-                    <span class="cUrlCode" data-description="{{link.token}}" title="Copy to Clipboard">{{link.token}}</span> <a href="{{ app.request.schemeAndHttpHost ~ '/' ~ link.token}}" class="ps-1" target="_blank">
-                        <span class="bi bi-box-arrow-up-right text-secondary"></span>
+                {% set urlPath = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
+                <td class="text-white-50" title="{{ urlPath}}">
+                    <span class="cUrlCode" data-description="{{urlPath}}"
+                        title="Copy to Clipboard">{{link.token}}</span> <a
+                        href="{{ urlPath }}" class="ps-1" target="_blank">
+                        <span class="bi bi-box-arrow-up-right text-primary"></span>
                     </a>
                 </td>
                 <td class="text-white-50" title="{{link.url}}">{{link.url|slice(0, 35) ~ ' ...'}}</td>
@@ -37,15 +40,13 @@
                         </div>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li class="small">
-                                <a class="dropdown-item"
-                                    href="{{path('app_profile_my_urls_edit', {id:link.id}) }}">
+                                <a class="dropdown-item" href="{{path('app_profile_my_urls_edit', {id:link.id}) }}">
                                     <span class="bi bi-pencil-square pe-2"></span> Edit
                                 </a>
                             </li>
                             {% if link.counter > 0 %}
                             <li class="small">
-                                <a class="dropdown-item"
-                                    href="{{path('app_url_statistic_index', {id:link.id})}}">
+                                <a class="dropdown-item" href="{{path('app_url_statistic_index', {id:link.id})}}">
                                     <span class="bi bi-pie-chart pe-2"></span> Statistic
                                 </a>
                             </li>
