@@ -152,14 +152,14 @@ class TwigHelper extends AbstractExtension
 
     public function getThumbsUp(): void
     {
-        echo "<span class='bi bi-hand-thumbs-up-fill text-success'></span>";
+        echo "<span class='fa fa-thumbs-up text-success'></span>";
     }
 
     public function getThumbsDown(?string $color = null): void
     {
         $color = $color ?? 'text-danger';
 
-        echo "<span class='bi bi-hand-thumbs-down-fill $color'></span>";
+        echo "<span class='fa fa-thumbs-down $color'></span>";
     }
 
     public function getAppName(): string
