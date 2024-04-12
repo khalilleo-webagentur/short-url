@@ -19,13 +19,15 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         {% if countStatistics > 0 %}
-                        <li class="breadcrumb-item" data-toggle="modal" data-target="#anonomizeModal">
-                            <a href="#Anonomize" class="text-warning">Anonomize <span
+                        <li class="text-secondary" data-toggle="modal" data-target="#anonomizeModal">
+                            <a href="#Anonomize" class="text-secondary">Anonomize <span
                                     class="fa fa-fingerprint"></span></a>
                         </li>
+                        <span class="px-2 text-light-50">|</span>
                         {% endif %}
-                        <li class="breadcrumb-item">
-                            <a href="{{path('app_admin_links_index')}}" class="text-danger">Close <span
+                       
+                        <li class="text-secondary">
+                            <a href="{{path('app_admin_links_index')}}" class="text-secondary">Close <span
                                     class="fa fa-window-close"></span></a>
                         </li>
                     </ol>
