@@ -45,6 +45,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{path('app_profile')}}">Profile</a></li>
+                               
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <li><a class="dropdown-item" href="{{path('app_admin_index')}}">Dashboard</a></li>
+                                {% endif %}
+
                                 <li><a class="dropdown-item" href="{{path('app_profile_my_urls')}}">My URLs</a></li>
                                 <li>
                                     <hr class="dropdown-divider">

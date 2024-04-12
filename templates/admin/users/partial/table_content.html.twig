@@ -16,7 +16,7 @@
             <tr class="fs-14">
                 <td>{{ row.name|capitalize }}</td>
                 <td>{{ row.email }}</td>
-                <td>{{ row.token }}</td>
+                <td>{{ row.token ? row.token : '---' }}</td>
                 <td>{{ row.isVerified ? faThumbsUp() : faThumbsDown() }}</td>
 
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>

@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     {% if row.user %}
-                    <a href="#">{{row.user.name}}</a>
+                    <a href="#">{{row.user.name|capitalize}}</a>
                     {% else %}
                     ---
                     {% endif %}
