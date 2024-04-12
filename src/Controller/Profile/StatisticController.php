@@ -8,14 +8,17 @@ use App\Service\LinkService;
 use App\Service\LinkStatisticService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/url/statistic')]
 class StatisticController extends AbstractController
 {
     use FormValidationTrait;
 
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const PROFILE_URLS_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService $linkService,
@@ -23,7 +26,7 @@ class StatisticController extends AbstractController
     ) {
     }
 
-    #[Route('/url/statistic/pP8jK8qF3tU8iT6m/{id}', name: 'app_url_statistic_index')]
+    #[Route('/pZ3aG3lS/{id}', name: 'app_url_statistic_index')]
     public function index(?string $id): Response
     {
         $user = $this->getUser();
@@ -43,5 +46,37 @@ class StatisticController extends AbstractController
             'link' => $link,
             'statistics' => $statistics,
         ]);
+    }
+
+    #[Route('/delete/vO1hT7aA/{id}', name: 'app_url_statistic_delete')]
+    public function delete(?string $id): RedirectResponse
+    {
+        $id = $this->validateNumber($id);
+
+        if ($id > 0 && $link = $this->linkService->getByUserAndId($this->getUser(), $id)) {
+
+            if ($statistic = $this->linkStatisticService->getOneByLink($link)) {
+
+                $this->linkStatisticService->delete($statistic);
+
+                $this->linkService->save(
+                    $link->setCounter($link->getCounter() - 1)
+                );
+
+                $this->addFlash(
+                    'success',
+                    sprintf(
+                        'Statistic for [%s] has been deleted.',
+                        $link->getTitle() ?? $link->getToken()
+                    )
+                );
+
+                return $this->redirectToRoute(self::PROFILE_URLS_ROUTE);
+            }
+        }
+
+        $this->addFlash('warning', 'Data could not be found.');
+
+        return $this->redirectToRoute(self::PROFILE_URLS_ROUTE);
     }
 }

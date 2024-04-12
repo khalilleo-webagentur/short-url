@@ -36,7 +36,7 @@ class SearchController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
-        $links = $this->linkService->searchByUser($user, $keyword);
+        $links = $this->linkService->searchByUserAndTitle($user, $keyword);
 
         return $this->render('profile/search.html.twig', [
             'keyword' => $keyword,

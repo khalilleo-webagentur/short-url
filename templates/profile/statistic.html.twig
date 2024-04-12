@@ -13,7 +13,8 @@
     <div class="row py-3 d-dark-color shadow">
         <div class="col-12">
             <h5 class="text-white-50 pt-1"> Statistic
-                <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-1">
+                <a href="{{path('app_profile_my_urls')}}"
+                    class="float-end text-secondary text-decoration-none fs-15 pt-1">
                     Close <span class="bi bi-x-square-fill ps-1 small"></span>
                 </a>
             </h5>
@@ -28,19 +29,22 @@
                 <table class="table table-dark caption-top">
                     <thead class="small">
                         <tr>
-                            <th class="col text-white-50">Visited At</th>
+                            <th class="col text-white-50">#</th>
+                            <th class="col text-white-50">Visited</th>
                             <th class="col text-white-50">IP</th>
                             <th class="col text-white-50">Browser Name</th>
                             <th class="col text-white-50">Browser Lang</th>
                             <th class="col text-white-50">Platform</th>
                             <th class="col text-white-50">is Mobile</th>
                             <th class="col text-white-50">is Desktop</th>
+                            <th class="col text-white-50">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {% for i, row in statistics %}
                         <tr class="small">
+                            <td class="text-white-50">{{i+1}}</td>
                             <td class="text-white-50">
                                 <span title="{{row.createdAt|date}}">{{timeAgo(row.createdAt)}}</span>
                             </td>
@@ -54,15 +58,23 @@
                             <td class="text-white-50">
                                 {{row.isMobile ? circle('text-secondary small') : circle('text-success small')}}
                             </td>
+                            <td>
+                                <form action="{{path('app_url_statistic_delete', {id:link.id})}}" method="post">
+                                    <div class="text-danger fs-14 pointer" onclick="this.closest('form').submit()"
+                                        title="Delete Permanentely?">
+                                        <span class="bi bi-trash fs-13"></span>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
             {% else %}
-                <p class="text-white-50 pt-3">
-                    No data found! No one has visted your link yet.
-                </p>
+            <p class="text-white-50 pt-3">
+                No data found! No one has visted your link yet.
+            </p>
             {% endif %}
 
         </div>

@@ -43,7 +43,7 @@ class LinkRepository extends ServiceEntityRepository
     /**
      * @return Link[]
      */
-    public function searchByUser(User $user, string $title): array
+    public function searchByUserAndTitle(User $user, string $title): array
     {
         $text = '%' . $title . '%';
 

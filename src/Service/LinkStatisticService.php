@@ -20,6 +20,11 @@ final class LinkStatisticService
     ) {
     }
 
+    public function getOneByLink(Link $link): ?LinkStatistic
+    {
+        return $this->linkStatisticRepository->findOneBy(['link' => $link], ['id' => 'DESC']);
+    }
+
     /**
      * @return LinkStatistic[]
      */

@@ -62,9 +62,9 @@ final class LinkService
     /**
      * @return Link[]
      */
-    public function searchByUser(User $user, string $title): array
+    public function searchByUserAndTitle(User $user, string $title): array
     {
-        return $this->linkRepository->searchByUser($user, $title);
+        return $this->linkRepository->searchByUserAndTitle($user, $title);
     }
 
     public function delete(Link $model): void
