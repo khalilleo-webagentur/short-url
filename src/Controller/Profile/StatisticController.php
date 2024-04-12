@@ -48,7 +48,7 @@ class StatisticController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/vO1hT7aA/{id}', name: 'app_url_statistic_delete')]
+    #[Route('/delete/vO1hT7aA/{id}', name: 'app_url_statistic_delete', methods: 'POST')]
     public function delete(?string $id): RedirectResponse
     {
         $id = $this->validateNumber($id);
