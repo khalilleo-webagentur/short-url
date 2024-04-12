@@ -53,6 +53,15 @@ final class LinkStatisticService
         return $model;
     }
 
+    public function anonomize(Link $link): void
+    {
+        foreach ($this->getAllByLink($link) as $row) {
+            if ($row->getIpAddress() !== '_anonomyzed') {
+                $this->save($row->setIpAddress('_anonomyzed'));
+            }
+        }
+    }
+
     public function deleteAllByLink(Link $model): void
     {
         if (count($model->getLinkStatistics()) > 0) {
