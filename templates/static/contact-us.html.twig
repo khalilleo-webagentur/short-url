@@ -84,24 +84,25 @@
                             required name="iSubject" style="height: 46px; border-radius: 0;">
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <label for="iMessage" class="form-label text-white-50">Message</label>
                         <textarea class="form-control" id="iMessage" rows="5" name="iMessage"
                             style="border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
                             placeholder="Message (required)"></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <small class="text-secondary" style="font-size: 13px;">
-                            By using our service you accept the
-                            <a href="{{path('app_legal_privacy_policy')}}" class="text-white-50" rel="nofollow">Privacy
-                                Policy</a>.
-                        </small>
-                    </div>
-
                     <div class="d-grid gap-2">
                         <button class="btn btn-outline-success" type="submit"
                             style="height: 46px; border-radius: 0;">Send</button>
+                    </div>
+
+                    <div class="my-3">
+                        <small class="text-secondary" style="font-size: 13px;">
+                            <span class="bi bi-info-circle pe-1"></span> By submitting this form, you agree to our
+                            <a href="{{path('app_legal_privacy_policy')}}" class="text-white-50 text-decoration-none"
+                                rel="nofollow">Privacy
+                                Policy</a>.
+                        </small>
                     </div>
                 </form>
             </div>
