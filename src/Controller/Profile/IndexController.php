@@ -28,7 +28,8 @@ class IndexController extends AbstractController
         $links = $this->linkService->getAllByUser($this->getUser());
 
         return $this->render('profile/index.html.twig', [
-            'links' => $links
+            'links' => $links,
+            'email' => $this->getParameter('info_emal'),
         ]);
     }
 }

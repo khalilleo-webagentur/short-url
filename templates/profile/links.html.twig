@@ -49,12 +49,32 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark">
                         <li class="small">
+                            <a class="dropdown-item" href="{{path('app_home')}}">
+                                <span class="bi bi-house pe-1"></span> Home
+                            </a>
+                        </li>
+                        <li class="small">
+                            <a class="dropdown-item" href="{{path('app_profile')}}">
+                                <span class="bi bi-person pe-1"></span> Profile
+                            </a>
+                        </li>
+                        <li class="small">
+                            <a class="dropdown-item" href="{{path('app_pricing_index')}}">
+                                <span class="bi bi-currency-dollar pe-1"></span> Pricing
+                            </a>
+                        </li>
+                        <li class="small">
                             <a class="dropdown-item" href="#"><span class="bi bi-download pe-1"></span>
                                 Export</a>
                         </li>
                         <li class="small">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{path('app_profile')}}">
                                 <span class="bi bi-gear pe-1"></span> Settings
+                            </a>
+                        </li>
+                        <li class="small">
+                            <a class="dropdown-item" href="{{path('app_contact_us_index')}}">
+                                <span class="bi bi-question-circle pe-1"></span> Help
                             </a>
                         </li>
                     </ul>
