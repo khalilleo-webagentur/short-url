@@ -28,8 +28,7 @@
                     </a>
                 </td>
                 <td class="text-white-50" title="{{link.url}}">{{link.url|slice(0, 35) ~ ' ...'}}</td>
-                <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') :
-                    circle('text-white-50') }}</td>
+                <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') : circle('text-white-50') }}</td>
                 <td class="text-white-50">{{link.counter}}</td>
                 <td class="text-white-50 md-d-none">{{link.updatedAt|date('d.m.Y')}}</td>
                 <td class="text-white-50">{{link.createdAt|date('d.m.Y')}}</td>

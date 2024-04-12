@@ -32,13 +32,17 @@ class JobsController extends AbstractController
 
         $id = $this->validateNumber($request->request->get('linkId'));
 
-        if ($id > 0 && $link = $this->linkService->getById($id)) {
-            $this->linkStatisticService->anonomize($link);
-            $this->addFlash('success', sprintf('All statistics for [%s] has been anonomized.', $link->getTitle() ?? $link->getToken()));
-            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
-        }
+        $link = $this->linkService->getById($id);
 
-        $this->addFlash('notice', 'No data has been found.');
+        $this->linkStatisticService->anonomize($link);
+
+        $this->addFlash(
+            'notice',
+            sprintf(
+                'Statistics for [%s] has been anonomized.',
+                $link->getTitle() ?? $link->getToken()
+            )
+        );
 
         return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
     }

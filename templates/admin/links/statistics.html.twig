@@ -6,6 +6,8 @@
 
 <div class="content-wrapper">
 
+    {% set countStatistics = count(statistics) %}
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -16,10 +18,12 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
+                        {% if countStatistics > 0 %}
                         <li class="breadcrumb-item" data-toggle="modal" data-target="#anonomizeModal">
-                            <a href="#Anonomize" class="text-success">Anonomize <span
+                            <a href="#Anonomize" class="text-warning">Anonomize <span
                                     class="fa fa-fingerprint"></span></a>
                         </li>
+                        {% endif %}
                         <li class="breadcrumb-item">
                             <a href="{{path('app_admin_links_index')}}" class="text-danger">Close <span
                                     class="fa fa-window-close"></span></a>
@@ -35,10 +39,15 @@
 
             <div class="row">
                 <div class="col-lg-12">
+
+                    {% if countStatistics > 0 %}
                     {% include 'admin/links/partial/statistics_table_content.html.twig' %}
+                    {% else %}
+                    <p>No data has been found!</p>
+                    {% endif %}
 
                     <a href="{{path('app_admin_links_index')}}">Back to Links <span
-                        class="fa fa-arrow-alt-circle-left"></span></a>
+                            class="fa fa-arrow-alt-circle-left"></span></a>
                 </div>
             </div>
 
@@ -50,6 +59,8 @@
     </section>
 </div>
 
+{% if countStatistics > 0 %}
 {% include 'admin/links/modal/statistic_anonomize.html.twig' with{linkId: link.id} %}
+{% endif %}
 
 {% endblock %}
