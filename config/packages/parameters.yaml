@@ -8,7 +8,7 @@ parameters:
   webmaster_email: "demo@khalilleo.com"
 
   phonenumber: '0163/616-5396'
-  info_emal: 'info@khalilleo.com'
+  info_emal: 'demo@khalilleo.com'
   legal_emal: 'demo@khalilleo.com'
 
   address_street: 'Paul-Gerhardt-Str. 7'
@@ -16,7 +16,7 @@ parameters:
   adress_city: 'Bietigheim-Bissingen'
   adress_country: 'Deutschland'
 
-  app_version: "1.0.4"
+  app_version: "1.0.5"
   
   app_author: "Khalilleo Teams"
   app_created: "2024-03-03"
