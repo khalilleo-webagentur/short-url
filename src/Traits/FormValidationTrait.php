@@ -189,7 +189,7 @@ trait FormValidationTrait
         }
 
         if (!empty($input) && strlen($input) > $length) {
-            $input = substr($input, 0, $length);
+            $input = substr((string)$input, 0, $length);
         }
 
         return $input;
