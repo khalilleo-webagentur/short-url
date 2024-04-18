@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PricingController extends AbstractController
 {
-    #[Route('/pricing/lQ0jU2fQ0wD6mI2j', name: 'app_pricing_index')]
+    #[Route('/pricing/x9g7e3p5i1j6e1w6', name: 'app_pricing_index')]
     public function index(): Response
     {
         return $this->render('static/pricing.html.twig');

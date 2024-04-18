@@ -26,7 +26,7 @@ class StatisticController extends AbstractController
     ) {
     }
 
-    #[Route('/pZ3aG3lS/{id}', name: 'app_url_statistic_index')]
+    #[Route('/b9u5z2w2j5r6u8m8/{id}', name: 'app_url_statistic_index')]
     public function index(?string $id): Response
     {
         $user = $this->getUser();
@@ -48,7 +48,7 @@ class StatisticController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/vO1hT7aA/{id}', name: 'app_url_statistic_delete', methods: 'POST')]
+    #[Route('/delete/d1p8y1h6e2o1s7l4/{id}', name: 'app_url_statistic_delete', methods: 'POST')]
     public function delete(?string $id): RedirectResponse
     {
         $id = $this->validateNumber($id);

@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    #[Route('/login/iR8eO2dZ1uB9iJ9lJ8oL7vG3dY8vJ8eU', name: 'app_login')]
+    #[Route('/login/s7t3a1k3b6d5n1v6', name: 'app_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {

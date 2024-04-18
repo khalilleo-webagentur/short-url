@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/dashboard/rD9zA8lC3kU9tA5f/links')]
+#[Route('admin/dashboard/z9l7a1k6f6d9y6c2/links')]
 class IndexController extends AbstractController
 {
     use FormValidationTrait;

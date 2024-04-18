@@ -24,13 +24,13 @@ class ContactUsController extends AbstractController
     ) {
     }
 
-    #[Route('/contact-us/rN5jU2yW1rZ8lX3rS2lF9yD3xI6tY2cN', name: 'app_contact_us_index')]
+    #[Route('/contact-us/s3f2y1l5w8e7d2l5', name: 'app_contact_us_index')]
     public function index(): Response
     {
         return $this->render('static/contact-us.html.twig');
     }
 
-    #[Route('/contact-us-new/mT7kJ6eV3cZ0uB6jW9tY8hB5iW3yF6yC', name: 'app_contact_us_new', methods: 'POST')]
+    #[Route('/contact-us-new/a3t0i0a0q5u0u5c9', name: 'app_contact_us_new', methods: 'POST')]
     public function new(Request $request, ContactFormNewMessageMail $contactFormNewMessageMail): Response
     {
         $name = $this->validate($request->request->get('iName'));

@@ -20,7 +20,7 @@ class JobController extends AbstractController
     ) {
     }
 
-    #[Route('/urls/anonomyze/nU2oZ9jJ9tQ4mP8o', name: 'app_profile_anonomyze', methods: 'POST')]
+    #[Route('/urls/anonomyze/m1j4j6g0d1t4q4v0', name: 'app_profile_anonomyze', methods: 'POST')]
     public function anonomyze(): Response
     {
         if (!$this->getUser()) {

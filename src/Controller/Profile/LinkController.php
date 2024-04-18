@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/urls/zM1qM1kC4dB4aO8jS3xR5eO0zX2xB3oM')]
+#[Route('/urls/c3k1f2i0i0n7r7f4')]
 class LinkController extends AbstractController
 {
     use FormValidationTrait;

@@ -32,7 +32,7 @@ class AuthenticateController extends AbstractController
     ) {
     }
 
-    #[Route('/auth/tU2oH0oT4kL1wW5oN7jO0mD6eS2qY5wU', name: 'app_auth')]
+    #[Route('/auth/e1j4c3o7l9i5x9k6', name: 'app_auth')]
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
@@ -49,7 +49,7 @@ class AuthenticateController extends AbstractController
         ]);
     }
 
-    #[Route('/auth/send/qB6zN6bD7wK2bN4mP0sF6sC8dO5kR0eJ', name: 'app_auth_send')]
+    #[Route('/auth/send/t8n4q0o0t5l2w5e5', name: 'app_auth_send')]
     public function send(Request $request, HandelTwoFactorAuthMail $handelTwoFactorAuthMail): RedirectResponse
     {
         $email = $this->validateEmail($request->request->get('_username'));

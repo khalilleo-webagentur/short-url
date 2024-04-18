@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/dashboard/links/jobs/gT6sE7gU4eO7yQ1v')]
+#[Route('admin/dashboard/links/jobs/t0s3k2s1b4r4p1u5')]
 class JobsController extends AbstractController
 {
     use FormValidationTrait;

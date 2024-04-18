@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/dashboard/cM3oM3aT1hI6pS2g')]
+#[Route('admin/dashboard/o3o4v1v3a1g8h2q2')]
 class IndexController extends AbstractController
 {
     #[Route('/home', name: 'app_admin_index')]

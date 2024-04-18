@@ -24,13 +24,13 @@ class AbuseController extends AbstractController
     ) {
     }
 
-    #[Route('/report-abuse/kK4oY1iC2rL0nP9zR5pF2wP4qW0cY3hG', name: 'app_report_abuse')]
+    #[Route('/report-abuse/q6j0a6x8s9d2e4h3', name: 'app_report_abuse')]
     public function index(): Response
     {
         return $this->render('static/report-abuse.html.twig');
     }
 
-    #[Route('/report-new-abuse/qD5xJ0oH6hW4fF3xD2cE3qA1jE6jB7rL', name: 'app_report_abuse_new', methods: 'POST')]
+    #[Route('/report-new-abuse/i7r6q0u0y4k2m5a8', name: 'app_report_abuse_new', methods: 'POST')]
     public function new(Request $request, NotifiyAbuseLinkMail $notifiyAbuseLinkMail): Response
     {
         $link = $this->validate($request->request->get('iMaliciousLink'));

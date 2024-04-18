@@ -22,7 +22,7 @@ class SearchController extends AbstractController
     ) {
     }
 
-    #[Route('/q/tO0iP0kP0tS1gJ2q', name: 'app_search_urls', methods:'POST')]
+    #[Route('/q/e3x4r2l5h6b0h2a2', name: 'app_search_urls', methods:'POST')]
     public function saerch(Request $request): Response
     {
         $user = $this->getUser();

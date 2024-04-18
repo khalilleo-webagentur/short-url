@@ -16,7 +16,7 @@ class IndexController extends AbstractController
     ) {
     }
 
-    #[Route('/profile/bE0pY6kJ7eV5tT2sF9bP5fZ0uP5vO0yF', name: 'app_profile')]
+    #[Route('/profile/u8k8s5b5n0i6d9a0', name: 'app_profile')]
     public function index(): Response
     {
         if (!$this->getUser()) {

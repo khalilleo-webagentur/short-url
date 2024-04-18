@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/dashboard/mJ2uO8oH6tF5kY5a')]
+#[Route('admin/dashboard/c2o5i0p7v6s5p4w5')]
 class IndexController extends AbstractController
 {
     public function __construct(
