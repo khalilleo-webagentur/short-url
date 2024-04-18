@@ -1,0 +1,26 @@
+<div class="modal fade" id="deleteLinkAndStatisticsModal" tabindex="-1" role="dialog"
+    aria-labelledby="deleteLinkAndStatisticsModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title modal-title-upper" id="deleteLinkAndStatisticsModalTitle">
+                    Delete Link and its Statistics
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete this Link and all accociated statistics?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="{{path('app_admin_link_delete')}}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <input type="hidden" class="delLinkId" name="linkId">
+                    <button type="button" class="btn btn-light btn-radius-50" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger btn-radius-50">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
