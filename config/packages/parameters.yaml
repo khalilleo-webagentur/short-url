@@ -1,7 +1,7 @@
 parameters:
 
   app_name: "L1"
-  full_app_name: "Link One"
+  full_app_name: "L1"
   no_reply: "no-reply@khalilleo.com"
 
   webmaster_name: "Webmaster"
@@ -16,7 +16,7 @@ parameters:
   adress_city: 'Bietigheim-Bissingen'
   adress_country: 'Deutschland'
 
-  app_version: "1.0.5"
+  app_version: "1.0.6"
   
   app_author: "Khalilleo Teams"
   app_created: "2024-03-03"
