@@ -15,7 +15,7 @@
             {% for row in statistics %}
             <tr class="fs-14">
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
-                <td>{{row.ipAddress}}</td>
+                <td>{{row.ipAddress ? row.ipAddress : '127.0.0.1'}}</td>
                 <td>{{row.browserName}}</td>
                 <td>{{row.browserLang|upper}}</td>
                 <td>{{row.platform|capitalize}}</td>

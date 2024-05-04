@@ -39,7 +39,7 @@
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
 
                 <td>
-                    <a href="#"><span class="fa fa-edit fa-sm pr-2"></span></a>
+                    <a href="{{path('app_admin_link_edit', {id:row.id})}}"><span class="fa fa-edit fa-sm pr-2"></span></a>
 
                     <a href="{{path('app_admin_links_statistics_index', {id:row.id})}}"><span
                             class="fa fa-chart-line text-dark fa-sm pr-2"></span></a>

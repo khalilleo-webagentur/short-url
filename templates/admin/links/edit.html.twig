@@ -1,0 +1,109 @@
+{% extends 'admin/layout/base.html.twig' %}
+
+{% block title %} Dashboard :: Edit Link Details {% endblock %}
+
+{% block body %}
+
+<div class="content-wrapper">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4 class="m-0 text-dark">Edit Link Details</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <a href="{{path('app_admin_links_index')}}" class="text-secondary">
+                            Close <span class="fa fa-window-close"></span>
+                        </a>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="{{path('app_admin_link_store', {id:link.id})}}" method="post">
+
+                        <div class="mb-3">
+                            <label for="pT4jX2hV9xO3aD7v" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="pT4jX2hV9xO3aD7v" placeholder="Type title"
+                                value="{{link.title}}" name="title">
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label for="cC0pZ7jJ1eB7gJ3l">User</label>
+                                <select class="form-control" id="cC0pZ7jJ1eB7gJ3l" name="uId">
+                                    <option value="0">-- Remove User --</option>
+                                    {% for row in users %}
+
+                                    {% if link.user %}
+                                    <option value="{{ row.id }}" {{ row.name==link.user.name ? 'selected' : '' }}>
+                                        {{row.email}}
+                                    </option>
+                                    {% endif %}
+
+                                    <option value="{{ row.id }}">{{row.email}}</option>
+
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="gP7jK1rL5iG0oZ8e" class="form-label">
+                                URL <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="gP7jK1rL5iG0oZ8e" placeholder="URL"
+                                value="{{link.url}}" name="url">
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-lg-6">
+                                <label for="hJ1wS9yO8wN1lN1p" class="form-label">
+                                    Short Link Token <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="hJ1wS9yO8wN1lN1p" placeholder="Token"
+                                    value="{{link.token}}" name="token">
+                            </div>
+
+                            <div class="mb-3 col-lg-6">
+                                <label for="yT2oY1tF7fV1oL2u" class="form-label">
+                                    Counter <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="yT2oY1tF7fV1oL2u" placeholder="Counter"
+                                    value="{{link.counter}}" name="counter">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="jT4lN3jG3gE9oB3o" name="isPublic"
+                                    {{link.isPublic ? 'checked' : '' }}>
+                                <label class="form-check-label text-secondary" for="jT4lN3jG3gE9oB3o">
+                                    is Link Public (if public then it is without statistic)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="my-3">
+                            <button class="btn btn-success">Save Changes<span
+                                    class="fa fa-check-circle fa-sm pl-1"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+{% endblock %}

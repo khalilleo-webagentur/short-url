@@ -6,6 +6,7 @@ namespace App\Controller\Admin\Links;
 
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
+use App\Service\UserService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -22,7 +23,8 @@ class IndexController extends AbstractController
 
     public function __construct(
         private readonly LinkService $linkService,
-        private readonly LinkStatisticService $linkStatisticService
+        private readonly LinkStatisticService $linkStatisticService,
+        private readonly UserService $userService
     ) {
     }
 
@@ -57,6 +59,69 @@ class IndexController extends AbstractController
         }
 
         $this->addFlash('warning', 'ID is undefined.');
+
+        return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+    }
+
+    #[Route('/edit/{id}', name: 'app_admin_link_edit')]
+    public function edit(?string $id): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
+        $link = $this->linkService->getById($this->validateNumber($id));
+
+        if (!$link) {
+            $this->addFlash('warning', 'Link could not be found!');
+            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+        }
+
+        $users = $this->userService->getAll();
+
+        return $this->render('admin/links/edit.html.twig', [
+            'link' => $link,
+            'users' => $users,
+        ]);
+    }
+
+    #[Route('/store/{id}', name: 'app_admin_link_store', methods: 'POST')]
+    public function store(?string $id, Request $request): RedirectResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
+        $title = $this->validate($request->request->get('title'));
+        $url = $this->validate($request->request->get('url'));
+        $token = $this->validate($request->request->get('token'));
+        $counter = max($this->validate($request->request->get('counter')), 0);
+
+        if (!$url || !$token) {
+            $this->addFlash('warning', 'URL and short token are required.');
+            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+        }
+
+        $link = $this->linkService->getById($this->validateNumber($id));
+
+        if (!$link) {
+            $this->addFlash('warning', 'Link could not be found!');
+            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+        }
+
+        $targetUser = $this->userService->getById(
+            $this->validateNumber($request->request->get('uId'))
+        );
+
+        $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+
+        $this->linkService->save(
+            $link
+                ->setUser($targetUser)
+                ->setTitle($title)
+                ->setUrl($url)
+                ->setToken($token)
+                ->setIsPublic($isPublic)
+                ->setCounter((int)$counter)
+        );
+
+        $this->addFlash('success', 'Changes has been saved.');
 
         return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
     }
