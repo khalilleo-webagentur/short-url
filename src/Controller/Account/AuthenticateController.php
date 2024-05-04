@@ -11,7 +11,6 @@ use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -27,8 +26,7 @@ class AuthenticateController extends AbstractController
 
     public function __construct(
         private readonly UserService $userService,
-        private readonly TokenGeneratorService $tokenGeneratorService,
-        private readonly RequestStack $requestStack
+        private readonly TokenGeneratorService $tokenGeneratorService
     ) {
     }
 
@@ -50,7 +48,7 @@ class AuthenticateController extends AbstractController
     }
 
     #[Route('/auth/send/t8n4q0o0t5l2w5e5', name: 'app_auth_send')]
-    public function send(Request $request, HandelTwoFactorAuthMail $handelTwoFactorAuthMail): RedirectResponse
+    public function send(Request $request, HandelTwoFactorAuthMail $handelTwoFactorAuthMail): RedirectResponse|Response
     {
         $email = $this->validateEmail($request->request->get('_username'));
 
@@ -77,11 +75,10 @@ class AuthenticateController extends AbstractController
 
         $handelTwoFactorAuthMail->send($user->getName(), $email, $otp);
 
-        // $session = $this->requestStack->getSession();
-        // $session->set(SessionHelper::USER_SESSION_KEY . $user->getId(), sha1($user->getUserIdentifier()));
-
         $this->addFlash('notice', 'A new OTP is being sent to your email.');
 
-        return $this->redirectToRoute(self::LOGIN_ROUTE);
+        return $this->render('account/login.html.twig', [
+            'email' => $email
+        ]);
     }
 }
