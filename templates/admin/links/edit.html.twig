@@ -40,19 +40,16 @@
                             <div class="mb-3 col-lg-6">
                                 <label for="cC0pZ7jJ1eB7gJ3l">User</label>
                                 <select class="form-control" id="cC0pZ7jJ1eB7gJ3l" name="uId">
-                                    <option value="0">-- Remove User --</option>
+                                    <option value="0">-- No User --</option>
+                                    
                                     {% for row in users %}
-
-                                    {% if link.user %}
-                                    <option value="{{ row.id }}" {{ row.name==link.user.name ? 'selected' : '' }}>
-                                        {{row.email}}
-                                    </option>
-                                    {% endif %}
-
-                                    <option value="{{ row.id }}">{{row.email}}</option>
-
-                                    </option>
+                                        {% if link.user and link.user.name == row.name %}
+                                        <option value="{{ row.id }}" selected>{{row.email}}</option>
+                                        {% else %}
+                                        <option value="{{ row.id }}">{{row.email}}</option>
+                                        {% endif %}
                                     {% endfor %}
+
                                 </select>
                             </div>
                         </div>

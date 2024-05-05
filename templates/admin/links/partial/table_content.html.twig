@@ -24,7 +24,10 @@
                 </td>
                 <td>
                     {% if row.user %}
-                    <a href="#">{{row.user.name|capitalize}}</a>
+
+                    <a href="{{path('app_admin_user_edit', {id:row.user.id})}}">
+                        {{row.user.name|capitalize}}
+                    </a>
                     {% else %}
                     ---
                     {% endif %}

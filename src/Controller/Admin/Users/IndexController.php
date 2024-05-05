@@ -90,6 +90,7 @@ class IndexController extends AbstractController
             $user
                 ->setName($name)
                 ->setEmail($email)
+                ->setPassword($this->userService->encodePassword($email))
                 ->setToken($token)
                 ->setIsVerified($isVerified)
         );
