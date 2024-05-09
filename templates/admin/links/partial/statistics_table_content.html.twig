@@ -16,7 +16,16 @@
             {% for row in statistics %}
             <tr class="fs-14">
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
-                <td>{{row.ipAddress ? row.ipAddress : '127.0.0.1'}}</td>
+                <td>
+                    {% if row.ipAddress %}
+                    {{row.ipAddress}} 
+                    <a href="https://api.iplocation.net/?ip={{row.ipAddress}}" target="_blank" rel="noindex">
+                            <span class="fa fa-external-link-alt fa-sm"></span>
+                    </a>
+                    {% else %}
+                        <span class="text-danger" title="IP is Local">127.0.0.1</span>
+                    {% endif %}
+                </td>
                 <td>{{row.browserName}}</td>
                 <td>{{row.browserLang|upper}}</td>
                 <td>{{row.platform|capitalize}}</td>
