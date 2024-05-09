@@ -8,8 +8,8 @@ parameters:
   webmaster_email: "demo@khalilleo.com"
 
   phonenumber: '0163/616-5396'
-  info_emal: 'demo@khalilleo.com'
-  legal_emal: 'demo@khalilleo.com'
+  info_emal: 'info@khalilleo.com'
+  legal_emal: 'legal@khalilleo.com'
 
   address_street: 'Paul-Gerhardt-Str. 7'
   adress_plz: '74321'
