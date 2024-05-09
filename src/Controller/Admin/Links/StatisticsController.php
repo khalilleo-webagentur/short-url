@@ -16,6 +16,8 @@ class StatisticsController extends AbstractController
 {
     use FormValidationTrait;
 
+    private const ADMIN_LINKS_ROUTE = 'app_admin_links_index';
+
     public function __construct(
         private readonly LinkService $linkService,
         private readonly LinkStatisticService $linkStatisticService
@@ -39,5 +41,31 @@ class StatisticsController extends AbstractController
             'link' => $link,
             'statistics' => $statistics,
         ]);
+    }
+
+    #[Route('/delete/{id}', name: 'app_admin_links_statistics_delete', methods: 'POST')]
+    public function delete(?string $id): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
+        $link = $this->linkService->getById($this->validateNumber($id));
+
+        if (!$link) {
+            $this->addFlash('warning', 'Undefined Link ID.');
+            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+        }
+
+        if ($linkStatistic = $this->linkStatisticService->getOneByLink($link)) {
+            $this->linkService->save(
+                $link->setCounter($link->getCounter() - 1)
+            );
+            $this->linkStatisticService->delete($linkStatistic);
+            $this->addFlash('success', 'Statistic has been deleted.');
+            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+        }
+
+        $this->addFlash('warning', 'Undefined Statistic ID.');
+
+        return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
     }
 }
