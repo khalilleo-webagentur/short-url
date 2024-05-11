@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Controller\Account;
 
 use App\Entity\User;
+use App\Entity\UserSetting;
 use App\Mails\Account\AccountConfirmationMail;
 use App\Service\TokenGeneratorService;
 use App\Service\UserService;
+use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -27,7 +29,8 @@ class RegisterController extends AbstractController
 
     public function __construct(
         private readonly UserService $userService,
-        private readonly TokenGeneratorService $tokenGeneratorService
+        private readonly TokenGeneratorService $tokenGeneratorService,
+        private readonly UserSettingService $userSettingService
     ) {
     }
 
@@ -64,10 +67,10 @@ class RegisterController extends AbstractController
 
         $token = $this->tokenGeneratorService->randomTokenForVerification();
 
-        $model = new User();
+        $user = new User();
 
         $this->userService->save(
-            $model
+            $user
                 ->setName($name)
                 ->setEmail($email)
                 ->setPassword($this->userService->encodePassword($email))
@@ -75,6 +78,10 @@ class RegisterController extends AbstractController
         );
 
         $accountConfirmationMail->send($name, $email, $token);
+
+        $userSetting = new UserSetting();
+
+        $this->userSettingService->save($userSetting->setUser($user));
 
         $this->addFlash('notice', 'An email was sent to your mailbox. Please follow instruction to get started.');
 

@@ -36,6 +36,11 @@ final class LinkService
         return $this->linkRepository->findOneBy(['token' => $token]);
     }
 
+    public function getOneByUserAndUrl(User $user, string $url): ?Link
+    {
+        return $this->linkRepository->findOneBy(['user' => $user, 'url' => $url]);
+    }
+
     /**
      * @return Link[]
      */

@@ -33,8 +33,8 @@
                 <td>{{row.isMobile ? faThumbsDown('text-secondary') : faThumbsUp()}}</td>
                 <td>
                     <form action="{{path('app_admin_links_statistics_delete', {id:row.link.id})}}" method="post">
-                        <span class="fa fa-trash fa-sm text-danger pointer" title="Delete?"
-                            onclick="this.closest('form').submit();"></span>
+                        <small class="fa fa-trash fa-sm text-danger pointer" title="Delete?"
+                            onclick="this.closest('form').submit();"></small>
                     </form>
                 </td>
             </tr>

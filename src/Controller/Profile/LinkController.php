@@ -57,19 +57,25 @@ class LinkController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
+        $user = $this->getUser();
+
+        // @TODO make a config
+        if ($this->linkService->getOneByUserAndUrl($user, $link)) {
+            $this->addFlash('notice', 'Link is already exists.');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
         $token = $this->tokenGeneratorService->randomToken();
 
         if ($this->linkService->getByToken($token)) {
             $token = $this->tokenGeneratorService->randomToken();
         }
 
-        $user = $this->getUser();
-
-        $model = new Link();
-
         $title = $this->validate($request->request->get('iTitle'));
 
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+
+        $model = new Link();
 
         $this->linkService->save(
             $model

@@ -47,10 +47,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Link::class, mappedBy: 'user')]
     private Collection $links;
 
+    /**
+     * @var Collection<int, UserSetting>
+     */
+    #[ORM\OneToMany(targetEntity: UserSetting::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $userSettings;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
         $this->links = new ArrayCollection();
+        $this->userSettings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +204,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($link->getUser() === $this) {
                 $link->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserSetting>
+     */
+    public function getUserSettings(): Collection
+    {
+        return $this->userSettings;
+    }
+
+    public function addUserSetting(UserSetting $userSetting): static
+    {
+        if (!$this->userSettings->contains($userSetting)) {
+            $this->userSettings->add($userSetting);
+            $userSetting->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserSetting(UserSetting $userSetting): static
+    {
+        if ($this->userSettings->removeElement($userSetting)) {
+            // set the owning side to null (unless already changed)
+            if ($userSetting->getUser() === $this) {
+                $userSetting->setUser(null);
             }
         }
 
