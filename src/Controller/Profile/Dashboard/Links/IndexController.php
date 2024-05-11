@@ -72,10 +72,10 @@ class IndexController extends AbstractController
             }
         }
 
-        $token = $this->tokenGeneratorService->randomToken();
+        $token = $this->tokenGeneratorService->randomTokenForLink();
 
         if ($this->linkService->getByToken($token)) {
-            $token = $this->tokenGeneratorService->randomToken();
+            $token = $this->tokenGeneratorService->randomTokenForLink();
         }
 
         $title = $this->validate($request->request->get('iTitle'));

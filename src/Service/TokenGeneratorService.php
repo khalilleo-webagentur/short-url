@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Helper\AppHelper;
 use Khalilleo\TokenGen\Token;
 
 final class TokenGeneratorService
@@ -13,6 +14,11 @@ final class TokenGeneratorService
     public function __construct()
     {
         $this->tokenGen = new Token();
+    }
+
+    public function randomTokenForLink(): string
+    {
+        return $this->tokenGen->getRandomToken(AppHelper::DEFAULT_ALIAS_LENGTH);
     }
 
     public function randomToken(): string

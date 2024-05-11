@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Link;
 use App\Service\LinkService;
 use App\Service\TokenGeneratorService;
+use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
 use App\Traits\RemoteTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,8 @@ class LinkController extends AbstractController
 
     public function __construct(
         private readonly LinkService $linkService,
-        private readonly TokenGeneratorService $tokenGeneratorService
+        private readonly TokenGeneratorService $tokenGeneratorService,
+        private readonly UserSettingService $userSettingService
     ) {
     }
 
@@ -51,13 +53,25 @@ class LinkController extends AbstractController
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
-        $token = $this->tokenGeneratorService->randomToken();
+        $token = $this->tokenGeneratorService->randomTokenForLink();
 
         if ($this->linkService->getByToken($token)) {
-            $token = $this->tokenGeneratorService->randomToken();
+            $token = $this->tokenGeneratorService->randomTokenForLink();
         }
 
         $user = $this->getUser();
+
+        if ($user && $this->linkService->getOneByUserAndUrl($user, $url)) {
+
+            $allowDuplicatedUrls = $this->userSettingService->allowDuplicatedUrls($user);
+
+            $message = 'You have to update your config [allowDuplicatedUrls] in setting - since the long link [%s] already exists.';
+
+            if (!$allowDuplicatedUrls) {
+                $this->addFlash('notice', sprintf($message, $url));
+                return $this->redirectToRoute(self::HOME_ROUTE);
+            }
+        }
 
         $model = new Link();
 
