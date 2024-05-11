@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Profile;
+namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;

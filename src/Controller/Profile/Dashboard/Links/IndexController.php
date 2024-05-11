@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Profile;
+namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Entity\Link;
 use App\Service\LinkService;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/urls/c3k1f2i0i0n7r7f4')]
-class LinkController extends AbstractController
+class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
@@ -42,7 +42,7 @@ class LinkController extends AbstractController
 
         $links = $this->linkService->getAllByUser($this->getUser());
 
-        return $this->render('profile/links.html.twig', [
+        return $this->render('profile/dashboard/links/index.html.twig', [
             'links' => $links
         ]);
     }
@@ -109,7 +109,7 @@ class LinkController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
-        return $this->render('profile/edit.html.twig', [
+        return $this->render('profile/dashboard/links/edit.html.twig', [
             'link' => $link
         ]);
     }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Profile;
+namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Service\LinkService;
 use App\Traits\FormValidationTrait;
@@ -38,7 +38,7 @@ class SearchController extends AbstractController
 
         $links = $this->linkService->searchByUserAndTitle($user, $keyword);
 
-        return $this->render('profile/search.html.twig', [
+        return $this->render('profile/dashboard/links/search.html.twig', [
             'keyword' => $keyword,
             'links' => $links,
         ]);

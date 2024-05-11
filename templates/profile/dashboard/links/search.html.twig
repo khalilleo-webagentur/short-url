@@ -28,7 +28,7 @@
             </p>
 
             {% if count(links) > 0 %}
-            {% include 'profile/partial/table_content.html.twig' %}
+            {% include 'profile/dashboard/links/partial/table_content.html.twig' %}
             {% else %}
             <p class="text-white-50">
                 No data has been found. Please serach only for titles! <br>
@@ -39,6 +39,8 @@
         </div>
     </div>
 </div>
+
+{% include 'profile/dashboard/links/modal/delete.html.twig' %}
 
 {% include 'layout/footer.html.twig' %}
 
