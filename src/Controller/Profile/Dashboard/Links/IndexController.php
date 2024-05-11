@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Entity\Link;
+use App\Helper\AppHelper;
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
 use App\Service\TokenGeneratorService;
@@ -151,6 +152,13 @@ class IndexController extends AbstractController
         }
 
         $token = $this->validate($request->request->get('iCode'));
+
+        $aliasLength = AppHelper::DEFAULT_ALIAS_LENGTH;
+
+        if (strlen($token) < $aliasLength) {
+            $this->addFlash('warning', sprintf('Alias length must be geraeter or equal [8] chars.', $aliasLength));
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
 
         if ($token !== $link->getToken()) {
 
