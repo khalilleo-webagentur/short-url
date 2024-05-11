@@ -1,0 +1,48 @@
+<div class="modal fade" id="exportModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="exportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #1b1b1c;">
+      <div class="modal-header">
+        <h1 class="modal-title text-white-50 fs-5" id="exportModalLabel">Export Links</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="#" method="post">
+        <div class="modal-body">
+          <div class="mb-3">
+            <p class="text-white-50">Check the prefered way to export your Links:</p>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+              style="background-color: #0000001c;border: 1px solid #535353;">
+            <label class="form-check-label text-white-50" for="flexRadioDefault1">
+              All links as HTML-Formt
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+              style="background-color: #0000001c;border: 1px solid #535353;" checked>
+            <label class="form-check-label text-white-50" for="flexRadioDefault2">
+              All links as JSON-Formt
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+              style="background-color: #0000001c;border: 1px solid #535353;">
+            <label class="form-check-label text-white-50" for="flexRadioDefault3">
+              All links as PDF-Formt
+            </label>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+            style="border-radius: 2px;height: 40px;">Cancel</button>
+          <button type="submit" class="btn btn-outline-success" style="border-radius: 2px;height: 40px;">Export</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
