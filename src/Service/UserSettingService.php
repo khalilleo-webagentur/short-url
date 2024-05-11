@@ -21,6 +21,20 @@ final class UserSettingService
         return $this->userSettingRepository->findOneBy(['user' => $user]);
     }
 
+    public function allowDuplicatedUrls(User $user): bool
+    {
+        $setting = $this->getOneByUser($user);
+
+        return $setting && $setting->isAllowDuplicatedUrls();
+    }
+
+    public function allowLinkAlias(User $user): bool
+    {
+        $setting = $this->getOneByUser($user);
+
+        return $setting && $setting->isAllowLinkAlias();
+    }
+
     public function save(UserSetting $model): UserSetting
     {
         $this->userSettingRepository->save($model->setUpdatedAt(new DateTime()), true);

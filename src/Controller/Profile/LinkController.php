@@ -8,6 +8,7 @@ use App\Entity\Link;
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
 use App\Service\TokenGeneratorService;
+use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -25,7 +26,8 @@ class LinkController extends AbstractController
     public function __construct(
         private readonly LinkService $linkService,
         private readonly LinkStatisticService $linkStatisticService,
-        private readonly TokenGeneratorService $tokenGeneratorService
+        private readonly TokenGeneratorService $tokenGeneratorService,
+        private readonly UserSettingService $userSettingService
     ) {
     }
 
@@ -59,10 +61,14 @@ class LinkController extends AbstractController
 
         $user = $this->getUser();
 
-        // @TODO make a config
         if ($this->linkService->getOneByUserAndUrl($user, $link)) {
-            $this->addFlash('notice', 'Link is already exists.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+
+            $allowDuplicatedUrls = $this->userSettingService->allowDuplicatedUrls($user);
+
+            if (!$allowDuplicatedUrls) {
+                $this->addFlash('notice', 'You have to update your config [allowDuplicatedUrls] in setting.');
+                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            }
         }
 
         $token = $this->tokenGeneratorService->randomToken();
@@ -127,6 +133,16 @@ class LinkController extends AbstractController
         if (!$url) {
             $this->addFlash('warning', 'Long link field is required.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        if ($this->linkService->getOneByUserAndUrl($user, $url)) {
+
+            $allowDuplicatedUrls = $this->userSettingService->allowDuplicatedUrls($user);
+
+            if (!$allowDuplicatedUrls) {
+                $this->addFlash('notice', 'You have to update your config [allowDuplicatedUrls] in setting.');
+                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            }
         }
 
         $token = $this->validate($request->request->get('iCode'));
