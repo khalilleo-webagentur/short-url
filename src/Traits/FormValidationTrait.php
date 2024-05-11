@@ -164,6 +164,7 @@ trait FormValidationTrait
     private function replaceSpecialChars(string $text, string $replace = '-'): string
     {
         $string = str_replace(' ', $replace, $text);
+        $string = trim(preg_replace("![^a-z0-9]+!i", "-", $string), '-');
 
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
     }

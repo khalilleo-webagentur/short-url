@@ -37,6 +37,7 @@
                         required name="iUrl" style="height: 46px; border-radius: 0;" value="{{link.url}}">
                 </div>
 
+                {% if allowLinkAlias %}
                 <div class="mb-3">
                     {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                     <small class="float-end d-color">{{shortLink}}</small>
@@ -46,6 +47,7 @@
                         required name="iCode" style="height: 46px; border-radius: 0;" value="{{link.token}}">
                         <small class="text-secondary">Special chars Hyphen (-) is allowed.</small>
                 </div>
+                {% endif %}
 
                 <div class="form-check mb-3">
                     <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"

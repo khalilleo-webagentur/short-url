@@ -102,15 +102,20 @@ class IndexController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $link = $this->linkService->getByUserAndId($this->getUser(), $this->validateNumber($id));
+        $user = $this->getUser();
+
+        $link = $this->linkService->getByUserAndId($user, $this->validateNumber($id));
 
         if (!$link) {
             $this->addFlash('warning', 'Unkown link');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
+        $allowLinkAlias = $this->userSettingService->allowLinkAlias($user);
+
         return $this->render('profile/dashboard/links/edit.html.twig', [
-            'link' => $link
+            'link' => $link,
+            'allowLinkAlias' => $allowLinkAlias
         ]);
     }
 
@@ -135,7 +140,7 @@ class IndexController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
-        if ($this->linkService->getOneByUserAndUrl($user, $url)) {
+        if ($this->linkService->getOneByUserAndUrl($user, $url) && $url !== $link->getUrl()) {
 
             $allowDuplicatedUrls = $this->userSettingService->allowDuplicatedUrls($user);
 
@@ -147,17 +152,16 @@ class IndexController extends AbstractController
 
         $token = $this->validate($request->request->get('iCode'));
 
-        if (!$token) {
-            $this->addFlash('warning', 'Token link field is required.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
-        }
-
         if ($token !== $link->getToken()) {
 
-            if ($this->linkService->getByToken($token)) {
+            if ($token && $this->linkService->getByToken($token)) {
                 $this->addFlash('warning', 'Token is not valid. Please try another one!');
                 return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
             }
+        }
+
+        if (!$token) {
+            $token = $link->getToken();
         }
 
         $title = $this->validate($request->request->get('iTitle'));
