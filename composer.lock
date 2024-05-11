@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "307f7ad90c74a7846fbf16ec9a86942c",
+    "content-hash": "1aea2d5916c14cb0a957b7c20e90fb73",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -1387,6 +1387,53 @@
                 "source": "https://github.com/khalilleo-webagentur/monolog/tree/v1.0.1"
             },
             "time": "2024-03-15T22:20:30+00:00"
+        },
+        {
+            "name": "khalilleo-webagentur/php-qrcode",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/khalilleo-webagentur/php-qrcode.git",
+                "reference": "c187cf3db57c80d0e919383163850c2f32904cc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/khalilleo-webagentur/php-qrcode/zipball/c187cf3db57c80d0e919383163850c2f32904cc8",
+                "reference": "c187cf3db57c80d0e919383163850c2f32904cc8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Khalilleo\\QrCode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Khalilleo",
+                    "email": "hussein@khalilleo.com"
+                }
+            ],
+            "description": "PHP library for QR-Code generation",
+            "homepage": "https://github.com/khalilleo-webagentur",
+            "keywords": [
+                "QA Genrator",
+                "QR PHP",
+                "QR package",
+                "qr code"
+            ],
+            "support": {
+                "issues": "https://github.com/khalilleo-webagentur/php-qrcode/issues",
+                "source": "https://github.com/khalilleo-webagentur/php-qrcode/tree/v1.0.0"
+            },
+            "time": "2024-04-17T20:18:28+00:00"
         },
         {
             "name": "khalilleo-webagentur/token-gen",
@@ -5354,16 +5401,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.9.3",
+            "version": "v3.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "a842d75fed59cdbcbd3a3ad7fb9eb768fc350d58"
+                "reference": "34422f90043aba75e419dd77ee0a86e1688c28ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a842d75fed59cdbcbd3a3ad7fb9eb768fc350d58",
-                "reference": "a842d75fed59cdbcbd3a3ad7fb9eb768fc350d58",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/34422f90043aba75e419dd77ee0a86e1688c28ee",
+                "reference": "34422f90043aba75e419dd77ee0a86e1688c28ee",
                 "shasum": ""
             },
             "require": {
@@ -5417,7 +5464,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.9.3"
+                "source": "https://github.com/twigphp/Twig/tree/v3.10.0"
             },
             "funding": [
                 {
@@ -5429,7 +5476,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-18T11:59:33+00:00"
+            "time": "2024-05-11T07:44:16+00:00"
         }
     ],
     "packages-dev": [
