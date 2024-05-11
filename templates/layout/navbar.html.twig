@@ -45,16 +45,14 @@
                                     height="20" alt="Avatar"> {{app.user.name|capitalize}}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-white-50" href="{{path('app_profile')}}">
-                                    <span class="bi bi-person-fill pe-1"></span> Profile</a>
-                                </li>
-
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                                 <li><a class="dropdown-item text-white-50" href="{{path('app_admin_index')}}">
                                     <span class="bi bi-speedometer pe-1 small"></span> Dashboard</a>
                                 </li>
                                 {% endif %}
-
+                                <li><a class="dropdown-item text-white-50" href="{{path('app_profile')}}">
+                                    <span class="bi bi-person-fill pe-1"></span> Profile</a>
+                                </li>
                                 <li><a class="dropdown-item text-white-50" href="{{path('app_profile_my_urls')}}">
                                     <span class="bi bi-link-45deg pe-1"></span> My URLs</a>
                                 </li>

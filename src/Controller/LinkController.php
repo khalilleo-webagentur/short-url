@@ -65,9 +65,8 @@ class LinkController extends AbstractController
 
             $allowDuplicatedUrls = $this->userSettingService->allowDuplicatedUrls($user);
 
-            $message = 'You have to update your config [allowDuplicatedUrls] in setting - since the long link [%s] already exists.';
-
             if (!$allowDuplicatedUrls) {
+                $message = 'You have to update your config [allowDuplicatedUrls] in setting - since the long link [%s] already exists.';
                 $this->addFlash('notice', sprintf($message, $url));
                 return $this->redirectToRoute(self::HOME_ROUTE);
             }
