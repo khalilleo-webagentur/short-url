@@ -139,7 +139,7 @@ class LinkController extends AbstractController
         }
 
         $title = $this->validate($request->request->get('iTitle'));
-        
+
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
 
         $this->linkService->save(

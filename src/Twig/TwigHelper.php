@@ -21,6 +21,7 @@ class TwigHelper extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('hash', [$this, 'hash']),
             new TwigFunction('timeAgo', [$this, 'timeAgo']),
             new TwigFunction('formatSizeUnits', [$this, 'formatSizeUnits']),
             new TwigFunction('dateTime', [$this, 'dateTime']),
@@ -36,6 +37,11 @@ class TwigHelper extends AbstractExtension
             new TwigFunction('madeBy', [$this, 'getMadeBy']),
             new TwigFunction('version', [$this, 'getVersion']),
         ];
+    }
+
+    public function hash(string $text): string
+    {
+        return sha1($text);
     }
 
     public function timeAgo(DateTimeInterface $datetime, bool $fullDateTime = false): string
