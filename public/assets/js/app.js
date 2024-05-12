@@ -15,7 +15,6 @@ $(document).ready(function () {
     if ($('.three-dots').length) {
         $('.three-dots').on('click', function () {
             $('.dataId').val($(this).attr('data-id'));
-            console.log($(this).attr('data-id'));
         });
     }
 
@@ -29,9 +28,13 @@ $(document).ready(function () {
 
 });
 
+function isLocalStorageAvailable() { return typeof (Storage) !== "undefined" }
+
 async function copyContent(text) {
     try {
-        await navigator.clipboard.writeText(text);
+        if (isLocalStorageAvailable) {
+            await navigator.clipboard.writeText(text);
+        }
     } catch (err) {
         swal('', 'clipboard is not avialble on your Browser.', 'warning');
     }

@@ -21,13 +21,13 @@
                 <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
                 {% set urlPath = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                 <td class="text-white-50" title="{{ urlPath}}">
-                    <span class="cUrlCode" data-description="{{urlPath}}"
+                    <span class="cUrlCode cursor-help" data-description="{{urlPath}}"
                         title="Copy to Clipboard">{{link.token}}</span> <a
                         href="{{ urlPath }}" class="ps-1" target="_blank">
-                        <span class="bi bi-box-arrow-up-right text-primary"></span>
+                        <span class="bi bi-box-arrow-up-right text-primary" title="Visit your long URL"></span>
                     </a>
                 </td>
-                <td title="{{link.url}}">
+                <td title="{{link.url}}" class="cursor-help">
                     <span class="text-white-50">{{link.url|slice(0, 35) ~ ' ...'}}</span>
                 </td>
                 <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') : circle('text-white-50') }}</td>
