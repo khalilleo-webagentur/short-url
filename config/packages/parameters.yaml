@@ -16,7 +16,7 @@ parameters:
   adress_city: 'Bietigheim-Bissingen'
   adress_country: 'Deutschland'
 
-  app_version: "1.0.7"
+  app_version: "1.0.10"
   
   app_author: "Khalilleo Teams"
   app_created: "2024-03-03"
