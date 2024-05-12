@@ -30,62 +30,8 @@
     {% block stylesheets %}
     <link href="{{asset('assets/css/bootstrap-icons.min.css?v=1.10.5')}}" rel="stylesheet" />
     <link href="{{asset('assets/css/bootstrap.min.css?v=5.3.0')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/main.css?v=1.0.0')}}" rel="stylesheet" />
     {% endblock %}
-
-    <style>
-        .alert-notice {
-            color: #0b6487;
-            background: #cff3ff;
-        }
-
-        .alert {
-            border-radius: 0;
-        }
-
-        .d-border {
-            border: 1px solid #5b5b5b47;
-        }
-
-        textarea:focus,
-        input[type="text"]:focus,
-        input[type="password"]:focus,
-        input[type="datetime"]:focus,
-        input[type="datetime-local"]:focus,
-        input[type="date"]:focus,
-        input[type="month"]:focus,
-        input[type="time"]:focus,
-        input[type="week"]:focus,
-        input[type="number"]:focus,
-        input[type="email"]:focus,
-        input[type="url"]:focus,
-        input[type="search"]:focus,
-        input[type="tel"]:focus,
-        input[type="color"]:focus,
-        .form-select:focus,
-        .form-control .btn:active,
-        .btn:focus .uneditable-input:focus {
-            border-color: none;
-            outline: 0 none;
-            border: 1px solid #a9d158 !important;
-            box-shadow: none !important;
-        }
-
-        ::placeholder {
-            color: #696969 !important;
-        }
-
-        .d-dark-color {
-            background-color: #0000001c;
-        }
-
-        .d-color {
-            color: #a9d158;
-        }
-
-        .pointer {
-            cursor: pointer;
-        }
-    </style>
 
     <noscript>
         <meta http-equiv="refresh" content="3;url={{path('app_noscript')}}">

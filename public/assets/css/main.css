@@ -1,0 +1,109 @@
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+.alert {
+    border-radius: 0;
+}
+
+.form-label {
+    margin-bottom: 0;
+}
+
+.alert-fixed-z-index {
+    position: fixed;
+    top: 11px;
+    right: 1px;
+    z-index: 1030
+}
+
+.fs-13 {
+    font-size: 13px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-15 {
+    font-size: 15px;
+}
+
+.d-dark-color {
+    background-color: #0000001c;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.form-select:focus,
+.form-control .btn:active,
+.btn:focus .uneditable-input:focus {
+    border-color: none;
+    outline: 0 none;
+    border: 1px solid #a9d158 !important;
+    box-shadow: none !important;
+}
+
+.bg-placeholder {
+    color: #cecece !important;
+}
+
+.d-color {
+    color: #a9d158;
+}
+
+.d-border {
+    border: 1px solid #5b5b5b47;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+@media (max-width: 868px) {
+    .md-text-center {
+        text-align: center !important;
+    }
+
+    .md-d-none {
+        display: none;
+    }
+}
+
+.alert-notice {
+    color: #0b6487;
+    background: #cff3ff;
+}
+
+.alert {
+    border-radius: 0;
+}
+
+::placeholder {
+    color: #696969 !important;
+}
+
+.d-dark-color {
+    background-color: #0000001c;
+}
+
+.cursor-help {
+    cursor: help;
+}

@@ -54,3 +54,18 @@ label, label:not(.form-check-label):not(.custom-file-label){
 .fs-15 {
     font-size: 15px;
 }
+
+.alert-fixed-z-index {
+    position: fixed;
+    top: 2px;
+    right: 1px;
+    z-index: 1060
+}
+
+.text-light-50 {
+    color: #ccc;
+}
+
+.cursor-help {
+    cursor: help;
+}

@@ -95,6 +95,8 @@ class IndexController extends AbstractController
                 ->setIsVerified($isVerified)
         );
 
+        $this->addFlash('notice', 'Changes has been saved.');
+
         return $this->redirectToRoute(self::ADMIN_USERS_ROUTE);
     }
 }
