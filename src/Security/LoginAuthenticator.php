@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Service\TempUserService;
 use App\Service\TwoFactorAuthService;
 use App\Service\UserService;
 use App\Traits\FormValidationTrait;
@@ -28,7 +29,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly UserService $userService,
-        private readonly TwoFactorAuthService $twoFactorAuthService
+        private readonly TwoFactorAuthService $twoFactorAuthService,
+        private readonly TempUserService $tempUserService
     ) {
     }
 
@@ -66,6 +68,10 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         $user = $token->getUser();
 
         $this->userService->save($user->setToken(null));
+
+        if ($tempUser = $this->tempUserService->getByEmail($user->getUserIdentifier())) {
+            $this->tempUserService->delete($tempUser);
+        }
 
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);

@@ -51,22 +51,6 @@ class PersonalDataController extends AbstractController
         return $this->redirectToRoute(self::APP_PROFILE);
     }
 
-    #[Route('/change-email', name: 'app_profile_personal_data_email_store', methods: 'POST')]
-    public function storeEmail(): Response
-    {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
-        // @todo
-
-        $this->addFlash('notice', 'Not implemeted yet!');
-
-        return $this->redirectToRoute(self::APP_PROFILE);
-    }
-
     #[Route('/download-personal-data', name: 'app_profile_personal_data_download', methods: ['GET', 'POST'])]
     public function downloadPersonalData(PersonalDataExport $PersonalDataExport): RedirectResponse|Response
     {
