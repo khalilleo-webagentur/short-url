@@ -40,7 +40,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         $otp = $this->validate($request->request->get('otp', ''));
 
-        $csrfToken = $this->validate($request->request->get('_csrf_token'));
+        $csrfToken = $this->validate($request->request->get('_csrf_token', ''));
 
         if (!$email || !$otp || !$csrfToken) {
             throw new CustomUserMessageAuthenticationException('All fields are required.');
@@ -48,7 +48,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         $user = $this->userService->getByEmail($email);
 
-        if ($otp !== $user->getToken()) {
+        if (!$user || $otp !== $user->getToken()) {
             $email = 'no@token.yet';
         }
 
