@@ -81,8 +81,10 @@ class IndexController extends AbstractController
         }
 
         $isVerified = $this->validateCheckbox($request->request->get('isVerified'));
+        
+        $isDeleted = $this->validateCheckbox($request->request->get('isDeleted'));
 
-        if (!$isVerified) {
+        if (!$isVerified || $isDeleted) {
             $token = null;
         }
 
@@ -93,6 +95,7 @@ class IndexController extends AbstractController
                 ->setPassword($this->userService->encodePassword($email))
                 ->setToken($token)
                 ->setIsVerified($isVerified)
+                ->setDeleted($isDeleted)
         );
 
         $this->addFlash('notice', 'Changes has been saved.');

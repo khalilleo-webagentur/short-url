@@ -7,6 +7,7 @@
                 <th>{{ 'Email'|trans }}</th>
                 <th>{{ 'Token'|trans }}</th>
                 <th>{{ 'Verified'|trans }}</th>
+                <th>{{ 'Deleted'|trans }}</th>
                 <th>{{ 'Updated'|trans }}</th>
                 <th>{{ 'Created'|trans }}</th>
                 <th>{{ 'Action'|trans }}</th>
@@ -20,6 +21,7 @@
                 <td>{{ row.email }}</td>
                 <td>{{ row.token ? row.token : '---' }}</td>
                 <td>{{ row.isVerified ? faThumbsUp() : faThumbsDown() }}</td>
+                <td>{{ row.isDeleted ? 'Yes' : 'No' }}</td>
 
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
 
