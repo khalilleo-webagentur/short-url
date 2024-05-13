@@ -64,8 +64,13 @@ class AuthenticateController extends AbstractController
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
-        if ($user && !$user->isVerified()) {
+        if (!$user->isVerified()) {
             $this->addFlash('warning', 'Your account is not verified yet. Please verify your email.');
+            return $this->redirectToRoute(self::HOME_ROUTE);
+        }
+
+        if ($user->isDeleted()) {
+            $this->addFlash('notice', 'Recently you have requested to delete your account. Contact us to get your account back.');
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 

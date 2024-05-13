@@ -196,12 +196,16 @@ trait FormValidationTrait
         return $input;
     }
 
-    private function validateUsernameAndReplaceSpace(?string $input, string $replacement = '_'): ?string
+    private function validateUsernameAndReplaceSpace(?string $input, string $replacement = '.'): ?string
     {
         if (empty($input)) {
             return null;
         }
 
-        return $this->escape(str_replace(' ', $replacement, $input));
+        $input = str_replace(' ', $replacement, $input);
+        $input = trim(preg_replace("![^a-z0-9]+!i", $replacement, $input), $replacement);
+        $input = preg_replace('/[^A-Za-z0-9\-]/', $replacement, $input);
+
+        return $this->escape($input);
     }
 }

@@ -21,8 +21,6 @@ class LogoutSubscriber implements EventSubscriberInterface
 
     public function onLogout(LogoutEvent $event): void
     {
-        $token = $event->getToken();
-
         $request = $event->getRequest();
 
         $request->getSession()->clear();

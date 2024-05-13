@@ -108,6 +108,10 @@ input[type="color"]:focus,
     cursor: help;
 }
 
+.modal-content {
+    border: 1px solid #4444448e;
+}
+
 body {
     -webkit-animation: fadein 2s;
     -moz-animation: fadein 2s;

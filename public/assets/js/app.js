@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
-    // setTimeout(function () {
-    //     $(".alert").alert('close').fadeOut();
-    // }, 6000);
+    setTimeout(function () {
+        $(".alert").alert('close').fadeOut();
+    }, 10000);
 
     if ($('#clipboard').length) {
         $('#clipboard').on('click', function (e) {
@@ -26,6 +26,10 @@ $(document).ready(function () {
         });
     }
 
+     let modal = $('.modal');
+     modal.on('shown.bs.modal', function () {
+         $(this).find('[autofocus]').focus();
+     });
 });
 
 function isLocalStorageAvailable() { return typeof (Storage) !== "undefined" }

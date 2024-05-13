@@ -20,6 +20,10 @@ class UserChecker implements UserCheckerInterface
         if (!$user->isVerified()) {
             throw new CustomUserMessageAccountStatusException('Please verify your email.');
         }
+
+        if ($user->isDeleted()) {
+            throw new CustomUserMessageAccountStatusException('Please contact us to activate your account again. This could take 3 dasy.');
+        }
     }
 
     public function checkPostAuth(UserInterface $user): void
