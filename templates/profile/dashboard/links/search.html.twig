@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
 
-    <div class="row py-3 d-dark-color shadow">
+    <div class="row py-3 d-dark-color shadow-sm">
         <div class="col-12">
             <h5 class="text-white-50 pt-1"> Search URLs
                 <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-1">
@@ -23,19 +23,21 @@
     <div class="row pb-5">
         <div class="col-lg-12">
 
-            <p class="text-white-50 pt-5">Results for keyword "<span class="text-success">{{keyword}}</span>"
+            <p class="text-white-50 pt-3 mb-0">Results for keyword "<span class="text-success">{{keyword}}</span>"
                 founded "<span class="text-success">{{count(links)}}</span>"
             </p>
 
             {% if count(links) > 0 %}
             {% include 'profile/dashboard/links/partial/table_content.html.twig' %}
             {% else %}
-            <p class="text-white-50">
+            <p class="text-white-50 pt-2">
                 No data has been found. Please serach only for titles! <br>
             </p>
-            <p><a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none mt-3">Back to URLs <span
-                class="bi bi-arrow-left-circle-fill ps-1"></span></a></p>
             {% endif %}
+
+            <p><a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none mt-3">
+                <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs</a>
+            </p>
         </div>
     </div>
 </div>
