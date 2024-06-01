@@ -10,13 +10,19 @@
 
 <div class="container-fluid">
 
-    <div class="row py-3 d-dark-color shadow-sm">
-        <div class="col-12">
-            <h5 class="text-white-50 pt-1"> Search URLs
-                <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-1">
-                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
-                </a>
-            </h5>
+    <div class="row pt-3 d-dark-color shadow-sm">
+        <div class="col-4 col-lg-4">
+            <h5 class="text-white-50 pt-2">Search URLs</h5>
+        </div>
+
+        <div class="col-4">
+            {% include 'profile/dashboard/links/partial/search_form.html.twig' %}
+        </div>
+
+        <div class="col-4">
+            <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                Close <span class="bi bi-x-square-fill ps-1 small"></span>
+            </a>
         </div>
     </div>
 
@@ -36,7 +42,7 @@
             {% endif %}
 
             <p><a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none mt-3">
-                <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs</a>
+                    <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs</a>
             </p>
         </div>
     </div>
