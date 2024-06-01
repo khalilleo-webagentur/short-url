@@ -7,6 +7,7 @@ namespace App\Controller\Profile\Dashboard\Links;
 use App\Helper\AppHelper;
 use App\Service\Export\UserLinksExport;
 use App\Service\LinkService;
+use App\Service\MonologService;
 use App\Traits\FormValidationTrait;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +25,7 @@ class ExportController extends AbstractController
 
     public function __construct(
         private readonly LinkService $linkService,
+        private readonly MonologService $monolog
     ) {
     }
 
@@ -49,13 +51,27 @@ class ExportController extends AbstractController
         if ($exportAsOption === 'json') {
             try {
                 $data = $userLinksExport->asJson($user);
+                $this->monolog->logger->info(
+                    sprintf('User %s has exported links as %s-format successfully.', $user->getUserIdentifier(), $exportAsOption)
+                );
             } catch (Exception $e) {
                 $data = '';
+                $this->monolog->logger->critical(
+                    sprintf(
+                        'User %s  not exported links as %s-format. Err.:: ',
+                        $user->getUserIdentifier(),
+                        $exportAsOption,
+                        $e->getMessage()
+                    )
+                );
             }
         }
 
         if ($exportAsOption === 'csv') {
             $userLinksExport->asCSV($user);
+            $this->monolog->logger->info(
+                sprintf('User %s has exported links as %s-format successfully.', $user->getUserIdentifier(), $exportAsOption)
+            );
         }
 
         if ($data === '') {
