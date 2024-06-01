@@ -2,5 +2,5 @@
 
 Short Link is a tool to shorten a URL or reduce a link.
 
-[visit demo](http://go.khalilleo.com)
+[visit demo](http://go.khalilleo.com/start-page)
 
