@@ -21,7 +21,7 @@
                 <td>{{ row.email }}</td>
                 <td>{{ row.token ? row.token : '---' }}</td>
                 <td>{{ row.isVerified ? faThumbsUp() : faThumbsDown() }}</td>
-                <td>{{ row.isDeleted ? 'Yes' : 'No' }}</td>
+                <td>{{ row.isDeleted ? faCircle('text-danger') : faCircle('text-light-50') }}</td>
 
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
 
