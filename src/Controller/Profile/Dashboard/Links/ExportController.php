@@ -54,6 +54,10 @@ class ExportController extends AbstractController
             }
         }
 
+        if ($exportAsOption === 'csv') {
+            $userLinksExport->asCSV($user);
+        }
+
         if ($data === '') {
             $this->addFlash('waning', 'Data could not be exported.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);

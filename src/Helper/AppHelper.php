@@ -11,7 +11,7 @@ final class AppHelper
     public const DEFAULT_LINKS_OPTION_EXPORT_AS_JSON = 'json';
 
     public const AVAILABLE_LINKS_EXPORT_OPTIONS = [
-        'html',
+        'csv',
         'json',
         'pdf'
     ];

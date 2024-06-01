@@ -26,10 +26,20 @@ $(document).ready(function () {
         });
     }
 
-     let modal = $('.modal');
-     modal.on('shown.bs.modal', function () {
-         $(this).find('[autofocus]').focus();
-     });
+    let modal = $('.modal');
+    modal.on('shown.bs.modal', function () {
+        $(this).find('[autofocus]').focus();
+    });
+
+    if($('.rmModal').length) {
+        $('.rmModal').on('click', function () {
+            $('.modalToRemoveAfterClick').modal('hide');
+    
+            setTimeout(function () {
+                $('input').val('');
+            }, 2000);
+        });
+    }
 });
 
 function isLocalStorageAvailable() { return typeof (Storage) !== "undefined" }
