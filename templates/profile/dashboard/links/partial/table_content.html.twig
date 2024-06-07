@@ -4,6 +4,7 @@
             <tr>
                 <th class="col text-white-50">#</th>
                 <th class="col text-white-50">Title</th>
+                <th class="col text-white-50">Star</th>
                 <th class="col text-white-50">Short-URL</th>
                 <th class="col text-white-50">URL</th>
                 <th class="col text-white-50">Statistics</th>
@@ -19,6 +20,15 @@
             <tr class="small">
                 <td class="text-white-50">{{i+1}}</td>
                 <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
+                <td>
+                    <form action="{{path('app_profile_job_star_store', {id:link.id})}}" class="pointer" method="post">
+                        <span class="bi {{link.isFave ? 'bi-star-fill text-warning' : 'bi-star text-secondary'}}"
+                            onclick="this.closest('form').submit();"></span>
+                        <div class="d-none">
+                            <input type="hidden" name="star" value="on">
+                        </div>
+                    </form>
+                </td>
                 {% set urlPath = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                 <td class="text-white-50" title="{{ urlPath}}">
                     <span class="cUrlCode cursor-help" data-description="{{urlPath}}"

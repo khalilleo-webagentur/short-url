@@ -36,6 +36,9 @@ class Link
     private int $counter = 0;
 
     #[ORM\Column]
+    private bool $isFave = false;
+
+    #[ORM\Column]
     private bool $isPublic = true;
 
     #[ORM\Column]
@@ -102,6 +105,18 @@ class Link
     public function setCounter(int $counter): static
     {
         $this->counter = $counter;
+
+        return $this;
+    }
+
+    public function isFave(): bool
+    {
+        return $this->isFave;
+    }
+
+    public function setIsFave(bool $isFave): static
+    {
+        $this->isFave = $isFave;
 
         return $this;
     }

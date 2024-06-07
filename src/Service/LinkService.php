@@ -46,7 +46,7 @@ final class LinkService
      */
     public function getAllByUser(User $user): array
     {
-        return $this->linkRepository->findBy(['user' => $user], ['id' => 'DESC']);
+        return $this->linkRepository->findBy(['user' => $user], ['isFave' => 'DESC' ,'id' => 'DESC']);
     }
 
     /**
