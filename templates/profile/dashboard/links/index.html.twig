@@ -33,6 +33,11 @@
                     <span class="md-d-none">Anonomyze </span> <span class="bi bi-fingerprint"></span>
                 </button> -->
 
+                <button class="btn btn-outline-secondary btn-sm mt-1 me-2 d-md-none" data-bs-toggle="modal"
+                    data-bs-target="#searchModal">
+                    <span class="bi bi-search"></span>
+                </button>
+
                 <div class="dropdown mt-1 me-2">
                     <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -74,6 +79,7 @@
 </div>
 
 {% include 'profile/dashboard/links/modal/new.html.twig' %}
+{% include 'profile/dashboard/links/modal/search.html.twig' %}
 {% include 'profile/dashboard/links/modal/anonomyze.html.twig' %}
 {% include 'profile/dashboard/links/modal/export.html.twig' %}
 {% include 'profile/dashboard/links/modal/delete.html.twig' %}
