@@ -5,8 +5,8 @@
                 <th class="col text-white-50">#</th>
                 <th class="col text-white-50">Title</th>
                 <th class="col text-white-50">Star</th>
-                <th class="col text-white-50">Short-URL</th>
-                <th class="col text-white-50">URL</th>
+                <th class="col text-white-50">Short</th>
+                <th class="col text-white-50 md-d-none">URL</th>
                 <th class="col text-white-50">Statistics</th>
                 <th class="col text-white-50">Clicks</th>
                 <th class="col text-white-50 md-d-none">Modified</th>
@@ -37,7 +37,7 @@
                         <span class="bi bi-box-arrow-up-right text-primary" title="Visit your long URL"></span>
                     </a>
                 </td>
-                <td title="{{link.url}}" class="cursor-help">
+                <td title="{{link.url}}" class="cursor-help md-d-none">
                     <span class="text-white-50">{{link.url|slice(0, 35) ~ ' ...'}}</span>
                 </td>
                 <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') : circle('text-danger') }}</td>
