@@ -175,6 +175,7 @@ class IndexController extends AbstractController
         $title = $this->validate($request->request->get('iTitle'));
 
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+        $isFave = $this->validateCheckbox($request->request->get('isFave'));
 
         $this->linkService->save(
             $link
@@ -182,6 +183,7 @@ class IndexController extends AbstractController
                 ->setUrl($url)
                 ->setToken($this->replaceSpecialChars($token))
                 ->setIsPublic($isPublic)
+                ->setIsFave($isFave)
         );
 
         $this->addFlash('success', 'Link has been updated.');
