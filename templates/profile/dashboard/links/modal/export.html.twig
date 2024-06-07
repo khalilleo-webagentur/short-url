@@ -1,5 +1,5 @@
-<div class="modal fade modalToRemoveAfterClick" id="exportModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="exportModalLabel" aria-hidden="true">
+<div class="modal fade modalToRemoveAfterClick" id="exportModal" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="background-color: #1b1b1c;">
       <div class="modal-header">
@@ -10,30 +10,19 @@
       <form action="{{path('app_profile_links_export')}}" method="post">
         <div class="modal-body">
           <div class="mb-3">
-            <p class="text-white-50">Check the prefered format to export your Links:</p>
+            <p class="text-white-50">Select your prefered format to export Links:</p>
           </div>
 
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exportAs" value="csv" id="flexRadioDefault1"
-              style="background-color: #0000001c;border: 1px solid #535353;">
-            <label class="form-check-label text-white-50" for="flexRadioDefault1">
-              as CSV-Formt
-            </label>
+          <div class="mb-3">
+            <p class="text-white-50 mb-1">Select your Option</p>
+            <select class="form-select bg-dark text-white-50" aria-label="Default select sExportAsLinks"
+              style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
+              name="as" required>
+              <option selected disabled>---</option>
+              <option value="csv">CSV-Format</option>
+              <option value="json">JSON-Format</option>
+            </select>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="exportAs" value="json" id="flexRadioDefault2"
-              style="background-color: #0000001c;border: 1px solid #535353;" checked>
-            <label class="form-check-label text-white-50" for="flexRadioDefault2">
-              as JSON-Formt
-            </label>
-          </div>
-          <!-- <div class="form-check">
-            <input class="form-check-input" type="radio" name="exportAs" value="pdf" id="flexRadioDefault3"
-              style="background-color: #0000001c;border: 1px solid #535353;">
-            <label class="form-check-label text-white-50" for="flexRadioDefault3">
-              All links as PDF-Formt
-            </label>
-          </div> -->
 
         </div>
         <div class="modal-footer">

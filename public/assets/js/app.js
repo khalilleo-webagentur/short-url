@@ -37,6 +37,7 @@ $(document).ready(function () {
     
             setTimeout(function () {
                 $('input').val('');
+                $('input[type=radio]').val('');
             }, 2000);
         });
     }

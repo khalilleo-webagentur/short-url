@@ -40,10 +40,11 @@ class ExportController extends AbstractController
 
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $exportAsOption = $this->validate($request->request->get('exportAs'));
+        $exportAsOption = $this->validate($request->request->get('as'));
 
         if (!in_array($exportAsOption, AppHelper::AVAILABLE_LINKS_EXPORT_OPTIONS, true)) {
-            $exportAsOption = AppHelper::DEFAULT_LINKS_OPTION_EXPORT_AS_JSON;
+            $this->addFlash('warning', 'Data could not be exported. Option is not defined.');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
         $data = '';
@@ -75,7 +76,7 @@ class ExportController extends AbstractController
         }
 
         if ($data === '') {
-            $this->addFlash('waning', 'Data could not be exported.');
+            $this->addFlash('warning', 'Data could not be exported.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
