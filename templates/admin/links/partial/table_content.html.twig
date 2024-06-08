@@ -2,10 +2,12 @@
     <table class="table table-hover text-nowrap">
         <thead>
             <tr class="fs-14">
+                <th>{{ 'Star'|trans }}</th>
                 <th>{{ 'URL'|trans }}</th>
                 <th>{{ 'Short'|trans }}</th>
                 <th>{{ 'User'|trans }}</th>
                 <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'Collection'|trans }}</th>
                 <th>{{ 'Clicks'|trans }}</th>
                 <th>{{ 'Statistics'|trans }}</th>
                 <th>{{ 'Updated'|trans }}</th>
@@ -16,6 +18,7 @@
         <tbody>
             {% for row in links %}
             <tr class="fs-14">
+                <td><span class="fa {{row.isFave ? 'fa-solid fa-star text-warning' : 'fa-star text-light-50'}}"></span></td>
                 <td><span title="{{ row.url }}">{{ row.url|slice(0, 20) ~ '...' }}</span></td>
                 <td>
                     {% set link = app.request.schemeAndHttpHost ~ '/' ~ row.token %}
@@ -34,6 +37,7 @@
 
                 </td>
                 <td>{{ row.title ? row.title : '---' }}</td>
+                <td>{{ row.collection ? row.collection.name : '---' }}</td>
                 <td>{{ row.counter }}</td>
                 <td>{{ row.isPublic ? faThumbsUp() : faThumbsDown() }}</td>
 
