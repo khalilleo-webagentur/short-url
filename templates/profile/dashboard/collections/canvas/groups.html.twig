@@ -20,7 +20,9 @@
           style="border-radius: 0;background-color: transparent;border: 1px solid #535353;height:60vh;">
           <option value="0">All Groups</option>
           {% for row in collections %}
-          <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>{{row.name}}</option>
+          <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }} {{count(row.links) == 0 ? 'disabled' : '' }}>
+            {{row.name}}
+          </option>
           {% endfor %}
         </select>
       </form>
