@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Export;
 
 use App\Entity\User;
+use App\Service\LinkCollectionService;
 use App\Service\LinkService;
 use App\Service\UserService;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -14,6 +15,7 @@ final class UserLinksExport
     public function __construct(
         private readonly UserService $userService,
         private readonly LinkService $linkService,
+        private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
@@ -38,13 +40,15 @@ final class UserLinksExport
 
             $keys = [
                 '_link_title',
+                '_collection_name',
                 '_link_token',
                 '_link_url',
                 '_link_clicks',
+                '_is_link_star',
                 '_is_link_public',
                 '_is_link_repoted',
                 '_link_updated_at',
-                '_link_created_at'
+                '_link_created_at',
             ];
 
             echo implode($separator, $keys) . "\n";
@@ -61,6 +65,7 @@ final class UserLinksExport
     {
         return [
             'URLs' => $this->getUserLinksTableData($user),
+            'Collections' => $this->getUserLinkCollectionsTableData($user),
         ];
     }
 
@@ -73,13 +78,33 @@ final class UserLinksExport
             foreach ($links as $row) {
                 $result[] = [
                     '_link_title' => $row->getTitle(),
+                    '_collection_name' => $row->getCollection() ? $row->getCollection()->getName() : null,
                     '_link_token' => $row->getToken(),
                     '_link_url' => $row->getUrl(),
                     '_link_clicks' => $row->getCounter(),
+                    '_is_link_star' => $row->isFave(),
                     '_is_link_public' => $row->isPublic(),
                     '_is_link_repoted' => $row->isReported(),
                     '_link_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
                     '_link_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
+                ];
+            }
+        }
+
+        return $result;
+    }
+
+    private function getUserLinkCollectionsTableData(User $user): array
+    {
+        $collections = $this->linkCollectionService->getAllByUser($user);
+        $result = [];
+
+        if (null !== $collections) {
+            foreach ($collections as $row) {
+                $result[] = [
+                    '_collection_name' => $row->getName(),
+                    '_collection_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
+                    '_collection_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
                 ];
             }
         }
