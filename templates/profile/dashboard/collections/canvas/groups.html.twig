@@ -1,0 +1,31 @@
+<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRightGroups"
+  aria-labelledby="offcanvasRightGroupsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title text-white-50" id="offcanvasRightGroupsLabel">Links Group</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-grid gap-2">
+      <button class="btn btn-outline-success" type="button" data-bs-target="#newGroupModal" data-bs-toggle="modal">
+        Add New Group <span class="bi bi-plus-circle ps-1"></span>
+      </button>
+    </div>
+    {% if count(collections) > 0 %}
+    <div class="d-grid gap-2 mt-4">
+      <p class="text-white-50 mb-0 pb-0">Display all links within a Group.</p>
+
+      <form action="{{path('app_links_collection_job_store_collection')}}" method="post">
+        <select class="form-select text-white-50" size="3" aria-label="Size 3 select collection"
+          onchange="this.closest('form').submit();" name="group"
+          style="border-radius: 0;background-color: transparent;border: 1px solid #535353;height:60vh;">
+          <option value="0">All Groups</option>
+          {% for row in collections %}
+          <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>{{row.name}}</option>
+          {% endfor %}
+        </select>
+      </form>
+
+    </div>
+    {% endif %}
+  </div>
+</div>

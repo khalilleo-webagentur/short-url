@@ -22,18 +22,24 @@
 
         <div class="col-4">
             <div class="d-flex float-end pt-1">
-                <button class="btn btn-outline-secondary btn-sm mt-1 me-2" data-bs-toggle="modal"
+                <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
                     data-bs-target="#newModal">
                     <span class="md-d-none">New URL</span> <span class="bi bi-plus-circle ps-lg-1"></span>
                 </button>
 
+                <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRightGroups" aria-controls="offcanvasRightGroups">
+                    <span class="md-d-none pe-1">Groups </span> <span class="bi bi-collection"></span>
+                </button>
+                {% include 'profile/dashboard/collections/canvas/groups.html.twig' %}
+                
                 {% if count(links) > 0 %}
-                <!-- <button class="btn btn-outline-secondary btn-sm mt-1 me-2" data-bs-toggle="modal"
+                <!-- <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
                     data-bs-target="#anonomyzeModel">
                     <span class="md-d-none">Anonomyze </span> <span class="bi bi-fingerprint"></span>
                 </button> -->
 
-                <button class="btn btn-outline-secondary btn-sm mt-1 me-2 d-md-none" data-bs-toggle="modal"
+                <button class="btn btn-outline-secondary btn-sm mt-1 me-1 d-md-none" data-bs-toggle="modal"
                     data-bs-target="#searchModal">
                     <span class="bi bi-search"></span>
                 </button>
@@ -79,6 +85,7 @@
 </div>
 
 {% include 'profile/dashboard/links/modal/new.html.twig' %}
+{% include 'profile/dashboard/collections/modal/new.html.twig' %}
 {% include 'profile/dashboard/links/modal/search.html.twig' %}
 {% include 'profile/dashboard/links/modal/anonomyze.html.twig' %}
 {% include 'profile/dashboard/links/modal/export.html.twig' %}

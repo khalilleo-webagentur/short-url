@@ -1,0 +1,31 @@
+<div class="modal fade" id="newGroupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="newGroupModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #1b1b1c;">
+      <div class="modal-header">
+        <h1 class="modal-title text-white-50 fs-5" id="newGroupModalLabel">Add new Group</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="{{path('app_links_collection_new')}}" method="post">
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="iName" class="form-label text-white-50">Name:</label>
+            <input type="text" class="form-control" id="iName" placeholder="Type group name" name="iName"
+              style="height: 42px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
+              required>
+            <small class="text-secondary text-white-50">This feld is required.</small>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
+            style="border-radius: 2px;height: 40px;">Cancel</button>
+          <button type="submit" class="btn btn-warning" style="border-radius: 2px;height: 40px;">Add Group</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

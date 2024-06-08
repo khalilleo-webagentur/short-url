@@ -6,6 +6,7 @@ namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Entity\Link;
 use App\Helper\AppHelper;
+use App\Service\LinkCollectionService;
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
 use App\Service\TokenGeneratorService;
@@ -28,23 +29,38 @@ class IndexController extends AbstractController
         private readonly LinkService $linkService,
         private readonly LinkStatisticService $linkStatisticService,
         private readonly TokenGeneratorService $tokenGeneratorService,
-        private readonly UserSettingService $userSettingService
+        private readonly UserSettingService $userSettingService,
+        private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
     #[Route('/home', name: 'app_profile_my_urls')]
     public function index(): Response
     {
-        if (!$this->getUser()) {
+        $user = $this->getUser();
+
+        if (!$user) {
             return $this->redirectToRoute('app_login');
         }
 
         $this->denyAccessUnlessGranted('ROLE_USER');
+        $collections = [];
 
-        $links = $this->linkService->getAllByUser($this->getUser());
+        $collection = $this->linkCollectionService->getOneByUserAndDefaultCollection($user);
+
+        if ($collection) {
+            $collections = $this->linkService->getAllByUserAndCollection($user, $collection);
+        }
+
+        $links = !$collection && count($collections) <= 0
+            ? $this->linkService->getAllByUser($user)
+            : $collections;
+
+        $collections = $this->linkCollectionService->getAllByUser($user);
 
         return $this->render('profile/dashboard/links/index.html.twig', [
-            'links' => $links
+            'links' => $links,
+            'collections' => $collections
         ]);
     }
 
@@ -114,9 +130,12 @@ class IndexController extends AbstractController
 
         $allowLinkAlias = $this->userSettingService->allowLinkAlias($user);
 
+        $collections = $this->linkCollectionService->getAllByUser($user);
+
         return $this->render('profile/dashboard/links/edit.html.twig', [
             'link' => $link,
-            'allowLinkAlias' => $allowLinkAlias
+            'allowLinkAlias' => $allowLinkAlias,
+            'collections' => $collections
         ]);
     }
 
@@ -177,9 +196,14 @@ class IndexController extends AbstractController
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
         $isFave = $this->validateCheckbox($request->request->get('isFave'));
 
+        $collectionId = $this->validateNumber($request->request->get('group'));
+
+        $collection = $this->linkCollectionService->getByUserAndId($user, $collectionId);
+
         $this->linkService->save(
             $link
                 ->setTitle($title)
+                ->setCollection($collection)
                 ->setUrl($url)
                 ->setToken($this->replaceSpecialChars($token))
                 ->setIsPublic($isPublic)

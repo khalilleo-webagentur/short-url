@@ -31,6 +31,14 @@ trait FormValidationTrait
         return filter_var($input, FILTER_VALIDATE_EMAIL) ? $input : null;
     }
 
+    private function validateAndReplaceSpace(string $name): string
+    {
+        $name = str_replace  ("'", "", $name);
+        $name = preg_replace ('/[^\p{L}\p{N}]/u', '-', $name);
+
+        return $name;
+    }
+
     private function validateURL(?string $input): ?string
     {
         if (empty($input)) {

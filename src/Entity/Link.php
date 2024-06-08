@@ -50,6 +50,9 @@ class Link
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'links')]
+    private ?LinkCollection $collection = null;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
@@ -207,6 +210,18 @@ class Link
                 $linkStatistic->setLink(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCollection(): ?LinkCollection
+    {
+        return $this->collection;
+    }
+
+    public function setCollection(?LinkCollection $collection): static
+    {
+        $this->collection = $collection;
 
         return $this;
     }

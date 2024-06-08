@@ -62,12 +62,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: TempUser::class, mappedBy: 'user')]
     private Collection $tempUsers;
 
+    /**
+     * @var Collection<int, LinkCollection>
+     */
+    #[ORM\OneToMany(targetEntity: LinkCollection::class, mappedBy: 'user')]
+    private Collection $linkCollections;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
         $this->links = new ArrayCollection();
         $this->userSettings = new ArrayCollection();
         $this->tempUsers = new ArrayCollection();
+        $this->linkCollections = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,6 +293,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($tempUser->getUser() === $this) {
                 $tempUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LinkCollection>
+     */
+    public function getLinkCollections(): Collection
+    {
+        return $this->linkCollections;
+    }
+
+    public function addLinkCollection(LinkCollection $linkCollection): static
+    {
+        if (!$this->linkCollections->contains($linkCollection)) {
+            $this->linkCollections->add($linkCollection);
+            $linkCollection->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLinkCollection(LinkCollection $linkCollection): static
+    {
+        if ($this->linkCollections->removeElement($linkCollection)) {
+            // set the owning side to null (unless already changed)
+            if ($linkCollection->getUser() === $this) {
+                $linkCollection->setUser(null);
             }
         }
 

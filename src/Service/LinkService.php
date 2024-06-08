@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Link;
+use App\Entity\LinkCollection;
 use App\Entity\User;
 use App\Repository\LinkRepository;
 use DateTime;
@@ -29,6 +30,21 @@ final class LinkService
     public function getByUserAndToken(User $user, string $token): ?Link
     {
         return $this->linkRepository->findOneBy(['user' => $user, 'token' => $token]);
+    }
+
+    /**
+     * @return Link[]
+     */
+    public function getAllByUserAndCollection(User $user, LinkCollection $collection): array
+    {
+        return $this->linkRepository->findBy(['user' => $user, 'collection' => $collection]);
+    }
+
+    public function removeCollectionFromLinks(User $user, LinkCollection $collection): void
+    {
+        foreach ($this->getAllByUserAndCollection($user, $collection) as $link) {
+            $this->save($link->setCollection(null));
+        }
     }
 
     public function getByToken(string $token): ?Link

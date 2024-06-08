@@ -33,6 +33,19 @@
                 </div>
 
                 <div class="mb-3">
+                    <p class="text-white-50 mb-1">Group:</p>
+                    <select class="form-select text-white-50" aria-label="Default select sExportAsLinks"
+                        style="height: 46px; border-radius: 0; background-color: transparent;border: 1px solid #535353;color: #f0efef;"
+                        name="group" required>
+                        <option value="0">No Group</option>
+                        {% for row in collections %}
+                        <option value="{{row.id}}" {{link.collection and link.collection.name==row.name ? 'selected'
+                            : '' }}>{{row.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label for="iUrl" class="form-label text-white-50">Long URL:</label>
                     <input type="text" class="form-control" id="iUrl" placeholder="Long link (Required)"
                         style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
@@ -47,7 +60,7 @@
                     <input type="text" class="form-control" id="iCode" placeholder="URL Code (Required)"
                         style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
                         required name="iCode" style="height: 46px; border-radius: 0;" value="{{link.token}}">
-                        <small class="text-secondary">Special chars Hyphen (-) is allowed.</small>
+                    <small class="text-secondary">Special chars Hyphen (-) is allowed.</small>
                 </div>
                 {% endif %}
 

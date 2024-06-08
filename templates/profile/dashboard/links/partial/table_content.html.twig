@@ -9,6 +9,7 @@
                 <th class="col text-white-50 md-d-none">URL</th>
                 <th class="col text-white-50">Statistics</th>
                 <th class="col text-white-50">Clicks</th>
+                <th class="col text-white-50">Group</th>
                 <th class="col text-white-50 md-d-none">Modified</th>
                 <th class="col text-white-50">Created</th>
                 <th class="col text-white-50">Action</th>
@@ -32,8 +33,8 @@
                 {% set urlPath = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                 <td class="text-white-50" title="{{ urlPath}}">
                     <span class="cUrlCode cursor-help" data-description="{{urlPath}}"
-                        title="Copy to Clipboard">{{link.token}}</span> <a
-                        href="{{ urlPath }}" class="ps-1" target="_blank">
+                        title="Copy to Clipboard">{{link.token}}</span> <a href="{{ urlPath }}" class="ps-1"
+                        target="_blank">
                         <span class="bi bi-box-arrow-up-right text-primary" title="Visit your long URL"></span>
                     </a>
                 </td>
@@ -42,6 +43,16 @@
                 </td>
                 <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') : circle('text-danger') }}</td>
                 <td class="text-white-50">{{link.counter}}</td>
+                <td class="text-white-50">
+                    {% if link.collection %}
+                    <a href="{{path('app_links_collection_edit', {id:link.collection.id})}}"
+                        class="text-decoration-none {{link.collection.isDefault ? 'text-white-50' : 'text-primary'}}">
+                        {{ link.collection.name }}
+                    </a>
+                    {% else %}
+                    ---
+                    {% endif %}
+                </td>
                 <td class="text-white-50 md-d-none">{{link.updatedAt|date('d.m.Y')}}</td>
                 <td class="text-white-50">{{link.createdAt|date('d.m.Y')}}</td>
                 <td>
