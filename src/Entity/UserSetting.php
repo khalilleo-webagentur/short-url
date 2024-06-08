@@ -25,6 +25,9 @@ class UserSetting
     #[ORM\Column]
     private bool $allowLinkAlias = false;
 
+    #[ORM\Column]
+    private bool $allowRedirectAfterNewLink = true;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -97,6 +100,18 @@ class UserSetting
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function allowRedirectAfterNewLink(): bool
+    {
+        return $this->allowRedirectAfterNewLink;
+    }
+
+    public function setAllowRedirectAfterNewLink(bool $allowRedirectAfterNewLink): static
+    {
+        $this->allowRedirectAfterNewLink = $allowRedirectAfterNewLink;
 
         return $this;
     }

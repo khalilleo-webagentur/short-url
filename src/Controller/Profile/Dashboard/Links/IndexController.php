@@ -98,11 +98,20 @@ class IndexController extends AbstractController
 
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
 
+        $collectionId = $this->validateNumber($request->request->get('group'));
+
+        $collection = $this->linkCollectionService->getByUserAndId($user, $collectionId);
+
+        if ($collection && $this->userSettingService->allowRedirectAfterNewLink($user)) {
+            $this->linkCollectionService->resetAndUpdateDefault($user, $collection);
+        }
+
         $model = new Link();
 
         $this->linkService->save(
             $model
                 ->setUser($user)
+                ->setCollection($collection)
                 ->setTitle($title)
                 ->setUrl($link)
                 ->setToken($token)

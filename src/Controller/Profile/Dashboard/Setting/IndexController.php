@@ -57,13 +57,18 @@ class IndexController extends AbstractController
         }
 
         if ($this->validateCheckbox($request->request->get('allowDuplicatedUrlsForm'))) {
-            $allowDuplicatedUrls = !$this->validateCheckbox($request->request->get('allowDuplicatedUrls'));
-            $this->userSettingService->save($userSetting->setAllowDuplicatedUrls($allowDuplicatedUrls));
+            $isActive = !$this->validateCheckbox($request->request->get('allowDuplicatedUrls'));
+            $this->userSettingService->save($userSetting->setAllowDuplicatedUrls($isActive));
         }
 
         if ($this->validateCheckbox($request->request->get('allowLinkAliasForm'))) {
-            $allowLinkAlias = !$this->validateCheckbox($request->request->get('allowLinkAlias'));
-            $this->userSettingService->save($userSetting->setAllowLinkAlias($allowLinkAlias));
+            $isActive = !$this->validateCheckbox($request->request->get('allowLinkAlias'));
+            $this->userSettingService->save($userSetting->setAllowLinkAlias($isActive));
+        }
+
+        if ($this->validateCheckbox($request->request->get('allowRedirectAfterNewLinkForm'))) {
+            $isActive = !$this->validateCheckbox($request->request->get('allowRedirectAfterNewLink'));
+            $this->userSettingService->save($userSetting->setAllowRedirectAfterNewLink($isActive));
         }
 
         $this->addFlash('success', 'Config has been updated.');

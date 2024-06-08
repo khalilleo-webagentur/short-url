@@ -35,6 +35,13 @@ final class UserSettingService
         return $setting && $setting->isAllowLinkAlias();
     }
 
+    public function allowRedirectAfterNewLink(User $user): bool
+    {
+        $setting = $this->getOneByUser($user);
+
+        return $setting && $setting->allowRedirectAfterNewLink();
+    }
+
     public function save(UserSetting $model): UserSetting
     {
         $this->userSettingRepository->save($model->setUpdatedAt(new DateTime()), true);

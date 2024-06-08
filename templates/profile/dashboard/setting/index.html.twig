@@ -66,6 +66,26 @@
                     </div>
                 </div>
 
+                <div class="col">
+                    <div class="card d-dark-color d-border">
+                        <div class="card-body">
+                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
+                                method="post">
+                                <input class="form-check-input"
+                                    style="background-color: #0000001c;border: 1px solid #535353;" type="checkbox"
+                                    id="allowRedirectAfterNewLink" {{userSetting.allowRedirectAfterNewLink ? 'checked' : '' }}
+                                    name="allowRedirectAfterNewLink">
+                                <label class="form-check-label text-white-50 ps-1" for="allowRedirectAfterNewLink"
+                                    onclick="this.closest('form').submit();">Allow redirect to selected group after adding new Link
+                                </label>
+                                <div class="d-none">
+                                    <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- <div class="col">
                     <div class="card">
                         <div class="card-body">

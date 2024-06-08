@@ -25,6 +25,19 @@
             <small class="text-secondary text-white-50">This feld is required.</small>
           </div>
 
+          <div class="mb-3">
+              <p class="text-white-50 mb-1">Group:</p>
+              <select class="form-select text-white-50" aria-label="Default select Collection"
+                  style="height: 46px; border-radius: 0; background-color: transparent;border: 1px solid #535353;color: #f0efef;"
+                  name="group">
+                  <option value="" selected disabled>---</option>
+                  <option value="0">No Group</option>
+                  {% for row in collections %}
+                  <option value="{{row.id}}">{{row.name}}</option>
+                  {% endfor %}
+              </select>
+          </div>
+
           <div class="form-check mb-3">
             <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"
               type="checkbox" name="isPublic" id="isPublic" checked>

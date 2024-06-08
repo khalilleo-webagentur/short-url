@@ -34,13 +34,14 @@
 
                 <div class="mb-3">
                     <p class="text-white-50 mb-1">Group:</p>
-                    <select class="form-select text-white-50" aria-label="Default select sExportAsLinks"
+                    <select class="form-select text-white-50" aria-label="Default select Collection"
                         style="height: 46px; border-radius: 0; background-color: transparent;border: 1px solid #535353;color: #f0efef;"
                         name="group" required>
                         <option value="0">No Group</option>
                         {% for row in collections %}
-                        <option value="{{row.id}}" {{link.collection and link.collection.name==row.name ? 'selected'
-                            : '' }}>{{row.name}}</option>
+                        <option value="{{row.id}}"
+                            {{link.collection and link.collection.name==row.name ? 'selected' : '' }}>{{row.name}}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
