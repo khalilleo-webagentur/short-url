@@ -25,10 +25,11 @@
             <small class="text-secondary text-white-50">This feld is required.</small>
           </div>
 
+          {% if count(collections) > 0 %}
           <div class="mb-3">
               <p class="text-white-50 mb-1">Group:</p>
-              <select class="form-select text-white-50" aria-label="Default select Collection"
-                  style="height: 46px; border-radius: 0; background-color: transparent;border: 1px solid #535353;color: #f0efef;"
+              <select class="form-select bg-dark text-white-50" aria-label="Default select Collection"
+                  style="height: 46px; border-radius: 0;border: 1px solid #535353;color: #f0efef;"
                   name="group">
                   <option value="" selected disabled>---</option>
                   <option value="0">No Group</option>
@@ -37,6 +38,7 @@
                   {% endfor %}
               </select>
           </div>
+          {% endif %}
 
           <div class="form-check mb-3">
             <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"

@@ -26,7 +26,7 @@ class UserSetting
     private bool $allowLinkAlias = false;
 
     #[ORM\Column]
-    private bool $allowRedirectAfterNewLink = true;
+    private bool $allowRedirectAfterNewLink = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;

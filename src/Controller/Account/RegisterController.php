@@ -113,6 +113,6 @@ class RegisterController extends AbstractController
 
         $this->addFlash('notice', 'Your email address has been verified.');
 
-        return $this->redirectToRoute(self::LOGIN_ROUTE);
+        return $this->redirectToRoute(self::AUTH_ROUTE);
     }
 }
