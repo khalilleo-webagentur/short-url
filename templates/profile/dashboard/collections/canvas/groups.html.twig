@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRightGroups"
   aria-labelledby="offcanvasRightGroupsLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title text-white-50" id="offcanvasRightGroupsLabel">Links Group</h5>
+    <h5 class="offcanvas-title text-white-50" id="offcanvasRightGroupsLabel">Groups</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -18,14 +18,19 @@
         <select class="form-select text-white-50" size="3" aria-label="Size 3 select collection"
           onchange="this.closest('form').submit();" name="group"
           style="border-radius: 0;background-color: transparent;border: 1px solid #535353;height:60vh;">
-          <option value="0">All Groups</option>
+          <option value="0">&#45;&nbsp; All ({{count(links)}})</option>
           {% for row in collections %}
           <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }} {{count(row.links) == 0 ? 'disabled' : '' }}>
-            {{row.name}}
+            &#45;&nbsp; {{row.name}} <span class="float-end">({{count(row.links)}})</span>
           </option>
           {% endfor %}
         </select>
       </form>
+
+      <p class="text-white-50 mt-2">
+        <span class="bi bi-info-circle pe-1 text-secondary"></span> 
+        To edit your group, just click on the group you want which is under a Group column on table.
+      </p>
 
     </div>
     {% endif %}
