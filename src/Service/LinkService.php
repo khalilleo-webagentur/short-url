@@ -14,6 +14,7 @@ final class LinkService
 {
     public function __construct(
         private readonly LinkRepository $linkRepository,
+        private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
@@ -37,7 +38,7 @@ final class LinkService
      */
     public function getAllByUserAndCollection(User $user, LinkCollection $collection): array
     {
-        return $this->linkRepository->findBy(['user' => $user, 'collection' => $collection]);
+        return $this->linkRepository->findBy(['user' => $user, 'collection' => $collection], ['isFave' => 'DESC']);
     }
 
     public function removeCollectionFromLinks(User $user, LinkCollection $collection): void
@@ -45,6 +46,15 @@ final class LinkService
         foreach ($this->getAllByUserAndCollection($user, $collection) as $link) {
             $this->save($link->setCollection(null));
         }
+    }
+
+    public function deleteCollectionWithLinks(User $user, LinkCollection $collection): void
+    {
+        foreach ($this->getAllByUserAndCollection($user, $collection) as $link) {
+            $this->delete($link);
+        }
+
+        $this->linkCollectionService->delete($collection);
     }
 
     public function getByToken(string $token): ?Link
@@ -62,7 +72,7 @@ final class LinkService
      */
     public function getAllByUser(User $user): array
     {
-        return $this->linkRepository->findBy(['user' => $user], ['isFave' => 'DESC' ,'id' => 'DESC']);
+        return $this->linkRepository->findBy(['user' => $user], ['isFave' => 'DESC', 'id' => 'DESC']);
     }
 
     /**

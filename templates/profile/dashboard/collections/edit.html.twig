@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
+    <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center checkboxGroup">
         <div class="col-lg-6">
             <form action="{{path('app_links_collection_store', {id:collection.id})}}" method="post">
                 <div class="mb-3">
@@ -30,13 +30,24 @@
                     <input type="text" class="form-control" id="iName" placeholder="Group name (required)"
                         style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
                         name="iName" style="height: 46px; border-radius: 0;" value="{{collection.name}}">
+                        <small class="text-secondary">Group name might contain only dash (-) and numbers.</small>
                 </div>
 
                 <div class="form-check mb-3">
                     <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"
                         type="checkbox" name="delete" id="delete">
                     <label class="form-check-label text-white-50" for="delete">
-                        Delete "{{collection.name}}" permanentally
+                        Delete Group "{{collection.name}}" permanentally.
+                    </label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"
+                        type="checkbox" name="deleteAll" id="deleteAll">
+                    <label class="form-check-label text-white-50" for="deleteAll">
+                        Delete Group "{{collection.name}}" and all URLs within permanentally. <span class="text-danger">
+                            This action cannot be undone!
+                        </span>
                     </label>
                 </div>
 

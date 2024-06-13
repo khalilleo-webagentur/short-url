@@ -45,7 +45,7 @@ class DefaultController extends AbstractController
 
         $collection = new LinkCollection();
 
-       $this->linkCollectionService->save(
+        $this->linkCollectionService->save(
             $collection
                 ->setName($name)
                 ->setUser($user)
@@ -90,7 +90,15 @@ class DefaultController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
-        if($this->validateCheckbox($request->request->get('delete'))) {
+        if ($this->validateCheckbox($request->request->get('deleteAll'))) {
+
+            $this->linkService->deleteCollectionWithLinks($user, $collection);
+            $this->addFlash('success', 'Group and all links within (if any) has been deleted.');
+
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        if ($this->validateCheckbox($request->request->get('delete'))) {
 
             $this->linkService->removeCollectionFromLinks($user, $collection);
             $this->linkCollectionService->delete($collection);
