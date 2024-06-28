@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin\Links;
 
+use App\Service\LinkCollectionService;
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
 use App\Service\UserService;
@@ -24,7 +25,8 @@ class IndexController extends AbstractController
     public function __construct(
         private readonly LinkService $linkService,
         private readonly LinkStatisticService $linkStatisticService,
-        private readonly UserService $userService
+        private readonly UserService $userService,
+        private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
@@ -77,9 +79,12 @@ class IndexController extends AbstractController
 
         $users = $this->userService->getAll();
 
+        $collections = $this->linkCollectionService->getAllByUser($link->getUser());
+
         return $this->render('admin/links/edit.html.twig', [
             'link' => $link,
             'users' => $users,
+            'collections' => $collections
         ]);
     }
 
@@ -109,11 +114,16 @@ class IndexController extends AbstractController
             $this->validateNumber($request->request->get('uId'))
         );
 
+        $groupId = $this->validateNumber($request->request->get('group'));
+
+        $group = $this->linkCollectionService->getByUserAndId($link->getUser(), $groupId);
+
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
 
         $this->linkService->save(
             $link
                 ->setUser($targetUser)
+                ->setCollection($group)
                 ->setTitle($title)
                 ->setUrl($url)
                 ->setToken($token)

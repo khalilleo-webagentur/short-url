@@ -41,13 +41,25 @@
                                 <label for="cC0pZ7jJ1eB7gJ3l">User</label>
                                 <select class="form-control" id="cC0pZ7jJ1eB7gJ3l" name="uId">
                                     <option value="0">-- No User --</option>
-                                    
+
                                     {% for row in users %}
-                                        {% if link.user and link.user.name == row.name %}
-                                        <option value="{{ row.id }}" selected>{{row.email}}</option>
-                                        {% else %}
-                                        <option value="{{ row.id }}">{{row.email}}</option>
-                                        {% endif %}
+                                    {% if link.user and link.user.name == row.name %}
+                                    <option value="{{ row.id }}" selected>{{row.email}}</option>
+                                    {% else %}
+                                    <option value="{{ row.id }}">{{row.email}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            <div class="mb-3 col-lg-6">
+                                <label for="mn0pZ7jJ1eB7gJ3l">Group</label>
+                                <select class="form-control" id="mn0pZ7jJ1eB7gJ3l" name="group">
+                                    <option value="0">-- No Group --</option>
+
+                                    {% for row in collections %}
+                                    <option value="{{ row.id }}" {{row.isDefault ? 'selected' : '' }}>{{row.name}}
+                                    </option>
                                     {% endfor %}
 
                                 </select>
