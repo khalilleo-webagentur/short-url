@@ -29,7 +29,7 @@ final class LinkCollectionService
     /**
      * @return LinkCollection[]
      */
-    public function getAllByUser(User $user): array
+    public function getAllByUser(?User $user): array
     {
         return $this->linkCollectionRepository->findBy(['user' => $user], ['id' => 'DESC']);
     }
