@@ -23,12 +23,5 @@ services:
 
     Symfony\Component\DependencyInjection\ContainerInterface: "@service_container"
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-
-    # App\Service\FileUploaderService:
-    #     arguments:
-    #         $targetDirectory: "%avatar_dir%"public/favicon.ico
-
 imports:
   - { resource: "packages/parameters.yaml" }

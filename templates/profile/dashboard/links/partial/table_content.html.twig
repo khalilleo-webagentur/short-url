@@ -46,7 +46,8 @@
                 <td class="text-white-50">
                     {% if link.collection %}
                     <a href="{{path('app_links_collection_edit', {id:link.collection.id})}}"
-                        title="Edit / Delete: {{link.collection.name}}" class="text-decoration-none text-primary">
+                        title="Edit / Delete: {{link.collection.name}}"
+                        class="text-decoration-none {{link.collection.isDefault ? 'text-primary link-opacity-50' : 'text-primary link-opacity-25'}}">
                         {{ link.collection.name|slice(0, 5) ~ '..' }}
                     </a>
                     {% else %}
