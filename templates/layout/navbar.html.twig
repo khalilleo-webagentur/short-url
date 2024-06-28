@@ -15,7 +15,7 @@
                 aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasRightLabel">
-                        <img src="{{asset('assets/img/logo.png')}}" alt="L1.">
+                        <img src="{{asset('assets/img/logo.png')}}" height="32" alt="L1.">
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -44,7 +44,7 @@
                                 <img src="{{asset('assets/img/avatar-40x40.png')}}" class="pe-1 rounded-circle"
                                     height="20" alt="Avatar"> {{app.user.name|capitalize}}
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end">
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                                 <li><a class="dropdown-item text-white-50" href="{{path('app_admin_index')}}">
                                     <span class="bi bi-speedometer pe-1 small"></span> Dashboard</a>
