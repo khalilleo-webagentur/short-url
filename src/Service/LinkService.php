@@ -75,6 +75,11 @@ final class LinkService
         return $this->linkRepository->findBy(['user' => $user], ['isFave' => 'DESC', 'id' => 'DESC']);
     }
 
+    public function getCountLinksByUser(User $user): int
+    {
+        return count($this->linkRepository->findBy(['user' => $user]));
+    }
+
     /**
      * @return Link[]
      */

@@ -18,7 +18,7 @@
         <select class="form-select text-white-50" size="3" aria-label="Size 3 select collection"
           onchange="this.closest('form').submit();" name="group"
           style="border-radius: 0;background-color: transparent;border: 1px solid #535353;height:60vh;">
-          <option value="0">&#45;&nbsp; All ({{count(links)}})</option>
+          <option value="0">&#45;&nbsp; All ({{countLinks}})</option>
           
           {% for row in collections %}
           <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }} {{count(row.links)==0 ? 'disabled' : '' }}>

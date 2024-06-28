@@ -58,8 +58,11 @@ class IndexController extends AbstractController
 
         $collections = $this->linkCollectionService->getAllByUser($user);
 
+        $countLinks = $this->linkService->getCountLinksByUser($user);
+
         return $this->render('profile/dashboard/links/index.html.twig', [
             'links' => $links,
+            'countLinks' => $countLinks,
             'collections' => $collections
         ]);
     }
