@@ -20,7 +20,7 @@
           style="border-radius: 0;background-color: transparent;border: 1px solid #535353;height:60vh;">
           <option value="0">&#45;&nbsp; All ({{count(links)}})</option>
           {% for row in collections %}
-          <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }} {{count(row.links) == 0 ? 'disabled' : '' }}>
+          <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }} {{count(row.links)==0 ? 'disabled' : '' }}>
             &#45;&nbsp; {{row.name}} <span class="float-end">({{count(row.links)}})</span>
           </option>
           {% endfor %}
@@ -28,8 +28,8 @@
       </form>
 
       <p class="text-white-50 mt-2">
-        <span class="bi bi-info-circle pe-1 text-secondary"></span> 
-        To edit your group, just click on the group you want which is under a Group column on table.
+        <span class="bi bi-info-circle pe-1 text-secondary"></span>
+        To <i>Edit</i> or <i>Delete </i> your group, click on the group you want. It is under a Group column on table.
       </p>
 
     </div>
