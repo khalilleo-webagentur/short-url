@@ -1,0 +1,30 @@
+<form action="{{path('app_links_collection_store', {id:collection.id})}}" method="post">
+    <div class="mb-3">
+        <label for="iName" class="form-label">Group Name:</label>
+        <input type="text" class="form-control" id="iName" placeholder="Group name (required)" name="iName"
+            value="{{collection.name}}">
+        <small class="text-secondary">Group name might contain only dash (-) and
+            numbers.</small>
+    </div>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="delete" id="delete">
+        <label class="form-check-label text-white-50" for="delete">
+            Delete Group "{{collection.name}}" permanentally.
+        </label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="deleteAll" id="deleteAll">
+        <label class="form-check-label text-white-50" for="deleteAll">
+            Delete Group "{{collection.name}}" and all URLs within permanentally.
+            <i>This action cannot be undone!</i>
+        </label>
+    </div>
+
+    <div class="gap-2">
+        <button class="btn btn-success px-3" type="submit">
+            save <span class="bi bi-check2-circle"></span>
+        </button>
+    </div>
+</form>

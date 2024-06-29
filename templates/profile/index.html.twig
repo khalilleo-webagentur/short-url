@@ -15,11 +15,12 @@
 
                 <h5 class="text-white-50 mt-lg-5 mt-md-3">My Profile</h5>
 
-                <div class="d-dark-color">
+                <div class="d-dark-color rounded-3">
 
                     <div class="row p-3 py-lg-4">
                         <div class="col">
-                            <img src="{{asset('assets/img/avatar-160x160.png')}}" height="180px" alt="Avatar" style="border-radius: 15px;">
+                            <img src="{{asset('assets/img/avatar-160x160.png')}}" height="180px" alt="Avatar"
+                                style="border-radius: 15px;">
                         </div>
                         <div class="col-10">
                             <p class="float-end small md-d-none">
@@ -42,36 +43,43 @@
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-border">
+                        <div class="card h-100 d-dark-color ">
                             <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-lg-2" data-bs-toggle="modal" data-bs-target="#usernameModal">
-                                    Change Username <span class="float-end text-secondary pointer bi bi-pencil-square"></span>
+                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
+                                    data-bs-target="#usernameModal">
+                                    Change Username <span
+                                        class="float-end text-secondary pointer bi bi-pencil-square"></span>
                                 </h6>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-border">
+                        <div class="card h-100 d-dark-color ">
                             <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-lg-2" data-bs-toggle="modal" data-bs-target="#emailModal">
-                                    Change Email <span class="float-end text-secondary pointer bi bi-pencil-square"></span>
+                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
+                                    data-bs-target="#emailModal">
+                                    Change Email <span
+                                        class="float-end text-secondary pointer bi bi-pencil-square"></span>
                                 </h6>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-border">
+                        <div class="card h-100 d-dark-color ">
                             <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-lg-2"  data-bs-toggle="modal" data-bs-target="#exportModal">
-                                    Download Personal Data <span class="float-end text-secondary pointer bi bi-download"></span>
+                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
+                                    data-bs-target="#exportModal">
+                                    Download Personal Data <span
+                                        class="float-end text-secondary pointer bi bi-download"></span>
                                 </h6>
                             </div>
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-border">
+                        <div class="card h-100 d-dark-color ">
                             <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-lg-2"data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
                                     Delete Account <span class="float-end text-secondary pointer bi bi-trash"></span>
                                 </h6>
                             </div>
@@ -83,7 +91,7 @@
             <h5 class="text-white-50 mt-5">Support</h5>
 
             <p class="text-white-50 pb-5 mb-5">
-                If you have any questions about your account, please use the 
+                If you have any questions about your account, please use the
                 <a href="{{path('app_contact_us_index')}}" class="text-secondary">contact form</a> or
                 <a href="mailto::{{email}}" class="text-secondary">email us</a> directly.
             </p>

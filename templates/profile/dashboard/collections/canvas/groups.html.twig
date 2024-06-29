@@ -12,27 +12,38 @@
     </div>
     {% if count(collections) > 0 %}
     <div class="d-grid gap-2 mt-4">
-      <p class="text-white-50 mb-0 pb-0">Display all links within a Group.</p>
+      <p class="text-white-50 mb-0 pb-0">Choose your Group:</p>
 
       <form action="{{path('app_links_collection_job_store_collection')}}" method="post">
-        <select class="form-select text-white-50" size="3" aria-label="Size 3 select collection"
+        <select class="form-select" size="3" aria-label="Size 3 select collection"
           onchange="this.closest('form').submit();" name="group"
-          style="border-radius: 0;background-color: transparent;border: 1px solid #535353;height:60vh;">
-          <option value="0">&#45;&nbsp; All ({{countLinks}})</option>
+          style="height:50vh;">
+          
+          <option value="0">All groups ({{countLinks}})</option>
           
           {% for row in collections %}
-          <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }} {{count(row.links)==0 ? 'disabled' : '' }}>
-            <span class="text-white-50">&#45;&nbsp; {{row.name}} <span class="small">({{count(row.links)}})</span></span>
-          </option>
+
+            {% if count(row.links) > 0 %}
+              <option class="{{row.isDefault ? 'text-white bg-success' : ''}}" value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>
+                <span >&#45;&nbsp; {{row.name}} ({{count(row.links)}})</span>
+              </option>
+            {% endif %}
+
           {% endfor %}
 
         </select>
       </form>
 
-      <p class="text-white-50 mt-2">
-        <span class="bi bi-info-circle pe-1 text-secondary"></span>
-        To <i>Edit</i> or <i>Delete </i> your group, click on the group you want. It is under a Group column on table.
-      </p>
+      <div class="my-2">
+        <p class="text-white-50 fs-15">
+          <span class="bi bi-info-circle pe-1 text-secondary"></span>
+          To <i>Edit</i> or <i>Delete </i> your group, click on the group you want. It is under a Group column on table.
+        </p>
+
+        <a href="{{path('app_link_collection_index')}}" class="text-decoration-none d-color">
+          Manage Groups <small class="bi bi-arrow-up-right-square ps-1"></small>
+        </a>
+      </div>
 
     </div>
     {% endif %}

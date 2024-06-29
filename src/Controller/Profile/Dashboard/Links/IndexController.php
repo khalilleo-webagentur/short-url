@@ -186,7 +186,7 @@ class IndexController extends AbstractController
 
         $aliasLength = AppHelper::DEFAULT_ALIAS_LENGTH;
 
-        if (strlen($token) < $aliasLength) {
+        if (empty($token) || strlen($token) < $aliasLength) {
             $this->addFlash('warning', sprintf('Alias length must be geraeter or equal [8] chars.', $aliasLength));
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }

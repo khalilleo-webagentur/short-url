@@ -61,16 +61,9 @@ input[type="color"]:focus,
     box-shadow: none !important;
 }
 
-.bg-placeholder {
-    color: #cecece !important;
-}
-
 .d-color {
     color: #a9d158;
-}
-
-.d-border {
-    border: 1px solid #5b5b5b47;
+    /* 6ea8fe; */
 }
 
 .pointer {
@@ -88,28 +81,20 @@ input[type="color"]:focus,
 }
 
 .alert-notice {
-    color: #0b6487;
-    background: #cff3ff;
+    /* color: #0b6487;
+    background: #cff3ff; */
 }
 
 .alert {
-    border-radius: 0;
-}
-
-::placeholder {
-    color: #696969 !important;
+    /* border-radius: 0; */
 }
 
 .d-dark-color {
-    background-color: #0000001c;
+    /* background-color: #0000001c; */
 }
 
 .cursor-help {
     cursor: help;
-}
-
-.modal-content {
-    border: 1px solid #4444448e;
 }
 
 body {

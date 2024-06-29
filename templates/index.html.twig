@@ -28,8 +28,7 @@
                         <input type="text" class="form-control" placeholder="Paste your long link here"
                             style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #a9d158;color: #f0efef;"
                             aria-label="URL" aria-describedby="URL" name="url" required>
-                        <button class="btn btn-outline-success" type="submit" id="URL" title="Shorten Link"
-                            style="height: 46px; border-radius: 0;">
+                        <button class="btn btn-outline-success" type="submit" id="URL" title="Shorten Link">
                             <span class="md-d-none">Shorten URL</span> <span class="bi bi-link"></span>
                         </button>
                     </div>
@@ -59,7 +58,7 @@
 
                     {% set link = app.request.schemeAndHttpHost ~ '/' ~ token %}
 
-                    <div class="p-2 py-3 mb-3 d-dark-color d-border">
+                    <div class="p-2 py-3 mb-3 d-dark-color ">
                         <p class="pt-3">
                             <small class="text-white-50">URL has been shorten.</small>
                         </p>
@@ -69,7 +68,8 @@
                             <span class="bi bi-clipboard-fill small text-white-50 p-2 me-1 bg-dark pointer"
                                 id="clipboard" title="Copy to Cliepboard"></span>
 
-                            <a href="{{link}}" class="text-white-50 bg-dark p-2 ms-1 md-d-none" title="Open in new Tab" rel="nofollow" target="_blank">
+                            <a href="{{link}}" class="text-white-50 bg-dark p-2 ms-1 md-d-none" title="Open in new Tab"
+                                rel="nofollow" target="_blank">
                                 <span class="bi bi-box-arrow-up-right pointer small"></span>
                             </a>
                         </div>
@@ -92,7 +92,7 @@
         <div class="col-md-12">
             <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4 g-3">
                 <div class="col">
-                    <div class="card text-center text-white-50 d-dark-color h-100 d-border">
+                    <div class="card text-center text-white-50 d-dark-color h-100 ">
                         <span class="card-img-top bi bi-hand-thumbs-up fs-2 pt-3 d-color"></span>
                         <div class="card-body">
                             <h5 class="card-title">Easy and Fast</h5>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card text-center text-white-50 d-dark-color h-100 d-border">
+                    <div class="card text-center text-white-50 d-dark-color h-100 ">
                         <span class="card-img-top bi bi-link-45deg fs-2 pt-3 d-color"></span>
                         <div class="card-body">
                             <h5 class="card-title">Shortened</h5>
@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card text-center text-white-50 d-dark-color h-100 d-border">
+                    <div class="card text-center text-white-50 d-dark-color h-100 ">
                         <span class="card-img-top bi bi-shield-check fs-2 pt-3 d-color"></span>
                         <div class="card-body">
                             <h5 class="card-title">Secure</h5>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card text-center text-white-50 d-dark-color h-100 d-border">
+                    <div class="card text-center text-white-50 d-dark-color h-100 ">
                         <span class="card-img-top bi bi-window fs-2 pt-3 d-color"></span>
                         <div class="card-body">
                             <h5 class="card-title">Devices</h5>

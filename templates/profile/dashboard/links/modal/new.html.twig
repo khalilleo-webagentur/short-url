@@ -1,7 +1,7 @@
 <div class="modal fade" id="newModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="newModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content" style="background-color: #1b1b1c;">
+    <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title text-white-50 fs-5" id="newModalLabel">Add new Link</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -12,37 +12,31 @@
 
           <div class="mb-3">
             <label for="iTitle" class="form-label text-white-50">Title:</label>
-            <input type="text" class="form-control" id="iiTitle" placeholder="" name="iTitle"
-              style="height: 42px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;">
+            <input type="text" class="form-control" id="iiTitle" placeholder="" name="iTitle">
             <small class="text-secondary text-white-50">Search Links will depend on the title.</small>
           </div>
 
           <div class="mb-3">
             <label for="iLink" class="form-label text-white-50">Long Link:</label>
-            <input type="text" class="form-control" id="iLink" placeholder="" name="iLink"
-              style="height: 42px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;"
-              required>
+            <input type="text" class="form-control" id="iLink" placeholder="" name="iLink" required>
             <small class="text-secondary text-white-50">This feld is required.</small>
           </div>
 
           {% if count(collections) > 0 %}
           <div class="mb-3">
-              <p class="text-white-50 mb-1">Group:</p>
-              <select class="form-select bg-dark text-white-50" aria-label="Default select Collection"
-                  style="height: 46px; border-radius: 0;border: 1px solid #535353;color: #f0efef;"
-                  name="group">
-                  <option value="" selected disabled>---</option>
-                  <option value="0">No Group</option>
-                  {% for row in collections %}
-                  <option value="{{row.id}}">{{row.name}}</option>
-                  {% endfor %}
-              </select>
+            <p class="text-white-50 mb-1">Group:</p>
+            <select class="form-select bg-dark text-white-50" aria-label="Default select Collection" name="group">
+              <option value="" selected disabled>---</option>
+              <option value="0">No Group</option>
+              {% for row in collections %}
+              <option value="{{row.id}}">{{row.name}}</option>
+              {% endfor %}
+            </select>
           </div>
           {% endif %}
 
           <div class="form-check mb-3">
-            <input class="form-check-input" style="background-color: #0000001c;border: 1px solid #535353;"
-              type="checkbox" name="isPublic" id="isPublic" checked>
+            <input class="form-check-input" type="checkbox" name="isPublic" id="isPublic" checked>
             <label class="form-check-label text-white-50" for="isPublic">
               Log statistic for this Link
             </label>
@@ -50,9 +44,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal"
-            style="border-radius: 2px;height: 40px;">Cancel</button>
-          <button type="submit" class="btn btn-warning" style="border-radius: 2px;height: 40px;">Add Link</button>
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-warning">Add Link</button>
         </div>
       </form>
 

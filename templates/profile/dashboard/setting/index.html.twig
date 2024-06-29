@@ -27,14 +27,12 @@
 
             <div class="row row-cols-1 g-2">
                 <div class="col">
-                    <div class="card d-dark-color d-border">
+                    <div class="card d-dark-color ">
                         <div class="card-body">
                             <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
                                 method="post">
-                                <input class="form-check-input"
-                                    style="background-color: #0000001c;border: 1px solid #535353;" type="checkbox"
-                                    id="allowDuplicatedUrls" {{userSetting.allowDuplicatedUrls ? 'checked' : '' }}
-                                    name="allowDuplicatedUrls">
+                                <input class="form-check-input" type="checkbox" id="allowDuplicatedUrls"
+                                    {{userSetting.allowDuplicatedUrls ? 'checked' : '' }} name="allowDuplicatedUrls">
                                 <label class="form-check-label text-white-50 ps-1" for="allowDuplicatedUrls"
                                     onclick="this.closest('form').submit();">Allow duplicated long URLs
                                 </label>
@@ -47,14 +45,12 @@
                 </div>
 
                 <div class="col">
-                    <div class="card d-dark-color d-border">
+                    <div class="card d-dark-color ">
                         <div class="card-body">
                             <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
                                 method="post">
-                                <input class="form-check-input"
-                                    style="background-color: #0000001c;border: 1px solid #535353;" type="checkbox"
-                                    id="allowLinkAlias" {{userSetting.allowLinkAlias ? 'checked' : '' }}
-                                    name="allowLinkAlias">
+                                <input class="form-check-input" type="checkbox" id="allowLinkAlias"
+                                    {{userSetting.allowLinkAlias ? 'checked' : '' }} name="allowLinkAlias">
                                 <label class="form-check-label text-white-50 ps-1" for="allowLinkAlias"
                                     onclick="this.closest('form').submit();">Allow Link alias when add new Link
                                 </label>
@@ -67,16 +63,16 @@
                 </div>
 
                 <div class="col">
-                    <div class="card d-dark-color d-border">
+                    <div class="card d-dark-color ">
                         <div class="card-body">
                             <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
                                 method="post">
-                                <input class="form-check-input"
-                                    style="background-color: #0000001c;border: 1px solid #535353;" type="checkbox"
-                                    id="allowRedirectAfterNewLink" {{userSetting.allowRedirectAfterNewLink ? 'checked' : '' }}
+                                <input class="form-check-input" type="checkbox" id="allowRedirectAfterNewLink"
+                                    {{userSetting.allowRedirectAfterNewLink ? 'checked' : '' }}
                                     name="allowRedirectAfterNewLink">
                                 <label class="form-check-label text-white-50 ps-1" for="allowRedirectAfterNewLink"
-                                    onclick="this.closest('form').submit();">Allow redirect to selected group after adding new Link
+                                    onclick="this.closest('form').submit();">Allow redirect to selected group after
+                                    adding new Link
                                 </label>
                                 <div class="d-none">
                                     <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">

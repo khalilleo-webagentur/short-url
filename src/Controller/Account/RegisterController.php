@@ -93,7 +93,7 @@ class RegisterController extends AbstractController
     {
         $token = $this->validate($token);
 
-        if (strlen($token) !== 32) {
+        if (empty($token) || strlen($token) !== 32) {
             $this->addFlash('warning', 'Token is not valid.');
             return $this->redirectToRoute(self::HOME_ROUTE);
         }

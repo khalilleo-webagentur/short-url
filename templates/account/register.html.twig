@@ -8,7 +8,7 @@
     <div class="container p-0">
         <div class="row justify-content-center pt-5">
             <div class="col-lg-4 pt-5">
-                <div class="d-dark-color d-border p-4">
+                <div class="d-dark-color  p-4">
 
                     <div class="text-center pt-3">
                         <a href="{{app.request.schemeAndHttpHost}}">
@@ -26,18 +26,18 @@
                         <div class="mb-3">
                             <input class="form-control" type="text" placeholder="Name" aria-label="Full-Name"
                                 name="name" required
-                                style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;">
+                                >
                         </div>
 
                         <div class="mb-3">
                             <input class="form-control" type="email" placeholder="Email" aria-label="Email"
                                 name="_username" required
-                                style="height: 46px; border-radius: 0; background-color: #0000001c;border: 1px solid #535353;color: #f0efef;">
+                                >
                         </div>
 
                         <div class="form-check mb-3">
                             <input class="form-check-input"
-                                style="background-color: #0000001c;border: 1px solid #535353;" type="checkbox"
+                                type="checkbox"
                                 name="confirm" required id="confirm">
                             <label class="form-check-label text-white-50" for="confirm">
                                 I accept {{appName()}}'s <a href="{{path('app_legal_privacy_policy')}}"
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button class="btn btn-success w-100" style="height: 46px; border-radius: 0;">
+                            <button class="btn btn-success w-100" >
                                 Sign Up
                             </button>
                         </div>
