@@ -37,6 +37,10 @@
     background-color: #0000001c;
 }
 
+.bg-none {
+    background-color: transparent !important;
+}
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
@@ -95,6 +99,10 @@ input[type="color"]:focus,
 
 .cursor-help {
     cursor: help;
+}
+
+label {
+    color: #808080;
 }
 
 body {

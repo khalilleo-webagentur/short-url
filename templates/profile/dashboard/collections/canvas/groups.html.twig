@@ -24,7 +24,7 @@
           {% for row in collections %}
 
             {% if count(row.links) > 0 %}
-              <option class="{{row.isDefault ? 'text-white bg-success' : ''}}" value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>
+              <option class="{{row.isDefault ? 'text-success bg-none' : ''}}" value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>
                 <span >&#45;&nbsp; {{row.name}} ({{count(row.links)}})</span>
               </option>
             {% endif %}
