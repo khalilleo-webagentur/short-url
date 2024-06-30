@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Profile\Dashboard\Setting;
 
+use App\Service\LinkCollectionService;
 use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,14 +19,17 @@ class IndexController extends AbstractController
     private const PROFILE_USER_SETTING_ROUTE = 'app_profile_dashboard_setting_index';
 
     public function __construct(
-        private readonly UserSettingService $userSettingService
+        private readonly UserSettingService $userSettingService,
+        private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
     #[Route('/urls/setting/p1k4j8g7d1t8q4vk', name: 'app_profile_dashboard_setting_index')]
     public function index(): Response
     {
-        if (!$this->getUser()) {
+        $user =$this->getUser();
+
+        if (!$user) {
             return $this->redirectToRoute('app_auth');
         }
 
@@ -33,8 +37,11 @@ class IndexController extends AbstractController
 
         $userSetting = $this->userSettingService->getOneByUser($this->getUser());
 
+        $collections = $this->linkCollectionService->getAllByUser($user);
+
         return $this->render('profile/dashboard/setting/index.html.twig', [
-            'userSetting' => $userSetting
+            'userSetting' => $userSetting,
+            'collections' => $collections
         ]);
     }
 

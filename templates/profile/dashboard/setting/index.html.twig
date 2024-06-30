@@ -71,9 +71,28 @@
                                     {{userSetting.allowRedirectAfterNewLink ? 'checked' : '' }}
                                     name="allowRedirectAfterNewLink">
                                 <label class="form-check-label text-white-50 ps-1" for="allowRedirectAfterNewLink"
-                                    onclick="this.closest('form').submit();">Allow redirect to selected group after
+                                    onclick="this.closest('form').submit();">Redirect to selected group after
                                     adding new Link
                                 </label>
+                                <div class="d-none">
+                                    <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card d-dark-color ">
+                        <div class="card-body">
+                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
+                                method="post">
+                                <!-- if not group disabled -->
+                                <span class="text-primary pointer" data-bs-toggle="modal" data-bs-target="#moveModal">
+                                    <span class="bi bi-arrow-down-right-square-fill pe-1"></span> 
+                                    Move all Links to a Group
+                                </span>
+                                
                                 <div class="d-none">
                                     <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">
                                 </div>
@@ -97,6 +116,8 @@
         </div>
     </div>
 </div>
+
+{% include 'profile/dashboard/setting/modal/move.html.twig' %}
 
 {% include 'layout/footer.html.twig' %}
 

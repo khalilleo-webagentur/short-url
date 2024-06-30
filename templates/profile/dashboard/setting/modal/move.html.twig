@@ -1,0 +1,55 @@
+<div class="modal fade" id="moveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="moveModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title text-white-50 fs-5" id="moveModalLabel">Move Links</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="{{path('app_profile_dashboard_setting_job_move')}}" method="post">
+        <div class="modal-body">
+
+          {% if count(collections) > 0 %}
+
+          <div class="mb-3">
+            <p class="text-white-50">Select your Target Group to move Links into.</p>
+          </div>
+
+          <div class="mb-3">
+            <p class="text-white-50 mb-1">Select your Group:</p>
+            <select class="form-select text-white-50" aria-label="Default select" name="collection" required>
+              <option selected disabled>---</option>
+
+              {% for row in collections %}
+              <option value="{{ row.id }}">{{ row.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <input class="form-check-input" type="checkbox" id="moveOnly" name="moveOnly">
+            <label class="form-check-label" for="moveOnly">
+              <span class="ps-1">Move only these do not accociated to a group.</span>
+            </label>
+          </div>
+
+          {% else %}
+          <div class="mb-3">
+            <p class="text-secondary">
+              <span class="bi bi-info-circle pe-1"></span>
+              You don't have any group. Please add a new Group then come back here!
+            </p>
+          </div>
+          {% endif %}
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-warning" {{count(collections) <=0 ? 'disabled' : '' }}>Move</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

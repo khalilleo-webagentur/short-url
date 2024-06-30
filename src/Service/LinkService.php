@@ -83,9 +83,41 @@ final class LinkService
     /**
      * @return Link[]
      */
+    public function getAllWithoutAnyAssociation(User $user): array
+    {
+        return $this->linkRepository->findBy(['user' => $user ,'collection' => null], ['id' => 'DESC']);
+    }
+
+    /**
+     * @return Link[]
+     */
     public function getAll(): array
     {
         return $this->linkRepository->findBy([], ['id' => 'DESC']);
+    }
+
+    public function moveLinksWithoutAnyAssociationsToCollection(User $user, LinkCollection $collection): int
+    {
+        $i = 0;
+
+        foreach ($this->getAllWithoutAnyAssociation($user) as $link) {
+            $this->save($link->setCollection($collection));
+            $i++;
+        }
+
+        return $i;
+    }
+
+    public function moveLinksToCollection(User $user, LinkCollection $collection): int
+    {
+        $i = 0;
+
+        foreach ($this->getAllByUser($user) as $link) {
+            $this->save($link->setCollection($collection));
+            $i++;
+        }
+
+        return $i;
     }
 
     public function save(Link $model): Link
