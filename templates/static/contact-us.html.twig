@@ -64,31 +64,31 @@
             <div class="col-lg-6">
                 <form action="{{path('app_contact_us_new')}}" method="post" class="px-2">
                     <div class="mb-3">
-                        <label for="iName" class="form-label text-white-50">Name</label>
-                        <input type="text" class="form-control" id="iName" placeholder="Name (required)" required
+                        <label for="iName" class="form-label text-white-50">Name *</label>
+                        <input type="text" class="form-control form-control-lg" id="iName" placeholder="" required
                             name="iName">
                     </div>
 
                     <div class="mb-3">
-                        <label for="iEmail" class="form-label text-white-50">Email</label>
-                        <input type="email" class="form-control" id="iEmail" placeholder="Email (required)" required
+                        <label for="iEmail" class="form-label text-white-50">E-mail *</label>
+                        <input type="email" class="form-control form-control-lg" id="iEmail" placeholder="" required
                             name="iEmail">
                     </div>
 
                     <div class="mb-3">
-                        <label for="iSubject" class="form-label text-white-50">Subject</label>
-                        <input type="text" class="form-control" id="iSubject" placeholder="Subject (required)" required
+                        <label for="iSubject" class="form-label text-white-50">Subject *</label>
+                        <input type="text" class="form-control form-control-lg" id="iSubject" placeholder="" required
                             name="iSubject">
                     </div>
 
                     <div class="mb-4">
-                        <label for="iMessage" class="form-label text-white-50">Message</label>
-                        <textarea class="form-control" id="iMessage" rows="5" name="iMessage" 
-                            placeholder="Message (required)"></textarea>
+                        <label for="iMessage" class="form-label text-white-50">Message *</label>
+                        <textarea class="form-control form-control-lg" id="iMessage" rows="5" name="iMessage" 
+                            placeholder=""></textarea>
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button class="btn btn-outline-success" type="submit">Send</button>
+                        <button class="btn btn-outline-success btn-lg" type="submit">Send</button>
                     </div>
 
                     <div class="my-3">
