@@ -116,7 +116,7 @@ class IndexController extends AbstractController
 
         $groupId = $this->validateNumber($request->request->get('group'));
 
-        $group = $this->linkCollectionService->getByUserAndId($link->getUser(), $groupId);
+        $group = $this->linkCollectionService->getByUserAndId($targetUser, $groupId);
 
         $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
 

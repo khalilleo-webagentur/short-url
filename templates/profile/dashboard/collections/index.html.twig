@@ -25,19 +25,30 @@
     <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
         <div class="col-lg-8">
 
+            <div class="col my-3">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="text-primary pointer" data-bs-toggle="modal" data-bs-target="#moveModal">
+                            <span class="bi bi-arrow-down-right-square-fill pe-1"></span> 
+                            Move all Links to a Group
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             <div class="accordion border-0" id="accordionCollections">
                 {% for i, collection in collections %}
                 <div class="accordion-item d-dark-color">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapse{{i}}">
-                            Manage Group {{collection.name|capitalize}}
+                            # {{i+1}} Group {{collection.name|capitalize}}
                         </button>
                     </h2>
                     <div id="collapse{{i}}" class="accordion-collapse collapse {{i == 0 ? 'show' : ''}}"
                         data-bs-parent="#accordionCollections">
                         <div class="accordion-body">
-                            {% include 'profile/dashboard/collections/partial/manage_group.html.twig' %}
+                            {% include 'profile/dashboard/collections/partial/manage_group.html.twig' with{index: i} %}
                         </div>
                     </div>
                 </div>
@@ -50,6 +61,8 @@
         </div>
     </div>
 </div>
+
+{% include 'profile/dashboard/collections/modal/move.html.twig' %}
 
 {% include 'layout/footer.html.twig' %}
 

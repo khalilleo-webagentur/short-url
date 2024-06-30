@@ -24,36 +24,4 @@ class JobController extends AbstractController
         private readonly LinkCollectionService $linkCollectionService
     ) {
     }
-
-    #[Route('/move', name: 'app_profile_dashboard_setting_job_move', methods: 'POST')]
-    public function move(Request $request): Response
-    {
-        $user = $this->getUser();
-
-        if (!$user) {
-            return $this->redirectToRoute('app_auth');
-        }
-
-        $this->denyAccessUnlessGranted('ROLE_USER');
-
-        $groupId = $this->validateNumber($request->request->get('collection'));
-
-        if ($collection = $this->linkCollectionService->getByUserAndId($user, $groupId)) {
-
-            if ($this->validateCheckbox($request->request->get('moveOnly'))) {
-                $this->linkService->moveLinksWithoutAnyAssociationsToCollection($user, $collection);
-                $this->addFlash('success', sprintf('Links has been moved to group [%s].', $collection->getName()));
-                return $this->redirectToRoute(self::PROFILE_USER_SETTING_ROUTE);
-            }
-
-            $this->linkService->moveLinksToCollection($user, $collection);
-            $this->addFlash('success', sprintf('Links with no Associations has been moved to group [%s].', $collection->getName()));
-            return $this->redirectToRoute(self::PROFILE_USER_SETTING_ROUTE);
-        }
-
-
-        $this->addFlash('warning', 'Group could not be found.');
-
-        return $this->redirectToRoute(self::PROFILE_USER_SETTING_ROUTE);
-    }
 }

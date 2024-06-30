@@ -21,6 +21,11 @@ final class LinkCollectionService
         return $this->linkCollectionRepository->find($id);
     }
 
+    public function getByUserAndName(User $user, string $name): ?LinkCollection
+    {
+        return $this->linkCollectionRepository->findOneBy(['user' => $user, 'name' => $name]);
+    }
+
     public function getByUserAndId(User $user, int $id): ?LinkCollection
     {
         return $this->linkCollectionRepository->findOneBy(['user' => $user, 'id' => $id]);

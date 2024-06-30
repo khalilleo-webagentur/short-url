@@ -1,22 +1,23 @@
 <form class="py-3" action="{{path('app_links_collection_store', {id:collection.id})}}" method="post">
+    {% set n = index is defined and index ? index : 77 %}
     <div class="mb-3">
-        <label for="iName" class="form-label">Group Name:</label>
-        <input type="text" class="form-control" id="iName" placeholder="Group name (required)" name="iName"
+        <label for="iName{{n}}" class="form-label">Group Name:</label>
+        <input type="text" class="form-control" id="iName{{n}}" placeholder="Group name (required)" name="iName"
             value="{{collection.name}}">
         <small class="text-secondary">Group name might contain only dash (-) and
             numbers.</small>
     </div>
 
     <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" name="delete" id="delete">
-        <label class="form-check-label text-white-50" for="delete">
+        <input class="form-check-input" type="checkbox" name="delete" id="delete{{n}}">
+        <label class="form-check-label text-white-50" for="delete{{n}}">
             Delete Group "{{collection.name}}" permanentally.
         </label>
     </div>
 
     <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" name="deleteAll" id="deleteAll">
-        <label class="form-check-label text-white-50" for="deleteAll">
+        <input class="form-check-input" type="checkbox" name="deleteAll" id="deleteAll{{n}}">
+        <label class="form-check-label text-white-50" for="deleteAll{{n}}">
             Delete Group "{{collection.name}}" and all URLs within permanentally.
             <i>This action cannot be undone!</i>
         </label>
