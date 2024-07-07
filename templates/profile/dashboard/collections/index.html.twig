@@ -29,8 +29,8 @@
                 <div class="card">
                     <div class="card-body">
                         <span class="text-primary pointer" data-bs-toggle="modal" data-bs-target="#moveModal">
-                            <span class="bi bi-arrow-down-right-square-fill pe-1"></span> 
-                            Move all Links to a Group
+                            <span class="bi bi-arrows-move pe-1"></span> 
+                            Move links to a Group
                         </span>
                     </div>
                 </div>
@@ -42,10 +42,11 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapse{{i}}">
-                            # {{i+1}} Group {{collection.name|capitalize}}
+                            Manage Group {{collection.name|capitalize}}
                         </button>
                     </h2>
-                    <div id="collapse{{i}}" class="accordion-collapse collapse {{i == 0 ? 'show' : ''}}"
+                    {# {{i == 0 ? 'show' : ''}} #}
+                    <div id="collapse{{i}}" class="accordion-collapse collapse"
                         data-bs-parent="#accordionCollections">
                         <div class="accordion-body">
                             {% include 'profile/dashboard/collections/partial/manage_group.html.twig' with{index: i} %}
