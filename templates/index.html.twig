@@ -38,7 +38,7 @@
                         {% if is_granted('ROLE_USER') %}
                         <a href="{{path('app_profile_my_urls')}}" class="d-color">My URLs</a>
                         {% else %}
-                        <a href="{{path('app_register')}}" class="d-color">Sign Up for more features!</a>
+                        <a href="{{path('app_register')}}" class="d-color text-decoration-none">Sign Up for more features!</a>
                         {% endif %}
                     </small>
 
