@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
+use App\Entity\User;
 use App\Service\ConfigService;
+use App\Service\SocialProfileSettingService;
 use DateTime;
 use DateTimeInterface;
 use Exception;
@@ -14,13 +16,15 @@ use Twig\TwigFunction;
 class TwigHelper extends AbstractExtension
 {
     public function __construct(
-        private readonly ConfigService $configService
+        private readonly ConfigService $configService,
+        private readonly SocialProfileSettingService $socialProfileSettingService
     ) {
     }
 
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('userSocialLinkMainName', [$this, 'userSocialLinkMainName']),
             new TwigFunction('hash', [$this, 'hash']),
             new TwigFunction('timeAgo', [$this, 'timeAgo']),
             new TwigFunction('formatSizeUnits', [$this, 'formatSizeUnits']),
@@ -38,6 +42,13 @@ class TwigHelper extends AbstractExtension
             new TwigFunction('madeBy', [$this, 'getMadeBy']),
             new TwigFunction('version', [$this, 'getVersion']),
         ];
+    }
+
+    public function userSocialLinkMainName(User $user): string
+    {
+        $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
+
+        return $socialProfileSetting->getMainName();
     }
 
     public function hash(string $text): string

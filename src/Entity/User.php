@@ -68,6 +68,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: LinkCollection::class, mappedBy: 'user')]
     private Collection $linkCollections;
 
+    /**
+     * @var Collection<int, SocialProfile>
+     */
+    #[ORM\OneToMany(targetEntity: SocialProfile::class, mappedBy: 'user')]
+    private Collection $socialProfiles;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
@@ -75,6 +81,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->userSettings = new ArrayCollection();
         $this->tempUsers = new ArrayCollection();
         $this->linkCollections = new ArrayCollection();
+        $this->socialProfiles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -323,6 +330,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($linkCollection->getUser() === $this) {
                 $linkCollection->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SocialProfile>
+     */
+    public function getSocialProfiles(): Collection
+    {
+        return $this->socialProfiles;
+    }
+
+    public function addSocialProfile(SocialProfile $socialProfile): static
+    {
+        if (!$this->socialProfiles->contains($socialProfile)) {
+            $this->socialProfiles->add($socialProfile);
+            $socialProfile->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocialProfile(SocialProfile $socialProfile): static
+    {
+        if ($this->socialProfiles->removeElement($socialProfile)) {
+            // set the owning side to null (unless already changed)
+            if ($socialProfile->getUser() === $this) {
+                $socialProfile->setUser(null);
             }
         }
 

@@ -1,0 +1,114 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %} My Social-Media Profiles {% endblock %}
+
+{% block body %}
+
+{% include 'layout/navbar.html.twig' %}
+
+<div class="container-fluid">
+
+    <div class="row py-3 d-dark-color shadow-sm">
+        <div class="col-6">
+            <h5 class="text-white-50 pt-2">Social-Media Profiles</h5>
+        </div>
+        <div class="col-6">
+            <div class="text-white-50 pt-2 text-end me-2">
+                {% if app.user %}
+                <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal" class="text-decoration-none mt-3 pb-3">
+                   Add Link <span class="bi bi-plus-square ps-1"></span>
+                </a>
+                {% else %}
+                <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 pb-3">
+                    Edit <span class="bi bi-pencil-square ps-1"></span>
+                 </a>
+                {% endif %}
+                </div>
+        </div>
+    </div>
+
+    <div class="container pb-5 mt-3 mb-sm-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="text-center d-dark-color rounded-3 pb-4 mb-3">
+
+                    <div class="mb-3 pt-4">
+                        <img src="{{asset('lte/img/avatar-160x160.png')}}" class="img-fluid rounded-pill" width="128px" alt="User Image">
+                    </div>
+
+                    <div>
+                        {{ socialProfileSetting.mainName }}
+                        
+                        {% if app.user %}
+                        <span class="bi bi-pencil-square ps-2 text-primary pointer"></span>
+                        {% else %}
+                        <span class="bi bi-pencil-square ps-2 text-muted" title="Login to Edit"></span>
+                        {% endif %}
+                    </div>
+
+                {% if socialProfileSetting.description %}
+                <p class="py-2 px-lg-4 text-white-50">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming. </p>
+                {% endif %}
+
+                </div>
+
+                <div class="row row-cols-1 g-2">
+
+                    {% if count(profileLinks) > 0 %}
+
+                    {% for row in profileLinks %}
+                    <div class="col">
+
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-6">
+                                    <div class="card-body">
+                                        <h6 class="pt-1" title="{{row.name}}">
+                                            <span class="bi bi-{{row.icon}} me-2"></span>
+                                            <span class="text-white-50">@Khalilleo</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-end pe-3 pt-3">
+                                        
+                                        <a href="{{row.url}}"><span class="bi bi-arrow-up-right fs-5"></span></a>
+
+                                        <span class="bi bi-clipboard-plus px-3 pointer text-success fs-5"></span>
+
+                                        {% if app.user %}
+                                        <a href="#">
+                                            <span class="bi bi-pencil-square ps-1 fs-5"></span>
+                                        </a>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+                <p><a href="{{path('app_register')}}" class="text-decoration-none d-color mt-3 pb-3">
+                        <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if app.user %}
+{% include 'profile/dashboard/social-profile/modal/new.html.twig' %}
+{% endif %}
+
+
+{% include 'layout/footer.html.twig' %}
+
+{% endblock %}

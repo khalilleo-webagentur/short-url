@@ -6,6 +6,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Entity\UserSetting;
+use App\Service\SocialProfileSettingService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserService;
 use App\Service\UserSettingService;
@@ -30,7 +31,8 @@ class NewAdminCommand extends Command
     public function __construct(
         private readonly UserService $userService,
         private readonly TokenGeneratorService $tokenGeneratorService,
-        private readonly UserSettingService $userSettingService
+        private readonly UserSettingService $userSettingService,
+        private readonly SocialProfileSettingService $socialProfileSettingService
     ) {
         parent::__construct();
     }
@@ -49,9 +51,11 @@ class NewAdminCommand extends Command
 
             $code = $this->tokenGeneratorService->randomToken();
 
+            $name = $faker->name();
+
             $this->userService->save(
                 $user
-                    ->setName($faker->name())
+                    ->setName($name)
                     ->setEmail($email)
                     ->setPassword($this->userService->encodePassword($email))
                     ->setRoles(['ROLE_SUPER_ADMIN'])
@@ -62,6 +66,8 @@ class NewAdminCommand extends Command
             $userSetting = new UserSetting();
 
             $this->userSettingService->save($userSetting->setUser($user));
+
+            $this->socialProfileSettingService->add($user, $name, null);
 
             $output->writeln(sprintf('Admin added. E:: %s and OTP:: %s', $email, $code));
 
