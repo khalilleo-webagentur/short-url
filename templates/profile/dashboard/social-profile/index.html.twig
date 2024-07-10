@@ -19,7 +19,7 @@
                    Add Link <span class="bi bi-plus-square ps-1"></span>
                 </a>
                 {% else %}
-                <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 pb-3">
+                <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 fs-15 pb-3">
                     Edit <span class="bi bi-pencil-square ps-1"></span>
                  </a>
                 {% endif %}
@@ -41,15 +41,22 @@
                         {{ socialProfileSetting.mainName }}
                         
                         {% if app.user %}
-                        <span class="bi bi-pencil-square ps-2 text-primary pointer"></span>
+                        <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal" data-bs-target="#socialProfileSettingModal"></span>
                         {% endif %}
                     </div>
 
-                {% if socialProfileSetting.description %}
+
                 <p class="py-2 px-lg-4 text-white-50">
                     {{socialProfileSetting.description}}
+
+                    {% if app.user %}
+                    <span class="bi bi-pencil-square ps-2 text-secondary pointer"
+                        data-bs-toggle="modal"
+                        data-bs-target="#socialProfileSettingDescModal">
+                    </span>
+                    {% endif %}
                 </p>
-                {% endif %}
+   
 
                 </div>
 
@@ -106,6 +113,8 @@
 
 {% if app.user %}
 {% include 'profile/dashboard/social-profile/modal/new.html.twig' %}
+{% include 'profile/dashboard/social-profile/modal/edit_alias.html.twig' %}
+{% include 'profile/dashboard/social-profile/modal/edit_description.html.twig' %}
 {% endif %}
 
 

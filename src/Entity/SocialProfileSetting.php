@@ -22,7 +22,7 @@ class SocialProfileSetting
     private ?string $mainName = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = null;
+    private ?string $description = "Add a short description about you.";
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
