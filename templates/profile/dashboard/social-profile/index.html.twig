@@ -46,8 +46,7 @@
                     </div>
 
 
-                <p class="py-2 px-lg-4 text-white-50">
-                    {{socialProfileSetting.description}}
+                <p class="text-white-50">{{socialProfileSetting.description}}
 
                     {% if app.user %}
                     <span class="bi bi-pencil-square ps-2 text-secondary pointer"
@@ -55,6 +54,10 @@
                         data-bs-target="#socialProfileSettingDescModal">
                     </span>
                     {% endif %}
+                </p>
+
+                <p class="text-white-50">
+                    <span class="bi bi-eye"></span> 1.4 K
                 </p>
    
 
@@ -102,7 +105,7 @@
 
                 </div>
 
-                <p><a href="{{path('app_register')}}" class="text-decoration-none d-color mt-3 pb-3">
+                <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color">
                         <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
                 </p>
 
