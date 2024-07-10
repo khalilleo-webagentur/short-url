@@ -52,19 +52,18 @@ class IndexController extends AbstractController
 
         $route = ['profile' => $socialProfileSetting->getMainName()];
 
-        $name = $this->validateAndReplaceSpace($request->request->get('iName'));
+        $name = $this->validateAndReplaceSpace($request->request->get('iSource'));
 
-        if (!$name) {
-            $this->addFlash('notice', 'Length must be greater than or equal 3 Chars.');
+        $iSource = $this->validateAndReplaceSpace($request->request->get('iName'));
+
+        $profileUrl = $this->validate($request->request->get('iUrl'));
+
+        if (!$name || !$iSource || !$profileUrl) {
+            $this->addFlash('notice', 'All fields are required.');
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
         }
 
-        if ($this->socialProfileService->getByUserAndName($user, $name)) {
-            $this->addFlash('notice', sprintf('Social link [%s] is already exists.', $name));
-            return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
-        }
-
-        $this->socialProfileService->add($user, $name, 'youtube', 'red', 'https://youtube.x/khalilleo');
+        $this->socialProfileService->add($user, $name, $iSource, '', $profileUrl);
 
         $this->addFlash('success', sprintf('Social link [%s] has been added.', $name));
 

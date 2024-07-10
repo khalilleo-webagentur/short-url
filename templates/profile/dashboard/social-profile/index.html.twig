@@ -15,7 +15,7 @@
         <div class="col-6">
             <div class="text-white-50 pt-2 text-end me-2">
                 {% if app.user %}
-                <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal" class="text-decoration-none mt-3 pb-3">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal" class="text-decoration-none d-color mt-3 pb-3 fs-15">
                    Add Link <span class="bi bi-plus-square ps-1"></span>
                 </a>
                 {% else %}
@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
 
-                <div class="text-center d-dark-color rounded-3 pb-4 mb-3">
+                <div class="text-center d-dark-color rounded-3 pb-4 mb-3 mt-3">
 
                     <div class="mb-3 pt-4">
                         <img src="{{asset('lte/img/avatar-160x160.png')}}" class="img-fluid rounded-pill" width="128px" alt="User Image">
@@ -53,33 +53,33 @@
 
                 </div>
 
-                <div class="row row-cols-1 g-2">
+                <div class="row row-cols-1 g-1">
 
                     {% if count(profileLinks) > 0 %}
 
                     {% for row in profileLinks %}
                     <div class="col">
 
-                        <div class="card mb-3">
+                        <div class="card mb-2">
                             <div class="row g-0">
                                 <div class="col-6">
                                     <div class="card-body">
-                                        <h6 class="pt-1" title="{{row.name}}">
+                                        <h6 class="pt-2" title="{{row.name}}">
                                             <span class="text-white">@Khalilleo</span>
                                             <small class="text-white-50 me-2">({{row.name|capitalize}})</small>
                                         </h6>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="text-end pe-3 pt-3">
+                                    <div class="text-end pe-3 pt-4">
                                         
-                                        <a href="{{row.url}}"><span class="bi bi-arrow-up-right fs-5"></span></a>
+                                        <a href="{{row.url}}"><span class="bi bi-arrow-up-right fs-6"></span></a>
 
                                         <!-- <span class="bi bi-clipboard-plus px-3 pointer text-success fs-5"></span> -->
 
                                         {% if app.user %}
                                         <a href="#">
-                                            <span class="bi bi-pencil-square ps-1 fs-5"></span>
+                                            <span class="bi bi-pencil-square ps-1 fs-6 ps-3"></span>
                                         </a>
                                         {% endif %}
 
