@@ -85,16 +85,16 @@ input[type="color"]:focus,
 }
 
 .alert-notice {
-    /* color: #0b6487;
-    background: #cff3ff; */
+    color: #0b6487;
+    background: #cff3ff;
 }
 
 .alert {
-    /* border-radius: 0; */
+    border-radius: 5px;
 }
 
 .d-dark-color {
-    /* background-color: #0000001c; */
+    background-color: #0000001c;
 }
 
 .cursor-help {

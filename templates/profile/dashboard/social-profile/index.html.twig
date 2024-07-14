@@ -6,6 +6,8 @@
 
 {% include 'layout/navbar.html.twig' %}
 
+{% include 'component/custom_type_message_top_fixed.html.twig' %}
+
 <div class="container-fluid">
 
     <div class="row py-3 d-dark-color shadow-sm">
@@ -16,7 +18,7 @@
             <div class="text-white-50 pt-2 text-end me-2">
                 {% if app.user %}
                 <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal" class="text-decoration-none d-color mt-3 pb-3 fs-15">
-                   Add Link <span class="bi bi-plus-square ps-1"></span>
+                   Add new Link <span class="bi bi-plus-square ps-1"></span>
                 </a>
                 {% else %}
                 <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 fs-15 pb-3">
@@ -33,20 +35,20 @@
 
                 <div class="text-center d-dark-color rounded-3 pb-4 mb-3 mt-3">
 
-                    <div class="mb-3 pt-4">
+                    <div class="mb-1 pt-4">
                         <img src="{{asset('lte/img/avatar-160x160.png')}}" class="img-fluid rounded-pill" width="128px" alt="User Image">
                     </div>
 
-                    <div>
-                        {{ socialProfileSetting.mainName }}
+                    <div class="pt-1">
+                        <span class="text-white fs-4">{{ socialProfileSetting.mainName }}</span>
                         
                         {% if app.user %}
-                        <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal" data-bs-target="#socialProfileSettingModal"></span>
+                        <span class="bi bi-pencil-square text-secondary ps-2 pointer" data-bs-toggle="modal" data-bs-target="#socialProfileSettingModal"></span>
                         {% endif %}
                     </div>
 
 
-                <p class="text-white-50">{{socialProfileSetting.description}}
+                <p class="text-white-50 my-2 px-5">{{socialProfileSetting.description}}
 
                     {% if app.user %}
                     <span class="bi bi-pencil-square ps-2 text-secondary pointer"
@@ -56,7 +58,7 @@
                     {% endif %}
                 </p>
 
-                <p class="text-white-50">
+                <p class="text-white-50 small">
                     <span class="bi bi-eye"></span> 1.4 K
                 </p>
    
@@ -105,9 +107,11 @@
 
                 </div>
 
+                {% if not app.user %}
                 <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color">
                         <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
                 </p>
+                {% endif %}
 
             </div>
         </div>
