@@ -19,17 +19,14 @@ class SocialProfile
     #[ORM\ManyToOne(inversedBy: 'socialProfiles')]
     private ?User $user = null;
 
-    #[ORM\Column(length: 30)]
-    private ?string $name = null;
+    #[ORM\Column(length: 70)]
+    private string $platform;
 
-    #[ORM\Column(length: 50)]
-    private ?string $icon = null;
+    #[ORM\Column(length: 70)]
+    private string $username;
 
-    #[ORM\Column(length: 30)]
-    private ?string $color = null;
-
-    #[ORM\Column(length: 150)]
-    private ?string $url = null;
+    #[ORM\Column(length: 200)]
+    private string $url;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $updatedAt = null;
@@ -59,43 +56,31 @@ class SocialProfile
         return $this;
     }
 
-    public function getName(): ?string
+    public function getPlatform(): string
     {
-        return $this->name;
+        return $this->platform;
     }
 
-    public function setName(string $name): self
+    public function setPlatform(string $platform): self
     {
-        $this->name = $name;
+        $this->platform = $platform;
 
         return $this;
     }
 
-    public function getIcon(): ?string
+    public function getUsername(): string
     {
-        return $this->icon;
+        return $this->username;
     }
 
-    public function setIcon(string $icon): self
+    public function setUsername(string $username): self
     {
-        $this->icon = $icon;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }

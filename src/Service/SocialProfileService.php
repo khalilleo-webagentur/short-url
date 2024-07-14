@@ -15,14 +15,14 @@ final class SocialProfileService
     {
     }
 
-    public function getById(int $id): ?SocialProfile
+    public function getByUserAndId(User $user, int $id): ?SocialProfile
     {
-        return $this->socialShareRepository->find($id);
+        return $this->socialShareRepository->findOneBy(['user' => $user, 'id' => $id]);
     }
 
-    public function getByUserAndName(User $user, string $name): ?SocialProfile
+    public function getByUserAndUsername(User $user, string $username): ?SocialProfile
     {
-        return $this->socialShareRepository->findOneBy(['user' => $user, 'name' => $name]);
+        return $this->socialShareRepository->findOneBy(['user' => $user, 'username' => $username]);
     }
 
     /**
@@ -30,34 +30,17 @@ final class SocialProfileService
      */
     public function getAll(): array
     {
-        return $this->socialShareRepository->findBy([], ['name' => 'ASC']);
+        return $this->socialShareRepository->findBy([], ['username' => 'ASC']);
     }
 
-    public function getPreparedSocialLinks(string $url, string $text): array
-    {
-        $results = [];
-
-        foreach ($this->getAll() as $row) {
-            $results[] = [
-                'name' => $row->getName(),
-                'icon' => $row->getIcon(),
-                'color' => $row->getColor(),
-                'url' => str_replace(['URL', 'TEXT'], [$url, $text], $row->getUrl()),
-            ];
-        }
-
-        return $results;
-    }
-
-    public function add(User $user, string $name, string $icon, string $color, string $url): SocialProfile
+    public function add(User $user, string $platform, string $username, string $url): SocialProfile
     {
         $model = new SocialProfile();
 
         $model
             ->setUser($user)
-            ->setName($name)
-            ->setIcon($icon)
-            ->setColor($color)
+            ->setPlatform($platform)
+            ->setUsername($username)
             ->setUrl($url);
 
         $this->save($model);
