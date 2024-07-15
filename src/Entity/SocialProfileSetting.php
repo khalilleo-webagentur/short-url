@@ -24,6 +24,9 @@ class SocialProfileSetting
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = "Add a short description about you.";
 
+    #[ORM\Column]
+    private int $countViews = 0;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -72,6 +75,18 @@ class SocialProfileSetting
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCountViews(): int
+    {
+        return $this->countViews;
+    }
+
+    public function setCountViews(int $countViews): static
+    {
+        $this->countViews = $countViews;
 
         return $this;
     }
