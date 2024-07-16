@@ -2,30 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\SocialProfileSettingRepository;
-use DateTime;
+use App\Repository\SocialProfileVisitorRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SocialProfileSettingRepository::class)]
-class SocialProfileSetting
+#[ORM\Entity(repositoryClass: SocialProfileVisitorRepository::class)]
+class SocialProfileVisitor
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'socialProfileVisitors')]
     private ?User $user = null;
 
-    #[ORM\Column(length: 150, unique: true)]
-    private ?string $mainName = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $description = "";
-
-    #[ORM\Column]
-    private int $countViews = 0;
+    #[ORM\Column(length: 255)]
+    private ?string $visitorUuid = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
@@ -33,9 +26,8 @@ class SocialProfileSetting
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    public function __constract()
-    {
-        $this->setCreatedAt(new DateTime());
+    public function __construct() {
+        $this->setCreatedAt(new \DateTime());
     }
 
     public function getId(): ?int
@@ -55,38 +47,14 @@ class SocialProfileSetting
         return $this;
     }
 
-    public function getMainName(): ?string
+    public function getVisitorUuid(): ?string
     {
-        return $this->mainName;
+        return $this->visitorUuid;
     }
 
-    public function setMainName(string $mainName): static
+    public function setVisitorUuid(string $visitorUuid): static
     {
-        $this->mainName = $mainName;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCountViews(): int
-    {
-        return $this->countViews;
-    }
-
-    public function setCountViews(int $countViews): static
-    {
-        $this->countViews = $countViews;
+        $this->visitorUuid = $visitorUuid;
 
         return $this;
     }

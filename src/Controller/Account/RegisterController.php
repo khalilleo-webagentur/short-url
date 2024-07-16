@@ -71,6 +71,8 @@ class RegisterController extends AbstractController
 
         $user = new User();
 
+        $name = preg_replace('/[^a-zA-Z0-9_.]/', '_', $name);
+
         $this->userService->save(
             $user
                 ->setName($name)
@@ -89,7 +91,7 @@ class RegisterController extends AbstractController
             $name .= '_' . random_int(1111, 9999);
         }
 
-        $this->socialProfileSettingService->add($user, $name, null);
+        $this->socialProfileSettingService->add($user, $name);
 
         $this->addFlash('notice', 'An email was sent to your mailbox. Please follow instruction to get started.');
 

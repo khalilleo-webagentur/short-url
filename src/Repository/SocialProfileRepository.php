@@ -7,12 +7,12 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<SocialShare>
+ * @extends ServiceEntityRepository<SocialProfile>
  *
- * @method SocialShare|null find($id, $lockMode = null, $lockVersion = null)
- * @method SocialShare|null findOneBy(array $criteria, array $orderBy = null)
- * @method SocialShare[]    findAll()
- * @method SocialShare[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SocialProfile|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SocialProfile|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SocialProfile[]    findAll()
+ * @method SocialProfile[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class SocialProfileRepository extends ServiceEntityRepository
 {

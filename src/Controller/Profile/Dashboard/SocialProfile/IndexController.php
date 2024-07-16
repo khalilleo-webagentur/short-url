@@ -6,6 +6,7 @@ namespace App\Controller\Profile\Dashboard\SocialProfile;
 
 use App\Service\SocialProfileService;
 use App\Service\SocialProfileSettingService;
+use App\Service\SocialProfileVisitorService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +21,8 @@ class IndexController extends AbstractController
 
     public function __construct(
         private readonly SocialProfileService $socialProfileService,
-        private readonly SocialProfileSettingService $socialProfileSettingService
+        private readonly SocialProfileSettingService $socialProfileSettingService,
+        private readonly SocialProfileVisitorService $socialProfileVisitorService
     ) {
     }
 
@@ -33,7 +35,11 @@ class IndexController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        $profileLinks = $this->socialProfileService->getAll($socialProfileSetting->getUser());
+        $user = $socialProfileSetting->getUser();
+
+        $profileLinks = $this->socialProfileService->getAllByUser($user);
+
+        $this->socialProfileVisitorService->add($user, $socialProfileSetting);
 
         return $this->render('profile/dashboard/social-profile/index.html.twig', [
             'profileLinks' => $profileLinks,

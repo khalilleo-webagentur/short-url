@@ -28,9 +28,9 @@ final class SocialProfileService
     /**
      * @return SocialProfile[]
      */
-    public function getAll(): array
+    public function getAllByUser(User $user): array
     {
-        return $this->socialShareRepository->findBy([], ['username' => 'ASC']);
+        return $this->socialShareRepository->findBy(['user' => $user], ['username' => 'ASC']);
     }
 
     public function add(User $user, string $platform, string $username, string $url): SocialProfile

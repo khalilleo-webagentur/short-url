@@ -74,6 +74,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: SocialProfile::class, mappedBy: 'user')]
     private Collection $socialProfiles;
 
+    /**
+     * @var Collection<int, SocialProfileVisitor>
+     */
+    #[ORM\OneToMany(targetEntity: SocialProfileVisitor::class, mappedBy: 'user')]
+    private Collection $socialProfileVisitors;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
@@ -82,6 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->tempUsers = new ArrayCollection();
         $this->linkCollections = new ArrayCollection();
         $this->socialProfiles = new ArrayCollection();
+        $this->socialProfileVisitors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -360,6 +367,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($socialProfile->getUser() === $this) {
                 $socialProfile->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SocialProfileVisitor>
+     */
+    public function getSocialProfileVisitors(): Collection
+    {
+        return $this->socialProfileVisitors;
+    }
+
+    public function addSocialProfileVisitor(SocialProfileVisitor $socialProfileVisitor): static
+    {
+        if (!$this->socialProfileVisitors->contains($socialProfileVisitor)) {
+            $this->socialProfileVisitors->add($socialProfileVisitor);
+            $socialProfileVisitor->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocialProfileVisitor(SocialProfileVisitor $socialProfileVisitor): static
+    {
+        if ($this->socialProfileVisitors->removeElement($socialProfileVisitor)) {
+            // set the owning side to null (unless already changed)
+            if ($socialProfileVisitor->getUser() === $this) {
+                $socialProfileVisitor->setUser(null);
             }
         }
 

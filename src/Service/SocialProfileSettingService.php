@@ -34,14 +34,14 @@ final class SocialProfileSettingService
         return $this->socialProfileSettingRepository->findBy([], ['mainName' => 'ASC']);
     }
 
-    public function add(User $user, string $name, ?string $description): SocialProfileSetting
+    public function add(User $user, string $name): SocialProfileSetting
     {
         $model = new SocialProfileSetting();
 
         $model
             ->setUser($user)
             ->setMainName($name)
-            ->setDescription($description)
+            ->setDescription("Add a short description about you.")
             ->setCreatedAt(new DateTime());
 
         $this->save($model);

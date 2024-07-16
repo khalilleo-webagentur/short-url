@@ -47,12 +47,14 @@ class SocialProfileSettingController extends AbstractController
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
         }
 
+        $mainName = preg_replace('/[^a-zA-Z0-9_.]/', '_', $mainName);
+
         $this->socialProfileSettingService->save(
             $socialProfileSetting
                 ->setMainName($mainName)
         );
 
-        $this->addFlash('success', 'Alias has been saved.');
+        $this->addFlash('success', sprintf('Alias [%s] has been saved.', $mainName));
 
         return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
     }

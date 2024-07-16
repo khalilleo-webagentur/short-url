@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="pt-1">
-                        <span class="text-white fs-4">{{ socialProfileSetting.mainName }}</span>
+                        <span class="text-white fs-4">{{ socialProfileSetting.mainName|capitalize }}</span>
 
                         {% if app.user %}
                         <span class="bi bi-pencil-square text-secondary ps-2 pointer" data-bs-toggle="modal"
@@ -51,7 +51,9 @@
                     </div>
 
 
-                    <p class="text-white-50 my-2 px-5">{{socialProfileSetting.description}}
+                    <p class="text-white-50 my-2 px-5">
+
+                        <span class="text-white-50">{{socialProfileSetting.description}}</span>
 
                         {% if app.user %}
                         <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal"
@@ -87,8 +89,8 @@
                                 <div class="col-6">
                                     <div class="text-end pe-3 pt-4">
 
-                                        <a href="{{row.url}}" target="_blank" title="{{row.url}}"><span 
-                                            class="bi bi-arrow-up-right fs-6"></span></a>
+                                        <a href="{{row.url}}" target="_blank" title="{{row.url}}"><span
+                                                class="bi bi-arrow-up-right fs-6"></span></a>
 
                                         <!-- <span class="bi bi-clipboard-plus px-3 pointer text-success fs-5"></span> -->
 
