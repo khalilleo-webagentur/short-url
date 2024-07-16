@@ -108,25 +108,51 @@
                     </div>
                     {% endfor %}
 
+                    {% else %}
+
+                    {% if app.user %}
+                    <div class="col">
+                        <div class="card mb-2">
+                            <div class="row g-0">
+                                <div class="col-6">
+                                    <div class="card-body">
+                                        <h6 class="pt-2 text-secondary">
+                                            Add your new Profile Link
+                                        </h6>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-end pe-3 pt-4">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal"
+                                            class="text-decoration-none d-color mt-2 pb-3 fs-15">
+                                            <span class="bi bi-plus-square ps-1"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% endif %}
+
+                    </div>
+
+                    {% if not app.user %}
+                    <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color">
+                            <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
+                    </p>
                     {% endif %}
 
                 </div>
-
-                {% if not app.user %}
-                <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color">
-                        <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
-                </p>
-                {% endif %}
-
             </div>
         </div>
     </div>
 </div>
 
 {% if app.user %}
-{% include 'profile/dashboard/social-profile/modal/new.html.twig' %}
-{% include 'profile/dashboard/social-profile/modal/edit_alias.html.twig' %}
-{% include 'profile/dashboard/social-profile/modal/edit_description.html.twig' %}
+    {% include 'profile/dashboard/social-profile/modal/new.html.twig' %}
+    {% include 'profile/dashboard/social-profile/modal/edit_alias.html.twig' %}
+    {% include 'profile/dashboard/social-profile/modal/edit_description.html.twig' %}
 {% endif %}
 
 

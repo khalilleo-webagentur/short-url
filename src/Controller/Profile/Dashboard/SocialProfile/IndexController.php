@@ -62,7 +62,6 @@ class IndexController extends AbstractController
         $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
 
         if (!$socialProfile) {
-            $this->addFlash('warning', sprintf('Unknown Link ID [%s]', $id));
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, ['profile' => $socialProfileSetting->getMainName()]);
         }
 
