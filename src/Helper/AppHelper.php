@@ -15,4 +15,6 @@ final class AppHelper
         'json',
         'pdf'
     ];
+
+    public const DEFAULT_AVATAR_NAME = 'avatar-160x160.png';
 }

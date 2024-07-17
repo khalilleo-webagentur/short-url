@@ -80,6 +80,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: SocialProfileVisitor::class, mappedBy: 'user')]
     private Collection $socialProfileVisitors;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Profile $profile = null;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
@@ -399,6 +402,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $socialProfileVisitor->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(Profile $profile): static
+    {
+        // set the owning side of the relation if necessary
+        if ($profile->getUser() !== $this) {
+            $profile->setUser($this);
+        }
+
+        $this->profile = $profile;
 
         return $this;
     }

@@ -20,8 +20,11 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-
     Symfony\Component\DependencyInjection\ContainerInterface: "@service_container"
+    
+    App\Service\Core\FileUploaderService:
+        arguments:
+            $targetDirectory: "%avatar_dir%"
 
 imports:
   - { resource: "packages/parameters.yaml" }

@@ -7,6 +7,7 @@ namespace App\Controller\Account;
 use App\Entity\User;
 use App\Entity\UserSetting;
 use App\Mails\Account\AccountConfirmationMail;
+use App\Service\ProfileService;
 use App\Service\SocialProfileSettingService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserService;
@@ -32,7 +33,8 @@ class RegisterController extends AbstractController
         private readonly UserService $userService,
         private readonly TokenGeneratorService $tokenGeneratorService,
         private readonly UserSettingService $userSettingService,
-        private readonly SocialProfileSettingService $socialProfileSettingService
+        private readonly SocialProfileSettingService $socialProfileSettingService,
+        private readonly ProfileService $profileService
     ) {
     }
 
@@ -92,6 +94,8 @@ class RegisterController extends AbstractController
         }
 
         $this->socialProfileSettingService->add($user, $name);
+
+        $this->profileService->add($user);
 
         $this->addFlash('notice', 'An email was sent to your mailbox. Please follow instruction to get started.');
 

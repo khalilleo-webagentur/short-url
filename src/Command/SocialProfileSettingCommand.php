@@ -36,7 +36,7 @@ class SocialProfileSettingCommand extends Command
 
         if ($user = $this->userService->getByEmail('dev@khalilleo.com')) {
 
-            $this->socialProfileSettingService->add($user, $user->getName(), null);
+            $this->socialProfileSettingService->add($user, $user->getName());
 
             return self::SUCCESS;
         }

@@ -6,6 +6,8 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Entity\UserSetting;
+use App\Helper\AppHelper;
+use App\Service\ProfileService;
 use App\Service\SocialProfileSettingService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserService;
@@ -32,7 +34,8 @@ class NewAdminCommand extends Command
         private readonly UserService $userService,
         private readonly TokenGeneratorService $tokenGeneratorService,
         private readonly UserSettingService $userSettingService,
-        private readonly SocialProfileSettingService $socialProfileSettingService
+        private readonly SocialProfileSettingService $socialProfileSettingService,
+        private readonly ProfileService $profileService
     ) {
         parent::__construct();
     }
@@ -67,7 +70,9 @@ class NewAdminCommand extends Command
 
             $this->userSettingService->save($userSetting->setUser($user));
 
-            $this->socialProfileSettingService->add($user, $name, null);
+            $this->socialProfileSettingService->add($user, $name);
+
+            $this->profileService->add($user);
 
             $output->writeln(sprintf('Admin added. E:: %s and OTP:: %s', $email, $code));
 

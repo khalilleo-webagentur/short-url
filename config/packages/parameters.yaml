@@ -21,3 +21,5 @@ parameters:
   app_author: "Khalilleo Teams"
   app_created: "2024-03-03"
   app_made_by: "khalilleo.com"
+
+  avatar_dir: "%kernel.project_dir%/public/avatar"

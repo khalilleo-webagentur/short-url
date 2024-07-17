@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Profile\Dashboard\SocialProfile;
 
+use App\Service\ProfileService;
 use App\Service\SocialProfileService;
 use App\Service\SocialProfileSettingService;
 use App\Service\SocialProfileVisitorService;
@@ -20,6 +21,7 @@ class IndexController extends AbstractController
     private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
 
     public function __construct(
+        private readonly ProfileService $profileService,
         private readonly SocialProfileService $socialProfileService,
         private readonly SocialProfileSettingService $socialProfileSettingService,
         private readonly SocialProfileVisitorService $socialProfileVisitorService
@@ -41,9 +43,12 @@ class IndexController extends AbstractController
 
         $this->socialProfileVisitorService->add($user, $socialProfileSetting);
 
+        $profile = $this->profileService->getByUser($user);
+
         return $this->render('profile/dashboard/social-profile/index.html.twig', [
             'profileLinks' => $profileLinks,
-            'socialProfileSetting' => $socialProfileSetting
+            'socialProfileSetting' => $socialProfileSetting,
+            'profile' => $profile
         ]);
     }
 
