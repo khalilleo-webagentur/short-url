@@ -6,7 +6,6 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Entity\UserSetting;
-use App\Helper\AppHelper;
 use App\Service\ProfileService;
 use App\Service\SocialProfileSettingService;
 use App\Service\TokenGeneratorService;
@@ -58,7 +57,7 @@ class NewAdminCommand extends Command
 
             $this->userService->save(
                 $user
-                    ->setName($name)
+                    ->setName(str_replace(' ', '_', $name))
                     ->setEmail($email)
                     ->setPassword($this->userService->encodePassword($email))
                     ->setRoles(['ROLE_SUPER_ADMIN'])
