@@ -3,25 +3,29 @@
         <thead>
             <tr class="fs-14">
                 <th>User</th>
-                <th>Platform</th>
-                <th>Username</th>
-                <th>URL</th>
+                <th>Profile</th>
+                <th>Description</th>
+                <th>Views</th>
                 <th>Updated</th>
                 <th>Created</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            {% for row in socialProfiles %}
+            {% for row in socialProfileSettings %}
             <tr class="fs-14">
                 <td>
                     <a href="{{path('app_admin_user_edit', {id:row.user.id})}}">
                         {{row.user.name|capitalize}}
                     </a>
                 </td>
-                <td>{{ row.platform|capitalize }}</td>
-                <td>{{ row.username|capitalize }}</td>
-                <td>{{ row.url }}</td>
+                <td>{{ row.mainName }}
+                    <a href="{{app.request.schemeAndHttpHost ~ '/' ~ row.mainName}}" target="_blank"><span
+                        class="fa fa-external-link-alt fa-xs pl-1"></span>
+                    </a>
+                </td>
+                <td>{{ row.description }}</td>
+                <td>{{ row.countViews }}</td>
 
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
 
