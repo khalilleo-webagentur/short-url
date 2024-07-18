@@ -33,6 +33,14 @@ final class SocialProfileService
         return $this->socialShareRepository->findBy(['user' => $user], ['username' => 'ASC']);
     }
 
+    /**
+     * @return SocialProfile[]
+     */
+    public function getAll(): array
+    {
+        return $this->socialShareRepository->findBy([], ['username' => 'ASC']);
+    }
+
     public function add(User $user, string $platform, string $username, string $url): SocialProfile
     {
         $model = new SocialProfile();
