@@ -20,15 +20,16 @@ class SocialProfileStatisticsController extends AbstractController
     use FormValidationTrait;
 
     private const SOCIAL_PROFILE_STATISTICS_ROUTE = 'app_dashboard_social_profile_statistics_setting_index';
+    private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
 
     public function __construct(
         private readonly SocialProfileService $socialProfileService,
         private readonly SocialProfileStatisticsService $socialProfileStatisticsService,
-        private readonly SocialProfileSettingService $socialProfileSettingService
+        private readonly SocialProfileSettingService $socialProfileSettingService,
     ) {
     }
 
-    #[Route('/view/{id?}', name: 'app_dashboard_social_profile_statistics_setting_index')]
+    #[Route('/view/{id}', name: 'app_dashboard_social_profile_statistics_setting_index')]
     public function index(?string $id, Request $request): Response
     {
         $user = $this->getUser();
@@ -63,7 +64,9 @@ class SocialProfileStatisticsController extends AbstractController
 
         $socialProfileStatistics = $this->socialProfileStatisticsService->getByUserAndId($user, $id);
 
-        if (!$socialProfileStatistics) {
+        $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
+
+        if (!$socialProfileStatistics || !$socialProfileSetting) {
             $this->addFlash('warning', 'ID is not defined.');
             return $this->redirectToRoute(self::SOCIAL_PROFILE_STATISTICS_ROUTE, ['id'=> $id]);
         }
@@ -72,6 +75,6 @@ class SocialProfileStatisticsController extends AbstractController
 
         $this->addFlash('success', 'Social profile statistics has been deleted.');
 
-        return $this->redirectToRoute(self::SOCIAL_PROFILE_STATISTICS_ROUTE, ['id'=> $id]);
+        return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, ['profile'=> $socialProfileSetting->getMainName()]);
     }
 }

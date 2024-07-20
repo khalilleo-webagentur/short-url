@@ -11,11 +11,11 @@
 <div class="container-fluid">
 
     <div class="row py-3 d-dark-color shadow-sm">
-        <div class="col-6 col-lg-6">
+        <div class="col-9">
             <h5 class="text-white-50 pt-2">Social Profile Statistic <i>{{platformAndUsername}}</i></h5>
         </div>
 
-        <div class="col-6 col-lg-6">
+        <div class="col-3">
             <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
                 class="float-end text-secondary text-decoration-none fs-15 pt-2">
                 Close <span class="bi bi-x-square-fill ps-1 small"></span>
@@ -77,8 +77,10 @@
                 <span class="bi bi-info-circle me-1"></span> No data found! No one has visted your link yet.
             </p>
 
-            <a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none">Back to URLs <span
-                class="bi bi-arrow-left-circle-fill ps-1"></span></a>
+            <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
+                class="small text-decoration-none">
+                <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to Social Profile
+            </a>
 
             {% endif %}
 

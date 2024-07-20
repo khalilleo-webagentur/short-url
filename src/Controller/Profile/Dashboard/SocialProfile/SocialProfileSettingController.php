@@ -42,6 +42,11 @@ class SocialProfileSettingController extends AbstractController
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
         }
 
+        if ($mainName === $socialProfileSetting->getMainName()) {
+            $this->addFlash('notice', sprintf('Nothing has been changed. Your profile alias name is still [%s].', $mainName));
+            return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
+        }
+
         if ($this->socialProfileSettingService->getByName($mainName)) {
             $this->addFlash('notice', 'Alias is reserved.');
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
