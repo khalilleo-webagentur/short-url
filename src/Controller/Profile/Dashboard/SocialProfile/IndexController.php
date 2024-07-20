@@ -80,8 +80,7 @@ class IndexController extends AbstractController
 
         $this->socialProfileStatisticsService->create($profileOwner, $socialProfile);
 
-       // return $this->redirect($socialProfile->getUrl());
-       return $this->redirect('http://localhost:8080/admin/dashboard/o3o4v1v3a1g8h2q2/home');
+       return $this->redirect($socialProfile->getUrl());
     }
 
     #[Route('/social-link/u0u8s9r4/edit/{id}', name: 'app_dashboard_social_profile_edit')]
