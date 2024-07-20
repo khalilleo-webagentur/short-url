@@ -76,7 +76,7 @@
                     {% for row in profileLinks %}
                     <div class="col">
 
-                        <div class="card mb-4">
+                        <div class="card mb-2">
                             <div class="row g-0">
                                 <div class="col-6">
                                     <div class="card-body">
@@ -89,7 +89,7 @@
                                 <div class="col-6">
                                     <div class="text-end pe-3 pt-4">
 
-                                        <a href="{{ path('app_dashboard_social_profile_redirect_to', {id: row.id, mainName: socialProfileSetting.mainName}) }}"
+                                        <a href="{{ path('app_dashboard_social_profile_redirect_to', {nums: randomNumbers(), id: row.id, mainName: socialProfileSetting.mainName}) }}"
                                             target="_blank" title="Visit Profile"><span class="bi bi-arrow-up-right-square-fill fs-6"></span></a>
 
                                         {% if app.user %}
