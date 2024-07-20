@@ -56,7 +56,7 @@ class IndexController extends AbstractController
         ]);
     }
 
-    #[Route('/social-profile/u7m8s6r1/8653986743076552/{id}/{mainName}', name: 'app_dashboard_social_profile_redirect_to')]
+    #[Route('/social-profile/u7m8s6r1/{nums}/{id}/{mainName}', name: 'app_dashboard_social_profile_redirect_to')]
     public function view(?string $id, ?string $mainName): RedirectResponse
     {
         $profileOwnerMainName = $this->validate($mainName); 

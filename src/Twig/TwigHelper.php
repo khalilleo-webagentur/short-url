@@ -24,6 +24,7 @@ class TwigHelper extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('randomNumbers', [$this, 'randomNumbers']),
             new TwigFunction('userSocialLinkMainName', [$this, 'userSocialLinkMainName']),
             new TwigFunction('hash', [$this, 'hash']),
             new TwigFunction('timeAgo', [$this, 'timeAgo']),
@@ -42,6 +43,11 @@ class TwigHelper extends AbstractExtension
             new TwigFunction('madeBy', [$this, 'getMadeBy']),
             new TwigFunction('version', [$this, 'getVersion']),
         ];
+    }
+
+    public function randomNumbers(): int
+    {
+        return random_int(11111111, 99999999);
     }
 
     public function userSocialLinkMainName(User $user): string
