@@ -7,9 +7,11 @@ namespace App\Controller\Profile\Dashboard\SocialProfile;
 use App\Service\ProfileService;
 use App\Service\SocialProfileService;
 use App\Service\SocialProfileSettingService;
+use App\Service\SocialProfileStatisticsService;
 use App\Service\SocialProfileVisitorService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,12 +21,14 @@ class IndexController extends AbstractController
     use FormValidationTrait;
 
     private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
+    private const HOME_ROUTE = 'app_home';
 
     public function __construct(
         private readonly ProfileService $profileService,
         private readonly SocialProfileService $socialProfileService,
         private readonly SocialProfileSettingService $socialProfileSettingService,
-        private readonly SocialProfileVisitorService $socialProfileVisitorService
+        private readonly SocialProfileVisitorService $socialProfileVisitorService,
+        private readonly SocialProfileStatisticsService $socialProfileStatisticsService,
     ) {
     }
 
@@ -50,6 +54,34 @@ class IndexController extends AbstractController
             'socialProfileSetting' => $socialProfileSetting,
             'profile' => $profile
         ]);
+    }
+
+    #[Route('/social-profile/u7m8s6r1/8653986743076552/{id}/{mainName}', name: 'app_dashboard_social_profile_redirect_to')]
+    public function view(?string $id, ?string $mainName): RedirectResponse
+    {
+        $profileOwnerMainName = $this->validate($mainName); 
+
+        $socialProfileSetting = $this->socialProfileSettingService->getByName($profileOwnerMainName);
+
+        if (!$socialProfileSetting) {
+            return $this->redirectToRoute(self::HOME_ROUTE);
+        }
+
+        $profileOwner = $socialProfileSetting->getUser();
+
+        $socialProfile = $this->socialProfileService->getByUserAndId(
+            $profileOwner,
+            $this->validateNumber($id)
+        );
+
+        if (!$socialProfile) {
+            return $this->redirectToRoute(self::HOME_ROUTE);
+        }
+
+        $this->socialProfileStatisticsService->create($profileOwner, $socialProfile);
+
+       // return $this->redirect($socialProfile->getUrl());
+       return $this->redirect('http://localhost:8080/admin/dashboard/o3o4v1v3a1g8h2q2/home');
     }
 
     #[Route('/social-link/u0u8s9r4/edit/{id}', name: 'app_dashboard_social_profile_edit')]

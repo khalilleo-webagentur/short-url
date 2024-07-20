@@ -40,8 +40,7 @@ class SearchController extends AbstractController
 
         return $this->render('profile/dashboard/links/search.html.twig', [
             'keyword' => $keyword,
-            'links' => $links,
-            'keyword' => $keyword
+            'links' => $links
         ]);
     }
 }

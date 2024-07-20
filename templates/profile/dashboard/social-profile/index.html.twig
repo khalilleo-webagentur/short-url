@@ -89,15 +89,16 @@
                                 <div class="col-6">
                                     <div class="text-end pe-3 pt-4">
 
-                                        <a href="{{row.url}}" target="_blank" title="{{row.url}}"><span
-                                                class="bi bi-arrow-up-right fs-6"></span></a>
-
-                                        <!-- <span class="bi bi-clipboard-plus px-3 pointer text-success fs-5"></span> -->
+                                        <a href="{{ path('app_dashboard_social_profile_redirect_to', {id: row.id, mainName: socialProfileSetting.mainName}) }}"
+                                            target="_blank" title="Visit Profile"><span class="bi bi-arrow-up-right-square-fill fs-6"></span></a>
 
                                         {% if app.user %}
-                                        <a href="{{path('app_dashboard_social_profile_edit', {id: row.id})}}">
-                                            <span class="bi bi-pencil-square ps-1 fs-6 ps-3"></span>
-                                        </a>
+                                        <a href="{{path('app_dashboard_social_profile_edit', {id: row.id})}}" title="Edit"><span
+                                             class="bi bi-pencil-square ps-1 fs-6 ps-3"></span></a>
+
+                                        <a href="{{ path('app_dashboard_social_profile_statistics_setting_index', {id: row.id}) }}"
+                                            title="View Statistics">
+                                           <span class="bi bi-bar-chart-fill ps-1 fs-6 ps-3"></span></a>
                                         {% endif %}
 
                                     </div>

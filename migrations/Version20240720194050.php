@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240718191513 extends AbstractMigration
+final class Version20240720194050 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,6 +26,7 @@ final class Version20240718191513 extends AbstractMigration
         $this->addSql('CREATE TABLE profile (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, avatar_name VARCHAR(255) NOT NULL, size INT NOT NULL, extention VARCHAR(20) DEFAULT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_8157AA0FA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE social_profile (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, platform VARCHAR(70) NOT NULL, username VARCHAR(70) NOT NULL, url VARCHAR(200) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_E2C7F92A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE social_profile_setting (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, main_name VARCHAR(150) NOT NULL, description LONGTEXT DEFAULT NULL, count_views INT NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_53E73187BE904C64 (main_name), UNIQUE INDEX UNIQ_53E73187A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE social_profile_statistics (id INT AUTO_INCREMENT NOT NULL, social_profile_id INT NOT NULL, user_id INT DEFAULT NULL, browser_name VARCHAR(50) NOT NULL, browser_lang VARCHAR(30) NOT NULL, platform VARCHAR(50) NOT NULL, is_mobil TINYINT(1) NOT NULL, ip_adress VARCHAR(150) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_76EE8E5F2A9A07A (social_profile_id), INDEX IDX_76EE8E5FA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE social_profile_visitor (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, visitor_uuid VARCHAR(255) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_6766880A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE temp_user (id INT AUTO_INCREMENT NOT NULL, user_id INT DEFAULT NULL, email VARCHAR(255) NOT NULL, token VARCHAR(255) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, INDEX IDX_249A5903A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(150) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, roles JSON NOT NULL, token VARCHAR(100) DEFAULT NULL, is_verified TINYINT(1) NOT NULL, is_deleted TINYINT(1) NOT NULL, updated_at DATETIME NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB');
@@ -37,6 +38,8 @@ final class Version20240718191513 extends AbstractMigration
         $this->addSql('ALTER TABLE profile ADD CONSTRAINT FK_8157AA0FA76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE social_profile ADD CONSTRAINT FK_E2C7F92A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE social_profile_setting ADD CONSTRAINT FK_53E73187A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
+        $this->addSql('ALTER TABLE social_profile_statistics ADD CONSTRAINT FK_76EE8E5F2A9A07A FOREIGN KEY (social_profile_id) REFERENCES social_profile (id)');
+        $this->addSql('ALTER TABLE social_profile_statistics ADD CONSTRAINT FK_76EE8E5FA76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE social_profile_visitor ADD CONSTRAINT FK_6766880A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE temp_user ADD CONSTRAINT FK_249A5903A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
         $this->addSql('ALTER TABLE user_setting ADD CONSTRAINT FK_C779A692A76ED395 FOREIGN KEY (user_id) REFERENCES `user` (id)');
@@ -52,6 +55,8 @@ final class Version20240718191513 extends AbstractMigration
         $this->addSql('ALTER TABLE profile DROP FOREIGN KEY FK_8157AA0FA76ED395');
         $this->addSql('ALTER TABLE social_profile DROP FOREIGN KEY FK_E2C7F92A76ED395');
         $this->addSql('ALTER TABLE social_profile_setting DROP FOREIGN KEY FK_53E73187A76ED395');
+        $this->addSql('ALTER TABLE social_profile_statistics DROP FOREIGN KEY FK_76EE8E5F2A9A07A');
+        $this->addSql('ALTER TABLE social_profile_statistics DROP FOREIGN KEY FK_76EE8E5FA76ED395');
         $this->addSql('ALTER TABLE social_profile_visitor DROP FOREIGN KEY FK_6766880A76ED395');
         $this->addSql('ALTER TABLE temp_user DROP FOREIGN KEY FK_249A5903A76ED395');
         $this->addSql('ALTER TABLE user_setting DROP FOREIGN KEY FK_C779A692A76ED395');
@@ -61,6 +66,7 @@ final class Version20240718191513 extends AbstractMigration
         $this->addSql('DROP TABLE profile');
         $this->addSql('DROP TABLE social_profile');
         $this->addSql('DROP TABLE social_profile_setting');
+        $this->addSql('DROP TABLE social_profile_statistics');
         $this->addSql('DROP TABLE social_profile_visitor');
         $this->addSql('DROP TABLE temp_user');
         $this->addSql('DROP TABLE `user`');

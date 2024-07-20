@@ -45,7 +45,7 @@ class NewAdminCommand extends Command
 
         $faker = Factory::create();
 
-        $email = $faker->safeEmail();
+        $email = 'dev@khalilleo.com'; // $faker->safeEmail();
 
         if (!$this->userService->getByEmail($email)) {
 
@@ -53,11 +53,11 @@ class NewAdminCommand extends Command
 
             $code = $this->tokenGeneratorService->randomToken();
 
-            $name = $faker->name();
+            $name = str_replace(' ', '_', $faker->name());
 
             $this->userService->save(
                 $user
-                    ->setName(str_replace(' ', '_', $name))
+                    ->setName($name)
                     ->setEmail($email)
                     ->setPassword($this->userService->encodePassword($email))
                     ->setRoles(['ROLE_SUPER_ADMIN'])

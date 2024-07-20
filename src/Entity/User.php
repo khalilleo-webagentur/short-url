@@ -83,6 +83,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
 
+    /**
+     * @var Collection<int, SocialProfileStatistics>
+     */
+    #[ORM\OneToMany(targetEntity: SocialProfileStatistics::class, mappedBy: 'user')]
+    private Collection $socialProfileStatistics;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTime());
@@ -92,6 +98,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->linkCollections = new ArrayCollection();
         $this->socialProfiles = new ArrayCollection();
         $this->socialProfileVisitors = new ArrayCollection();
+        $this->socialProfileStatistics = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -419,6 +426,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SocialProfileStatistics>
+     */
+    public function getSocialProfileStatistics(): Collection
+    {
+        return $this->socialProfileStatistics;
+    }
+
+    public function addSocialProfileStatistic(SocialProfileStatistics $socialProfileStatistic): static
+    {
+        if (!$this->socialProfileStatistics->contains($socialProfileStatistic)) {
+            $this->socialProfileStatistics->add($socialProfileStatistic);
+            $socialProfileStatistic->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSocialProfileStatistic(SocialProfileStatistics $socialProfileStatistic): static
+    {
+        if ($this->socialProfileStatistics->removeElement($socialProfileStatistic)) {
+            // set the owning side to null (unless already changed)
+            if ($socialProfileStatistic->getUser() === $this) {
+                $socialProfileStatistic->setUser(null);
+            }
+        }
 
         return $this;
     }
