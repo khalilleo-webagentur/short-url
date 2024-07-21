@@ -34,7 +34,7 @@
                     </div>
 
                     <small class="text-secondary">
-                        The short link is valid with all features for (1) Year on free plan! <br>
+                        The short link is valid with all <a href="{{path('app_features_index')}}" class="text-decoration-none">features</a> for (1) Year on free plan! <br>
                         {% if is_granted('ROLE_USER') %}
                         <a href="{{path('app_profile_my_urls')}}" class="d-color">My URLs</a>
                         {% else %}
