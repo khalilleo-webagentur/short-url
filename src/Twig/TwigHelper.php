@@ -24,6 +24,7 @@ class TwigHelper extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('profilesTree', [$this, 'profilesTree']),
             new TwigFunction('randomNumbers', [$this, 'randomNumbers']),
             new TwigFunction('userSocialLinkMainName', [$this, 'userSocialLinkMainName']),
             new TwigFunction('hash', [$this, 'hash']),
@@ -43,6 +44,13 @@ class TwigHelper extends AbstractExtension
             new TwigFunction('madeBy', [$this, 'getMadeBy']),
             new TwigFunction('version', [$this, 'getVersion']),
         ];
+    }
+
+    public function profilesTree(): string
+    {
+        $socialProfileSetting = $this->socialProfileSettingService->getById(1);
+
+        return $socialProfileSetting ? $socialProfileSetting->getMainName() : '';
     }
 
     public function randomNumbers(): int

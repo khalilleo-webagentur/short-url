@@ -16,6 +16,11 @@ final class SocialProfileSettingService
     ){
     }
 
+    public function getById(int $id): ?SocialProfileSetting
+    {
+        return $this->socialProfileSettingRepository->find($id);
+    }
+
     public function getByUser(User $user): ?SocialProfileSetting
     {
         return $this->socialProfileSettingRepository->findOneBy(['user' => $user]);

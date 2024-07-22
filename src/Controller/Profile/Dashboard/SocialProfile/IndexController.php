@@ -32,7 +32,7 @@ class IndexController extends AbstractController
     ) {
     }
 
-    #[Route('/profile/{profile}', name: 'app_dashboard_social_profile_index')]
+    #[Route('/me/{profile}', name: 'app_dashboard_social_profile_index')]
     public function index(?string $profile): Response
     {
         $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile));
@@ -59,7 +59,7 @@ class IndexController extends AbstractController
     #[Route('/social-profile/u7m8s6r1/{nums}/{id}/{mainName}', name: 'app_dashboard_social_profile_redirect_to')]
     public function view(?string $id, ?string $mainName): RedirectResponse
     {
-        $profileOwnerMainName = $this->validate($mainName); 
+        $profileOwnerMainName = $this->validate($mainName);
 
         $socialProfileSetting = $this->socialProfileSettingService->getByName($profileOwnerMainName);
 
@@ -80,7 +80,7 @@ class IndexController extends AbstractController
 
         $this->socialProfileStatisticsService->create($profileOwner, $socialProfile);
 
-       return $this->redirect($socialProfile->getUrl());
+        return $this->redirect($socialProfile->getUrl());
     }
 
     #[Route('/social-link/u0u8s9r4/edit/{id}', name: 'app_dashboard_social_profile_edit')]
