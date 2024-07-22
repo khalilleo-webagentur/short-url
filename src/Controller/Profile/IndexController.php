@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/user/profile/u8k8s5b5n0i6d9a0')]
 class IndexController extends AbstractController
 {
     public function __construct(
@@ -21,7 +22,7 @@ class IndexController extends AbstractController
     ) {
     }
 
-    #[Route('/profile/u8k8s5b5n0i6d9a0', name: 'app_profile')]
+    #[Route('/', name: 'app_profile')]
     public function index(Request $request): Response
     {
         $user = $this->getUser();
