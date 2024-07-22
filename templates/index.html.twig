@@ -58,12 +58,12 @@
 
                     {% set link = app.request.schemeAndHttpHost ~ '/' ~ token %}
 
-                    <div class="p-2 py-3 mb-3 d-dark-color ">
+                    <div class="p-2 py-3 mb-3" style="background-color: #0d2f091c;border: 1px solid rgb(25 135 84);">
                         <p class="pt-3">
                             <small class="text-white-50">URL has been shorten.</small>
                         </p>
                         <div class="mb-2">
-                            <span class="d-color pe-1" id="link"> {{ link }}</span>
+                            <span class="text-success pe-1" id="link"> {{ link }}</span>
 
                             <span class="bi bi-clipboard-fill small text-white-50 p-2 me-1 bg-dark pointer"
                                 id="clipboard" title="Copy to Cliepboard"></span>

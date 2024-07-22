@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class RedirectLinkController extends AbstractController
+class RedirectController extends AbstractController
 {
     private const HOME_ROUTE = 'app_home';
 
@@ -35,10 +35,7 @@ class RedirectLinkController extends AbstractController
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
-        $this->linkService->save(
-            $link
-                ->setCounter($link->getCounter() + 1)
-        );
+        $this->linkService->save($link->setCounter($link->getCounter() + 1));
 
         if ($link->isPublic()) {
             $this->linkStatisticService->create($link);
