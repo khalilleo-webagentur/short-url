@@ -9,10 +9,13 @@ use App\Entity\SocialProfileVisitor;
 use App\Entity\User;
 use App\Repository\SocialProfileVisitorRepository;
 use App\Service\Core\BrowserDetectService;
+use App\Traits\RemoteTrait;
 use DateTime;
 
 final class SocialProfileVisitorService
 {
+    use RemoteTrait;
+
     public function __construct(
         private readonly SocialProfileVisitorRepository $socialProfileVisitorRepository,
         private readonly BrowserDetectService $browserDetectService,
@@ -20,11 +23,14 @@ final class SocialProfileVisitorService
     ) {
     }
 
-    public function getOneByUser(User $user): ?SocialProfileVisitor
+    public function getOneByVisitorUuid(): ?SocialProfileVisitor
     {
-        return $this->socialProfileVisitorRepository->findOneBy(['user' => $user]);
-    }
+        $userAgent = $this->browserDetectService->userAgent();
+        $userAgentUuid = sha1($this->getRemote() . $userAgent->getBrowserName() . $userAgent->getPlatform() . $userAgent->getBrowserLang());
 
+        return $this->socialProfileVisitorRepository->findOneBy(['visitorUuid' => $userAgentUuid]);
+    }
+    
     /**
      * @return SocialProfileVisitor[]
      */
@@ -35,14 +41,14 @@ final class SocialProfileVisitorService
 
     public function add(User $user, SocialProfileSetting $socialProfileSetting): ?SocialProfileVisitor
     {
-        if ($this->getOneByUser($user)) {
+        if ($this->getOneByVisitorUuid()) {
             return null;
         }
 
         $model = new SocialProfileVisitor();
 
         $userAgent = $this->browserDetectService->userAgent();
-        $userAgentUuid = sha1($userAgent->getBrowserName() . $userAgent->getPlatform() . $userAgent->getBrowserLang());
+        $userAgentUuid = sha1($this->getRemote() . $userAgent->getBrowserName() . $userAgent->getPlatform() . $userAgent->getBrowserLang());
 
         $model
             ->setUser($user)

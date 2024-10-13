@@ -18,8 +18,8 @@
             <div class="text-white-50 pt-2 text-end me-2">
                 {% if app.user %}
                 <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal"
-                    class="text-decoration-none d-color mt-3 pb-3 fs-15">
-                    Add new Link <span class="bi bi-plus-square ps-1"></span>
+                    class="text-decoration-none d-color opacity-08 mt-3 pb-3 fs-15">
+                    Add Link <span class="bi bi-plus-square ps-1"></span>
                 </a>
                 {% else %}
                 <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 fs-15 pb-3">
@@ -34,7 +34,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
 
-                <div class="text-center d-dark-color rounded-3 pb-4 mb-3 mt-3">
+                <div class="text-center d-dark-color d-dark-border-color rounded-3 pb-4 mb-3 mt-3">
 
                     <div class="mb-1 pt-4">
                         <img src="{{asset('avatar/' ~ profile.avatarName)}}" class="img-fluid rounded-pill" width="128px"
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="pt-1">
-                        <span class="text-white fs-4">{{ socialProfileSetting.mainName|capitalize }}</span>
+                        <span class="text-white-25 fs-4">{{ socialProfileSetting.mainName|capitalize }}</span>
 
                         {% if app.user %}
                         <span class="bi bi-pencil-square text-secondary ps-2 pointer" data-bs-toggle="modal"
@@ -76,12 +76,12 @@
                     {% for row in profileLinks %}
                     <div class="col">
 
-                        <div class="card mb-2">
+                        <div class="card d-dark-color d-dark-border-color mb-2">
                             <div class="row g-0">
                                 <div class="col-6">
                                     <div class="card-body">
                                         <h6 class="pt-2" title="{{row.platform|capitalize}}">
-                                            <span class="text-white">@{{row.username|capitalize}}</span>
+                                            <span class="text-white-25">@{{row.username|capitalize}}</span>
                                             <small class="text-white-50 me-2" title="Platform">({{row.platform|capitalize}})</small>
                                         </h6>
                                     </div>
@@ -90,15 +90,18 @@
                                     <div class="text-end pe-3 pt-4">
 
                                         <a href="{{ path('app_dashboard_social_profile_redirect_to', {nums: randomNumbers(), id: row.id, mainName: socialProfileSetting.mainName}) }}"
-                                            target="_blank" title="Visit Profile"><span class="bi bi-arrow-up-right-square-fill fs-6"></span></a>
+                                            class=" opacity-07"
+                                            target="_blank" title="Visit Profile"><span class="bi bi-arrow-up-right-square fs-6"></span></a>
 
                                         {% if app.user %}
-                                        <a href="{{path('app_dashboard_social_profile_edit', {id: row.id})}}" title="Edit"><span
+                                        <a href="{{path('app_dashboard_social_profile_edit', {id: row.id})}}"
+                                            class=" opacity-07" title="Edit"><span
                                              class="bi bi-pencil-square ps-1 fs-6 ps-3"></span></a>
 
                                         <a href="{{ path('app_dashboard_social_profile_statistics_setting_index', {id: row.id}) }}"
+                                            class=" opacity-07"
                                             title="View Statistics">
-                                           <span class="bi bi-bar-chart-fill ps-1 fs-6 ps-3"></span></a>
+                                           <span class="bi bi-bar-chart ps-1 fs-6 ps-3"></span></a>
                                         {% endif %}
 
                                     </div>
@@ -139,7 +142,7 @@
                     </div>
 
                     {% if not app.user %}
-                    <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color">
+                    <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color opacity-07">
                             <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
                     </p>
                     {% endif %}

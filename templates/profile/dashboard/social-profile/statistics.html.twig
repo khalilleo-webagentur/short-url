@@ -54,14 +54,14 @@
                             <td class="text-white-50">{{row.browserLang|capitalize}}</td>
                             <td class="text-white-50">{{row.platform|capitalize}}</td>
                             <td class="text-white-50">
-                                {{row.isMobil ? circle('text-success small') : circle('text-secondary small')}}
+                                {{row.isMobil ? circle('d-success-color small') : circle('text-secondary small')}}
                             </td>
                             <td class="text-white-50">
-                                {{row.isMobil ? circle('text-secondary small') : circle('text-success small')}}
+                                {{row.isMobil ? circle('text-secondary small') : circle('d-success-color small')}}
                             </td>
                             <td>
                                 <form action="{{ path('app_dashboard_social_profile_statistics_delete', {id: row.id}) }}" method="post">
-                                    <div class="text-danger fs-14 pointer" onclick="this.closest('form').submit()"
+                                    <div class="d-danger-color fs-14 pointer" onclick="this.closest('form').submit()"
                                         title="Delete Permanentely?">
                                         <span class="md-d-none">Remove</span> <span class="bi bi-trash fs-13"></span>
                                     </div>
@@ -76,14 +76,12 @@
             <p class="text-white-50 pt-5">
                 <span class="bi bi-info-circle me-1"></span> No data found! No one has visted your link yet.
             </p>
+            {% endif %}
 
             <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
                 class="small text-decoration-none">
                 <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to Social Profile
             </a>
-
-            {% endif %}
-
         </div>
     </div>
 </div>
