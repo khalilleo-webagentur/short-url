@@ -68,8 +68,9 @@ class LinkController extends AbstractController
 
             $this->monolog->logger->debug(
                 sprintf(
-                    'Malicious URL: %s by %s',
+                    'Malicious URL: %s %s by %s',
                     $maliciousUrl->getId(),
+                    $maliciousUrl->getUrl(),
                     $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
                 );
 

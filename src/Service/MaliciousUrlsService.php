@@ -26,6 +26,14 @@ final class MaliciousUrlsService
         return $this->maliciousUrlRepository->findOneBy(['url' => $url]);
     }
 
+    /**
+     * @return MaliciousUrl[]
+     */
+    public function getOneByCounter(): array
+    {
+        return $this->maliciousUrlRepository->findAllByCounter();
+    }
+
     public function getByUserAndId(User $user, int $id): ?MaliciousUrl
     {
         return $this->maliciousUrlRepository->findOneBy(['user' => $user, 'id' => $id]);

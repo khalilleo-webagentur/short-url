@@ -33,4 +33,16 @@ class MaliciousUrlRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * @return MaliciousUrl[]
+     */
+    public function findAllByCounter(): array
+    {
+        return $this->createQueryBuilder('t1')
+            ->where('t1.counter > 0')
+            ->orderBy('t1.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

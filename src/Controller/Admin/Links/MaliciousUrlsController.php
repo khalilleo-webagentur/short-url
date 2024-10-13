@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/dashboard/malicious-links/jobs/9bmvk2s1k4d4p3u0')]
+#[Route('admin/dashboard/malicious-links/9bmvk2s1k4d4p3u0')]
 class MaliciousUrlsController extends AbstractController
 {
     use FormValidationTrait;
@@ -21,15 +21,14 @@ class MaliciousUrlsController extends AbstractController
 
     public function __construct(
         private readonly MaliciousUrlsService $maliciousUrlsService
-    ) {
-    }
+    ) {}
 
     #[Route('/home', name: 'app_admin_links_malicious_index')]
     public function index(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-        $maliciousUrls = $this->maliciousUrlsService->getAll();
+        $maliciousUrls = $this->maliciousUrlsService->getOneByCounter();
 
         return $this->render('admin/links/malicious-urls.html.twig', [
             'maliciousUrls' => $maliciousUrls,
@@ -43,29 +42,31 @@ class MaliciousUrlsController extends AbstractController
 
         $maliciousURLs = $this->validateTextarea($request->request->get('mUrls'), true);
 
-        $count = 0;
+        if (empty($maliciousURLs)) {
+            $this->addFlash('warning', 'Malicious urls field is required.');
+            return $this->redirectToRoute(self::ADMIN_MALICIOUS_LINKS_ROUTE);
+        }
 
-       foreach (explode("\n", $maliciousURLs) as $maliciousURL) {
-            
-             if (str_contains($maliciousURL, '0.0.0.0')) {
+        $count = $skipped = 0;
 
-                $maliciousModel = new MaliciousUrl();
+        foreach (explode("\n", $maliciousURLs) as $maliciousURL) {
 
-                $url = str_replace(["0.0.0.0 ", "\n", "\r", "\r\n", "<br />"], '', $maliciousURL);
-            
-                if ($this->validateURL($url) && !$this->maliciousUrlsService->getOneByUrl($url)) {
-                    $this->maliciousUrlsService->save(
-                        $maliciousModel
-                            ->setUrl($url)
-                    );
-                    $count++;
-                }
+            $maliciousModel = new MaliciousUrl();
+
+            $url = str_replace(["0.0.0.0 ", "\n", "\r", "\r\n", "<br />"], '', $maliciousURL);
+
+            if ($this->validateURL($url) && !$this->maliciousUrlsService->getOneByUrl($url)) {
+                $this->maliciousUrlsService->save(
+                    $maliciousModel
+                        ->setUrl($url)
+                );
+                $count++;
+            } else {
+                $skipped++;
             }
+        }
 
-            continue;
-       }
-
-       $this->addFlash('notice', sprintf('Malicious URLs [%s] has been added.',  $count));
+        $this->addFlash('notice', sprintf('Malicious URLs [%s] has been added and skipped [%s].',  $count, $skipped));
 
         return $this->redirectToRoute(self::ADMIN_MALICIOUS_LINKS_ROUTE);
     }
