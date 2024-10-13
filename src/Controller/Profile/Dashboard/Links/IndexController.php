@@ -9,6 +9,8 @@ use App\Helper\AppHelper;
 use App\Service\LinkCollectionService;
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
+use App\Service\MaliciousUrlsService;
+use App\Service\MonologService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
@@ -30,7 +32,9 @@ class IndexController extends AbstractController
         private readonly LinkStatisticService $linkStatisticService,
         private readonly TokenGeneratorService $tokenGeneratorService,
         private readonly UserSettingService $userSettingService,
-        private readonly LinkCollectionService $linkCollectionService
+        private readonly LinkCollectionService $linkCollectionService,
+        private readonly MaliciousUrlsService $maliciousUrlsService,
+        private readonly MonologService $monolog
     ) {
     }
 
@@ -76,6 +80,25 @@ class IndexController extends AbstractController
 
         if (!$link) {
             $this->addFlash('warning', 'Link field is required.');
+            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        }
+
+        $parseUrl = parse_url($link);
+
+        if ($maliciousUrl = $this->maliciousUrlsService->getOneByUrl($parseUrl['host'] ?? '')) {
+
+            $this->maliciousUrlsService->save(
+                $maliciousUrl->setCounter($maliciousUrl->getCounter()+1)
+            );
+
+            $this->monolog->logger->debug(
+                sprintf(
+                    'Malicious URL: %s by %s',
+                    $maliciousUrl->getId(),
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
+                );
+
+            $this->addFlash('warning', 'This URL is on Blacklist.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 

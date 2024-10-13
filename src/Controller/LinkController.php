@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Entity\Link;
 use App\Service\LinkService;
+use App\Service\MaliciousUrlsService;
+use App\Service\MonologService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
@@ -26,7 +28,9 @@ class LinkController extends AbstractController
     public function __construct(
         private readonly LinkService $linkService,
         private readonly TokenGeneratorService $tokenGeneratorService,
-        private readonly UserSettingService $userSettingService
+        private readonly UserSettingService $userSettingService,
+        private readonly MaliciousUrlsService $maliciousUrlsService,
+        private readonly MonologService $monolog
     ) {
     }
 
@@ -50,6 +54,26 @@ class LinkController extends AbstractController
 
         if (!$url) {
             $this->addFlash('warning', 'Please paste your URL or type it - something like [google.com]');
+            return $this->redirectToRoute(self::HOME_ROUTE);
+        }
+
+
+        $parseUrl = parse_url($url);
+
+        if ($maliciousUrl = $this->maliciousUrlsService->getOneByUrl($parseUrl['host'] ?? '')) {
+
+            $this->maliciousUrlsService->save(
+                $maliciousUrl->setCounter($maliciousUrl->getCounter()+1)
+            );
+
+            $this->monolog->logger->debug(
+                sprintf(
+                    'Malicious URL: %s by %s',
+                    $maliciousUrl->getId(),
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
+                );
+
+            $this->addFlash('warning', 'This URL is on Blacklist.');
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 

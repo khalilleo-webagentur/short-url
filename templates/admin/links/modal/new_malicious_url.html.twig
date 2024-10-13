@@ -1,0 +1,35 @@
+<div class="modal fade" id="MaliciousUrlModal" tabindex="-1" role="dialog" aria-labelledby="MaliciousUrlTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{{ path('app_admin_links_malicious_new') }}" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-title-upper" id="MaliciousUrlTitle">
+                        Add Malicious Urls
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <div class="mb-3">
+                        <label for="mUrls" class="form-label">Malicious URLs:</label>
+                        <textarea type="text" class="form-control" id="iDesc" rows="5" name="mUrls" placeholder="0.0.0.0 ck.getcookiestxt.com
+0.0.0.0 eu1.clevertap-prod.com
+0.0.0.0 wizhumpgyros.com
+0.0.0.0 coccyxwickimp.com
+...
+                      "></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-radius-50" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success btn-radius-50">Add URLS</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

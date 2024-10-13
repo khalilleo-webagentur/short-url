@@ -33,8 +33,8 @@ trait FormValidationTrait
 
     private function validateAndReplaceSpace(string $name): string
     {
-        $name = str_replace  ("'", "", $name);
-        $name = preg_replace ('/[^\p{L}\p{N}]/u', '-', $name);
+        $name = str_replace("'", "", $name);
+        $name = preg_replace('/[^\p{L}\p{N}]/u', '-', $name);
 
         return $name;
     }
@@ -42,6 +42,10 @@ trait FormValidationTrait
     private function validateURL(?string $input): ?string
     {
         if (empty($input)) {
+            return null;
+        }
+
+        if (!str_contains($input, '.')) {
             return null;
         }
 
