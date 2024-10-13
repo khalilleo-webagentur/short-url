@@ -1,6 +1,6 @@
 {% extends 'layout/base_without.html.twig' %}
 
-{% block title %} Sign In {% endblock %}
+{% block title %} Authenticate {% endblock %}
 
 {% block body %}
 
@@ -8,17 +8,17 @@
     <div class="container p-0">
         <div class="row justify-content-center pt-5">
             <div class="col-lg-4 pt-5">
-                <div class="d-dark-color  p-4">
+                <div class="d-dark-color p-4 rounded-3">
 
                     <div class="text-center pt-3">
                         <a href="{{app.request.schemeAndHttpHost}}">
                             <img src="{{asset('assets/img/logo.png')}}" alt="L1.">
                         </a>
 
-                        <h3 class="my-1 text-center text-white-50">Sign In</h3>
+                        <h3 class="my-1 text-center text-white-50">Authenticate</h3>
 
                         <p class="text-center text-white-50 mb-3">
-                            For security reasons, we will send you a security code via e-mail which you can use it to
+                            For security reasons, we will send you a OTP via e-mail which you can use it to
                             access your dashbaord.
                         </p>
                     </div>
@@ -35,8 +35,7 @@
                             <small class="text-secondary">Enter the email to receive your login code</small>
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-success w-100" >Sign
-                                In</button>
+                            <button class="btn btn-success w-100" >Send me OTP</button>
                         </div>
                     </form>
 
