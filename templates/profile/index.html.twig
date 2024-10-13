@@ -15,7 +15,7 @@
 
                 <h5 class="text-white-50 mt-lg-5 mt-md-3">My Profile</h5>
 
-                <div class="d-dark-color rounded-3">
+                <div class="d-dark-color d-dark-border-color rounded-3">
 
                     <div class="row p-3 mt-3">
                         <div class="col">
@@ -38,17 +38,17 @@
                         <div class="row">
                             <div class="col">
                                 <p class="small float-end">
-                                    <a href="{{path('app_profile_my_urls')}}" class="text-decoration-none small">My URLs</a>
+                                    <a href="{{path('app_profile_my_urls')}}" class="d-color text-decoration-none small">My URLs</a>
 
                                     <span class="small text-secondary px-1">|</span>
 
                                     <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}" 
-                                        class="text-decoration-none">Social Profile
+                                        class="d-color text-decoration-none">Social Profile
                                     </a>
     
                                     {% if is_granted('ROLE_SUPER_ADMIN') %}
                                     <span class="small text-secondary px-1">|</span>
-                                    <a href="{{path('app_admin_index')}}" class="text-decoration-none">Dashboard</a>
+                                    <a href="{{path('app_admin_index')}}" class="d-color text-decoration-none">Dashboard</a>
                                     {% endif %}
                                 </p>
                             </div>
@@ -61,7 +61,7 @@
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
                     <div class="col">
-                        <div class="card h-100 d-dark-color ">
+                        <div class="card h-100 d-dark-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#usernameModal">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color ">
+                        <div class="card h-100 d-dark-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#emailModal">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color ">
+                        <div class="card h-100 d-dark-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#exportModal">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color ">
+                        <div class="card h-100 d-dark-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal">
@@ -110,8 +110,8 @@
 
             <p class="text-white-50 pb-5 mb-5">
                 If you have any questions about your account, please use the
-                <a href="{{path('app_contact_us_index')}}" class="text-decoration-none">contact form</a> or
-                <a href="mailto::{{email}}" class="text-decoration-none">email us</a> directly.
+                <a href="{{path('app_contact_us_index')}}" class="d-color text-decoration-none">contact form</a> or
+                <a href="mailto::{{email}}" class="d-color text-decoration-none">email us</a> directly.
             </p>
         </div>
     </div>
