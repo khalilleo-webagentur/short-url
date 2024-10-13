@@ -102,8 +102,16 @@ input[type="color"]:focus,
 }
 
 .d-danger-color {
-    color: #dd4856;
+    color: #9f444d;
     opacity: 0.8;
+}
+
+.d-warning-color {
+    color: #c99d1b !important
+}
+
+.d-success-color {
+    color: #12995a !important
 }
 
 .cursor-help {
@@ -112,6 +120,22 @@ input[type="color"]:focus,
 
 label {
     color: #808080;
+}
+
+.btn-outline-secondary, .btn-outline-success .btn-outline-warning, .btn-outline-danger {
+    opacity: 0.8;
+}
+
+.opacity-07 {
+    opacity: 0.7;
+}
+
+.opacity-08 {
+    opacity: 0.8;
+}
+
+.opacity-09 {
+    opacity: 0.9;
 }
 
 body {

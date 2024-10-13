@@ -23,7 +23,7 @@
                 <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
                 <td>
                     <form action="{{path('app_profile_job_star_store', {id:link.id})}}" class="pointer" method="post">
-                        <span class="bi {{link.isFave ? 'bi-star-fill text-warning' : 'bi-star text-secondary'}}"
+                        <span class="bi {{link.isFave ? 'bi-star-fill d-warning-color' : 'bi-star text-secondary'}}"
                             onclick="this.closest('form').submit();"></span>
                         <div class="d-none">
                             <input type="hidden" name="star" value="on">
@@ -41,7 +41,7 @@
                 <td title="{{link.url}}" class="cursor-help md-d-none">
                     <span class="text-white-50">{{link.url|slice(0, 35) ~ ' ...'}}</span>
                 </td>
-                <td class="text-white-50">{{ link.isPublic ? checkCircle('text-success') : circle('text-danger') }}</td>
+                <td class="text-white-50">{{ link.isPublic ? checkCircle('d-success-color') : circle('d-danger-color') }}</td>
                 <td class="text-white-50">{{link.counter}}</td>
                 <td class="text-white-50">
                     {% if link.collection %}
@@ -70,7 +70,7 @@
                             {% if link.counter > 0 and link.isPublic %}
                             <li class="small">
                                 <a class="dropdown-item" href="{{path('app_url_statistic_index', {id:link.id})}}">
-                                    <span class="bi bi-pie-chart pe-2"></span> Statistic
+                                    <span class="bi bi-bar-chart pe-2"></span> Statistic
                                 </a>
                             </li>
                             {% endif %}

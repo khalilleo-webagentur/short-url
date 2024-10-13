@@ -13,11 +13,11 @@
           {% if count(collections) > 0 %}
 
           <div class="mb-3">
-            <p class="text-white-50">Select your Target Group to move Links into.</p>
+            <p class="text-white-50">Select your Target group to move Links, that haven't be accociated to a any group, into.</p>
           </div>
 
           <div class="mb-3">
-            <p class="text-white-50 mb-1">Select your Group:</p>
+            <p class="text-white-50 mb-1">Select your Group: <span class="d-danger-color">*</span></p>
             <select class="form-select text-white-50" aria-label="Default select" name="collection" required>
               <option selected disabled>---</option>
 
@@ -25,10 +25,11 @@
               <option value="{{ row.id }}">{{ row.name }}</option>
               {% endfor %}
             </select>
+            <small class="text-secondary">Create a group if the target group not listed here.</small>
           </div>
 
           <div class="mb-3">
-            <input class="form-check-input" type="checkbox" id="moveOnly" name="moveOnly">
+            <input class="form-check-input" type="checkbox" id="moveOnly" name="moveOnly" checked disabled>
             <label class="form-check-label" for="moveOnly">
               <span class="ps-1">Move only these do not accociated to a group.</span>
             </label>
@@ -38,15 +39,15 @@
           <div class="mb-3">
             <p class="text-secondary">
               <span class="bi bi-info-circle pe-1"></span>
-              You don't have any group. Please add a new Group then come back here!
+              You don't have any group. Please add a new group then come back here!
             </p>
           </div>
           {% endif %}
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-warning" {{count(collections) <=0 ? 'disabled' : '' }}>Move</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-warning" {{count(collections) <=0 ? 'disabled' : '' }}>Move</button>
         </div>
       </form>
 

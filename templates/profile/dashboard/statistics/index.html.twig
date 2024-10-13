@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
 
-    <div class="row py-3 d-dark-color shadow-sm">
+    <div class="row py-3 d-dark-color">
         <div class="col-6 col-lg-6">
             <h5 class="text-white-50 pt-2">Statistic {{link.title ? '- ' ~ link.title|capitalize : ''}}</h5>
         </div>
@@ -62,9 +62,9 @@
                             </td>
                             <td>
                                 <form action="{{path('app_url_statistic_delete', {id:link.id})}}" method="post">
-                                    <div class="text-danger fs-14 pointer" onclick="this.closest('form').submit()"
+                                    <div class="text-danger opacity-08 fs-14 pointer" onclick="this.closest('form').submit()"
                                         title="Delete Permanentely?">
-                                        <span class="md-d-none">Delete</span> <span class="bi bi-trash fs-13"></span>
+                                        <span class="md-d-none">Remove</span> <span class="bi bi-trash fs-13"></span>
                                     </div>
                                 </form>
                             </td>

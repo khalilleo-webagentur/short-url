@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
 
-    <div class="row py-3 d-dark-color shadow-sm">
+    <div class="row py-3 d-dark-color">
         <div class="col-6 col-lg-6">
             <h5 class="text-white-50 pt-2">Edit URL Details</h5>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-lg-6">
             <div class="row row-cols-1 g-3">
                 <div class="col">
-                    <div class="card d-dark-color">
+                    <div class="card d-dark-color d-dark-border-color">
                         <div class="card-body">
                             <form class="py-3" action="{{path('app_profile_my_urls_store', {id: link.id})}}" method="post">
                                 <div class="mb-3">
@@ -49,7 +49,9 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="iUrl" class="form-label text-white-50">Long URL:</label>
+                                    <label for="iUrl" class="form-label text-white-50">
+                                        Long URL: <span class="d-danger-color">*</span>
+                                    </label>
                                     <input type="text" class="form-control" id="iUrl" placeholder="Long link (Required)"
                                         required name="iUrl" value="{{link.url}}">
                                 </div>
@@ -58,11 +60,15 @@
                                 <div class="mb-3">
                                     {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                                     <small class="float-end d-color">{{shortLink}}</small>
-                                    <label for="iUrl" class="form-label text-white-50">URL Code:</label>
+                                    <label for="iUrl" class="form-label text-white-50">
+                                        URL Code: <span class="d-danger-color">*</span>
+                                    </label>
                                     <input type="text" class="form-control" id="iCode" placeholder="URL Code (Required)"
                                         required name="iCode" value="{{link.token}}">
                                     <small class="text-secondary">Special chars Hyphen (-) is allowed.</small>
                                 </div>
+                                {% else %}
+                                    <input type="hidden" name="iCode" value="{{link.token}}">
                                 {% endif %}
 
                                 <div class="form-check mb-3">
@@ -81,8 +87,8 @@
                                     </label>
                                 </div>
                                 <div class="gap-2">
-                                    <button class="btn btn-success px-3" type="submit">
-                                        Save changes <span class="bi bi-check2-circle"></span>
+                                    <button class="btn btn-outline-success px-3" type="submit">
+                                        Save changes <span class="bi bi-check"></span>
                                     </button>
                                 </div>
                             </form>

@@ -14,18 +14,21 @@
           </div>
 
           <div class="mb-3">
-            <p class="text-white-50 mb-1">Select your Option</p>
+            <p class="text-white-50 mb-1">
+              Select your Option <span class="d-danger-color">*</span>
+            </p>
             <select class="form-select text-white-50" aria-label="Default select sExportAsLinks" name="as" required>
               <option selected disabled>---</option>
               <option value="csv">CSV-Format</option>
               <option value="json">JSON-Format</option>
             </select>
+            <small class="text-secondary">Format field is required.</small>
           </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-warning rmModal">Export</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-success rmModal">Export</button>
         </div>
       </form>
 

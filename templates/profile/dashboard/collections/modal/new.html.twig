@@ -11,7 +11,9 @@
         <div class="modal-body">
 
           <div class="mb-3">
-            <label for="iName" class="form-label">Name:</label>
+            <label for="iName" class="form-label">
+              Name: <span class="d-danger-color">*</span>
+            </label>
             <input type="text" class="form-control" id="iName" placeholder="Type group name" name="iName" required
               autofocus>
             <small class="text-secondary">Group name might contain only dash (-) and numbers.</small>
@@ -19,8 +21,8 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-success">Add Group</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-success">Add Group</button>
         </div>
       </form>
 
