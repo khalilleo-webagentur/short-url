@@ -10,24 +10,30 @@
       <form action="{{path('app_dashboard_social_profile_new')}}" method="post">
         <div class="modal-body">
           <div class="mb-3">
-            <label for="iSource" class="form-label">Name:</label>
+            <label for="iSource" class="form-label">
+              Name: <span class="d-danger-color">*</span>
+            </label>
             <input type="text" class="form-control" id="iSource" placeholder="Twitter" name="iSource" required
               autofocus>
           </div>
           <div class="mb-3">
-            <label for="iName" class="form-label">Username:</label>
+            <label for="iName" class="form-label">
+              Username: <span class="d-danger-color">*</span>
+            </label>
             <input type="text" class="form-control" id="iName" placeholder="__khalilleo" name="iName" required>
           </div>
 
           <div class="mb-3">
-            <label for="iUrl" class="form-label">Link to your Profile:</label>
+            <label for="iUrl" class="form-label">
+              Link to your Profile: <span class="d-danger-color">*</span>
+            </label>
             <input type="text" class="form-control" id="iUrl" placeholder="https://twitter.com/__khalilleo" name="iUrl"
               required>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-success">Add Link</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-success">Add Social Link</button>
         </div>
       </form>
 

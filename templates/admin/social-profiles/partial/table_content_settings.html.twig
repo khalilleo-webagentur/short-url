@@ -24,7 +24,7 @@
                         class="fa fa-external-link-alt fa-xs pl-1"></span>
                     </a>
                 </td>
-                <td>{{ row.description }}</td>
+                <td title="{{row.description}}">{{ row.description|slice(0, 30) ~ '..' }}</td>
                 <td>{{ row.countViews }}</td>
 
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
