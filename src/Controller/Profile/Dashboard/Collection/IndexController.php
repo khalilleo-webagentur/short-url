@@ -26,8 +26,7 @@ class IndexController extends AbstractController
         private readonly LinkService $linkService,
         private readonly LinkCollectionService $linkCollectionService,
         private readonly LinkStatisticService $linkStatisticService
-    ) {
-    }
+    ) {}
 
     #[Route('/home', name: 'app_link_collection_index')]
     public function index(): Response
@@ -77,6 +76,11 @@ class IndexController extends AbstractController
                 ->setUser($user)
                 ->setIsDefault(count($collections) <= 0)
         );
+
+        // user has add link(s) and we just move all links (if any) into a created collection.
+        if (count($collections) <= 0) {
+            $this->linkService->moveLinksWithoutAnyAssociationsToCollection($user, $collection);
+        }
 
         $this->addFlash('success', sprintf('Group [%s] has been added.', $name));
 
@@ -133,7 +137,7 @@ class IndexController extends AbstractController
             foreach ($this->linkService->getAllByUserAndCollection($user, $collection) as $link) {
                 $this->linkStatisticService->deleteAllByLink($link);
             }
-            
+
             $this->linkService->removeCollectionFromLinks($user, $collection);
             $this->linkCollectionService->delete($collection);
 
@@ -149,7 +153,7 @@ class IndexController extends AbstractController
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
-        $this->linkCollectionService->save($collection->setName($name));
+        $this->linkCollectionService->save($collection->setName(ucfirst($name)));
 
         $this->addFlash('success', 'Group name has been updated.');
 

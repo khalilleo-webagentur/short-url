@@ -31,8 +31,8 @@ class SearchController extends AbstractController
 
         $keyword = $this->validate($request->request->get('keyword'));
 
-        if (!$keyword || strlen($keyword) < 3) {
-            $this->addFlash('notice', 'Keyword length must be greater than or equal 3 Chars.');
+        if (!$keyword || strlen($keyword) < 2) {
+            $this->addFlash('notice', 'Keyword length must be greater than or equal 2 Chars.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
