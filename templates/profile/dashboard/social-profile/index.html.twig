@@ -19,7 +19,7 @@
                 {% if app.user %}
                 <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal"
                     class="text-decoration-none d-color opacity-08 mt-3 pb-3 fs-15">
-                    Add Link <span class="bi bi-plus-square ps-1"></span>
+                    Add Social Link <span class="bi bi-plus-square ps-1"></span>
                 </a>
                 {% else %}
                 <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 fs-15 pb-3">
@@ -56,9 +56,9 @@
                         <span class="text-white-50">{{socialProfileSetting.description}}</span>
 
                         {% if app.user %}
-                        <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal"
-                            data-bs-target="#socialProfileSettingDescModal">
-                        </span>
+                            <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal"
+                                data-bs-target="#socialProfileSettingDescModal">
+                            </span>
                         {% endif %}
                     </p>
 

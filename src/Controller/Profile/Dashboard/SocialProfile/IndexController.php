@@ -129,6 +129,7 @@ class IndexController extends AbstractController
         }
 
         if ($this->validateCheckbox($request->request->get('delete'))) {
+            $this->socialProfileStatisticsService->deleteAllByUserAndSocialProfile($user, $socialProfile);            
             $this->socialProfileService->delete($socialProfile);
             $this->addFlash('success', 'Social link has been deleted.');
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);

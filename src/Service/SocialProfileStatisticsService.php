@@ -73,6 +73,13 @@ final class SocialProfileStatisticsService
             $this->delete($statistic);
         }
     }
+    
+    public function deleteAllByUserAndSocialProfile($user, $socialProfile): void
+    {
+        foreach ($this->getAllBySocialProfileAndUser($socialProfile, $user) as $statistic) {
+            $this->delete($statistic);
+        }
+    }
 
     public function delete(SocialProfileStatistics $model): void
     {

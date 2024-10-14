@@ -23,12 +23,12 @@ final class SocialProfileVisitorService
     ) {
     }
 
-    public function getOneByVisitorUuid(): ?SocialProfileVisitor
+    public function getOneByVisitorUuid(User $user): ?SocialProfileVisitor
     {
         $userAgent = $this->browserDetectService->userAgent();
         $userAgentUuid = sha1($this->getRemote() . $userAgent->getBrowserName() . $userAgent->getPlatform() . $userAgent->getBrowserLang());
 
-        return $this->socialProfileVisitorRepository->findOneBy(['visitorUuid' => $userAgentUuid]);
+        return $this->socialProfileVisitorRepository->findOneBy(['user' => $user, 'visitorUuid' => $userAgentUuid]);
     }
     
     /**
@@ -41,7 +41,7 @@ final class SocialProfileVisitorService
 
     public function add(User $user, SocialProfileSetting $socialProfileSetting): ?SocialProfileVisitor
     {
-        if ($this->getOneByVisitorUuid()) {
+        if ($this->getOneByVisitorUuid($user)) {
             return null;
         }
 
