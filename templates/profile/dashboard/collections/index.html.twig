@@ -26,7 +26,7 @@
         <div class="col-lg-8">
 
             <div class="col my-3">
-                <div class="card">
+                <div class="card d-dark-color d-dark-border-color">
                     <div class="card-body">
                         <span class="text-white-50 pointer" data-bs-toggle="modal" data-bs-target="#moveModal">
                             <span class="bi bi-arrows-move pe-1"></span> 
@@ -36,10 +36,10 @@
                 </div>
             </div>
 
-            <div class="accordion border-0" id="accordionCollections">
+            <div class="accordion accordion-border" id="accordionCollections">
                 {% for i, collection in collections %}
-                <div class="accordion-item d-dark-color">
-                    <h2 class="accordion-header">
+                <div class="accordion-item">
+                    <h2 class="accordion-header d-dark-color d-dark-border-color">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapse{{i}}">
                             Manage Group {{collection.name|capitalize}}

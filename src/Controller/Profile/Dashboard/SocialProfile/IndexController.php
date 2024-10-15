@@ -32,7 +32,7 @@ class IndexController extends AbstractController
     ) {
     }
 
-    #[Route('/me/{profile}', name: 'app_dashboard_social_profile_index')]
+    #[Route('/u/{profile}', name: 'app_dashboard_social_profile_index')]
     public function index(?string $profile): Response
     {
         $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile));
@@ -148,7 +148,7 @@ class IndexController extends AbstractController
 
         $this->socialProfileService->save(
             $socialProfile
-                ->setPlatform($platform)
+                ->setPlatform($this->replaceSpecialChars($platform))
                 ->setUsername($username)
                 ->setUrl($profileUrl)
         );
