@@ -23,7 +23,8 @@
                 <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
                 <td>
                     <form action="{{path('app_profile_job_star_store', {id:link.id})}}" class="pointer" method="post">
-                        <span class="bi {{link.isFave ? 'bi-star-fill d-warning-color' : 'bi-star text-secondary'}}"
+                        <span
+                            class="opacity-05 bi {{link.isFave ? 'bi-star-fill d-warning-color' : 'bi-star text-secondary'}}"
                             onclick="this.closest('form').submit();"></span>
                         <div class="d-none">
                             <input type="hidden" name="star" value="on">
@@ -32,22 +33,26 @@
                 </td>
                 {% set urlPath = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                 <td class="text-white-50" title="{{ urlPath}}">
-                    <span class="cUrlCode cursor-help" data-description="{{urlPath}}"
-                        title="Copy to Clipboard">{{link.token}}</span> <a href="{{ urlPath }}" class="ps-1"
-                        target="_blank">
-                        <span class="bi bi-box-arrow-up-right text-primary" title="Visit your long URL"></span>
-                    </a>
+                    <div class="d-flex">
+                        <span class="cUrlCode cursor-help" data-description="{{urlPath}}"
+                            title="Copy to Clipboard">{{link.token}}
+                        </span>
+                        <a href="{{ urlPath }}" class="ps-1 opacity-07" target="_blank">
+                            <span class="bi bi-box-arrow-up-right text-primary" title="Visit your long URL"></span>
+                        </a>
+                    </div>
                 </td>
                 <td title="{{link.url}}" class="cursor-help md-d-none">
                     <span class="text-white-50">{{link.url|slice(0, 35) ~ ' ...'}}</span>
                 </td>
-                <td class="text-white-50">{{ link.isPublic ? checkCircle('d-success-color') : circle('d-danger-color') }}</td>
+                <td class="text-white-50">{{ link.isPublic ? checkCircle('d-success-color opacity-05') :
+                    circle('d-danger-color opacity-05') }}</td>
                 <td class="text-white-50">{{link.counter}}</td>
                 <td class="text-white-50">
                     {% if link.collection %}
                     <a href="{{path('app_links_collection_edit', {id:link.collection.id})}}"
                         title="Edit / Delete: {{link.collection.name}}"
-                        class="text-decoration-none {{link.collection.isDefault ? 'text-primary link-opacity-50' : 'text-primary link-opacity-25'}}">
+                        class="text-decoration-none {{link.collection.isDefault ? 'text-primary opacity-07' : 'text-primary opacity-07'}}">
                         {{ link.collection.name|slice(0, 5) ~ '..' }}
                     </a>
                     {% else %}
