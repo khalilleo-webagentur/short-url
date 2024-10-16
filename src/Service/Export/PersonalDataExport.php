@@ -36,13 +36,13 @@ final class PersonalDataExport
 
         if (null !== $row) {
             $result = [
-                '_user_name' => $row->getName(),
-                '_email_address' => $row->getEmail(),
-                '_user_role' => strtolower(str_replace('_', '-', $row->getRoles()[0])),
-                '_is_account_verified' => $row->isVerified(),
-                '_is_account_deleted' => $row->isDeleted(),
-                '_last_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
-                '_account_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
+                'user_name' => $row->getName(),
+                'email_ddress' => $row->getEmail(),
+                'user_role' => strtolower(str_replace('_', '-', $row->getRoles()[0])),
+                'is_account_verified' => $row->isVerified(),
+                'is_account_deleted' => $row->isDeleted(),
+                'last_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
+                'account_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
             ];
         }
 

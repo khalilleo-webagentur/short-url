@@ -37,7 +37,7 @@ class IndexController extends AbstractController
     {
         $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile));
 
-        if (!$socialProfileSetting) {
+        if ((!$socialProfileSetting || !$socialProfileSetting->isPublic()) && !$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
 
@@ -63,7 +63,7 @@ class IndexController extends AbstractController
 
         $socialProfileSetting = $this->socialProfileSettingService->getByName($profileOwnerMainName);
 
-        if (!$socialProfileSetting) {
+        if ((!$socialProfileSetting || !$socialProfileSetting->isPublic()) && !$this->getUser()) {
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
@@ -97,6 +97,11 @@ class IndexController extends AbstractController
 
         $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
 
+        if (!$socialProfileSetting) {
+            $this->addFlash('warning', sprintf('Unknown Link ID [%s]', $id));
+            return $this->redirectToRoute(self::HOME_ROUTE);
+        }
+
         if (!$socialProfile) {
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, ['profile' => $socialProfileSetting->getMainName()]);
         }
@@ -120,6 +125,11 @@ class IndexController extends AbstractController
         );
 
         $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
+
+        if (!$socialProfileSetting) {
+            $this->addFlash('warning', sprintf('Unknown Link ID [%s]', $id));
+            return $this->redirectToRoute(self::HOME_ROUTE);
+        }
 
         $route = ['profile' => $socialProfileSetting->getMainName()];
 

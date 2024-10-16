@@ -27,6 +27,9 @@ class SocialProfileSetting
     #[ORM\Column]
     private int $countViews = 0;
 
+    #[ORM\Column]
+    private bool $isPublic = true;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -87,6 +90,18 @@ class SocialProfileSetting
     public function setCountViews(int $countViews): static
     {
         $this->countViews = $countViews;
+
+        return $this;
+    }
+
+    public function isPublic(): bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

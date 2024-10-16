@@ -39,16 +39,16 @@ final class UserLinksExport
         if (!empty($rows)) {
 
             $keys = [
-                '_link_title',
-                '_collection_name',
-                '_link_token',
-                '_link_url',
-                '_link_clicks',
-                '_is_link_star',
-                '_is_link_public',
-                '_is_link_repoted',
-                '_link_updated_at',
-                '_link_created_at',
+                'link_title',
+                'collection_name',
+                'link_token',
+                'link_url',
+                'link_clicks',
+                'is_link_star',
+                'is_link_public',
+                'is_link_repoted',
+                'link_updated_at',
+                'link_created_at',
             ];
 
             echo implode($separator, $keys) . "\n";
@@ -77,16 +77,16 @@ final class UserLinksExport
         if (null !== $links) {
             foreach ($links as $row) {
                 $result[] = [
-                    '_link_title' => $row->getTitle(),
-                    '_collection_name' => $row->getCollection() ? $row->getCollection()->getName() : null,
-                    '_link_token' => $row->getToken(),
-                    '_link_url' => $row->getUrl(),
-                    '_link_clicks' => $row->getCounter(),
-                    '_is_link_star' => $row->isFave(),
-                    '_is_link_public' => $row->isPublic(),
-                    '_is_link_repoted' => $row->isReported(),
-                    '_link_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
-                    '_link_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
+                    'link_title' => $row->getTitle(),
+                    'collection_name' => $row->getCollection() ? $row->getCollection()->getName() : null,
+                    'link_token' => $row->getToken(),
+                    'link_url' => $row->getUrl(),
+                    'link_clicks' => $row->getCounter(),
+                    'is_link_star' => $row->isFave(),
+                    'is_link_public' => $row->isPublic(),
+                    'is_link_repoted' => $row->isReported(),
+                    'link_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
+                    'link_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
                 ];
             }
         }
@@ -102,9 +102,9 @@ final class UserLinksExport
         if (null !== $collections) {
             foreach ($collections as $row) {
                 $result[] = [
-                    '_collection_name' => $row->getName(),
-                    '_collection_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
-                    '_collection_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
+                    'collection_name' => $row->getName(),
+                    'collection_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
+                    'collection_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
                 ];
             }
         }

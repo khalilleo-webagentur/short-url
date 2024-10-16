@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Profile\Dashboard\Setting;
+namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Service\LinkCollectionService;
 use App\Service\UserSettingService;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class IndexController extends AbstractController
+class SettingsController extends AbstractController
 {
     use FormValidationTrait;
 
@@ -39,7 +39,7 @@ class IndexController extends AbstractController
 
         $collections = $this->linkCollectionService->getAllByUser($user);
 
-        return $this->render('profile/dashboard/setting/index.html.twig', [
+        return $this->render('profile/dashboard/links/settings.html.twig', [
             'userSetting' => $userSetting,
             'collections' => $collections
         ]);

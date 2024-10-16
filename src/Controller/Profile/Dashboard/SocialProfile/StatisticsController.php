@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/social-profile/statistics')]
-class SocialProfileStatisticsController extends AbstractController
+class StatisticsController extends AbstractController
 {
     use FormValidationTrait;
 

@@ -15,17 +15,44 @@
             <h5 class="text-white-50 pt-2">Social-Media Profiles</h5>
         </div>
         <div class="col-6">
-            <div class="text-white-50 pt-2 text-end me-2">
+            <div class="text-white-50 text-end me-2">
+                
                 {% if app.user %}
-                <a href="#" data-bs-toggle="modal" data-bs-target="#socialProfileModal"
-                    class="text-decoration-none d-color opacity-08 mt-3 pb-3 fs-15">
-                    Add Social Link <span class="bi bi-plus-square ps-1"></span>
-                </a>
+                <div class="d-flex float-end">
+                    <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
+                        data-bs-target="#socialProfileModal">
+                        <span class="md-d-none">Social Link</span> <span class="bi bi-plus-circle ps-lg-1"></span>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
+                        data-bs-target="#socialProfileSettingModal">
+                        <span class="md-d-none">Profile Name</span> <span class="bi bi-pencil-square ps-lg-1"></span>
+                    </button>
+                    <div class="dropdown mt-1 me-2">
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="bi bi-three-dots-vertical"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li class="small">
+                                <a class="dropdown-item" href="{{path('app_dashboard_social_profile_settings_index')}}">
+                                    <span class="bi bi-gear pe-1"></span> Settings
+                                </a>
+                            </li>
+
+                            <li class="small">
+                                <a class="dropdown-item" href="{{path('app_contact_us_index')}}">
+                                    <span class="bi bi-question-circle pe-1"></span> Help
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                 {% else %}
-                <a href="{{path('app_auth')}}" class="text-decoration-none mt-3 text-white-50 fs-15 pb-3">
+                <a href="{{path('app_auth')}}" class="text-decoration-none mt-4 text-white-50 fs-15">
                     Edit <span class="bi bi-pencil-square ps-1"></span>
                 </a>
                 {% endif %}
+                
             </div>
         </div>
     </div>
@@ -35,19 +62,13 @@
             <div class="col-lg-8">
 
                 <div class="text-center d-dark-color d-dark-border-color rounded-3 pb-4 mb-3 mt-3">
-
                     <div class="mb-1 pt-4">
-                        <img src="{{asset('avatar/' ~ profile.avatarName)}}" class="img-fluid rounded-pill" width="128px"
-                            alt="User Image">
+                        <img src="{{asset('avatar/' ~ profile.avatarName)}}" class="img-fluid rounded-pill"
+                            width="128px" alt="User Image">
                     </div>
 
                     <div class="pt-1">
-                        <span class="text-white-25 fs-4">{{ socialProfileSetting.mainName|capitalize }}</span>
-
-                        {% if app.user %}
-                        <span class="bi bi-pencil-square text-secondary ps-2 pointer" data-bs-toggle="modal"
-                            data-bs-target="#socialProfileSettingModal"></span>
-                        {% endif %}
+                        <span class="text-white-25 fs-4">{{ socialProfileSetting.mainName }}</span>
                     </div>
 
 
@@ -56,17 +77,23 @@
                         <span class="text-white-50">{{socialProfileSetting.description}}</span>
 
                         {% if app.user %}
-                            <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal"
-                                data-bs-target="#socialProfileSettingDescModal">
-                            </span>
+                        <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal"
+                            data-bs-target="#socialProfileSettingDescModal">
+                        </span>
                         {% endif %}
                     </p>
 
                     <p class="text-white-50 small">
                         <span class="bi bi-eye me-1"></span> {{socialProfileSetting.countViews}}
+                    
+                        {% if app.user %}
+                        <br>
+                            <small class="d-danger-color ps-1">
+                                {{socialProfileSetting.isPublic ? '' : '[PROFILE IS DISABLED]'}}
+                            </small>
+                        {% endif %}
+                        
                     </p>
-
-
                 </div>
 
                 <div class="row row-cols-1 g-1">
@@ -82,7 +109,8 @@
                                     <div class="card-body">
                                         <h6 class="pt-2" title="{{row.platform|capitalize}}">
                                             <span class="text-white-25">@{{row.username|capitalize}}</span>
-                                            <small class="text-white-50 me-2" title="Platform">({{row.platform|capitalize}})</small>
+                                            <small class="text-white-50 me-2"
+                                                title="Platform">({{row.platform|capitalize}})</small>
                                         </h6>
                                     </div>
                                 </div>
@@ -90,18 +118,17 @@
                                     <div class="text-end pe-3 pt-4">
 
                                         <a href="{{ path('app_dashboard_social_profile_redirect_to', {nums: randomNumbers(), id: row.id, mainName: socialProfileSetting.mainName}) }}"
-                                            class=" opacity-07"
-                                            target="_blank" title="Visit Profile"><span class="bi bi-arrow-up-right-square fs-6"></span></a>
+                                            class=" opacity-07" target="_blank" title="Visit Profile"><span
+                                                class="bi bi-arrow-up-right-square fs-6"></span></a>
 
                                         {% if app.user %}
                                         <a href="{{path('app_dashboard_social_profile_edit', {id: row.id})}}"
                                             class=" opacity-07" title="Edit"><span
-                                             class="bi bi-pencil-square ps-1 fs-6 ps-3"></span></a>
+                                                class="bi bi-pencil-square ps-1 fs-6 ps-3"></span></a>
 
                                         <a href="{{ path('app_dashboard_social_profile_statistics_setting_index', {id: row.id}) }}"
-                                            class=" opacity-07"
-                                            title="View Statistics">
-                                           <span class="bi bi-bar-chart ps-1 fs-6 ps-3"></span></a>
+                                            class=" opacity-07" title="View Statistics">
+                                            <span class="bi bi-bar-chart ps-1 fs-6 ps-3"></span></a>
                                         {% endif %}
 
                                     </div>
@@ -142,7 +169,8 @@
                     </div>
 
                     {% if not app.user %}
-                    <p class="mt-2 pb-3"><a href="{{path('app_register')}}" class="text-decoration-none d-color opacity-07">
+                    <p class="mt-2 pb-3"><a href="{{path('app_register')}}"
+                            class="text-decoration-none d-color opacity-07">
                             <span class="bi bi-plus-circle-fill pe-1"></span> Create your own Social-Profiles</a>
                     </p>
                     {% endif %}

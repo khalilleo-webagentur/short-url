@@ -10,13 +10,16 @@ use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class SocialProfileSettingController extends AbstractController
+#[Route('/profile/dashboard/profile-settings')]
+class SettingsController extends AbstractController
 {
     use FormValidationTrait;
 
     private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
+    private const SOCIAL_PROFILE_SETTINGS_ROUTE = 'app_dashboard_social_profile_settings_index';
 
     public function __construct(
         private readonly SocialProfileService $socialProfileService,
@@ -24,7 +27,21 @@ class SocialProfileSettingController extends AbstractController
     ) {
     }
 
-    #[Route('/social-profile-setting/alias/store', name: 'app_dashboard_social_profile_setting_store_alias', methods: 'POST')]
+    #[Route('/home', name: 'app_dashboard_social_profile_settings_index')]
+    public function index(): Response
+    {
+        $user = $this->getUser();
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
+
+        return $this->render('profile/dashboard/social-profile/settings.html.twig', [
+            'socialProfileSetting' => $socialProfileSetting
+        ]);
+    }
+
+    #[Route('/social-profile-name/store', name: 'app_dashboard_social_profile_setting_store_alias', methods: 'POST')]
     public function aliasStore(Request $request): RedirectResponse
     {
         $user = $this->getUser();
@@ -67,7 +84,7 @@ class SocialProfileSettingController extends AbstractController
     }
 
 
-    #[Route('/social-profile-setting/description/store', name: 'app_dashboard_social_profile_setting_store_desc', methods: 'POST')]
+    #[Route('/description/store', name: 'app_dashboard_social_profile_setting_store_desc', methods: 'POST')]
     public function storeDescription(Request $request): RedirectResponse
     {
         $user = $this->getUser();
@@ -88,5 +105,24 @@ class SocialProfileSettingController extends AbstractController
         $this->addFlash('success', 'About has been updated.');
 
         return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
+    }
+
+    #[Route('/is-profile-public/store', name: 'app_dashboard_social_profile_setting_store_is_public', methods: 'POST')]
+    public function storeIsProfilePublic(Request $request): RedirectResponse
+    {
+        $user = $this->getUser();
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        $socialProfileSetting = $this->socialProfileSettingService->getByUser($user);
+
+        if ($this->validateCheckbox($request->request->get('publicSetting'))) {
+            $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+            $this->socialProfileSettingService->save($socialProfileSetting->setPublic(!$isPublic));
+        }
+
+        $this->addFlash('success', 'Change has been saved.');
+
+        return $this->redirectToRoute(self::SOCIAL_PROFILE_SETTINGS_ROUTE);
     }
 }
