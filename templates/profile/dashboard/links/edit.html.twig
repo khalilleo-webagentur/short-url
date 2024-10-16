@@ -41,8 +41,8 @@
                                         name="group" required>
                                         <option value="0">No Group</option>
                                         {% for row in collections %}
-                                        <option value="{{row.id}}" {{link.collection and link.collection.name==row.name
-                                            ? 'selected' : '' }}>{{row.name}}
+                                        <option value="{{row.id}}" 
+                                            {{link.collection and link.collection.name==row.name ? 'selected' : '' }}>{{row.name}}
                                         </option>
                                         {% endfor %}
                                     </select>
@@ -59,7 +59,7 @@
                                 {% if allowLinkAlias %}
                                 <div class="mb-3">
                                     {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
-                                    <small class="float-end d-color">{{shortLink}}</small>
+                                    <small class="float-end d-color opacity-08">{{shortLink}}</small>
                                     <label for="iUrl" class="form-label text-white-50">
                                         URL Code: <span class="d-danger-color">*</span>
                                     </label>

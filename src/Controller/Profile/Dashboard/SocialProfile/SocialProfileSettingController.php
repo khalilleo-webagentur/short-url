@@ -59,7 +59,9 @@ class SocialProfileSettingController extends AbstractController
                 ->setMainName($mainName)
         );
 
-        $this->addFlash('success', sprintf('Alias [%s] has been saved.', $mainName));
+        $route = ['profile' => $socialProfileSetting->getMainName()];
+
+        $this->addFlash('success', sprintf('Profile Name [%s] has been saved.', $mainName));
 
         return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);
     }
