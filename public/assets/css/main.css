@@ -159,7 +159,11 @@ body {
     background-color: #1d2124;
     color: #ffffff80;
     box-shadow: none;
-} 
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-bottom: 1px solid #3535355e;
+}
 
 @keyframes fadein {
     from {

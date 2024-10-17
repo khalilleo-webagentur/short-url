@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Profile\Dashboard\Statistic;
+namespace App\Controller\Profile\Dashboard\Links;
 
 use App\Service\LinkService;
 use App\Service\LinkStatisticService;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/url/statistic')]
-class IndexController extends AbstractController
+class StatisticController extends AbstractController
 {
     use FormValidationTrait;
 
@@ -42,7 +42,7 @@ class IndexController extends AbstractController
 
         $statistics = $this->linkStatisticService->getAllByLink($link);
 
-        return $this->render('profile/dashboard/statistics/index.html.twig', [
+        return $this->render('profile/dashboard/links/statistics.html.twig', [
             'link' => $link,
             'statistics' => $statistics,
         ]);
