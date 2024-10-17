@@ -1,14 +1,18 @@
-<div class="input-group md-d-none">
-    <form action="{{path('app_search_urls')}}" method="post" class="w-100">
+<div class="md-d-none d-flex">
+    <form action="{{path('app_search_urls')}}" method="post" class="w-100 me-1">
         <div class="input-group">
-            <input class="form-control py-2 rounded-pill mr-1 " name="keyword" type="search"
-                placeholder="Search URLs .." required value="{{keyword is defined and keyword ? keyword : ''}}">
-            <span class="input-group-append">
-                <button class="btn rounded-pill" type="submit"
-                    style="margin-left: -45px;padding-top: 9px; z-index: 666;">
-                    <span class="bi bi-search text-secondary"></span>
-                </button>
-            </span>
+            <button class="btn btn-outline-secondary d-dark-border-color" type="submit">
+                <span class="bi bi-search"></span>
+            </button>
+            <input type="search" class="form-control d-dark-border-color" aria-label="Search Links" name="keyword"
+                placeholder="Search Links .." value="{{keyword is defined and keyword ? keyword : ''}}" required>
         </div>
     </form>
+
+    <button type="button" class="btn btn-outline-secondary d-dark-border-color"
+        data-bs-target="#filterModel" data-bs-toggle="modal">
+        <span class="bi bi-funnel"></span>
+    </button>
 </div>
+
+{% include 'profile/dashboard/links/modal/filter.html.twig' %}

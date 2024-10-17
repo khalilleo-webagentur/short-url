@@ -80,7 +80,7 @@ input[type="color"]:focus,
     }
 
     .md-d-none {
-        display: none;
+        display: none !important;
     }
 }
 

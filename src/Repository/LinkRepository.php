@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Link;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -53,6 +54,39 @@ class LinkRepository extends ServiceEntityRepository
 
         return $qb->andWhere($qb->expr()->like('t1.title', ':title'))
             ->setParameter('title', $text)
+            ->orderBy('t1.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Link[]
+     */
+    public function filterByUser($user, $groupId, $isPublic, $hasClicks, $isFave): array
+    {
+        $qb = $this->createQueryBuilder('t1');
+
+        if ($groupId > 0) {
+            $qb->innerJoin('t1.collection', 't2', 'WITH', 't1.user = t2.user AND t2.id = :groupId')
+                ->setParameter('groupId', $groupId);
+        }
+
+        $qb->where('t1.user = :user')
+            ->setParameter('user', $user);
+
+        if ($hasClicks) {
+            $qb->andWhere('t1.counter > 0');
+        }
+
+        if ($isPublic) {
+            $qb->andWhere('t1.isPublic = 1');
+        }
+
+        if ($isFave) {
+            $qb->andWhere('t1.isFave = 1');
+        }
+
+        return $qb
             ->orderBy('t1.id', 'DESC')
             ->getQuery()
             ->getResult();

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Profile\Dashboard\Links;
 
+use App\Service\LinkCollectionService;
 use App\Service\LinkService;
 use App\Traits\FormValidationTrait;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +20,8 @@ class SearchController extends AbstractController
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService
+        private readonly LinkService $linkService,
+        private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
@@ -38,9 +41,59 @@ class SearchController extends AbstractController
 
         $links = $this->linkService->searchByUserAndTitle($user, $keyword);
 
+        $collections = $this->linkCollectionService->getAllByUser($user);
+
         return $this->render('profile/dashboard/links/search.html.twig', [
             'keyword' => $keyword,
-            'links' => $links
+            'links' => $links,
+            'collections' => $collections,
+        ]);
+    }
+
+    #[Route('/f/e3x4r2l5h6b0h2a2', name: 'app_links_filter', methods:'POST')]
+    public function filter(Request $request): Response
+    {
+        $user = $this->getUser();
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+        // $dateFrom = $this->validate($request->request->get('dateFrom'));
+        // $timeFrom = $this->validate($request->request->get('timeFrom'));
+        // $dateTo = $this->validate($request->request->get('dateTo'));
+        // $timeTo = $this->validate($request->request->get('timeTo'));
+
+        // if (!$dateFrom || !$timeFrom || $dateTo || $timeTo) {
+        //     $this->addFlash('warning', 'Datetime fileds are required.');
+        //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        // }
+
+        // $dateTimeFrom = DateTime::createFromFormat('Y-m-d H:i', $dateFrom . ' ' . $timeFrom);
+
+        // if (false === $dateTimeFrom) {
+        //     $this->addFlash('warning', 'Datetime from is not vaild.');
+        //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        // }
+
+        // $dateTimeTo = DateTime::createFromFormat('Y-m-d H:i', $dateTo . ' ' . $timeTo);
+
+        // if (false === $dateTimeFrom) {
+        //     $this->addFlash('warning', 'Datetime from is not vaild.');
+        //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        // }
+
+        $groupId = $this->validateNumber($request->request->get('group'));
+        $isPublic = $this->validateCheckbox($request->request->get('isPublic'));
+        $hasClicks = $this->validateCheckbox($request->request->get('clicks'));
+        $isFave = $this->validateCheckbox($request->request->get('isFave'));
+
+        $links = $this->linkService->filterByUser($user, $groupId, $isPublic, $hasClicks, $isFave);
+
+        $collections = $this->linkCollectionService->getAllByUser($user);
+
+        return $this->render('profile/dashboard/links/search.html.twig', [
+            'keyword' => '',
+            'links' => $links,
+            'collections' => $collections,
         ]);
     }
 }

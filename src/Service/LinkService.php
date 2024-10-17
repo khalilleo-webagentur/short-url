@@ -135,6 +135,14 @@ final class LinkService
         return $this->linkRepository->searchByUserAndTitle($user, $title);
     }
 
+    /**
+     * @return Link[]
+     */
+    public function filterByUser(User $user, int $groupId, bool $isPublic, bool $hasClicks, bool $isFave): array
+    {
+        return $this->linkRepository->filterByUser($user, $groupId, $isPublic, $hasClicks, $isFave);
+    }
+
     public function delete(Link $model): void
     {
         $this->linkRepository->remove($model, true);

@@ -20,7 +20,13 @@
             {% for i, link in links %}
             <tr class="small">
                 <td class="text-white-50">{{i+1}}</td>
-                <td class="text-white-50">{{link.title ? link.title : '---'}}</td>
+                <td class="text-white-50">
+                    {% if link.title %}
+                        <span title="{{link.title}}">{{link.title|slice(0, 40) ~ '..'}}</span>
+                    {% else %}
+                        ---
+                    {% endif %}
+                </td>
                 <td>
                     <form action="{{path('app_profile_job_star_store', {id:link.id})}}" class="pointer" method="post">
                         <span

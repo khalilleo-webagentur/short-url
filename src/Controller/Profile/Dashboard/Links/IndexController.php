@@ -14,6 +14,7 @@ use App\Service\MonologService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,10 +65,17 @@ class IndexController extends AbstractController
 
         $countLinks = $this->linkService->getCountLinksByUser($user);
 
+        // $now = new DateTime();
+
+        // $dateFrom = $now->modify('-7 days')->format('Y-m-d');
+        // $dateTo = (new DateTime())->format('Y-m-d');
+
         return $this->render('profile/dashboard/links/index.html.twig', [
             'links' => $links,
             'countLinks' => $countLinks,
-            'collections' => $collections
+            'collections' => $collections,
+            // 'dateFrom' => $dateFrom,
+            // 'dateTo' => $dateTo,
         ]);
     }
 
