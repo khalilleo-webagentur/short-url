@@ -12,11 +12,12 @@
 
     <div class="row py-3 d-dark-color">
         <div class="col-6 col-lg-6">
-            <h5 class="text-white-50 pt-2">Social-Media Profile Edit</h5>
+            <h6 class="text-white-50 pt-2">Social-Media Profile Edit</h6>
         </div>
 
         <div class="col-6 col-lg-6">
-            <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}" class="float-end text-secondary text-decoration-none fs-15 pt-2">
+            <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
+                class="float-end text-secondary text-decoration-none fs-15 pt-2">
                 Close <span class="bi bi-x-square-fill ps-1 small"></span>
             </a>
         </div>
@@ -50,7 +51,7 @@
 
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" name="delete" id="delete">
-                                    <label class="form-check-label text-white-50" for="delete">
+                                    <label class="form-check-label text-white-50 fs-15" for="delete">
                                         Delete this Social-Media Link "{{socialProfile.platform}}" and all related Statistics permanentally.
                                     </label>
                                 </div>

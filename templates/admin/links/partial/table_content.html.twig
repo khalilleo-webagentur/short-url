@@ -22,21 +22,24 @@
                 <td><span title="{{ row.url }}">{{ row.url|slice(0, 20) ~ '...' }}</span></td>
                 <td>
                     {% set link = app.request.schemeAndHttpHost ~ '/' ~ row.token %}
-                    {{ row.token }} <a href="{{link}}" target="_blank"><span
-                            class="fa fa-external-link-alt fa-sm"></span></a>
+                    {{ row.token }} <a href="{{link}}" target="_blank"><span class="fa fa-external-link-alt fa-sm"></span></a>
                 </td>
                 <td>
                     {% if row.user %}
-
                     <a href="{{path('app_admin_user_edit', {id:row.user.id})}}">
                         {{row.user.name|capitalize}}
                     </a>
                     {% else %}
                     ---
                     {% endif %}
-
                 </td>
-                <td>{{ row.title ? row.title : '---' }}</td>
+                <td>
+                    {% if row.title %}
+                        <span title="{{row.title}}">{{row.title|slice(0, 40) ~ '..'}}</span>
+                    {% else %}
+                        ---
+                    {% endif %}
+                </td>
                 <td>{{ row.collection ? row.collection.name : '---' }}</td>
                 <td>{{ row.counter }}</td>
                 <td>{{ row.isPublic ? faThumbsUp() : faThumbsDown() }}</td>

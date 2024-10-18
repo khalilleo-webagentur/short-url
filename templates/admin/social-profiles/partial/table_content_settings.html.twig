@@ -4,6 +4,7 @@
             <tr class="fs-14">
                 <th>User</th>
                 <th>Profile</th>
+                <th>Public</th>
                 <th>Description</th>
                 <th>Views</th>
                 <th>Updated</th>
@@ -20,10 +21,15 @@
                     </a>
                 </td>
                 <td>{{ row.mainName }}
-                    <a href="{{ path('app_dashboard_social_profile_index', {profile: row.mainName}) }}" target="_blank"><span
-                        class="fa fa-external-link-alt fa-xs pl-1"></span>
-                    </a>
+
+                    {% if row.isPublic %}
+                        <a href="{{ path('app_dashboard_social_profile_index', {profile: row.mainName}) }}" target="_blank"><span
+                            class="fa fa-external-link-alt fa-xs pl-1"></span>
+                        </a>
+                    {% endif %}
+                    
                 </td>
+                <td>{{row.isPublic ? faThumbsUp() : faThumbsDown()}}</td>
                 <td title="{{row.description}}">{{ row.description|slice(0, 30) ~ '..' }}</td>
                 <td>{{ row.countViews }}</td>
 

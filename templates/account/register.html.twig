@@ -14,8 +14,8 @@
                         <a href="{{app.request.schemeAndHttpHost}}">
                             <img src="{{asset('assets/img/logo.png')}}" alt="L1.">
                         </a>
-                        <h3 class="my-1 text-center text-white-50">Get Started</h3>
-                        <p class="text-center text-white-50 mb-3">Sign up with work email</p>
+                        <h4 class="my-1 text-center text-white-50">Get Started</h3>
+                        <p class="text-center text-white-50 mb-3 fs-15">Sign up with work email</p>
                     </div>
 
                     {% include 'component/form_alert.html.twig' %}
@@ -35,7 +35,7 @@
 
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" name="confirm" required id="confirm">
-                            <label class="form-check-label" for="confirm">
+                            <label class="form-check-label fs-15" for="confirm">
                                 I accept {{appName()}}'s <a href="{{path('app_legal_privacy_policy')}}"
                                     class="text-white-50" rel="nofollow">
                                     Privacy Policy
@@ -45,13 +45,13 @@
 
                         <div class="mb-3">
                             <button class="btn btn-outline-success w-100">
-                                Sign Up
+                                Sign up
                             </button>
                         </div>
                     </form>
 
                     <div class="my-3 text-center">
-                        <p class="text-white-50"> Already have an account?
+                        <p class="text-white-50 fs-15"> Already have an account?
                             <a href="{{path('app_login')}}" class="d-color opacity-08 text-decoration-none">Login</a>
                         </p>
                     </div>

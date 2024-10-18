@@ -12,7 +12,7 @@
 
     <div class="row py-3 d-dark-color">
         <div class="col-6 col-lg-6">
-            <h5 class="text-white-50 pt-2">Statistic {{link.title ? '- ' ~ link.title|capitalize : ''}}</h5>
+            <h6 class="text-white-50 pt-2">Statistic {{link.title ? '- ' ~ link.title|capitalize : ''}}</h6>
         </div>
 
         <div class="col-6 col-lg-6">
@@ -75,7 +75,7 @@
             </div>
             {% else %}
             <p class="text-white-50 pt-5">
-                <span class="bi bi-info-circle me-1"></span> No data found! No one has visted your link yet.
+                <span class="bi bi-info-circle me-1 fs-15"></span> No data found! No one has visted your link yet.
             </p>
 
             <a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none">Back to URLs <span

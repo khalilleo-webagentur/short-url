@@ -28,7 +28,7 @@ class SocialProfileSetting
     private int $countViews = 0;
 
     #[ORM\Column]
-    private bool $isPublic = true;
+    private bool $isPublic = false;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
