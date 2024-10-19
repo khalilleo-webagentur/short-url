@@ -55,7 +55,7 @@
                 </td>
                 <td class="text-white-50">{{ link.isPublic ? checkCircle('d-success-color opacity-05') :
                     circle('d-danger-color opacity-05') }}</td>
-                <td class="text-white-50">{{link.counter}}</td>
+                <td class="text-white-50">{{numberNotation(link.counter)}}</td>
                 <td class="text-white-50">
                     {% if link.collection %}
                     <a href="{{path('app_links_collection_edit', {id:link.collection.id})}}"
