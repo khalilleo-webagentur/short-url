@@ -41,7 +41,11 @@
                     {% endif %}
                 </td>
                 <td>{{ row.collection ? row.collection.name : '---' }}</td>
-                <td>{{ row.counter }}</td>
+                <td>
+                    <span class="cursor-help" title="clicks: {{row.counter}}">
+                        {{ numberNotation(row.counter) }}
+                    </span>
+                </td>
                 <td>{{ row.isPublic ? faThumbsUp() : faThumbsDown() }}</td>
 
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
