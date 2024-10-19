@@ -32,18 +32,21 @@
                         <div class="card-body">
                             <form action="{{path('app_dashboard_social_profile_setting_store_is_public')}}"
                                 method="post">
-                                <input class="form-check-input" type="checkbox" id="isPublic"
-                                    {{socialProfileSetting.isPublic ? 'checked' : '' }} name="isPublic">
-                                <span class="float-end">
-                                    <span class="bi bi-info-circle pe-1 cursor-help text-info opacity-05"
-                                        title="As long as you logged in you can only access your profile."></span>
-                                </span>
-                                <label class="form-check-label text-white-50 ps-1" for="isPublic"
-                                    onclick="this.closest('form').submit();">Profile can be accessed by everyone with
-                                    only read Permissions
-                                </label>
-                                <div class="d-none">
-                                    <input type="hidden" name="publicSetting" value="on">
+
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="isPublic"
+                                        {{socialProfileSetting.isPublic ? 'checked' : '' }} name="isPublic">
+
+                                    <label class="form-check-label text-white-50" for="isPublic"
+                                        onclick="this.closest('form').submit();">Profile can be accessed by everyone
+                                        with only read Permissions <span class="px-1">
+                                            <span class="bi bi-info-circle pe-1 cursor-help text-info opacity-05"
+                                                title="As long as you logged in you can only access your profile."></span>
+                                        </span>
+                                    </label>
+                                    <div class="d-none">
+                                        <input type="hidden" name="publicSetting" value="on">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -52,14 +55,16 @@
                 <div class="col">
                     <div class="card d-dark-color d-dark-border-color">
                         <div class="card-body">
-                            <form action="#"
-                                method="post">
-                                <input class="form-check-input" type="checkbox" id="statistics" checked disabled>
-                                <label class="form-check-label text-white-50 ps-1" for="statistics">
-                                    Statistics is by default on. Anyone visit your any social link, Statistics will be stored 
-                                </label>
-                                <div class="d-none">
-                                    <input type="hidden" name="statisticsSetting" value="on">
+                            <form action="#" method="post">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="statistics" checked disabled>
+                                    <label class="form-check-label text-white-50 ps-1" for="statistics">
+                                        Statistics is by default on. Anyone visit your any social link, Statistics will
+                                        be stored
+                                    </label>
+                                    <div class="d-none">
+                                        <input type="hidden" name="statisticsSetting" value="on">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -68,14 +73,16 @@
                 <div class="col">
                     <div class="card d-dark-color d-dark-border-color">
                         <div class="card-body">
-                            <form action="#"
-                                method="post">
-                                <input class="form-check-input" type="checkbox" id="deleteStatistic" checked disabled>
-                                <label class="form-check-label text-white-50 ps-1" for="deleteStatistic">
-                                    Each statistic can be deleted 
-                                </label>
-                                <div class="d-none">
-                                    <input type="hidden" name="deleteStatisticSetting" value="on">
+                            <form action="#" method="post">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="deleteStatistic" checked
+                                        disabled>
+                                    <label class="form-check-label text-white-50 ps-1" for="deleteStatistic">
+                                        Each statistic can be deleted
+                                    </label>
+                                    <div class="d-none">
+                                        <input type="hidden" name="deleteStatisticSetting" value="on">
+                                    </div>
                                 </div>
                             </form>
                         </div>
