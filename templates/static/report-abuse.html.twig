@@ -13,16 +13,16 @@
         <div class="row gx-lg-5 h-100 justify-content-center py-3">
             <div class="col-lg-6">
 
-                <h1 class="d-color font-weight-bold mt-lg-5 pt-5 mb-3">
+                <h4 class="d-color font-weight-bold mt-lg-5 pt-5 mb-3">
                     Report a Malicious Link
-                </h1>
+                </h4>
 
-                <p class="text-white-50 mb-lg-5 mb-md-3">
+                <p class="text-white-50 mb-lg-5 mb-md-3 fs-15">
                     The bellow form can be used for reporting links that suspected of span, phishing, porn etc.
                     The Link will be reviewed and then will be deleted immediately.
                 </p>
 
-                <form action="{{path('app_report_abuse_new')}}" method="post" class="px-2">
+                <form action="{{path('app_report_abuse_new')}}" method="post">
                     <div class="mb-3">
                         <label for="iMalicious" class="form-label text-white-50">Malicious Link</label>
                         <input type="text" class="form-control" id="iMalicious" placeholder="Paste link (required)"

@@ -6,25 +6,25 @@
   </div>
   <div class="offcanvas-body">
     <div class="d-grid gap-2">
-      <button class="btn btn-outline-success opacity-07" type="button" data-bs-target="#newGroupModal" data-bs-toggle="modal">
+      <button class="btn btn-outline-success opacity-07" type="button" data-bs-target="#newGroupModal"
+        data-bs-toggle="modal">
         Add New Group <span class="bi bi-plus-circle ps-1"></span>
       </button>
     </div>
     {% if count(collections) > 0 %}
     <div class="d-grid gap-2 mt-4">
-      <p class="text-white-50 mb-0 pb-0">Choose your Group:</p>
+      <p class="text-white-50 mb-0 pb-0">Choose a Group:</p>
 
       <form action="{{path('app_links_collection_job_store_collection')}}" method="post">
-        <select class="form-select" size="3" aria-label="Size 3 select collection"
-          onchange="this.closest('form').submit();" name="group"
-          style="height:50vh;">
-          
-          <option value="0">All groups ({{countLinks}})</option>
-          
+        <select class="form-select bg-dark text-white-50" aria-label="select collection" onchange="this.closest('form').submit();"
+          name="group">
+
+          <option value="0" selected>All groups ({{countLinks}})</option>
+
           {% for row in collections %}
 
             {% if count(row.links) > 0 %}
-              <option class="{{row.isDefault ? 'text-success bg-none' : 'text-secondary'}}" value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>
+              <option value="{{row.id}}" {{row.isDefault ? 'selected' : '' }}>
                 <span>&#45;&nbsp; {{row.name}} ({{count(row.links)}})</span>
               </option>
             {% endif %}
