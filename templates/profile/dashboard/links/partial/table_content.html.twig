@@ -22,7 +22,9 @@
                 <td class="text-white-50">{{i+1}}</td>
                 <td class="text-white-50">
                     {% if link.title %}
-                        <span title="{{link.title}}">{{link.title|slice(0, 40) ~ '..'}}</span>
+                        <a class="text-white-50 text-decoration-none link-hover" href="{{path('app_profile_my_urls_edit', {id:link.id}) }}">
+                            <span title="{{link.title}}">{{link.title|slice(0, 40) ~ '..'}}</span>
+                        </a>
                     {% else %}
                         ---
                     {% endif %}

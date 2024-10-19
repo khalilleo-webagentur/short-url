@@ -16,7 +16,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <input type="hidden" class="dataId" name="id">
+          <input type="hidden" class="dataId" name="id" value="{{id is defined and id ? id : ''}}">
           <button type="submit" class="btn btn-outline-danger">Delete</button>
         </div>
       </form>

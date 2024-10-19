@@ -29,7 +29,7 @@
           </div>
 
           <div class="mb-3">
-            <input class="form-check-input" type="checkbox" id="moveOnly" name="moveOnly" checked disabled>
+            <input class="form-check-input" type="checkbox" id="moveOnly" checked disabled>
             <label class="form-check-label" for="moveOnly">
               <span class="ps-1">Move only these do not accociated to a group.</span>
             </label>
@@ -47,6 +47,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <input type="hidden" name="moveOnly" value="on">
           <button type="submit" class="btn btn-outline-warning" {{count(collections) <=0 ? 'disabled' : '' }}>Move</button>
         </div>
       </form>

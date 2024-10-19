@@ -22,8 +22,7 @@ class JobController extends AbstractController
     public function __construct(
         private readonly LinkService $linkService,
         private readonly LinkCollectionService $linkCollectionService,
-    ) {
-    }
+    ) {}
 
     #[Route('/store-default-collection', name: 'app_links_collection_job_store_collection', methods: 'POST')]
     public function defaultCollection(Request $request): Response
@@ -60,19 +59,15 @@ class JobController extends AbstractController
 
         $this->denyAccessUnlessGranted('ROLE_USER');
 
-        $groupId = $this->validateNumber($request->request->get('collection'));
+        if ($this->validateCheckbox($request->request->get('moveOnly'))) {
 
-        if ($collection = $this->linkCollectionService->getByUserAndId($user, $groupId)) {
+            $groupId = $this->validateNumber($request->request->get('collection'));
 
-            if ($this->validateCheckbox($request->request->get('moveOnly'))) {
+            if ($collection = $this->linkCollectionService->getByUserAndId($user, $groupId)) {
                 $count = $this->linkService->moveLinksWithoutAnyAssociationsToCollection($user, $collection);
                 $this->addFlash('notice', sprintf('Links [%s] has been moved to group [%s].', $count, $collection->getName()));
                 return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
             }
-
-            $count = $this->linkService->moveLinksToCollection($user, $collection);
-            $this->addFlash('notice', sprintf('Links with no Associations [%s] has been moved to group [%s].', $count, $collection->getName()));
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
 

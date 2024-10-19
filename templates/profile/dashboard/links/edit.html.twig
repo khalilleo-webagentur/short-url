@@ -94,12 +94,20 @@
                             </form>
                         </div>
                     </div>
+
+                    <div class="float-end">
+                        <small class="d-danger-color pointer" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Delete link permanently<small class="bi bi-trash ps-1"></small>
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+
+{% include 'profile/dashboard/links/modal/delete.html.twig' with{id: link.id} %}
 
 {% include 'layout/footer.html.twig' %}
 
