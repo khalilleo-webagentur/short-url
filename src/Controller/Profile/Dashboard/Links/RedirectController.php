@@ -35,9 +35,8 @@ class RedirectController extends AbstractController
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
-        $this->linkService->save($link->setCounter($link->getCounter() + 1));
-
         if ($link->isPublic()) {
+            $this->linkService->save($link->setCounter($link->getCounter() + 1));
             $this->linkStatisticService->create($link);
         }
 
