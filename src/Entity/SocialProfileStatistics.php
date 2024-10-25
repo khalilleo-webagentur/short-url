@@ -36,6 +36,9 @@ class SocialProfileStatistics
     #[ORM\Column(length: 150)]
     private ?string $ipAdress = null;
 
+    #[ORM\Column]
+    private bool $isSeen = true;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -131,6 +134,18 @@ class SocialProfileStatistics
     public function setIpAdress(string $ipAdress): static
     {
         $this->ipAdress = $ipAdress;
+
+        return $this;
+    }
+
+    public function isSeen(): bool
+    {
+        return $this->isSeen;
+    }
+
+    public function setSeen(bool $isSeen): static
+    {
+        $this->isSeen = $isSeen;
 
         return $this;
     }

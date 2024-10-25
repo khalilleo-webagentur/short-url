@@ -18,6 +18,7 @@ final class SocialProfileStatisticsService
 
     public function __construct(
         private readonly SocialProfileStatisticsRepository $socialProfileStatisticsRepository,
+        private readonly SocialProfileService $socialProfileService,
     ) {
     }
 
@@ -57,7 +58,45 @@ final class SocialProfileStatisticsService
                 ->setBrowserLang($userAgent->getBrowserLang())
                 ->setPlatform($userAgent->getPlatform())
                 ->setMobil($userAgent->isMobile())
+                ->setSeen(false)
         );
+
+        $this->socialProfileService->save($socialProfile->setStatisticsSeen(false));
+    }
+
+    public function getAllNotSeenYet(User $user, SocialProfile $socialProfile): array
+    {
+        return $this->socialProfileStatisticsRepository->findBy([
+            'user' => $user,
+            'socialProfile' => $socialProfile,
+            'isSeen' => 0
+        ]);
+    }
+
+    public function hasNotSeenStatisticsYet(User $user, SocialProfile $socialProfile): bool
+    {
+        $isNotSeenYet = count($this->getAllNotSeenYet($user, $socialProfile)) > 0;
+
+        if ($isNotSeenYet) {
+            $this->socialProfileService->save($socialProfile->setStatisticsSeen(true));
+        }
+
+        return $isNotSeenYet;
+    }
+
+    public function markAllAsSeen(User $user, SocialProfile $socialProfile): void
+    {
+        if ($statistics = $this->getAllNotSeenYet($user, $socialProfile)) {
+            
+            $this->socialProfileService->save($socialProfile->setStatisticsSeen(true));
+
+            foreach ($statistics as $statistic) {
+                /** @var SocialProfileStatistics $statistic */
+                $this->save(
+                    $statistic->setSeen(true)
+                );
+            }
+        }
     }
 
     public function save(SocialProfileStatistics $model): SocialProfileStatistics

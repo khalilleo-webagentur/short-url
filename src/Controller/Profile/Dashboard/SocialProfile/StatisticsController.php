@@ -10,7 +10,6 @@ use App\Service\SocialProfileStatisticsService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -30,7 +29,7 @@ class StatisticsController extends AbstractController
     }
 
     #[Route('/view/{id}', name: 'app_dashboard_social_profile_statistics_setting_index')]
-    public function index(?string $id, Request $request): Response
+    public function index(?string $id): Response
     {
         $user = $this->getUser();
 
@@ -44,6 +43,7 @@ class StatisticsController extends AbstractController
         if ($socialProfile = $this->socialProfileService->getByUserAndId($user, $this->validateNumber($id))) {
             $socialProfileStatistics = $this->socialProfileStatisticsService->getAllBySocialProfileAndUser($socialProfile, $user);
             $platformAndUsername = ': ' . $socialProfile->getUsername() . ' (' . $socialProfile->getPlatform() . ')';
+            $this->socialProfileStatisticsService->markAllAsSeen($user, $socialProfile);
         }
 
         return $this->render('profile/dashboard/social-profile/statistics.html.twig', [
@@ -54,7 +54,7 @@ class StatisticsController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'app_dashboard_social_profile_statistics_delete', methods: 'POST')]
-    public function delete(?string $id, Request $request): RedirectResponse
+    public function delete(?string $id): RedirectResponse
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
 

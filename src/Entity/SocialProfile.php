@@ -28,6 +28,9 @@ class SocialProfile
     #[ORM\Column(length: 200)]
     private string $url;
 
+    #[ORM\Column]
+    private bool $isStatisticsSeen = true;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?DateTimeInterface $updatedAt = null;
 
@@ -88,6 +91,18 @@ class SocialProfile
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function isStatisticsSeen(): bool
+    {
+        return $this->isStatisticsSeen;
+    }
+
+    public function setStatisticsSeen(bool $isStatisticsSeen): static
+    {
+        $this->isStatisticsSeen = $isStatisticsSeen;
 
         return $this;
     }

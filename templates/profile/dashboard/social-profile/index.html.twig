@@ -77,7 +77,7 @@
                         <span class="text-white-50">{{socialProfileSetting.description}}</span>
 
                         {% if app.user %}
-                        <span class="bi bi-pencil-square ps-2 text-secondary pointer" data-bs-toggle="modal"
+                        <span class="bi bi-pencil-squaprofileLinksre ps-2 text-secondary pointer" data-bs-toggle="modal"
                             data-bs-target="#socialProfileSettingDescModal">
                         </span>
                         {% endif %}
@@ -127,8 +127,8 @@
                                                 class="bi bi-pencil-square ps-1 fs-6 ps-3"></span></a>
 
                                         <a href="{{ path('app_dashboard_social_profile_statistics_setting_index', {id: row.id}) }}"
-                                            class=" opacity-07" title="View Statistics">
-                                            <span class="bi bi-bar-chart ps-1 fs-6 ps-3"></span></a>
+                                            class=" opacity-07" title="View Statistics {{not row.isStatisticsSeen ? '(new Visitors)' : ''}}">
+                                            <span class="bi {{not row.isStatisticsSeen ? 'bi-bar-chart-fill' : 'bi-bar-chart' }} ps-1 fs-6 ps-3"></span></a>
                                         {% endif %}
 
                                     </div>
