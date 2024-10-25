@@ -46,7 +46,7 @@ final class UserSettingService
     {
         $setting = $this->getOneByUser($user);
 
-        return $setting && $setting->isResetPrivateClicks();
+        return $setting && true === $setting->isResetPrivateClicks();
     }
 
     public function save(UserSetting $model): UserSetting

@@ -265,9 +265,7 @@ class IndexController extends AbstractController
 
         $collection = $this->linkCollectionService->getByUserAndId($user, $collectionId);
 
-        $clicks = !$this->userSettingService->resetPrivateClicks($user)
-            ? $link->getCounter()
-            : 0;
+        $clicks = $this->userSettingService->resetPrivateClicks($user) && false === $isPublic ? 0 : $link->getCounter();
 
         $this->linkService->save(
             $link
