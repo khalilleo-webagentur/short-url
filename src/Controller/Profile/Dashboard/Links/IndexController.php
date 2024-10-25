@@ -36,8 +36,7 @@ class IndexController extends AbstractController
         private readonly LinkCollectionService $linkCollectionService,
         private readonly MaliciousUrlsService $maliciousUrlsService,
         private readonly MonologService $monolog
-    ) {
-    }
+    ) {}
 
     #[Route('/home', name: 'app_profile_my_urls')]
     public function index(): Response
@@ -96,7 +95,7 @@ class IndexController extends AbstractController
         if ($maliciousUrl = $this->maliciousUrlsService->getOneByUrl($parseUrl['host'] ?? '')) {
 
             $this->maliciousUrlsService->save(
-                $maliciousUrl->setCounter($maliciousUrl->getCounter()+1)
+                $maliciousUrl->setCounter($maliciousUrl->getCounter() + 1)
             );
 
             $this->monolog->logger->debug(
@@ -104,8 +103,9 @@ class IndexController extends AbstractController
                     'Malicious URL: %s %s by %s',
                     $maliciousUrl->getId(),
                     $maliciousUrl->getUrl(),
-                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
-                );
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user'
+                )
+            );
 
             $this->addFlash('warning', 'This URL is on Blacklist.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
@@ -209,7 +209,7 @@ class IndexController extends AbstractController
         if ($maliciousUrl = $this->maliciousUrlsService->getOneByUrl($parseUrl['host'] ?? '')) {
 
             $this->maliciousUrlsService->save(
-                $maliciousUrl->setCounter($maliciousUrl->getCounter()+1)
+                $maliciousUrl->setCounter($maliciousUrl->getCounter() + 1)
             );
 
             $this->monolog->logger->debug(
@@ -217,8 +217,9 @@ class IndexController extends AbstractController
                     'Malicious URL: %s %s by %s',
                     $maliciousUrl->getId(),
                     $maliciousUrl->getUrl(),
-                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
-                );
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user'
+                )
+            );
 
             $this->addFlash('warning', 'This URL is on Blacklist.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
@@ -264,6 +265,10 @@ class IndexController extends AbstractController
 
         $collection = $this->linkCollectionService->getByUserAndId($user, $collectionId);
 
+        $clicks = !$this->userSettingService->resetPrivateClicks($user)
+            ? $link->getCounter()
+            : 0;
+
         $this->linkService->save(
             $link
                 ->setTitle($title)
@@ -272,6 +277,7 @@ class IndexController extends AbstractController
                 ->setToken($this->replaceSpecialChars($token))
                 ->setIsPublic($isPublic)
                 ->setIsFave($isFave)
+                ->setCounter($clicks)
         );
 
         $this->addFlash('success', 'Link has been updated.');

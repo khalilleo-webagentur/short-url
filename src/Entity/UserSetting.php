@@ -28,6 +28,9 @@ class UserSetting
     #[ORM\Column]
     private bool $allowRedirectAfterNewLink = false;
 
+    #[ORM\Column]
+    private bool $resetPrivateClicks = false;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -80,6 +83,30 @@ class UserSetting
         return $this;
     }
 
+    public function allowRedirectAfterNewLink(): bool
+    {
+        return $this->allowRedirectAfterNewLink;
+    }
+
+    public function setAllowRedirectAfterNewLink(bool $allowRedirectAfterNewLink): static
+    {
+        $this->allowRedirectAfterNewLink = $allowRedirectAfterNewLink;
+
+        return $this;
+    }
+
+    public function isResetPrivateClicks(): bool
+    {
+        return $this->resetPrivateClicks;
+    }
+
+    public function setResetPrivateClicks(bool $resetPrivateClicks): static
+    {
+        $this->resetPrivateClicks = $resetPrivateClicks;
+
+        return $this;
+    }
+
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
@@ -100,18 +127,6 @@ class UserSetting
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function allowRedirectAfterNewLink(): bool
-    {
-        return $this->allowRedirectAfterNewLink;
-    }
-
-    public function setAllowRedirectAfterNewLink(bool $allowRedirectAfterNewLink): static
-    {
-        $this->allowRedirectAfterNewLink = $allowRedirectAfterNewLink;
 
         return $this;
     }

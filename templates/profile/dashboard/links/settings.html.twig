@@ -56,7 +56,7 @@
                                     <input class="form-check-input" type="checkbox" id="allowLinkAlias"
                                         {{userSetting.allowLinkAlias ? 'checked' : '' }} name="allowLinkAlias">
                                     <label class="form-check-label text-white-50 ps-1" for="allowLinkAlias"
-                                        onclick="this.closest('form').submit();">Allow Link alias when add new Link
+                                        onclick="this.closest('form').submit();">Allow update link alias when add new Link
                                     </label>
                                     <div class="d-none">
                                         <input type="hidden" name="allowLinkAliasForm" value="on">
@@ -82,6 +82,26 @@
                                     </label>
                                     <div class="d-none">
                                         <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card d-dark-color d-dark-border-color">
+                        <div class="card-body">
+                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
+                                method="post">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="resetPrivateClicks"
+                                        {{userSetting.resetPrivateClicks ? 'checked' : '' }} name="resetPrivateClicks">
+                                    <label class="form-check-label text-white-50 ps-1" for="resetPrivateClicks"
+                                        onclick="this.closest('form').submit();">Reset Clicks counter when the link marked as private
+                                    </label>
+                                    <div class="d-none">
+                                        <input type="hidden" name="resetPrivateClicksForm" value="on">
                                     </div>
                                 </div>
                             </form>

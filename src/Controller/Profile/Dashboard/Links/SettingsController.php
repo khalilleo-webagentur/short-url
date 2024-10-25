@@ -78,6 +78,11 @@ class SettingsController extends AbstractController
             $this->userSettingService->save($userSetting->setAllowRedirectAfterNewLink($isActive));
         }
 
+        if ($this->validateCheckbox($request->request->get('resetPrivateClicksForm'))) {
+            $isActive = !$this->validateCheckbox($request->request->get('resetPrivateClicks'));
+            $this->userSettingService->save($userSetting->setResetPrivateClicks($isActive));
+        }
+
         $this->addFlash('success', 'Config has been updated.');
 
         return $this->redirectToRoute(self::PROFILE_USER_SETTING_ROUTE);

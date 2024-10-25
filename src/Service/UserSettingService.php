@@ -42,6 +42,13 @@ final class UserSettingService
         return $setting && $setting->allowRedirectAfterNewLink();
     }
 
+    public function resetPrivateClicks(User $user): bool
+    {
+        $setting = $this->getOneByUser($user);
+
+        return $setting && $setting->isResetPrivateClicks();
+    }
+
     public function save(UserSetting $model): UserSetting
     {
         $this->userSettingRepository->save($model->setUpdatedAt(new DateTime()), true);
