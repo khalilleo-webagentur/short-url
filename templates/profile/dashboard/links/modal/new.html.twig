@@ -27,9 +27,13 @@
 
           {% if count(collections) > 0 %}
           <div class="mb-2">
-            <p class="text-white-50 mb-1">Group:</p>
-            <select class="form-select bg-dark text-white-50" aria-label="Default select Collection" name="group">
-              <option value="0" selected disabled>-- Select group --</option>
+            <p class="text-white-50 mb-1">Group: <span class="d-danger-color">*</span></p>
+            <select class="form-select bg-dark text-white-50" 
+              aria-label="Default select Collection"
+              name="group"
+              required="required">
+              <option value="" aria-readonly="true">-- Select group --</option>
+              <option value="">No group</option>
               {% for row in collections %}
               <option value="{{row.id}}">{{row.name}}</option>
               {% endfor %}
