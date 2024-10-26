@@ -24,6 +24,7 @@ class TwigHelper extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('hostFromUrl', [$this, 'hostFromUrl']),
             new TwigFunction('numberNotation', [$this, 'numberNotation']),
             new TwigFunction('profilesTree', [$this, 'profilesTree']),
             new TwigFunction('randomNumbers', [$this, 'randomNumbers']),
@@ -47,10 +48,20 @@ class TwigHelper extends AbstractExtension
         ];
     }
 
+    public function hostFromUrl(string $url): string
+    {
+        $host = parse_url($url, PHP_URL_HOST);
+
+        if (empty($host)) {
+            return '';
+        }
+
+        return str_ireplace('www.', '', $host);
+    }
+
 
     public function numberNotation(?int $number): string|int
     {
-
         if ($number && $number > 1000) {
 
             $x = round($number);
