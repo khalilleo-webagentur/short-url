@@ -45,7 +45,7 @@ class IndexController extends AbstractController
 
         return $this->render('profile/index.html.twig', [
             'links' => $links,
-            'email' => $this->getParameter('info_emal'),
+            'email' => $this->getParameter('infoEmail'),
             'socialProfileSetting' => $socialProfileSetting,
             'profile' => $profile
         ]);

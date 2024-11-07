@@ -24,7 +24,7 @@ services:
     
     App\Service\Core\FileUploaderService:
         arguments:
-            $targetDirectory: "%avatar_dir%"
+            $targetDirectory: "%avatarDir%"
 
 imports:
   - { resource: "packages/parameters.yaml" }

@@ -1,25 +1,20 @@
 parameters:
+  appVersion: "1.4.0"
+  appName: "K24.ing"
+  fullAppName: "K24.ing"
+  noReply: "no-reply@k24.ing"
+  webMasterName: "Webmaster"
+  webMasterEmail: "demo@khalilleo.com"
+  phoneNumber: '0163/616-5396'
+  infoEmail: 'info@khalilleo.com'
+  legalEmail: 'legal@khalilleo.com'
 
-  app_name: "L1"
-  full_app_name: "L1"
-  no_reply: "no-reply@khalilleo.com"
+  addressStreet: 'Paul-Gerhardt-Str. 7'
+  addressPlz: '74321'
+  addressCity: 'Bietigheim-Bissingen'
+  addressCountry: 'Deutschland'
 
-  webmaster_name: "Webmaster"
-  webmaster_email: "demo@khalilleo.com"
-
-  phonenumber: '0163/616-5396'
-  info_emal: 'info@khalilleo.com'
-  legal_emal: 'legal@khalilleo.com'
-
-  address_street: 'Paul-Gerhardt-Str. 7'
-  adress_plz: '74321'
-  adress_city: 'Bietigheim-Bissingen'
-  adress_country: 'Deutschland'
-
-  app_version: "1.3.7"
-  
-  app_author: "Khalilleo Teams"
-  app_created: "2024-03-03"
-  app_made_by: "khalilleo.com"
-
-  avatar_dir: "%kernel.project_dir%/public/avatar"
+  appAuthor: "Khalilleo Teams"
+  appCreated: "2024-03-03"
+  poweredBy: "khalilleo.com"
+  avatarDir: "%kernel.project_dir%/public/avatar"

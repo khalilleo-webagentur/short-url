@@ -50,7 +50,7 @@ class AvatarController extends AbstractController
 
         $profile = $this->profileService->getByUser($user);
 
-        $path = $this->getParameter('avatar_dir');
+        $path = $this->getParameter('avatarDir');
 
         if ($profile) {
             if ($this->validateCheckbox($request->request->get('removeAvatar'))) {

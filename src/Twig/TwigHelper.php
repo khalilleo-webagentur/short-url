@@ -233,21 +233,21 @@ class TwigHelper extends AbstractExtension
 
     public function getAppName(): string
     {
-        return $this->configService->getParameter('app_name');
+        return $this->configService->getParameter('appName');
     }
 
     public function getMadeBy(): string
     {
-        return $this->configService->getParameter('app_made_by');
+        return $this->configService->getParameter('poweredBy');
     }
 
     public function getAppAuthor(): string
     {
-        return $this->configService->getParameter('app_author');
+        return $this->configService->getParameter('appAuthor');
     }
 
     public function getVersion(): string
     {
-        return 'v' . $this->configService->getParameter('app_version');
+        return 'v' . $this->configService->getParameter('appVersion');
     }
 }
