@@ -1,6 +1,12 @@
-# For a symfony application to work properly, you MUST store this .htaccess in
-# the same directory as your front controller, index.php, in a standard symfony
-# web application is under the "public" project subdirectory.
+DirectoryIndex /xxxxxxxxx/public/index.php
+RewriteEngine On
+RewriteCond %{DOCUMENT_ROOT}/xxxxxxxxx/public/$1 -f
+RewriteRule ^(.*)$ xxxxxxxxx/public/$1 [L]
+RewriteCond %{THE_REQUEST} \s/xxxxxxxxx/public/ [NC,OR]
+RewriteCond $1 !^xxxxxxxxx/public/
+RewriteRule ^(.*)$ index.php [L]
+
+
 
 # Use the front controller as index file.
 DirectoryIndex index.php

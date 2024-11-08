@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://go.khalilleo.com/</loc>
+        <loc>https://k24.ing/</loc>
         <lastmod>2024-03-03</lastmod>
-        <changefreq>monthly</changefreq>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://k24.ing/report-abuse/q6j0a6x8s9d2e4h3</loc>
+        <lastmod>2024-03-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://k24.ing/contact-us/s3f2y1l5w8e7d2l5</loc>
+        <lastmod>2024-03-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://k24.ing/features/x9g7e3p5i1j6e1w6</loc>
+        <lastmod>2024-03-03</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 </urlset>
