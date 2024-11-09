@@ -22,7 +22,7 @@
 
         <div class="col-4">
             <div class="d-flex float-end pt-1">
-                <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
+                <button class="btn btn-outline-secondary d-btn-border-color btn-sm mt-1 me-1" data-bs-toggle="modal"
                     data-bs-target="#newModal">
                     <span class="md-d-none">New Link</span> <span class="bi bi-plus-circle ps-lg-1"></span>
                 </button>
@@ -80,7 +80,7 @@
     </div>
 
     {% if count(links) > 0 %}
-        <div class="row pb-5">
+        <div class="row mb-5">
             <div class="col-lg-12 px-0">
                 {% include 'profile/dashboard/links/partial/table_content.html.twig' %}
             </div>

@@ -119,6 +119,10 @@ input[type="color"]:focus,
     border: 1px solid #242424;
 }
 
+.d-btn-border-color, .btn-outline-secondary {
+    border: 1px solid #404040;
+}
+
 .d-danger-color {
     color: #e14d5b;
     opacity: 0.8;
