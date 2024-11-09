@@ -9,6 +9,7 @@ use App\Entity\LinkCollection;
 use App\Entity\User;
 use App\Repository\LinkRepository;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class LinkService
 {
@@ -62,7 +63,7 @@ final class LinkService
         return $this->linkRepository->findOneBy(['token' => $token]);
     }
 
-    public function getOneByUserAndUrl(User $user, string $url): ?Link
+    public function getOneByUserAndUrl(User|UserInterface $user, string $url): ?Link
     {
         return $this->linkRepository->findOneBy(['user' => $user, 'url' => $url]);
     }
