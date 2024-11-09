@@ -123,6 +123,10 @@ input[type="color"]:focus,
     border: 1px solid #404040;
 }
 
+.btn-outline-success {
+    opacity: 0.7;
+}
+
 .d-danger-color {
     color: #e14d5b;
     opacity: 0.8;
