@@ -30,6 +30,10 @@ label, label:not(.form-check-label):not(.custom-file-label){
     color: #737171;
 }
 
+.nowrap, td, th {
+    white-space: nowrap;
+}
+
 .nav-icon {
     font-size: 15px !important;
 }

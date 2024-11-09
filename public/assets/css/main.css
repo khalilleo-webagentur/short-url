@@ -74,6 +74,10 @@ input[type="color"]:focus,
     cursor: pointer;
 }
 
+.nowrap, td, th {
+    white-space: nowrap;
+}
+
 @media (max-width: 868px) {
     .md-text-center {
         text-align: center !important;
