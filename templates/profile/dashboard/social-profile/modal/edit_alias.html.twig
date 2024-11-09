@@ -14,10 +14,10 @@
           </div>
           <div class="mb-3">
             <label for="iAlias" class="form-label">Profile name:</label>
-            <input type="text" class="form-control" id="iAlias" placeholder="khalilleo" name="iAlias" required
+            <input type="text" class="form-control" id="iAlias" placeholder="{{ socialProfileSetting.mainName }}" name="iAlias" required
               autofocus>
             <small class="text-secondary">
-              {{app.request.schemeAndHttpHost ~ '/'}}<i class="text-success">Khalilleo</i>
+              {{app.request.schemeAndHttpHost ~ '/u/'}}<i class="text-success">{{ socialProfileSetting.mainName }}</i>
             </small>
           </div>
         </div>
