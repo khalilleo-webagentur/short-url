@@ -8,9 +8,9 @@
 
 {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid">
+<div class="container-fluid d-dark-color min-vh-100">
 
-    <div class="row py-3 d-dark-color">
+    <div class="row py-3 d-dark-secondary-color">
         <div class="col-9">
             <h6 class="text-white-50 pt-2">Social Profile Statistic <i>{{platformAndUsername}}</i></h6>
         </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <div class="row pb-5">
+    <div class="row pb-5 pt-3">
         <div class="col-lg-12">
             {% if count(socialProfileStatistics) > 0 %}
             <div class="table-responsive py-3">
@@ -62,7 +62,7 @@
                             <td>
                                 <form action="{{ path('app_dashboard_social_profile_statistics_delete', {id: row.id}) }}" method="post">
                                     <div class="d-danger-color fs-14 pointer" onclick="this.closest('form').submit()"
-                                        title="Delete Permanentely?">
+                                        title="Delete Permanently?">
                                         <span class="md-d-none">Remove</span> <span class="bi bi-trash fs-13"></span>
                                     </div>
                                 </form>
@@ -74,7 +74,7 @@
             </div>
             {% else %}
             <p class="text-white-50 pt-5 fs-15">
-                <span class="bi bi-info-circle me-1"></span> No data found! No one has visted your link yet.
+                <span class="bi bi-info-circle me-1"></span> No data found! No one has visited your link yet.
             </p>
             {% endif %}
 

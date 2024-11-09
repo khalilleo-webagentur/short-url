@@ -6,8 +6,8 @@
 
 {% include 'layout/navbar.html.twig' %}
 
-<header style="padding-bottom: 180px;">
-    <div class="px-4 px-lg-5 pb-5">
+<header>
+    <div class="d-dark-color px-4 px-lg-5 pb-5 min-vh-100">
 
         <div class="row justify-content-center py-3">
             <div class="col-lg-6">
@@ -21,7 +21,7 @@
             <div class="col-lg-6">
                 <div class="row row-cols-1 g-3 text-start">
                     <div class="col">
-                        <div class="card d-dark-color d-dark-border-color">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
                             <div class="card-body">
                                 <h5 class="card-title text-white-50">URL Shortner</h5>
                                 <p class="text-secondary mb-1">
@@ -31,7 +31,7 @@
 
                                 <p class="text-secondary mb-1">
                                     <strong class="bi bi-check2-circle text-success pe-2"></strong>
-                                    Malicious URLs {{totalMalicousLinks}}+ detection
+                                    Malicious URLs {{totalMaliciousLinks}}+ detection
                                 </p>
 
                                 <p class="text-secondary mb-1">
@@ -103,7 +103,7 @@
             <div class="col-lg-6">
                 <div class="row row-cols-1 g-3 text-start">
                     <div class="col">
-                        <div class="card d-dark-color d-dark-border-color">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
                             <div class="card-body">
                                 <h5 class="card-title text-white-50 mt-3">Social-Media Profiles</h5>
                                 <p class="text-secondary mb-1">
@@ -139,7 +139,7 @@
 
         <div class="row justify-content-center py-3">
             <div class="col-lg-6">
-                <p class="text-secondary">
+                <p class="text-secondary fs-15">
                     <a href="{{path('app_contact_us_index')}}" class="d-color opacity-08">Contact us</a> for a self-hosting - all your data will be on your control. Any kind of queries related to this just make a call.
                     It's free for 1 year with all features.
                     <a href="{{path('app_register')}}" class="d-color opacity-08">Sign Up</a> to enjoy all features.

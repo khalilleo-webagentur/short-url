@@ -8,103 +8,105 @@
 
 {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<header class="container" style="padding-bottom: 180px;">
-    <div class="px-lg-5 pb-5">
+    <div class="container-fluid d-dark-color pb-5">
+        <div class="container pb-5">
+            <div class="px-lg-5 pb-5">
 
-        <div class="row mt-5 pt-lg-5 pb-3">
-            <div class="col text-center">
-                <h1 class="d-color opacity-08 font-weight-bold">
-                    Contact Us
-                </h1>
+                <div class="row pt-5 pt-lg-5 pb-3">
+                    <div class="col text-center">
+                        <h1 class="d-color opacity-08 font-weight-bold">
+                            Contact Us
+                        </h1>
 
-                <p class="text-white-50">
-                    Feel free to contact us. We will make a Response within 3 days.
-                </p>
-            </div>
-        </div>
-
-        <div class="row gx-4 gx-lg-5 h-100 justify-content-center py-3">
-            <div class="col-lg-6 pb-3">
-
-                <div class="row row-cols-1 row-cols-md-1 g-3">
-                    <div class="col mt-4">
-                        <div class="card d-dark-border-color text-center d-dark-color ">
-                            <div class="card-body py-5">
-                                <h5 class="card-title text-white-50 pb-2">Phone</h5>
-                                <p class="card-text text-white-50">
-                                    <span class="bi bi-phone me-2 d-color"></span> 0163 / 616 - 5396
-                                </p>
-                            </div>
-                        </div>
+                        <p class="text-white-50">
+                            Feel free to contact us. We will make a Response within 3 days.
+                        </p>
                     </div>
-                    <div class="col">
-                        <div class="card d-dark-border-color text-center d-dark-color ">
-                            <div class="card-body py-5">
-                                <h5 class="card-title text-white-50 pb-2">Email</h5>
-                                <p class="card-text text-white-50">
-                                    <span class="bi bi-envelope me-2 d-color"></span> ronijan[@]posteo.de
-                                </p>
+                </div>
+
+                <div class="row gx-4 gx-lg-5 h-100 justify-content-center py-3">
+                    <div class="col-lg-6 pb-3">
+
+                        <div class="row row-cols-1 row-cols-md-1 g-3">
+                            <div class="col mt-4">
+                                <div class="card d-dark-secondary-color d-dark-border-color text-center">
+                                    <div class="card-body py-5">
+                                        <h5 class="card-title text-white-50 pb-2">Phone</h5>
+                                        <p class="card-text text-white-50">
+                                            <span class="bi bi-phone me-2 d-color"></span> 0163 / 616 - 5396
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card d-dark-secondary-color d-dark-border-color text-center">
+                                    <div class="card-body py-5">
+                                        <h5 class="card-title text-white-50 pb-2">Email</h5>
+                                        <p class="card-text text-white-50">
+                                            <span class="bi bi-envelope me-2 d-color"></span> ronijan[@]posteo.de
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card d-dark-secondary-color d-dark-border-color text-center">
+                                    <div class="card-body py-5">
+                                        <h5 class="card-title text-white-50 pb-2">Address</h5>
+                                        <p class="card-text text-white-50">
+                                            <span class="bi bi-pin-map-fill me-2 d-color"></span>Paul-Gerhardt-Str. 7, 74321
+                                            Bietigheim
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="col">
-                        <div class="card d-dark-border-color text-center d-dark-color ">
-                            <div class="card-body py-5">
-                                <h5 class="card-title text-white-50 pb-2">Address</h5>
-                                <p class="card-text text-white-50">
-                                    <span class="bi bi-pin-map-fill me-2 d-color"></span>Paul-Gerhardt-Str. 7, 74321
-                                    Bietigheim
-                                </p>
+                    <div class="col-lg-6">
+                        <form action="{{path('app_contact_us_new')}}" method="post" class="px-2">
+                            <div class="mb-3">
+                                <label for="iName" class="form-label text-white-50">Name *</label>
+                                <input type="text" class="form-control form-control-lg" id="iName" placeholder="" required
+                                       name="iName">
                             </div>
-                        </div>
+
+                            <div class="mb-3">
+                                <label for="iEmail" class="form-label text-white-50">E-mail *</label>
+                                <input type="email" class="form-control form-control-lg" id="iEmail" placeholder="" required
+                                       name="iEmail">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="iSubject" class="form-label text-white-50">Subject *</label>
+                                <input type="text" class="form-control form-control-lg" id="iSubject" placeholder="" required
+                                       name="iSubject">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="iMessage" class="form-label text-white-50">Message *</label>
+                                <textarea class="form-control form-control-lg" id="iMessage" rows="5" name="iMessage"
+                                          placeholder=""></textarea>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-success btn-lg" type="submit">Send</button>
+                            </div>
+
+                            <div class="my-3">
+                                <small class="text-secondary" style="font-size: 13px;">
+                                    <span class="bi bi-info-circle pe-1"></span> By submitting this form, you agree to our
+                                    <a href="{{path('app_legal_privacy_policy')}}" class="text-white-50 text-decoration-none"
+                                       rel="nofollow">Privacy
+                                        Policy</a>.
+                                </small>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
             </div>
-            <div class="col-lg-6">
-                <form action="{{path('app_contact_us_new')}}" method="post" class="px-2">
-                    <div class="mb-3">
-                        <label for="iName" class="form-label text-white-50">Name *</label>
-                        <input type="text" class="form-control form-control-lg" id="iName" placeholder="" required
-                            name="iName">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="iEmail" class="form-label text-white-50">E-mail *</label>
-                        <input type="email" class="form-control form-control-lg" id="iEmail" placeholder="" required
-                            name="iEmail">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="iSubject" class="form-label text-white-50">Subject *</label>
-                        <input type="text" class="form-control form-control-lg" id="iSubject" placeholder="" required
-                            name="iSubject">
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="iMessage" class="form-label text-white-50">Message *</label>
-                        <textarea class="form-control form-control-lg" id="iMessage" rows="5" name="iMessage" 
-                            placeholder=""></textarea>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-outline-success btn-lg" type="submit">Send</button>
-                    </div>
-
-                    <div class="my-3">
-                        <small class="text-secondary" style="font-size: 13px;">
-                            <span class="bi bi-info-circle pe-1"></span> By submitting this form, you agree to our
-                            <a href="{{path('app_legal_privacy_policy')}}" class="text-white-50 text-decoration-none"
-                                rel="nofollow">Privacy
-                                Policy</a>.
-                        </small>
-                    </div>
-                </form>
-            </div>
         </div>
-
     </div>
-</header>
 
 {% include 'layout/footer.html.twig' %}
 

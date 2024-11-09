@@ -82,6 +82,10 @@ input[type="color"]:focus,
     .md-d-none {
         display: none !important;
     }
+
+    .md-border-top {
+        border-top: 1px solid #2f2f2f;
+    }
 }
 
 .alert-notice {
@@ -94,11 +98,17 @@ input[type="color"]:focus,
 }
 
 .d-dark-color {
-    background-color: #0000001c;
+    background-color: #0000000f !important;
+}
+
+.d-dark-secondary-color {
+    background-color: rgb(29, 33, 37) !important;
+    border-top: 1px solid #242424;
+    border-bottom: 1px solid #242424;
 }
 
 .d-dark-border-color {
-    border: 1px solid #2b2b2b;
+    border: 1px solid #242424;
 }
 
 .d-danger-color {

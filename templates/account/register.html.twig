@@ -4,17 +4,17 @@
 
 {% block body %}
 
-<div class="container-fluid">
+<div class="container-fluid d-dark-color min-vh-100">
     <div class="container p-0">
         <div class="row justify-content-center pt-5">
             <div class="col-lg-4 pt-5">
-                <div class="d-dark-color rounded-3 p-4">
+                <div class="d-dark-secondary-color rounded-3 p-4">
 
                     <div class="text-center pt-3">
                         <a href="{{app.request.schemeAndHttpHost}}">
-                            <img src="{{asset('assets/img/logo.png')}}" alt="K24.ing">
+                            <img src="{{asset('assets/img/logo.png')}}" alt="k24.ing">
                         </a>
-                        <h4 class="my-1 text-center text-white-50">Get Started</h3>
+                        <h4 class="my-1 text-center text-white-50">Get Started</h4>
                         <p class="text-center text-white-50 mb-3 fs-15">Sign up with work email</p>
                     </div>
 
@@ -50,7 +50,7 @@
                         </div>
                     </form>
 
-                    <div class="my-3 text-center">
+                    <div class="my-3 text-center pb-3">
                         <p class="text-white-50 fs-15"> Already have an account?
                             <a href="{{path('app_login')}}" class="d-color opacity-08 text-decoration-none">Login</a>
                         </p>

@@ -8,7 +8,7 @@
 
 {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid">
+<div class="container-fluid d-dark-color min-vh-100">
 
     <div class="row py-3 d-dark-color">
         <div class="col-6 col-lg-6">
@@ -27,7 +27,7 @@
         <div class="col-lg-6">
             <div class="row row-cols-1 g-3">
                 <div class="col">
-                    <div class="card d-dark-color d-dark-border-color">
+                    <div class="card d-dark-secondary-color d-dark-border-color">
                         <div class="card-body">
                             <form class="py-3" action="{{path('app_dashboard_social_profile_store', {id:socialProfile.id})}}" method="post">
                                 <div class="mb-3">
@@ -52,7 +52,7 @@
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" name="delete" id="delete">
                                     <label class="form-check-label text-white-50 fs-15" for="delete">
-                                        Delete this Social-Media Link "{{socialProfile.platform}}" and all related Statistics permanentally.
+                                        Delete this Social-Media Link "{{socialProfile.platform}}" and all related Statistics permanently.
                                     </label>
                                 </div>
 

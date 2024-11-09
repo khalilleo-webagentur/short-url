@@ -4,56 +4,57 @@
 
 {% block body %}
 
-<div class="container-fluid">
-    <div class="container p-0">
-        <div class="row justify-content-center pt-5">
-            <div class="col-lg-4 pt-5">
-                <div class="d-dark-color rounded-3 p-4">
+    <div class="container-fluid d-dark-color min-vh-100">
+        <div class="container p-0">
+            <div class="row justify-content-center pt-5">
+                <div class="col-lg-4 pt-5">
+                    <div class="d-dark-secondary-color rounded-3 p-4">
 
-                    <div class="text-center pt-3">
-                        <a href="{{app.request.schemeAndHttpHost}}">
-                            <img src="{{asset('assets/img/logo.png')}}" alt="K24.ing">
-                        </a>
+                        <div class="text-center pt-3">
+                            <a href="{{ app.request.schemeAndHttpHost }}">
+                                <img src="{{ asset('assets/img/logo.png') }}" alt="k24.ing">
+                            </a>
 
-                        <h4 class="my-1 text-center text-white-50">Sign In</h4>
+                            <h4 class="my-1 text-center text-white-50">Sign In</h4>
 
-                        <p class="text-center text-white-50 mb-3 fs-15">
-                            Enter your OTP to continue.
-                        </p>
-                    </div>
+                            <p class="text-center text-white-50 mb-3 fs-15">
+                                Enter your OTP to continue.
+                            </p>
+                        </div>
 
-                    {% include 'component/form_alert.html.twig' %}
+                        {% include 'component/form_alert.html.twig' %}
 
-                    <form action="{{ path('app_login') }}" method="post">
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <form action="{{ path('app_login') }}" method="post">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                        <div class="mb-3">
-                            <input class="form-control" type="email" placeholder="Email" aria-label="Email"
-                                name="_username" required value="{{email}}"
+                            <div class="mb-3">
+                                <input class="form-control" type="email" placeholder="Email" aria-label="Email"
+                                       name="_username" required value="{{ email }}"
                                 >
-                        </div>
-                        <div class="mb-3">
-                            <input class="form-control" type="text" placeholder="Security code" aria-label="OTP"
-                                name="otp" required
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" type="text" placeholder="Security code" aria-label="OTP"
+                                       name="otp" required
                                 >
-                            <small class="text-secondary">Enter OTP that being sent to you</small>
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-outline-success w-100" >Sign
-                                In</button>
-                        </div>
-                    </form>
+                                <small class="text-secondary">Enter OTP that being sent to you</small>
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-outline-success w-100">Sign
+                                    In
+                                </button>
+                            </div>
+                        </form>
 
-                    <div class="my-3 text-center">
-                        <p class="text-white-50 fs-15">No OTP yet? <a href="{{path('app_auth')}}"
-                                class="d-color text-decoration-none opacity-08">
-                                Request new one!</a>
-                        </p>
+                        <div class="my-3 text-center pb-3">
+                            <p class="text-white-50 fs-15">No OTP yet? <a href="{{ path('app_auth') }}"
+                                                                          class="d-color text-decoration-none opacity-08">
+                                    Request new one!</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

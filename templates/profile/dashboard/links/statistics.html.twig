@@ -8,9 +8,9 @@
 
 {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid">
+<div class="container-fluid d-dark-color">
 
-    <div class="row py-3 d-dark-color">
+    <div class="row py-3 d-dark-secondary-color">
         <div class="col-6 col-lg-6">
             <h6 class="text-white-50 pt-2">Statistic {{link.title ? '- ' ~ link.title|capitalize : ''}}</h6>
         </div>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="row pb-5">
+    <div class="row pb-5 min-vh-100">
         <div class="col-lg-12">
             {% if count(statistics) > 0 %}
             <div class="table-responsive py-3">
@@ -63,7 +63,7 @@
                             <td>
                                 <form action="{{path('app_url_statistic_delete', {id:link.id})}}" method="post">
                                     <div class="text-danger opacity-08 fs-14 pointer" onclick="this.closest('form').submit()"
-                                        title="Delete Permanentely?">
+                                        title="Delete Permanently?">
                                         <span class="md-d-none">Remove</span> <span class="bi bi-trash fs-13"></span>
                                     </div>
                                 </form>
@@ -74,8 +74,8 @@
                 </table>
             </div>
             {% else %}
-            <p class="text-white-50 pt-5">
-                <span class="bi bi-info-circle me-1 fs-15"></span> No data found! No one has visted your link yet.
+            <p class="text-white-50 pt-5 fs-15">
+                <span class="bi bi-info-circle me-1 fs-15"></span> No data found! No one has visited your link yet.
             </p>
 
             <a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none">Back to URLs <span

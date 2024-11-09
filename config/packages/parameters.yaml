@@ -1,5 +1,5 @@
 parameters:
-  appVersion: "1.4.0"
+  appVersion: "1.4.2"
   appName: "K24.ing"
   fullAppName: "K24.ing"
   noReply: "no-reply@k24.ing"

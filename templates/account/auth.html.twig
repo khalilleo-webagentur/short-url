@@ -4,22 +4,22 @@
 
 {% block body %}
 
-<div class="container-fluid">
+<div class="container-fluid d-dark-color min-vh-100">
     <div class="container p-0">
         <div class="row justify-content-center pt-5">
             <div class="col-lg-4 pt-5">
-                <div class="d-dark-color p-4 rounded-3">
+                <div class="d-dark-secondary-color p-4 rounded-3">
 
                     <div class="text-center pt-3">
                         <a href="{{app.request.schemeAndHttpHost}}">
-                            <img src="{{asset('assets/img/logo.png')}}" alt="K24.ing">
+                            <img src="{{asset('assets/img/logo.png')}}" alt="k24.ing">
                         </a>
 
                         <h4 class="my-1 text-center text-white-50">Authenticate</h4>
 
                         <p class="text-center text-white-50 mb-3 fs-15">
                             For security reasons, we will send you a OTP via e-mail which you can use it to
-                            access your dashbaord.
+                            access your dashboard.
                         </p>
                     </div>
 
@@ -39,7 +39,7 @@
                         </div>
                     </form>
 
-                    <div class="my-3 text-center">
+                    <div class="my-3 text-center pb-3">
                         <p class="text-white-50 fs-15">
                             Need an account? <a href="{{path('app_register')}}"
                                 class="d-color text-decoration-none opacity-08">Create one</a>

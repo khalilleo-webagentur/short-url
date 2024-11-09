@@ -8,14 +8,14 @@
 
 {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid bg-dark" style="height: 100vh;">
+<div class="container-fluid d-dark-color min-vh-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
 
                 <h5 class="text-white-50 mt-lg-5 mt-md-3">My Profile</h5>
 
-                <div class="d-dark-color d-dark-border-color rounded-3">
+                <div class="d-dark-secondary-color d-dark-border-color rounded-3">
 
                     <div class="row p-3 mt-3">
                         <div class="col">
@@ -59,9 +59,9 @@
 
                 <h5 class="text-white-50 mt-5">Setting</h5>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-2">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-3">
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-dark-border-color">
+                        <div class="card h-100 d-dark-secondary-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#usernameModal">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-dark-border-color">
+                        <div class="card h-100 d-dark-secondary-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#emailModal">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-dark-border-color">
+                        <div class="card h-100 d-dark-secondary-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#exportModal">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 d-dark-color d-dark-border-color">
+                        <div class="card h-100 d-dark-secondary-color d-dark-border-color">
                             <div class="card-body">
                                 <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal">
@@ -108,7 +108,7 @@
 
             <h5 class="text-white-50 mt-5">Support</h5>
 
-            <p class="text-white-50 pb-5 mb-5">
+            <p class="text-white-50 fs-16">
                 If you have any questions about your account, please use the
                 <a href="{{path('app_contact_us_index')}}" class="d-color opacity-08 text-decoration-none">contact form</a> or
                 <a href="mailto::{{email}}" class="d-color opacity-08 text-decoration-none">email us</a> directly.
