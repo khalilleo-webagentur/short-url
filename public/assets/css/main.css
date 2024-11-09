@@ -78,6 +78,10 @@ input[type="color"]:focus,
     white-space: nowrap;
 }
 
+.text-orange {
+    color: orangered !important;
+}
+
 @media (max-width: 868px) {
     .md-text-center {
         text-align: center !important;

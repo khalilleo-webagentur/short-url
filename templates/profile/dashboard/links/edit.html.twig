@@ -59,7 +59,12 @@
                                 {% if allowLinkAlias %}
                                 <div class="mb-3">
                                     {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
-                                    <small class="float-end d-color opacity-08">{{shortLink}}</small>
+                                    <small class="float-end d-color opacity-08">{{shortLink}}
+
+                                        <span class="bi bi-clipboard-fill text-white-50 pointer ps-1 text-orange cUrlCode"
+                                              data-description="{{ shortLink }}"
+                                              title="Copy to Clipboard"></span>
+                                    </small>
                                     <label for="iUrl" class="form-label text-white-50">
                                         URL Code: <span class="d-danger-color">*</span>
                                     </label>
@@ -72,16 +77,16 @@
                                 {% endif %}
 
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" name="isFave" id="isFave" {{
-                                        link.isFave ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="isFave" id="isFave"
+                                            {{ link.isFave ? 'checked' : '' }}>
                                     <label class="form-check-label text-white-50" for="isFave">
                                         is Fave Link
                                     </label>
                                 </div>
 
                                 <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" name="isPublic" id="isPublic" {{
-                                        link.isPublic ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="isPublic" id="isPublic"
+                                            {{ link.isPublic ? 'checked' : '' }}>
                                     <label class="form-check-label text-white-50" for="isPublic">
                                         Log statistic for this Link
                                     </label>
