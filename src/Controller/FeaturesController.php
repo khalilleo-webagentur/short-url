@@ -18,10 +18,10 @@ class FeaturesController extends AbstractController
     #[Route('/features/x9g7e3p5i1j6e1w6', name: 'app_features_index')]
     public function index(): Response
     {
-        $totalMalicousLinks = $this->maliciousUrlsService->getCount();
+        $totalMaliciousLinks = $this->maliciousUrlsService->getCount();
 
         return $this->render('static/features.html.twig', [
-            'totalMalicousLinks' => $totalMalicousLinks,
+            'totalMaliciousLinks' => $totalMaliciousLinks,
         ]);
     }
 }

@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Entity\UserSetting;
 use App\Repository\UserSettingRepository;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class UserSettingService
 {
@@ -21,7 +22,7 @@ final class UserSettingService
         return $this->userSettingRepository->findOneBy(['user' => $user]);
     }
 
-    public function allowDuplicatedUrls(User $user): bool
+    public function allowDuplicatedUrls(User|UserInterface $user): bool
     {
         $setting = $this->getOneByUser($user);
 
