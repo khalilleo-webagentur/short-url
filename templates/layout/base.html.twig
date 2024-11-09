@@ -2,26 +2,37 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="csrf-token" content="cf6f861916b2e16b2cf884a222ac134f2fb7620d" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="csrf-token" content="{{ hash(appName()) }}"/>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="NO-CACHE">
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <meta name="referrer" content="origin">
     <meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content="en_EN"/>
+    <meta name="copyright" content="© {{ year() }} k24.ing" />
 
     <title> {% block title %}{% endblock %} </title>
 
-    {% if app.request.get('_route') == 'app_home' %}
-    <meta content="index,follow" name="robots">
-    <meta name="keywords" content="Short Links, tiny, click, URL shorten, short URL, profile tree, social links">
+    {% set _route = app.request.get('_route') %}
+
+    {% if _route == 'app_home' or _route == 'app_contact_us_index' or _route == 'app_features_index' or _route == 'app_report_abuse' %}
+        <meta content="index,follow" name="robots">
+    {% else %}
+        <meta content="noindex,follow" name="robots">
     {% endif %}
 
-    <meta name="description"
-        content="Short Link is a free tool to shorten a URL or reduce a link. Use our URL Shortener to create a shortened link." />
+    {% if _route == 'app_dashboard_social_profile_index' %}
+        <meta name="description"
+              content="Hey! here you will find links to my social media profiles such as TikTok, Facebook, Twitter (x), Instagram, website and much more!"/>
+    {% else %}
+        <meta name="keywords" content="Short Links, tiny, click, URL shorten, short URL, profile tree, social links">
+        <meta name="description"
+              content="Shorten links and track visits with our URL shortener. You can also create a profile for social-media Accounts to connect with your Audience - simply multiple links into one."/>
+    {% endif %}
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/assets/img/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/assets/img/favicon/favicon-32x32.png') }}">
@@ -33,43 +44,46 @@
     <meta name="msapplication-TileColor" content="#fdfdfd">
     <meta name="theme-color" content="#ffffff">
 
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
     <meta content="K24.ing" name="application-name">
     <meta content="#ffffff" name="msapplication-TileColor">
     <meta content="#ffffff" name="theme-color">
     <meta name="author" content="khalilleo Team">
-    <meta name="created" content="03-03-2024" />
-    <meta content="telephone=no" name="format-detection" />
+    <meta name="created" content="03-03-2024"/>
+    <meta name="publisher" content="K24.ing" />
+    <meta content="translate" name="google" />
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="https://k24.ing" itemprop="name" />
 
     <base target="_self">
 
-    <link rel='dns-prefetch' href='//www.k24.ing' />
+    <link rel='dns-prefetch' href='//www.k24.ing'/>
 
     {% block stylesheets %}
-    <link href="{{asset('assets/css/bootstrap-icons.min.css?v=1.10.5')}}" rel="stylesheet" />
-    <link href="{{asset('assets/css/bootstrap.min.css?v=5.3.0')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('assets/css/cookie-banner.css?v=1.0.0')}}">
-    <link href="{{asset('assets/css/main.css?v=1.0.0')}}" rel="stylesheet" />
+        <link href="{{ asset('assets/css/bootstrap-icons.min.css?v=1.10.5') }}" rel="stylesheet"/>
+        <link href="{{ asset('assets/css/bootstrap.min.css?v=5.3.0') }}" rel="stylesheet"/>
+        <link rel="stylesheet" href="{{ asset('assets/css/cookie-banner.css?v=1.0.0') }}">
+        <link href="{{ asset('assets/css/main.css?v=1.0.0') }}" rel="stylesheet"/>
     {% endblock %}
 
     <noscript>
-        <meta http-equiv="refresh" content="3;url={{path('app_noscript')}}">
+        <meta http-equiv="refresh" content="3;url={{ path('app_noscript') }}">
     </noscript>
 
 </head>
 
 <body>
 
-    {% block body %}{% endblock %}
+{% block body %}{% endblock %}
 
-    {% block javascripts %}
-    <script src="{{asset('assets/js/bootstrap.bundle.min.js?v=5.1.0')}}"></script>
-    <script src="{{asset('assets/js/jquery.min.js?v=3.2.0')}}"></script>
-    <script src="{{asset('assets/js/sweetalert.min.js?v=1.0.0')}}" defer></script>
-    <script src="{{asset('assets/js/cookie-banner.js?v=1.0.0')}}"></script>
-    <script src="{{asset('assets/js/app.js?v=1.0.0')}}"></script>
-    {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js?v=5.1.0') }}"></script>
+    <script src="{{ asset('assets/js/jquery.min.js?v=3.2.0') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert.min.js?v=1.0.0') }}" defer></script>
+    <script src="{{ asset('assets/js/cookie-banner.js?v=1.0.0') }}"></script>
+    <script src="{{ asset('assets/js/app.js?v=1.0.0') }}"></script>
+{% endblock %}
 
 </body>
 
