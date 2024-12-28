@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'app:new-social-rofile-setting',
-    description: 'Add demo social profile setting for demostration purposes.',
+    description: 'Add demo social profile setting for demonstration purposes.',
     hidden: false
 )]
 class SocialProfileSettingCommand extends Command

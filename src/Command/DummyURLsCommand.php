@@ -18,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'app:urls',
-    description: 'Dummy URLs for demostration purposes.',
+    description: 'Dummy URLs for demonstration purposes.',
     hidden: false
 )]
 class DummyURLsCommand extends Command
