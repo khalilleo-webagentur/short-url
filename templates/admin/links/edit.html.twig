@@ -9,22 +9,22 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-8">
                     <h4 class="m-0 text-dark">Edit Link Details</h4>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
+                <div class="col-4">
+                    <div class="breadcrumb float-right">
                         <a href="{{path('app_admin_links_index')}}" class="text-secondary">
                             Close <span class="fa fa-window-close"></span>
                         </a>
-                    </ol>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <section class="content">
-        <div class="container-fluid">
+        <div class="container-fluid area-section">
 
             <div class="row">
                 <div class="col-lg-6">
@@ -102,11 +102,7 @@
                             </div>
                         </div>
 
-                        <div class="my-3">
-                            <button class="btn btn-success">Save Changes<span
-                                    class="fa fa-check-circle fa-sm pl-1"></span>
-                            </button>
-                        </div>
+                        {% include 'admin/component/form_save_btn.html.twig' %}
                     </form>
                 </div>
             </div>
