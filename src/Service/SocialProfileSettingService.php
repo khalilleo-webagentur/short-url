@@ -46,7 +46,7 @@ final class SocialProfileSettingService
         $model
             ->setUser($user)
             ->setMainName($name)
-            ->setDescription("Add a short description about you.")
+            ->setDescription("User social profile")
             ->setCreatedAt(new DateTime());
 
         $this->save($model);
