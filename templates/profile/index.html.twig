@@ -17,11 +17,26 @@
 
                 <div class="d-dark-secondary-color d-dark-border-color rounded-3">
 
-                    <div class="row p-3 mt-3">
-                        <div class="col">
-                            <img src="{{asset('avatar/' ~ profile.avatarName)}}" height="180px" alt="Avatar"
-                                style="border-radius: 15px;">
-                                <div class="pt-3 ps-5" data-bs-target="#avatarModal" data-bs-toggle="modal">
+                    <small class="small float-end pt-1 pb-3 pe-2">
+                        <a href="{{path('app_profile_my_urls')}}" class="d-color opacity-08 text-decoration-none small">My URLs</a>
+
+                        <span class="small text-secondary px-1">|</span>
+
+                        <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
+                           class="d-color opacity-08 text-decoration-none">Social Profile
+                        </a>
+
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <span class="small text-secondary px-1">|</span>
+                            <a href="{{path('app_admin_index')}}" class="d-color opacity-08 text-decoration-none">Dashboard</a>
+                        {% endif %}
+                    </small>
+
+                    <div class="d-flex p-3 mt-3">
+                        <div class="">
+                            <img src="{{asset('avatar/' ~ profile.avatarName)}}" height="140px" alt="Avatar"
+                                style="border-radius: 10px;">
+                                <div class="pt-3 ps-4" data-bs-target="#avatarModal" data-bs-toggle="modal">
                                     <p class="pointer my-1">
                                         <small class="text-secondary">
                                             Edit Avatar <span class="bi bi-pencil-square"></span>
@@ -29,29 +44,10 @@
                                     </p>
                                 </div>
                         </div>
-                        <div class="col-10">
-                            <p class="text-white-50 pt-3">Username: {{app.user.name}}</p>
-                            <p class="text-white-50">Email: {{app.user.email}}</p>
-                            <p class="text-white-50">Created: {{app.user.createdAt|date('d.m.Y')}}</p>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <p class="small float-end">
-                                    <a href="{{path('app_profile_my_urls')}}" class="d-color opacity-08 text-decoration-none small">My URLs</a>
-
-                                    <span class="small text-secondary px-1">|</span>
-
-                                    <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}" 
-                                        class="d-color opacity-08 text-decoration-none">Social Profile
-                                    </a>
-    
-                                    {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                    <span class="small text-secondary px-1">|</span>
-                                    <a href="{{path('app_admin_index')}}" class="d-color opacity-08 text-decoration-none">Dashboard</a>
-                                    {% endif %}
-                                </p>
-                            </div>
+                        <div class="ms-3">
+                            <p class="text-white-50 pt-3"><span class="md-d-none">Username: </span>{{app.user.name}}</p>
+                            <p class="text-white-50"><span class="md-d-none">Email: </span>{{app.user.email}}</p>
+                            <p class="text-white-50"><span class="md-d-none">Created: </span>{{app.user.createdAt|date('d.m.Y')}}</p>
                         </div>
                     </div>
 
@@ -62,44 +58,53 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-3">
                     <div class="col">
                         <div class="card h-100 d-dark-secondary-color d-dark-border-color">
-                            <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
-                                    data-bs-target="#usernameModal">
-                                    Change Username <span
-                                        class="float-end text-secondary pointer bi bi-pencil-square"></span>
+                            <div class="card-body" data-bs-toggle="modal" data-bs-target="#usernameModal">
+                                <h6 class="card-title text-white-50 mb-0 py-2">
+                                    Username
                                 </h6>
+                                <small class="text-secondary">
+                                    Update your username.
+                                    <span class="float-end text-secondary pointer bi bi-pencil-square"></span>
+                                </small>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card h-100 d-dark-secondary-color d-dark-border-color">
-                            <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
-                                    data-bs-target="#emailModal">
-                                    Change Email <span
-                                        class="float-end text-secondary pointer bi bi-pencil-square"></span>
+                            <div class="card-body" data-bs-toggle="modal" data-bs-target="#emailModal">
+                                <h6 class="card-title text-white-50 mb-0 py-2">
+                                    E-mail address
                                 </h6>
+                                <small class="text-secondary">
+                                    Update your account E-mail.
+                                    <span class="float-end text-secondary pointer bi bi-pencil-square"></span>
+                                </small>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card h-100 d-dark-secondary-color d-dark-border-color">
-                            <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
-                                    data-bs-target="#exportModal">
-                                    Download Personal Data <span
-                                        class="float-end text-secondary pointer bi bi-download"></span>
+                            <div class="card-body" data-bs-toggle="modal" data-bs-target="#exportModal">
+                                <h6 class="card-title text-white-50 mb-0 py-2">
+                                    Personal Data
                                 </h6>
+                                <small class="text-secondary">
+                                    Export your data as JSON.
+                                    <span class="float-end text-secondary pointer bi bi-download"></span>
+                                </small>
                             </div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card h-100 d-dark-secondary-color d-dark-border-color">
-                            <div class="card-body">
-                                <h6 class="card-title text-white-50 mb-0 py-2" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    Delete Account <span class="float-end text-secondary pointer bi bi-trash"></span>
+                            <div class="card-body" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                <h6 class="card-title text-white-50 mb-0 py-2">
+                                    Delete Account
                                 </h6>
+                                <small class="text-secondary">
+                                    Request account deletion.
+                                    <span class="float-end text-secondary pointer bi bi-trash"></span>
+                                </small>
                             </div>
                         </div>
                     </div>
