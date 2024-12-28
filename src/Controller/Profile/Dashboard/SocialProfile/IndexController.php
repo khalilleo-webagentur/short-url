@@ -37,10 +37,17 @@ class IndexController extends AbstractController
     {
         $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile));
 
-        if ((!$socialProfileSetting || !$socialProfileSetting->isPublic()) && !$this->getUser()) {
+        if (!$socialProfileSetting || !$socialProfileSetting->isPublic() || !$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
+        
+        $currentUser = $this->getUser();
+        $setting = $this->socialProfileSettingService->getByUser($currentUser);
 
+        if ($setting && $socialProfileSetting->getMainName() !== $setting->getMainName()) {
+            return $this->redirectToRoute('app_home');
+        }
+        
         $user = $socialProfileSetting->getUser();
 
         $profileLinks = $this->socialProfileService->getAllByUser($user);

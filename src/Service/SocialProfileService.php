@@ -9,9 +9,9 @@ use App\Entity\User;
 use App\Repository\SocialProfileRepository;
 use DateTime;
 
-final class SocialProfileService
+final readonly class SocialProfileService
 {
-    public function __construct(private readonly SocialProfileRepository $socialShareRepository)
+    public function __construct(private SocialProfileRepository $socialShareRepository)
     {
     }
 

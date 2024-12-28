@@ -8,6 +8,7 @@ use App\Entity\SocialProfileSetting;
 use App\Entity\User;
 use App\Repository\SocialProfileSettingRepository;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class SocialProfileSettingService
 {
@@ -21,7 +22,7 @@ final class SocialProfileSettingService
         return $this->socialProfileSettingRepository->find($id);
     }
 
-    public function getByUser(User $user): ?SocialProfileSetting
+    public function getByUser(User|UserInterface $user): ?SocialProfileSetting
     {
         return $this->socialProfileSettingRepository->findOneBy(['user' => $user]);
     }
