@@ -1,21 +1,21 @@
 <div class="card-body table-responsive bg-white p-0 mb-3">
     <table class="table table-hover text-nowrap">
         <thead>
-            <tr class="fs-14">
-                <th>{{ 'URL'|trans }}</th>
-                <th title="How many times user add link?">{{ 'Counts'|trans }}</th>
-                <th>{{ 'Modified'|trans }}</th>
-                <th>{{ 'Created'|trans }}</th>
-                {# <th>{{ 'Action'|trans }}</th> #}
-            </tr>
+        <tr class="fs-14">
+            <th>{{ 'URL'|trans }}</th>
+            <th title="How many times user add link?">{{ 'Counts'|trans }}</th>
+            <th>{{ 'Modified'|trans }}</th>
+            <th>{{ 'Created'|trans }}</th>
+            {# <th>{{ 'Action'|trans }}</th> #}
+        </tr>
         </thead>
         <tbody>
-            {% for row in maliciousUrls %}
+        {% for row in maliciousUrls %}
             <tr class="fs-14">
                 <td>
-                    <code>{{row.url}}</code>
+                    <code>{{ row.url }}</code>
                 </td>
-                <td>{{row.counter}}</td>
+                <td>{{ row.counter }}</td>
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
                 {# <td>
@@ -25,7 +25,7 @@
                     </form>
                 </td> #}
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 </div>

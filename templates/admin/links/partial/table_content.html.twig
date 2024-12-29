@@ -1,48 +1,51 @@
 <div class="card-body table-responsive bg-white p-0 mb-3">
     <table class="table table-hover text-nowrap">
         <thead>
-            <tr class="fs-14">
-                <th>{{ 'Star'|trans }}</th>
-                <th>{{ 'URL'|trans }}</th>
-                <th>{{ 'Short'|trans }}</th>
-                <th>{{ 'User'|trans }}</th>
-                <th>{{ 'Title'|trans }}</th>
-                <th>{{ 'Collection'|trans }}</th>
-                <th>{{ 'Clicks'|trans }}</th>
-                <th>{{ 'Statistics'|trans }}</th>
-                <th>{{ 'Updated'|trans }}</th>
-                <th>{{ 'Created'|trans }}</th>
-                <th>{{ 'Action'|trans }}</th>
-            </tr>
+        <tr class="fs-14">
+            <th>{{ 'Star'|trans }}</th>
+            <th>{{ 'URL'|trans }}</th>
+            <th>{{ 'Short'|trans }}</th>
+            <th>{{ 'User'|trans }}</th>
+            <th>{{ 'Title'|trans }}</th>
+            <th>{{ 'Collection'|trans }}</th>
+            <th>{{ 'Clicks'|trans }}</th>
+            <th>{{ 'Statistics'|trans }}</th>
+            <th>{{ 'Updated'|trans }}</th>
+            <th>{{ 'Created'|trans }}</th>
+            <th>{{ 'Action'|trans }}</th>
+        </tr>
         </thead>
         <tbody>
-            {% for row in links %}
+        {% for row in links %}
             <tr class="fs-14">
-                <td><span class="fa {{row.isFave ? 'fa-solid fa-star text-warning' : 'fa-star text-light-50'}}"></span></td>
+                <td>
+                    <span class="fa {{ row.isFave ? 'fa-solid fa-star text-warning' : 'fa-star text-light-50' }}"></span>
+                </td>
                 <td><span title="{{ row.url }}">{{ row.url|slice(0, 20) ~ '...' }}</span></td>
                 <td>
                     {% set link = app.request.schemeAndHttpHost ~ '/' ~ row.token %}
-                    {{ row.token }} <a href="{{link}}" target="_blank"><span class="fa fa-external-link-alt fa-sm"></span></a>
+                    {{ row.token }} <a href="{{ link }}" target="_blank"><span
+                                class="fa fa-external-link-alt fa-sm"></span></a>
                 </td>
                 <td>
                     {% if row.user %}
-                    <a href="{{path('app_admin_user_edit', {id:row.user.id})}}">
-                        {{row.user.name|capitalize}}
-                    </a>
+                        <a href="{{ path('app_admin_user_edit', {id:row.user.id}) }}">
+                            {{ row.user.name|capitalize }}
+                        </a>
                     {% else %}
-                    ---
+                        ---
                     {% endif %}
                 </td>
                 <td>
                     {% if row.title %}
-                        <span title="{{row.title}}">{{row.title|slice(0, 40) ~ '..'}}</span>
+                        <span title="{{ row.title }}">{{ row.title|slice(0, 40) ~ '..' }}</span>
                     {% else %}
                         ---
                     {% endif %}
                 </td>
                 <td>{{ row.collection ? row.collection.name : '---' }}</td>
                 <td>
-                    <span class="cursor-help" title="clicks: {{row.counter}}">
+                    <span class="cursor-help" title="clicks: {{ row.counter }}">
                         {{ numberNotation(row.counter) }}
                     </span>
                 </td>
@@ -53,20 +56,21 @@
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
 
                 <td>
-                    <a href="{{path('app_admin_link_edit', {id:row.id})}}"><span class="fa fa-edit fa-sm pr-2"></span></a>
+                    <a href="{{ path('app_admin_link_edit', {id:row.id}) }}"><span class="fa fa-edit fa-sm pr-2"></span></a>
 
                     {% if row.counter > 0 %}
-                    <a href="{{path('app_admin_links_statistics_index', {id:row.id})}}"><span
-                            class="fa fa-chart-line text-dark fa-sm pr-2"></span></a>
+                        <a href="{{ path('app_admin_links_statistics_index', {id:row.id}) }}"><span
+                                    class="fa fa-chart-line text-dark fa-sm pr-2"></span></a>
                     {% else %}
-                        <span class="fa fa-chart-line text-secondary fa-sm pr-2 cursor-help" title="No statistics found!"></span>
+                        <span class="fa fa-chart-line text-secondary fa-sm pr-2 cursor-help"
+                              title="No statistics found!"></span>
                     {% endif %}
 
                     <a href="#"><span class="fa fa-trash text-danger fa-sm pr-2 linkDataId" data-toggle="modal"
-                            data-target="#deleteLinkAndStatisticsModal" data-id="{{row.id}}"></span></a>
+                                      data-target="#deleteLinkAndStatisticsModal" data-id="{{ row.id }}"></span></a>
                 </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 </div>

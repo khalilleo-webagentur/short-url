@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Profile;
+use App\Entity\User;
 use App\Helper\AppHelper;
 use App\Repository\ProfileRepository;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class ProfileService
+final readonly class ProfileService
 {
     public function __construct(
-        private readonly ProfileRepository $profileRepository
+        private ProfileRepository $profileRepository
     ) {
     }
 
@@ -22,7 +23,7 @@ final class ProfileService
         return $this->profileRepository->findOneBy(['user' => $user]);
     }
 
-    public function add(UserInterface $user): Profile
+    public function add(UserInterface|User $user): Profile
     {
         $entity = new Profile();
         $entity

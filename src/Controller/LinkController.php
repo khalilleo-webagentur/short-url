@@ -26,11 +26,11 @@ class LinkController extends AbstractController
     private const HOME_ROUTE = 'app_home';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService           $linkService,
         private readonly TokenGeneratorService $tokenGeneratorService,
-        private readonly UserSettingService $userSettingService,
-        private readonly MaliciousUrlsService $maliciousUrlsService,
-        private readonly MonologService $monolog
+        private readonly UserSettingService    $userSettingService,
+        private readonly MaliciousUrlsService  $maliciousUrlsService,
+        private readonly MonologService        $monolog
     ) {
     }
 
@@ -63,7 +63,7 @@ class LinkController extends AbstractController
         if ($maliciousUrl = $this->maliciousUrlsService->getOneByUrl($parseUrl['host'] ?? '')) {
 
             $this->maliciousUrlsService->save(
-                $maliciousUrl->setCounter($maliciousUrl->getCounter()+1)
+                $maliciousUrl->setCounter($maliciousUrl->getCounter() + 1)
             );
 
             $this->monolog->logger->debug(
@@ -72,7 +72,7 @@ class LinkController extends AbstractController
                     $maliciousUrl->getId(),
                     $maliciousUrl->getUrl(),
                     $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
-                );
+            );
 
             $this->addFlash('warning', 'This URL is on Blacklist.');
             return $this->redirectToRoute(self::HOME_ROUTE);

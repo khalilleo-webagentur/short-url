@@ -2,15 +2,16 @@
     <div class="row py-2">
         <div class="col-lg-6">
             <div class="text-white-50">
-                <small class="font-15">Copyright {{appName()}} © {{year()}}. All rights reserved.
+                <small class="font-15">Copyright {{ appName() }} © {{ year() }}. All rights reserved.
 
                     <span class="small px-1 md-d-none">|</span>
 
-                    <span class="md-d-none">{{version()}}</span>
+                    <span class="md-d-none">{{ version() }}</span>
 
                     {% if profilesTree() != '' %}
-                    <span class="small px-1">|</span>
-                    <a href="{{path('app_dashboard_social_profile_index', {profile: profilesTree()})}}" class="d-color opacity-08 text-decoration-none">follow us</a>
+                        <span class="small px-1">|</span>
+                        <a href="{{ path('app_dashboard_social_profile_index', {profile: profilesTree()}) }}"
+                           class="d-color opacity-08 text-decoration-none">follow us</a>
                     {% endif %}
                 </small>
             </div>
@@ -18,7 +19,8 @@
         <div class="col-lg-6">
             <div class="text-white-50 text-lg-end">
                 <small class="font-15 pb-2">
-                    powered by <a class="d-color text-decoration-none" href="https://www.khalilleo.com" rel="follow index">
+                    powered by <a class="d-color text-decoration-none" href="https://www.khalilleo.com"
+                                  rel="follow index">
                         Khalilleo.com
                     </a>
                 </small>

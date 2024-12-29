@@ -22,7 +22,7 @@ class SettingsController extends AbstractController
     private const SOCIAL_PROFILE_SETTINGS_ROUTE = 'app_dashboard_social_profile_settings_index';
 
     public function __construct(
-        private readonly SocialProfileService $socialProfileService,
+        private readonly SocialProfileService        $socialProfileService,
         private readonly SocialProfileSettingService $socialProfileSettingService
     ) {
     }

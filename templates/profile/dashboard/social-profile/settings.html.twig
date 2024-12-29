@@ -4,104 +4,107 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid d-dark-color min-vh-100">
 
-    <div class="row py-3 d-dark-color">
-        <div class="col-6 col-lg-6">
-            <h6 class="text-white-50 pt-2">Social-Profile Setting</h6>
-        </div>
-
-        <div class="col-6 col-lg-6">
-            <a href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
-                class="float-end text-secondary text-decoration-none fs-15 pt-2">
-                Close <span class="bi bi-x-square-fill ps-1 small"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
-        <div class="col-lg-6">
-
-            <div class="row row-cols-1 g-3">
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="{{path('app_dashboard_social_profile_setting_store_is_public')}}"
-                                method="post">
-
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="isPublic"
-                                        {{socialProfileSetting.isPublic ? 'checked' : '' }} name="isPublic">
-
-                                    <label class="form-check-label text-white-50" for="isPublic"
-                                        onclick="this.closest('form').submit();">Profile can be accessed by everyone
-                                        with only read Permissions if active
-                                        {% if not socialProfileSetting.isPublic %}
-                                        <span class="px-1">
-                                            <span class="bi bi-info-circle pe-1 cursor-help text-info opacity-05"
-                                                title="As long as you logged in only you can access your profile even if it is disabled."></span>
-                                        </span>
-                                        {% endif %}
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="publicSetting" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="#" method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="statistics" checked disabled>
-                                    <label class="form-check-label text-white-50 ps-1" for="statistics">
-                                        Statistics is by default on. Anyone visit your any social link, Statistics will
-                                        be stored
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="statisticsSetting" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="#" method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="deleteStatistic" checked
-                                        disabled>
-                                    <label class="form-check-label text-white-50 ps-1" for="deleteStatistic">
-                                        Each statistic can be deleted
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="deleteStatisticSetting" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        <div class="row py-3 d-dark-color">
+            <div class="col-6 col-lg-6">
+                <h6 class="text-white-50 pt-2">Social-Profile Setting</h6>
             </div>
 
-            <p class="my-3"><a
-                    href="{{path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName})}}"
-                    class="small text-decoration-none">
-                    <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to Social-Profile</a>
-            </p>
+            <div class="col-6 col-lg-6">
+                <a href="{{ path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName}) }}"
+                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
+            <div class="col-lg-6">
+
+                <div class="row row-cols-1 g-3">
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="{{ path('app_dashboard_social_profile_setting_store_is_public') }}"
+                                      method="post">
+
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="isPublic"
+                                                {{ socialProfileSetting.isPublic ? 'checked' : '' }} name="isPublic">
+
+                                        <label class="form-check-label text-white-50" for="isPublic"
+                                               onclick="this.closest('form').submit();">Profile can be accessed by
+                                            everyone
+                                            with only read Permissions if active
+                                            {% if not socialProfileSetting.isPublic %}
+                                                <span class="px-1">
+                                            <span class="bi bi-info-circle pe-1 cursor-help text-info opacity-05"
+                                                  title="As long as you logged in only you can access your profile even if it is disabled."></span>
+                                        </span>
+                                            {% endif %}
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="publicSetting" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="statistics" checked
+                                               disabled>
+                                        <label class="form-check-label text-white-50 ps-1" for="statistics">
+                                            Statistics is by default on. Anyone visit your any social link, Statistics
+                                            will
+                                            be stored
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="statisticsSetting" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="deleteStatistic" checked
+                                               disabled>
+                                        <label class="form-check-label text-white-50 ps-1" for="deleteStatistic">
+                                            Each statistic can be deleted
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="deleteStatisticSetting" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="my-3"><a
+                            href="{{ path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName}) }}"
+                            class="small text-decoration-none">
+                        <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to Social-Profile</a>
+                </p>
+            </div>
         </div>
     </div>
-</div>
 
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

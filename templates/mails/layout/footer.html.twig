@@ -5,14 +5,15 @@
                 <span class="apple-link">&copy; {{ appName() }} {{ year() }} - {{ 'All Rights Reserved'|trans }} - 
                     {{ version() }}</span>
                 <br> {{ 'Have a question or need Help?'|trans }}
-                <a href="{{ absolute_url(path('app_home')) }}" rel="nofollow,noindex,noopnner"> {{'Contact Form'|trans }}</a>
+                <a href="{{ absolute_url(path('app_home')) }}"
+                   rel="nofollow,noindex,noopnner"> {{ 'Contact Form'|trans }}</a>
             </td>
         </tr>
         <tr>
             <td class="content-block powered-by">
                 <a href="{{ absolute_url(path('app_home')) }}" rel="nofollow,noindex,noopnner">
                     <img src="{{ absolute_url(asset('favicon.ico')) }}" alt="{{ appName() }}" width="20"
-                        height="20">
+                         height="20">
                 </a>
             </td>
         </tr>

@@ -1,45 +1,48 @@
 <div class="modal fade" id="socialProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="socialProfileModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title text-white-50 fs-5" id="socialProfileModalLabel">New Social Link</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+     aria-labelledby="socialProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title text-white-50 fs-5" id="socialProfileModalLabel">New Social Link</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-      <form action="{{path('app_dashboard_social_profile_new')}}" method="post">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="iSource" class="form-label">
-              Name: <span class="d-danger-color">*</span>
-            </label>
-            <input type="text" class="form-control" id="iSource" placeholder="Twitter" name="iSource" required
-              autofocus>
-              <small class="text-secondary">Name of Platform x (twitter)</small>
-          </div>
-          <div class="mb-3">
-            <label for="iName" class="form-label">
-              Username: <span class="d-danger-color">*</span>
-            </label>
-            <input type="text" class="form-control" id="iName" placeholder="__khalilleo" name="iName" required>
-            <small class="text-secondary">Your username on twitter</small>
-          </div>
+            <form action="{{ path('app_dashboard_social_profile_new') }}" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="iSource" class="form-label">
+                            Name: <span class="d-danger-color">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="iSource" placeholder="Twitter" name="iSource"
+                               required
+                               autofocus>
+                        <small class="text-secondary">Name of Platform x (twitter)</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="iName" class="form-label">
+                            Username: <span class="d-danger-color">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="iName" placeholder="__khalilleo" name="iName"
+                               required>
+                        <small class="text-secondary">Your username on twitter</small>
+                    </div>
 
-          <div class="mb-3">
-            <label for="iUrl" class="form-label">
-              Link to your Profile: <span class="d-danger-color">*</span>
-            </label>
-            <input type="text" class="form-control" id="iUrl" placeholder="https://twitter.com/__khalilleo" name="iUrl"
-              required>
-              <small class="text-secondary">Link to your profile on twitter</small>
-          </div>
+                    <div class="mb-3">
+                        <label for="iUrl" class="form-label">
+                            Link to your Profile: <span class="d-danger-color">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="iUrl" placeholder="https://twitter.com/__khalilleo"
+                               name="iUrl"
+                               required>
+                        <small class="text-secondary">Link to your profile on twitter</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-success">Add Social Link</button>
+                </div>
+            </form>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-outline-success">Add Social Link</button>
-        </div>
-      </form>
-
     </div>
-  </div>
 </div>

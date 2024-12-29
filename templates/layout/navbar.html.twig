@@ -1,81 +1,85 @@
 <nav class="navbar d-dark-color border-body navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{app.request.schemeAndHttpHost}}">
-            <img src="{{asset('assets/img/logo.png')}}" alt="{{appName()}}" height="32">
+        <a class="navbar-brand" href="{{ app.request.schemeAndHttpHost }}">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="{{ appName() }}" height="32">
         </a>
 
         <div class="float-end d-flex">
 
             <div class="text-secondary me-2 navbar-toggler border-0" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                 data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                 <span class="bi bi-list fs-3 d-color pointer"></span>
             </div>
 
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRight"
-                aria-labelledby="offcanvasRightLabel">
+                 aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasRightLabel">
-                        <img src="{{asset('assets/img/logo.png')}}" height="32" alt="k24.ing">
+                        <img src="{{ asset('assets/img/logo.png') }}" height="32" alt="k24.ing">
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link fs-15" aria-current="page" href="{{app.request.schemeAndHttpHost}}">Home</a>
+                            <a class="nav-link fs-15" aria-current="page" href="{{ app.request.schemeAndHttpHost }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-15" href="http://a.khalilleo.com/about-us" target="_blank">About Us</a>
+                            <a class="nav-link fs-15" href="http://a.khalilleo.com/about-us" target="_blank">About
+                                Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-15" href="{{path('app_features_index')}}">Features</a>
+                            <a class="nav-link fs-15" href="{{ path('app_features_index') }}">Features</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-15" href="{{path('app_contact_us_index')}}">Contact Us</a>
+                            <a class="nav-link fs-15" href="{{ path('app_contact_us_index') }}">Contact Us</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link fs-15" href="{{path('app_report_abuse')}}">Report Abuse</a>
+                            <a class="nav-link fs-15" href="{{ path('app_report_abuse') }}">Report Abuse</a>
                         </li>
 
                         {% if app.user %}
-                        <li class="nav-item dropdown me-2">
-                            <a class="nav-link dropdown-toggle text-muted fs-15" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('assets/img/avatar-40x40.png')}}" class="pe-1 rounded-circle"
-                                    height="16" alt="Avatar"> {{app.user.name|capitalize}}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                <li><a class="dropdown-item text-white-50 fs-15" href="{{path('app_admin_index')}}">
-                                        <span class="bi bi-speedometer pe-1 small"></span> Dashboard</a>
-                                </li>
-                                {% endif %}
-                                <li><a class="dropdown-item text-white-50 fs-15" href="{{path('app_profile')}}">
-                                        <span class="bi bi-person-fill pe-1"></span> Profile</a>
-                                </li>
-                                <li><a class="dropdown-item text-white-50 fs-15" href="{{path('app_profile_my_urls')}}">
-                                        <span class="bi bi-link-45deg pe-1"></span> My URLs</a>
-                                </li>
-                                <li><a class="dropdown-item text-white-50 fs-15" href="{{path('app_dashboard_social_profile_index', {profile: userSocialLinkMainName(app.user)})}}">
-                                    <span class="bi bi-person-lines-fill pe-1"></span> Social Links</a>
-                                </li>
-                                
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item text-white-50 fs-15" href="{{path('app_logout')}}">
-                                        <span class="bi bi-door-open pe-1"></span> Sign Out</a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="nav-item dropdown me-2">
+                                <a class="nav-link dropdown-toggle text-muted fs-15" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ asset('assets/img/avatar-40x40.png') }}" class="pe-1 rounded-circle"
+                                         height="16" alt="Avatar"> {{ app.user.name|capitalize }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <li><a class="dropdown-item text-white-50 fs-15"
+                                               href="{{ path('app_admin_index') }}">
+                                                <span class="bi bi-speedometer pe-1 small"></span> Dashboard</a>
+                                        </li>
+                                    {% endif %}
+                                    <li><a class="dropdown-item text-white-50 fs-15" href="{{ path('app_profile') }}">
+                                            <span class="bi bi-person-fill pe-1"></span> Profile</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-white-50 fs-15"
+                                           href="{{ path('app_profile_my_urls') }}">
+                                            <span class="bi bi-link-45deg pe-1"></span> My URLs</a>
+                                    </li>
+                                    <li><a class="dropdown-item text-white-50 fs-15"
+                                           href="{{ path('app_dashboard_social_profile_index', {profile: userSocialLinkMainName(app.user)}) }}">
+                                            <span class="bi bi-person-lines-fill pe-1"></span> Social Links</a>
+                                    </li>
+
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-white-50 fs-15" href="{{ path('app_logout') }}">
+                                            <span class="bi bi-door-open pe-1"></span> Sign Out</a>
+                                    </li>
+                                </ul>
+                            </li>
                         {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link fs-15" href="{{path('app_auth')}}">Sign in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fs-15" href="{{path('app_register')}}">Sign up</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-15" href="{{ path('app_auth') }}">Sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-15" href="{{ path('app_register') }}">Sign up</a>
+                            </li>
                         {% endif %}
                     </ul>
                 </div>

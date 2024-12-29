@@ -20,22 +20,23 @@ use Symfony\Component\Routing\Attribute\Route;
 class AvatarController extends AbstractController
 {
     use FormValidationTrait;
-    
+
     private const PROFILE_ROUTE = 'app_profile';
 
     public function __construct(
-        private readonly LinkService $linkService,
-        private readonly ProfileService $profileService,
+        private readonly LinkService                 $linkService,
+        private readonly ProfileService              $profileService,
         private readonly SocialProfileSettingService $socialProfileSettingService,
     ) {
     }
 
     #[Route('/update', name: 'app_profile_change_avatar', methods: 'POST')]
     public function uploadAvatar(
-        Request $request,
+        Request             $request,
         FileUploaderService $uploader,
-        FileHandlerService $fileHandler
-    ): Response {
+        FileHandlerService  $fileHandler
+    ): Response
+    {
 
         // if (!$this->isCsrfTokenValid('authenticate', $this->validate($request->request->get('_csrf_token')))) {
         //     $this->addFlash('warning', 'CSRF Token is not valid.');
@@ -72,7 +73,7 @@ class AvatarController extends AbstractController
             }
 
             $ext = $file->getClientOriginalExtension();
-            $size = (int) $file->getSize();
+            $size = (int)$file->getSize();
 
             if (!$fileHandler->isImageExtensionAllowed($ext)) {
                 $this->addFlash('warning', 'Extension is not allowed');

@@ -21,7 +21,8 @@ class MaliciousUrlsController extends AbstractController
 
     public function __construct(
         private readonly MaliciousUrlsService $maliciousUrlsService
-    ) {}
+    ) {
+    }
 
     #[Route('/home', name: 'app_admin_links_malicious_index')]
     public function index(): Response
@@ -66,7 +67,7 @@ class MaliciousUrlsController extends AbstractController
             }
         }
 
-        $this->addFlash('notice', sprintf('Malicious URLs [%s] has been added and skipped [%s].',  $count, $skipped));
+        $this->addFlash('notice', sprintf('Malicious URLs [%s] has been added and skipped [%s].', $count, $skipped));
 
         return $this->redirectToRoute(self::ADMIN_MALICIOUS_LINKS_ROUTE);
     }

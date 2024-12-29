@@ -23,10 +23,11 @@ class IndexController extends AbstractController
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService           $linkService,
         private readonly LinkCollectionService $linkCollectionService,
-        private readonly LinkStatisticService $linkStatisticService
-    ) {}
+        private readonly LinkStatisticService  $linkStatisticService
+    ) {
+    }
 
     #[Route('/home', name: 'app_link_collection_index')]
     public function index(): Response

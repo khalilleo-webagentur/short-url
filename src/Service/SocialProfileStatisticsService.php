@@ -18,7 +18,7 @@ final class SocialProfileStatisticsService
 
     public function __construct(
         private readonly SocialProfileStatisticsRepository $socialProfileStatisticsRepository,
-        private readonly SocialProfileService $socialProfileService,
+        private readonly SocialProfileService              $socialProfileService,
     ) {
     }
 
@@ -87,7 +87,7 @@ final class SocialProfileStatisticsService
     public function markAllAsSeen(User $user, SocialProfile $socialProfile): void
     {
         if ($statistics = $this->getAllNotSeenYet($user, $socialProfile)) {
-            
+
             $this->socialProfileService->save($socialProfile->setStatisticsSeen(true));
 
             foreach ($statistics as $statistic) {
@@ -112,7 +112,7 @@ final class SocialProfileStatisticsService
             $this->delete($statistic);
         }
     }
-    
+
     public function deleteAllByUserAndSocialProfile($user, $socialProfile): void
     {
         foreach ($this->getAllBySocialProfileAndUser($socialProfile, $user) as $statistic) {

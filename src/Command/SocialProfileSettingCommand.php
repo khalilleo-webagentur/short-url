@@ -24,9 +24,10 @@ class SocialProfileSettingCommand extends Command
     public const SUCCESS = 1;
 
     public function __construct(
-        private readonly UserService $userService,
+        private readonly UserService                 $userService,
         private readonly SocialProfileSettingService $socialProfileSettingService,
-    ) {
+    )
+    {
         parent::__construct();
     }
 

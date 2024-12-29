@@ -1,27 +1,28 @@
 <div class="modal fade" id="socialProfileSettingDescModal" data-bs-backdrop="static" data-bs-keyboard="false"
-  tabindex="-1" aria-labelledby="socialProfileSettingDescModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title text-white-50 fs-5" id="socialProfileSettingDescModalLabel">Social Profile</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+     tabindex="-1" aria-labelledby="socialProfileSettingDescModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title text-white-50 fs-5" id="socialProfileSettingDescModalLabel">Social Profile</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-      <form action="{{path('app_dashboard_social_profile_setting_store_desc')}}" method="post">
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="iDesc" class="form-label">About you: <span class="d-danger-color">*</span></label>
-            <textarea type="text" class="form-control" id="iDesc" rows="3" name="iDesc"
-              placeholder="Add a short description about you" autofocus>{{socialProfileSetting.description}}</textarea>
-              <small class="text-secondary">Field is required.</small>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-outline-success">Save change</button>
-        </div>
-      </form>
+            <form action="{{ path('app_dashboard_social_profile_setting_store_desc') }}" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="iDesc" class="form-label">About you: <span class="d-danger-color">*</span></label>
+                        <textarea type="text" class="form-control" id="iDesc" rows="3" name="iDesc"
+                                  placeholder="Add a short description about you"
+                                  autofocus>{{ socialProfileSetting.description }}</textarea>
+                        <small class="text-secondary">Field is required.</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-outline-success">Save change</button>
+                </div>
+            </form>
 
+        </div>
     </div>
-  </div>
 </div>

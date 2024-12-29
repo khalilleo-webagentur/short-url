@@ -4,116 +4,121 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid d-dark-color">
+    <div class="container-fluid d-dark-color">
 
-    <div class="row py-3 d-dark-secondary-color">
-        <div class="col-6 col-lg-6">
-            <h6 class="text-white-50 pt-2">Edit URL Details</h6>
+        <div class="row py-3 d-dark-secondary-color">
+            <div class="col-6 col-lg-6">
+                <h6 class="text-white-50 pt-2">Edit URL Details</h6>
+            </div>
+
+            <div class="col-6 col-lg-6">
+                <a href="{{ path('app_profile_my_urls') }}"
+                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
+                </a>
+            </div>
         </div>
 
-        <div class="col-6 col-lg-6">
-            <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-2">
-                Close <span class="bi bi-x-square-fill ps-1 small"></span>
-            </a>
-        </div>
-    </div>
+        <div class="row pb-5 my-3 justify-content-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="row row-cols-1 g-3">
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form class="py-3" action="{{ path('app_profile_my_urls_store', {id: link.id}) }}"
+                                      method="post">
+                                    <div class="mb-3">
+                                        <label for="iTitle" class="form-label text-white-50">Title:</label>
+                                        <input type="text" class="form-control" id="iTitle"
+                                               placeholder="Title (Optional)"
+                                               name="iTitle" value="{{ link.title }}">
+                                    </div>
 
-    <div class="row pb-5 my-3 justify-content-center min-vh-100">
-        <div class="col-lg-6">
-            <div class="row row-cols-1 g-3">
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form class="py-3" action="{{path('app_profile_my_urls_store', {id: link.id})}}" method="post">
-                                <div class="mb-3">
-                                    <label for="iTitle" class="form-label text-white-50">Title:</label>
-                                    <input type="text" class="form-control" id="iTitle" placeholder="Title (Optional)"
-                                        name="iTitle" value="{{link.title}}">
-                                </div>
+                                    <div class="mb-3">
+                                        <p class="text-white-50 mb-1">Group:</p>
+                                        <select class="form-select text-white-50" aria-label="Default select Collection"
+                                                name="group" required>
+                                            <option value="0">No Group</option>
+                                            {% for row in collections %}
+                                                <option value="{{ row.id }}"
+                                                        {{ link.collection and link.collection.name==row.name ? 'selected' : '' }}>{{ row.name }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <p class="text-white-50 mb-1">Group:</p>
-                                    <select class="form-select text-white-50" aria-label="Default select Collection"
-                                        name="group" required>
-                                        <option value="0">No Group</option>
-                                        {% for row in collections %}
-                                        <option value="{{row.id}}" 
-                                            {{link.collection and link.collection.name==row.name ? 'selected' : '' }}>{{row.name}}
-                                        </option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="iUrl" class="form-label text-white-50">
+                                            Long URL: <span class="d-danger-color">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="iUrl"
+                                               placeholder="Long link (Required)"
+                                               required name="iUrl" value="{{ link.url }}">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="iUrl" class="form-label text-white-50">
-                                        Long URL: <span class="d-danger-color">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" id="iUrl" placeholder="Long link (Required)"
-                                        required name="iUrl" value="{{link.url}}">
-                                </div>
+                                    {% if allowLinkAlias %}
+                                        <div class="mb-3">
+                                            {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
+                                            <small class="float-end d-color opacity-08">{{ shortLink }}
 
-                                {% if allowLinkAlias %}
-                                <div class="mb-3">
-                                    {% set shortLink = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
-                                    <small class="float-end d-color opacity-08">{{shortLink}}
+                                                <span class="bi bi-clipboard-fill text-white-50 pointer ps-1 text-orange cUrlCode"
+                                                      data-description="{{ shortLink }}"
+                                                      title="Copy to Clipboard"></span>
+                                            </small>
+                                            <label for="iUrl" class="form-label text-white-50">
+                                                URL Code: <span class="d-danger-color">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" id="iUrl"
+                                                   placeholder="URL Code (Required)"
+                                                   required name="iCode" value="{{ link.token }}">
+                                            <small class="text-secondary">Special chars Hyphen (-) is allowed.</small>
+                                        </div>
+                                    {% else %}
+                                        <input type="hidden" name="iCode" value="{{ link.token }}">
+                                    {% endif %}
 
-                                        <span class="bi bi-clipboard-fill text-white-50 pointer ps-1 text-orange cUrlCode"
-                                              data-description="{{ shortLink }}"
-                                              title="Copy to Clipboard"></span>
-                                    </small>
-                                    <label for="iUrl" class="form-label text-white-50">
-                                        URL Code: <span class="d-danger-color">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" id="iUrl" placeholder="URL Code (Required)"
-                                        required name="iCode" value="{{link.token}}">
-                                    <small class="text-secondary">Special chars Hyphen (-) is allowed.</small>
-                                </div>
-                                {% else %}
-                                    <input type="hidden" name="iCode" value="{{link.token}}">
-                                {% endif %}
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" name="isFave" id="isFave"
+                                                {{ link.isFave ? 'checked' : '' }}>
+                                        <label class="form-check-label text-white-50" for="isFave">
+                                            is Fave Link
+                                        </label>
+                                    </div>
 
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" name="isFave" id="isFave"
-                                            {{ link.isFave ? 'checked' : '' }}>
-                                    <label class="form-check-label text-white-50" for="isFave">
-                                        is Fave Link
-                                    </label>
-                                </div>
-
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" name="isPublic" id="isPublic"
-                                            {{ link.isPublic ? 'checked' : '' }}>
-                                    <label class="form-check-label text-white-50" for="isPublic">
-                                        Log statistic for this Link
-                                    </label>
-                                </div>
-                                <div class="gap-2">
-                                    <button class="btn btn-outline-success px-3" type="submit">
-                                        Save changes <span class="bi bi-check"></span>
-                                    </button>
-                                </div>
-                            </form>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" name="isPublic" id="isPublic"
+                                                {{ link.isPublic ? 'checked' : '' }}>
+                                        <label class="form-check-label text-white-50" for="isPublic">
+                                            Log statistic for this Link
+                                        </label>
+                                    </div>
+                                    <div class="gap-2">
+                                        <button class="btn btn-outline-success px-3" type="submit">
+                                            Save changes <span class="bi bi-check"></span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="float-end">
-                        <small class="d-danger-color pointer" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                            Delete link permanently<small class="bi bi-trash ps-1"></small>
-                        </small>
+                        <div class="float-end">
+                            <small class="d-danger-color pointer" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                Delete link permanently<small class="bi bi-trash ps-1"></small>
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-</div>
+    {% include 'profile/dashboard/links/modal/delete.html.twig' with{id: link.id} %}
 
-{% include 'profile/dashboard/links/modal/delete.html.twig' with{id: link.id} %}
-
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

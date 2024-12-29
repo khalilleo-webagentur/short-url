@@ -20,9 +20,10 @@ class JobController extends AbstractController
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService           $linkService,
         private readonly LinkCollectionService $linkCollectionService,
-    ) {}
+    ) {
+    }
 
     #[Route('/store-default-collection', name: 'app_links_collection_job_store_collection', methods: 'POST')]
     public function defaultCollection(Request $request): Response

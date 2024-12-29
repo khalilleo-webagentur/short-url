@@ -18,8 +18,8 @@ final class SocialProfileVisitorService
 
     public function __construct(
         private readonly SocialProfileVisitorRepository $socialProfileVisitorRepository,
-        private readonly BrowserDetectService $browserDetectService,
-        private readonly SocialProfileSettingService $socialProfileSettingService,
+        private readonly BrowserDetectService           $browserDetectService,
+        private readonly SocialProfileSettingService    $socialProfileSettingService,
     ) {
     }
 
@@ -30,7 +30,7 @@ final class SocialProfileVisitorService
 
         return $this->socialProfileVisitorRepository->findOneBy(['user' => $user, 'visitorUuid' => $userAgentUuid]);
     }
-    
+
     /**
      * @return SocialProfileVisitor[]
      */

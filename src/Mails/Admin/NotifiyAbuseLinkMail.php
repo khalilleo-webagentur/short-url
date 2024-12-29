@@ -17,15 +17,15 @@ final class NotifiyAbuseLinkMail extends AbstractMail implements MailInterface
 {
     public function __construct(
         private readonly MailerInterface $mailer,
-        private readonly ConfigService $configService,
-        private readonly MonologService $monolog
+        private readonly ConfigService   $configService,
+        private readonly MonologService  $monolog
     ) {
     }
 
     public function send(...$context): void
     {
         $webmasterName = $this->configService->getParameter('webMasterName');
-        
+
         $webmasterEmail = $this->configService->getParameter('webMasterEmail');
 
         $email = (new TemplatedEmail())

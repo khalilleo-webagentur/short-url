@@ -4,9 +4,9 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
     <div class="container-fluid d-dark-color pb-5">
         <div class="container pb-5">
@@ -53,7 +53,8 @@
                                     <div class="card-body py-5">
                                         <h5 class="card-title text-white-50 pb-2">Address</h5>
                                         <p class="card-text text-white-50">
-                                            <span class="bi bi-pin-map-fill me-2 d-color"></span>Paul-Gerhardt-Str. 7, 74321
+                                            <span class="bi bi-pin-map-fill me-2 d-color"></span>Paul-Gerhardt-Str. 7,
+                                            74321
                                             Bietigheim
                                         </p>
                                     </div>
@@ -63,22 +64,25 @@
 
                     </div>
                     <div class="col-lg-6">
-                        <form action="{{path('app_contact_us_new')}}" method="post" class="px-2">
+                        <form action="{{ path('app_contact_us_new') }}" method="post" class="px-2">
                             <div class="mb-3">
                                 <label for="iName" class="form-label text-white-50">Name *</label>
-                                <input type="text" class="form-control form-control-lg" id="iName" placeholder="" required
+                                <input type="text" class="form-control form-control-lg" id="iName" placeholder=""
+                                       required
                                        name="iName">
                             </div>
 
                             <div class="mb-3">
                                 <label for="iEmail" class="form-label text-white-50">E-mail *</label>
-                                <input type="email" class="form-control form-control-lg" id="iEmail" placeholder="" required
+                                <input type="email" class="form-control form-control-lg" id="iEmail" placeholder=""
+                                       required
                                        name="iEmail">
                             </div>
 
                             <div class="mb-3">
                                 <label for="iSubject" class="form-label text-white-50">Subject *</label>
-                                <input type="text" class="form-control form-control-lg" id="iSubject" placeholder="" required
+                                <input type="text" class="form-control form-control-lg" id="iSubject" placeholder=""
+                                       required
                                        name="iSubject">
                             </div>
 
@@ -94,8 +98,10 @@
 
                             <div class="my-3">
                                 <small class="text-secondary" style="font-size: 13px;">
-                                    <span class="bi bi-info-circle pe-1"></span> By submitting this form, you agree to our
-                                    <a href="{{path('app_legal_privacy_policy')}}" class="text-white-50 text-decoration-none"
+                                    <span class="bi bi-info-circle pe-1"></span> By submitting this form, you agree to
+                                    our
+                                    <a href="{{ path('app_legal_privacy_policy') }}"
+                                       class="text-white-50 text-decoration-none"
                                        rel="nofollow">Privacy
                                         Policy</a>.
                                 </small>
@@ -108,6 +114,6 @@
         </div>
     </div>
 
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

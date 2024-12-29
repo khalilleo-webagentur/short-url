@@ -4,135 +4,140 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid d-dark-color min-vh-100">
 
-    <div class="row py-3 d-dark-secondary-color">
-        <div class="col-6 col-lg-6">
-            <h6 class="text-white-50 pt-2">Setting</h6>
-        </div>
-
-        <div class="col-6 col-lg-6">
-            <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-2">
-                Close <span class="bi bi-x-square-fill ps-1 small"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
-        <div class="col-lg-6">
-
-            <div class="row row-cols-1 g-3">
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
-                                method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="allowDuplicatedUrls"
-                                        {{userSetting.allowDuplicatedUrls ? 'checked' : '' }}
-                                        name="allowDuplicatedUrls">
-                                    <label class="form-check-label text-white-50 ps-1" for="allowDuplicatedUrls"
-                                        onclick="this.closest('form').submit();">Allow duplicated long URLs
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="allowDuplicatedUrlsForm" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
-                                method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="allowLinkAlias"
-                                        {{userSetting.allowLinkAlias ? 'checked' : '' }} name="allowLinkAlias">
-                                    <label class="form-check-label text-white-50 ps-1" for="allowLinkAlias"
-                                        onclick="this.closest('form').submit();">Allow update link alias when add new Link
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="allowLinkAliasForm" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
-                                method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="allowRedirectAfterNewLink"
-                                        {{userSetting.allowRedirectAfterNewLink ? 'checked' : '' }}
-                                        name="allowRedirectAfterNewLink">
-                                    <label class="form-check-label text-white-50 ps-1" for="allowRedirectAfterNewLink"
-                                        onclick="this.closest('form').submit();">Redirect to selected group after
-                                        adding Link
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="{{path('app_profile_dashboard_setting_store', {id:userSetting.id})}}"
-                                method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="resetPrivateClicks"
-                                        {{userSetting.resetPrivateClicks ? 'checked' : '' }} name="resetPrivateClicks">
-                                    <label class="form-check-label text-white-50 ps-1" for="resetPrivateClicks"
-                                        onclick="this.closest('form').submit();">Reset Clicks counter when the link marked as private
-                                    </label>
-                                    <div class="d-none">
-                                        <input type="hidden" name="resetPrivateClicksForm" value="on">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            <form action="#" method="post">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="cMaliciousURLs" checked
-                                        disabled>
-                                    <label class="form-check-label text-white-50 ps-1" for="cMaliciousURLs">
-                                        Auto Malicious URLs detection
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        <div class="row py-3 d-dark-secondary-color">
+            <div class="col-6 col-lg-6">
+                <h6 class="text-white-50 pt-2">Setting</h6>
             </div>
 
-            <p class="my-3"><a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none">
-                    <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs</a>
-            </p>
+            <div class="col-6 col-lg-6">
+                <a href="{{ path('app_profile_my_urls') }}"
+                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
+            <div class="col-lg-6">
+
+                <div class="row row-cols-1 g-3">
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="{{ path('app_profile_dashboard_setting_store', {id:userSetting.id}) }}"
+                                      method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="allowDuplicatedUrls"
+                                                {{ userSetting.allowDuplicatedUrls ? 'checked' : '' }}
+                                               name="allowDuplicatedUrls">
+                                        <label class="form-check-label text-white-50 ps-1" for="allowDuplicatedUrls"
+                                               onclick="this.closest('form').submit();">Allow duplicated long URLs
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="allowDuplicatedUrlsForm" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="{{ path('app_profile_dashboard_setting_store', {id:userSetting.id}) }}"
+                                      method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="allowLinkAlias"
+                                                {{ userSetting.allowLinkAlias ? 'checked' : '' }} name="allowLinkAlias">
+                                        <label class="form-check-label text-white-50 ps-1" for="allowLinkAlias"
+                                               onclick="this.closest('form').submit();">Allow update link alias when add
+                                            new Link
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="allowLinkAliasForm" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="{{ path('app_profile_dashboard_setting_store', {id:userSetting.id}) }}"
+                                      method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="allowRedirectAfterNewLink"
+                                                {{ userSetting.allowRedirectAfterNewLink ? 'checked' : '' }}
+                                               name="allowRedirectAfterNewLink">
+                                        <label class="form-check-label text-white-50 ps-1"
+                                               for="allowRedirectAfterNewLink"
+                                               onclick="this.closest('form').submit();">Redirect to selected group after
+                                            adding Link
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="allowRedirectAfterNewLinkForm" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="{{ path('app_profile_dashboard_setting_store', {id:userSetting.id}) }}"
+                                      method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="resetPrivateClicks"
+                                                {{ userSetting.resetPrivateClicks ? 'checked' : '' }}
+                                               name="resetPrivateClicks">
+                                        <label class="form-check-label text-white-50 ps-1" for="resetPrivateClicks"
+                                               onclick="this.closest('form').submit();">Reset Clicks counter when the
+                                            link marked as private
+                                        </label>
+                                        <div class="d-none">
+                                            <input type="hidden" name="resetPrivateClicksForm" value="on">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                <form action="#" method="post">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="cMaliciousURLs" checked
+                                               disabled>
+                                        <label class="form-check-label text-white-50 ps-1" for="cMaliciousURLs">
+                                            Auto Malicious URLs detection
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="my-3"><a href="{{ path('app_profile_my_urls') }}" class="small text-decoration-none">
+                        <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs</a>
+                </p>
+            </div>
         </div>
     </div>
-</div>
 
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

@@ -23,9 +23,9 @@ class IndexController extends AbstractController
     private const ADMIN_LINKS_ROUTE = 'app_admin_links_index';
 
     public function __construct(
-        private readonly LinkService $linkService,
-        private readonly LinkStatisticService $linkStatisticService,
-        private readonly UserService $userService,
+        private readonly LinkService           $linkService,
+        private readonly LinkStatisticService  $linkStatisticService,
+        private readonly UserService           $userService,
         private readonly LinkCollectionService $linkCollectionService
     ) {
     }

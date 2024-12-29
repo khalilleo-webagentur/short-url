@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 final class LinkService
 {
     public function __construct(
-        private readonly LinkRepository $linkRepository,
+        private readonly LinkRepository        $linkRepository,
         private readonly LinkCollectionService $linkCollectionService
     ) {
     }
@@ -86,7 +86,7 @@ final class LinkService
      */
     public function getAllWithoutAnyAssociation(User $user): array
     {
-        return $this->linkRepository->findBy(['user' => $user ,'collection' => null], ['id' => 'DESC']);
+        return $this->linkRepository->findBy(['user' => $user, 'collection' => null], ['id' => 'DESC']);
     }
 
     /**

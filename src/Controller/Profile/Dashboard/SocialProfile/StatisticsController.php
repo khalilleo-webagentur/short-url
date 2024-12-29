@@ -22,9 +22,9 @@ class StatisticsController extends AbstractController
     private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
 
     public function __construct(
-        private readonly SocialProfileService $socialProfileService,
+        private readonly SocialProfileService           $socialProfileService,
         private readonly SocialProfileStatisticsService $socialProfileStatisticsService,
-        private readonly SocialProfileSettingService $socialProfileSettingService,
+        private readonly SocialProfileSettingService    $socialProfileSettingService,
     ) {
     }
 
@@ -68,13 +68,13 @@ class StatisticsController extends AbstractController
 
         if (!$socialProfileStatistics || !$socialProfileSetting) {
             $this->addFlash('warning', 'ID is not defined.');
-            return $this->redirectToRoute(self::SOCIAL_PROFILE_STATISTICS_ROUTE, ['id'=> $id]);
+            return $this->redirectToRoute(self::SOCIAL_PROFILE_STATISTICS_ROUTE, ['id' => $id]);
         }
 
         $this->socialProfileStatisticsService->delete($socialProfileStatistics);
 
         $this->addFlash('success', 'Social profile statistics has been deleted.');
 
-        return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, ['profile'=> $socialProfileSetting->getMainName()]);
+        return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, ['profile' => $socialProfileSetting->getMainName()]);
     }
 }

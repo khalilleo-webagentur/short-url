@@ -1,57 +1,61 @@
 <div class="modal fade" id="moveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="moveModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title text-white-50 fs-5" id="moveModalLabel">Move Links</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+     aria-labelledby="moveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title text-white-50 fs-5" id="moveModalLabel">Move Links</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-      <form action="{{path('app_profile_dashboard_setting_job_move')}}" method="post">
-        <div class="modal-body">
+            <form action="{{ path('app_profile_dashboard_setting_job_move') }}" method="post">
+                <div class="modal-body">
 
-          {% if count(collections) > 0 %}
+                    {% if count(collections) > 0 %}
 
-          <div class="mb-3">
-            <p class="text-white-50">Select your Target group to move Links, that haven't been associated to any group, into.</p>
-          </div>
+                        <div class="mb-3">
+                            <p class="text-white-50">Select your Target group to move Links, that haven't been
+                                associated to any group, into.</p>
+                        </div>
 
-          <div class="mb-3">
-            <p class="text-white-50 mb-1">Select your Group: <span class="d-danger-color">*</span></p>
-            <select class="form-select text-white-50" aria-label="Default select" name="collection" required>
-              <option selected disabled>---</option>
+                        <div class="mb-3">
+                            <p class="text-white-50 mb-1">Select your Group: <span class="d-danger-color">*</span></p>
+                            <select class="form-select text-white-50" aria-label="Default select" name="collection"
+                                    required>
+                                <option selected disabled>---</option>
 
-              {% for row in collections %}
-              <option value="{{ row.id }}">{{ row.name }}</option>
-              {% endfor %}
-            </select>
-            <small class="text-secondary">Create a group if the target group not listed here.</small>
-          </div>
+                                {% for row in collections %}
+                                    <option value="{{ row.id }}">{{ row.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <small class="text-secondary">Create a group if the target group not listed here.</small>
+                        </div>
 
-          <div class="mb-3">
-            <input class="form-check-input" type="checkbox" id="moveOnly" checked disabled>
-            <label class="form-check-label" for="moveOnly">
-              <span class="ps-1">Move only these do not associated to a group.</span>
-            </label>
-          </div>
+                        <div class="mb-3">
+                            <input class="form-check-input" type="checkbox" id="moveOnly" checked disabled>
+                            <label class="form-check-label" for="moveOnly">
+                                <span class="ps-1">Move only these do not associated to a group.</span>
+                            </label>
+                        </div>
 
-          {% else %}
-          <div class="mb-3">
-            <p class="text-secondary">
-              <span class="bi bi-info-circle pe-1"></span>
-              You don't have any group. Please add a new group then come back here!
-            </p>
-          </div>
-          {% endif %}
+                    {% else %}
+                        <div class="mb-3">
+                            <p class="text-secondary">
+                                <span class="bi bi-info-circle pe-1"></span>
+                                You don't have any group. Please add a new group then come back here!
+                            </p>
+                        </div>
+                    {% endif %}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="hidden" name="moveOnly" value="on">
+                    <button type="submit"
+                            class="btn btn-outline-warning" {{ count(collections) <=0 ? 'disabled' : '' }}>Move
+                    </button>
+                </div>
+            </form>
 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <input type="hidden" name="moveOnly" value="on">
-          <button type="submit" class="btn btn-outline-warning" {{count(collections) <=0 ? 'disabled' : '' }}>Move</button>
-        </div>
-      </form>
-
     </div>
-  </div>
 </div>

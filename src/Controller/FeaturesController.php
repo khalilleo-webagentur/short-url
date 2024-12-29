@@ -13,7 +13,8 @@ class FeaturesController extends AbstractController
 {
     public function __construct(
         private readonly MaliciousUrlsService $maliciousUrlsService)
-    {}
+    {
+    }
 
     #[Route('/features/x9g7e3p5i1j6e1w6', name: 'app_features_index')]
     public function index(): Response

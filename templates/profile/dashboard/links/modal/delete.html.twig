@@ -1,26 +1,26 @@
 <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title text-white-50 fs-5" id="deleteModalLabel">Delete Link</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+     aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title text-white-50 fs-5" id="deleteModalLabel">Delete Link</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-      <form action="{{path('app_profile_my_urls_delete')}}" method="post">
-        <div class="modal-body">
-          <div class="mb-3">
-            <p class="text-white-50">Deleting this link, will delete also all associated statistics.</p>
-            <p class="text-white-50">Are you sure to delete this Link?</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-          <input type="hidden" class="dataId" name="id" value="{{id is defined and id ? id : ''}}">
-          <button type="submit" class="btn btn-outline-danger">Delete</button>
-        </div>
-      </form>
+            <form action="{{ path('app_profile_my_urls_delete') }}" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <p class="text-white-50">Deleting this link, will delete also all associated statistics.</p>
+                        <p class="text-white-50">Are you sure to delete this Link?</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="hidden" class="dataId" name="id" value="{{ id is defined and id ? id : '' }}">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </div>
+            </form>
 
+        </div>
     </div>
-  </div>
 </div>

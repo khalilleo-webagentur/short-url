@@ -15,7 +15,7 @@ class RedirectController extends AbstractController
     private const HOME_ROUTE = 'app_home';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService          $linkService,
         private readonly LinkStatisticService $linkStatisticService
     ) {
     }

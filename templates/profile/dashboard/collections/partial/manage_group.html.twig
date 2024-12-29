@@ -1,27 +1,27 @@
-<form class="py-3" action="{{path('app_links_collection_store', {id:collection.id})}}" method="post">
+<form class="py-3" action="{{ path('app_links_collection_store', {id:collection.id}) }}" method="post">
     {% set n = index is defined and index ? index : 77 %}
     <div class="mb-3">
-        <label for="iName{{n}}" class="form-label">
+        <label for="iName{{ n }}" class="form-label">
             Group Name: <span class="d-danger-color">*</span>
         </label>
-        <input type="text" class="form-control" id="iName{{n}}" placeholder="Group name (required)" name="iName"
-            value="{{collection.name}}">
+        <input type="text" class="form-control" id="iName{{ n }}" placeholder="Group name (required)" name="iName"
+               value="{{ collection.name }}">
         <small class="text-secondary">
             Group name might contain only dash (-) and numbers.
         </small>
     </div>
 
     <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" name="delete" id="delete{{n}}">
-        <label class="form-check-label text-white-50" for="delete{{n}}">
-            Delete Group "{{collection.name}}" permanently (All links in this group won't have a group if checked)
+        <input class="form-check-input" type="checkbox" name="delete" id="delete{{ n }}">
+        <label class="form-check-label text-white-50" for="delete{{ n }}">
+            Delete Group "{{ collection.name }}" permanently (All links in this group won't have a group if checked)
         </label>
     </div>
 
     <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" name="deleteAll" id="deleteAll{{n}}">
-        <label class="form-check-label text-white-50" for="deleteAll{{n}}">
-            Delete Group "{{collection.name}}" and all URLs within permanently.
+        <input class="form-check-input" type="checkbox" name="deleteAll" id="deleteAll{{ n }}">
+        <label class="form-check-label text-white-50" for="deleteAll{{ n }}">
+            Delete Group "{{ collection.name }}" and all URLs within permanently.
             <i>This action cannot be undone!</i>
         </label>
     </div>

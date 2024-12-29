@@ -1,5 +1,5 @@
 <div class="modal fade" id="anonomizeModal" tabindex="-1" role="dialog" aria-labelledby="anonomizeModalTitle"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,7 +14,7 @@
             <div class="modal-footer">
                 <form action="{{ path('app_admin_links_anonomize_statistics_store') }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    <input type="hidden" name="linkId" value="{{linkId is defined and linkId ? linkId : 0}}">
+                    <input type="hidden" name="linkId" value="{{ linkId is defined and linkId ? linkId : 0 }}">
                     <button type="button" class="btn btn-light btn-radius-50" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-warning btn-radius-50">Anonomize</button>
                 </form>

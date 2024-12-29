@@ -19,7 +19,7 @@ class SettingsController extends AbstractController
     private const PROFILE_USER_SETTING_ROUTE = 'app_profile_dashboard_setting_index';
 
     public function __construct(
-        private readonly UserSettingService $userSettingService,
+        private readonly UserSettingService    $userSettingService,
         private readonly LinkCollectionService $linkCollectionService
     ) {
     }
@@ -27,7 +27,7 @@ class SettingsController extends AbstractController
     #[Route('/urls/setting/p1k4j8g7d1t8q4vk', name: 'app_profile_dashboard_setting_index')]
     public function index(): Response
     {
-        $user =$this->getUser();
+        $user = $this->getUser();
 
         if (!$user) {
             return $this->redirectToRoute('app_auth');

@@ -85,7 +85,7 @@ class IndexController extends AbstractController
         if (!$isVerified) {
             $token = null;
         }
-        
+
         $isDeleted = $this->validateCheckbox($request->request->get('isDeleted'));
 
         if ($isDeleted) {

@@ -4,107 +4,108 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid d-dark-color min-vh-100">
 
-    <div class="row d-dark-secondary-color py-3">
-        <div class="col-4 col-lg-4">
-            <h6 class="text-white-50 pt-2"> List of URLs</h6>
-        </div>
-        <div class="col-4">
-            {% if count(links) > 0 %}
-            {% include 'profile/dashboard/links/partial/search_form.html.twig' %}
-            {% endif %}
-        </div>
-
-        <div class="col-4">
-            <div class="d-flex float-end pt-1">
-                <button class="btn btn-outline-secondary d-btn-border-color btn-sm mt-1 me-1" data-bs-toggle="modal"
-                    data-bs-target="#newModal">
-                    <span class="md-d-none">New Link</span> <span class="bi bi-plus-circle ps-lg-1"></span>
-                </button>
-
-                {% if count(collections) > 0 %}
-                    <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRightGroups" aria-controls="offcanvasRightGroups">
-                        <span class="md-d-none pe-1">Groups </span>
-                        <span class="bi bi-collection"></span>
-                    </button>
-                    {% include 'profile/dashboard/collections/canvas/groups.html.twig' %}
-                {% else %}
-                    <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button" data-bs-toggle="modal"
-                        data-bs-target="#newGroupModal">
-                        <span class="md-d-none pe-1">New Group</span>
-                        <span class="bi bi-collection"></span>
-                    </button>
+        <div class="row d-dark-secondary-color py-3">
+            <div class="col-4 col-lg-4">
+                <h6 class="text-white-50 pt-2"> List of URLs</h6>
+            </div>
+            <div class="col-4">
+                {% if count(links) > 0 %}
+                    {% include 'profile/dashboard/links/partial/search_form.html.twig' %}
                 {% endif %}
+            </div>
 
-                <button class="btn btn-outline-secondary btn-sm mt-1 me-1 d-md-none" data-bs-toggle="modal"
-                    data-bs-target="#searchModal">
-                    <span class="bi bi-search"></span>
-                </button>
-
-                <div class="dropdown mt-1 me-2">
-                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <span class="bi bi-three-dots-vertical"></span>
+            <div class="col-4">
+                <div class="d-flex float-end pt-1">
+                    <button class="btn btn-outline-secondary d-btn-border-color btn-sm mt-1 me-1" data-bs-toggle="modal"
+                            data-bs-target="#newModal">
+                        <span class="md-d-none">New Link</span> <span class="bi bi-plus-circle ps-lg-1"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-dark">
 
-                        {% if count(links) > 0 %}
-                        <li class="small" data-bs-toggle="modal" data-bs-target="#exportModal">
-                            <a class="dropdown-item" href="#">
-                                <span class="bi bi-download pe-1"></span> Export</a>
-                        </li>
-                        {% endif %}
+                    {% if count(collections) > 0 %}
+                        <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRightGroups" aria-controls="offcanvasRightGroups">
+                            <span class="md-d-none pe-1">Groups </span>
+                            <span class="bi bi-collection"></span>
+                        </button>
+                        {% include 'profile/dashboard/collections/canvas/groups.html.twig' %}
+                    {% else %}
+                        <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button" data-bs-toggle="modal"
+                                data-bs-target="#newGroupModal">
+                            <span class="md-d-none pe-1">New Group</span>
+                            <span class="bi bi-collection"></span>
+                        </button>
+                    {% endif %}
 
-                        <li class="small">
-                            <a class="dropdown-item" href="{{path('app_profile_dashboard_setting_index')}}">
-                                <span class="bi bi-gear pe-1"></span> Settings
-                            </a>
-                        </li>
+                    <button class="btn btn-outline-secondary btn-sm mt-1 me-1 d-md-none" data-bs-toggle="modal"
+                            data-bs-target="#searchModal">
+                        <span class="bi bi-search"></span>
+                    </button>
 
-                        <li class="small">
-                            <a class="dropdown-item" href="{{path('app_contact_us_index')}}">
-                                <span class="bi bi-question-circle pe-1"></span> Help
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="dropdown mt-1 me-2">
+                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <span class="bi bi-three-dots-vertical"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+
+                            {% if count(links) > 0 %}
+                                <li class="small" data-bs-toggle="modal" data-bs-target="#exportModal">
+                                    <a class="dropdown-item" href="#">
+                                        <span class="bi bi-download pe-1"></span> Export</a>
+                                </li>
+                            {% endif %}
+
+                            <li class="small">
+                                <a class="dropdown-item" href="{{ path('app_profile_dashboard_setting_index') }}">
+                                    <span class="bi bi-gear pe-1"></span> Settings
+                                </a>
+                            </li>
+
+                            <li class="small">
+                                <a class="dropdown-item" href="{{ path('app_contact_us_index') }}">
+                                    <span class="bi bi-question-circle pe-1"></span> Help
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
-               
             </div>
         </div>
+
+        {% if count(links) > 0 %}
+            <div class="row mb-5">
+                <div class="col-lg-12 px-0">
+                    {% include 'profile/dashboard/links/partial/table_content.html.twig' %}
+                </div>
+            </div>
+        {% else %}
+            <div class="row my-3">
+                <div class="col">
+
+                    {% include 'component/no_data_found.html.twig' %}
+
+                    <a href="#" class="d-color small opacity-07" data-bs-toggle="modal" data-bs-target="#newModal">
+                        Add new Link
+                    </a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 
-    {% if count(links) > 0 %}
-        <div class="row mb-5">
-            <div class="col-lg-12 px-0">
-                {% include 'profile/dashboard/links/partial/table_content.html.twig' %}
-            </div>
-        </div>
-    {% else %}
-        <div class="row my-3">
-            <div class="col">
-                
-                {% include 'component/no_data_found.html.twig' %}
-    
-                <a href="#" class="d-color small opacity-07" data-bs-toggle="modal" data-bs-target="#newModal">
-                    Add new Link
-                </a>
-            </div>
-        </div>
-    {% endif %}
-</div>
+    {% include 'profile/dashboard/links/modal/new.html.twig' %}
+    {% include 'profile/dashboard/collections/modal/new.html.twig' %}
+    {% include 'profile/dashboard/links/modal/search.html.twig' %}
+    {% include 'profile/dashboard/links/modal/export.html.twig' %}
+    {% include 'profile/dashboard/links/modal/delete.html.twig' %}
 
-{% include 'profile/dashboard/links/modal/new.html.twig' %}
-{% include 'profile/dashboard/collections/modal/new.html.twig' %}
-{% include 'profile/dashboard/links/modal/search.html.twig' %}
-{% include 'profile/dashboard/links/modal/export.html.twig' %}
-{% include 'profile/dashboard/links/modal/delete.html.twig' %}
-
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

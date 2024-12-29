@@ -4,39 +4,40 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid d-dark-color min-vh-100">
 
-    <div class="row py-3 d-dark-secondary-color">
-        <div class="col-6 col-lg-6">
-            <h5 class="text-white-50 pt-2">Edit Group Details</h5>
+        <div class="row py-3 d-dark-secondary-color">
+            <div class="col-6 col-lg-6">
+                <h5 class="text-white-50 pt-2">Edit Group Details</h5>
+            </div>
+
+            <div class="col-6 col-lg-6">
+                <a href="{{ path('app_profile_my_urls') }}"
+                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
+                </a>
+            </div>
         </div>
 
-        <div class="col-6 col-lg-6">
-            <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-2">
-                Close <span class="bi bi-x-square-fill ps-1 small"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
-        <div class="col-lg-6">
-            <div class="row row-cols-1 g-3">
-                <div class="col">
-                    <div class="card d-dark-secondary-color d-dark-border-color">
-                        <div class="card-body">
-                            {% include 'profile/dashboard/collections/partial/manage_group.html.twig' %}
+        <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="row row-cols-1 g-3">
+                    <div class="col">
+                        <div class="card d-dark-secondary-color d-dark-border-color">
+                            <div class="card-body">
+                                {% include 'profile/dashboard/collections/partial/manage_group.html.twig' %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

@@ -11,7 +11,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class FileUploaderService
 {
     public function __construct(
-        private string $targetDirectory,
+        private string                    $targetDirectory,
         private readonly SluggerInterface $slugger
     ) {
     }

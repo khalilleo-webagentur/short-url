@@ -24,7 +24,7 @@ class ExportController extends AbstractController
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService    $linkService,
         private readonly MonologService $monolog
     ) {
     }

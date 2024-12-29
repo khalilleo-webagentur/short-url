@@ -16,8 +16,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class IndexController extends AbstractController
 {
     public function __construct(
-        private readonly ProfileService $profileService,
-        private readonly LinkService $linkService,
+        private readonly ProfileService              $profileService,
+        private readonly LinkService                 $linkService,
         private readonly SocialProfileSettingService $socialProfileSettingService,
     ) {
     }

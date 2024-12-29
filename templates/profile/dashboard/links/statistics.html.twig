@@ -4,125 +4,130 @@
 
 {% block body %}
 
-{% include 'layout/navbar.html.twig' %}
+    {% include 'layout/navbar.html.twig' %}
 
-{% include 'component/custom_type_message_top_fixed.html.twig' %}
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-<div class="container-fluid d-dark-color">
+    <div class="container-fluid d-dark-color">
 
-    <div class="row py-3 d-dark-secondary-color">
-        <div class="col-6 col-lg-6">
-            <h6 class="text-white-50 pt-2">Statistic {{link.title ? '- ' ~ link.title|capitalize : ''}}</h6>
-        </div>
-
-        <div class="col-6 col-lg-6">
-            <a href="{{path('app_profile_my_urls')}}" class="float-end text-secondary text-decoration-none fs-15 pt-2">
-                Close <span class="bi bi-x-square-fill ps-1 small"></span>
-            </a>
-        </div>
-    </div>
-
-    <div class="row pb-5 min-vh-100">
-        <div class="col-lg-12 px-0">
-            {% if count(statistics) > 0 %}
-            <div class="table-responsive pb-3">
-                <table class="table table-dark caption-top">
-                    <thead class="small">
-                        <tr>
-                            <th class="col text-white-50">#</th>
-                            <th class="col text-white-50">Visited</th>
-                            <th class="col text-white-50">IP</th>
-                            <th class="col text-white-50">Browser Name</th>
-                            <th class="col text-white-50">Referer</th>
-                            <th class="col text-white-50">Browser Lang</th>
-                            <th class="col text-white-50">Platform</th>
-                            <th class="col text-white-50">is Mobile</th>
-                            <th class="col text-white-50">is Desktop</th>
-                            <th class="col text-white-50">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {% for i, row in statistics %}
-                        <tr class="small">
-                            <td class="text-white-50">{{i+1}}</td>
-                            <td class="text-white-50">
-                                <span title="{{row.createdAt|date}}">{{timeAgo(row.createdAt)}}</span>
-                            </td>
-                            <td class="text-white-50">{{row.ipAddress ? row.ipAddress : '127.0.0.1'}}</td>
-                            <td class="text-white-50">{{row.browserName}}</td>
-                            <td class="text-white-50">{{row.referer}}</td>
-                            <td class="text-white-50">{{row.browserLang|capitalize}}</td>
-                            <td class="text-white-50">{{row.platform|capitalize}}</td>
-                            <td class="text-white-50 opacity-07">
-                                {{row.isMobile ? circle('text-success small') : circle('text-secondary small')}}
-                            </td>
-                            <td class="text-white-50 opacity-07">
-                                {{row.isMobile ? circle('text-secondary small') : circle('text-success small')}}
-                            </td>
-                            <td>
-                                <form action="{{path('app_url_statistic_delete', {id:link.id})}}" method="post">
-                                    <div class="text-danger opacity-08 fs-14 pointer" onclick="this.closest('form').submit()"
-                                        title="Delete Permanently?">
-                                        <span class="md-d-none">Remove</span> <span class="bi bi-trash fs-13"></span>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <div class="row py-3 d-dark-secondary-color">
+            <div class="col-6 col-lg-6">
+                <h6 class="text-white-50 pt-2">Statistic {{ link.title ? '- ' ~ link.title|capitalize : '' }}</h6>
             </div>
-            {% else %}
-            <p class="text-white-50 pt-5 fs-15">
-                <span class="bi bi-info-circle me-1 fs-15"></span> No data found! No one has visited your link yet.
-            </p>
 
-            <a href="{{path('app_profile_my_urls')}}" class="small text-decoration-none">Back to URLs <span
-                class="bi bi-arrow-left-circle-fill ps-1"></span></a>
-
-            {% endif %}
-
-        </div>
-    </div>
-
-    <!-- <div class="row pb-5">
-        <div class="col-lg-6">
-            <div class="text-center">
-                <canvas id="limitChart"></canvas>
+            <div class="col-6 col-lg-6">
+                <a href="{{ path('app_profile_my_urls') }}"
+                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
+                </a>
             </div>
         </div>
-    </div> -->
-</div>
+
+        <div class="row pb-5 min-vh-100">
+            <div class="col-lg-12 px-0">
+                {% if count(statistics) > 0 %}
+                    <div class="table-responsive pb-3">
+                        <table class="table table-dark caption-top">
+                            <thead class="small">
+                            <tr>
+                                <th class="col text-white-50">#</th>
+                                <th class="col text-white-50">Visited</th>
+                                <th class="col text-white-50">IP</th>
+                                <th class="col text-white-50">Browser Name</th>
+                                <th class="col text-white-50">Referer</th>
+                                <th class="col text-white-50">Browser Lang</th>
+                                <th class="col text-white-50">Platform</th>
+                                <th class="col text-white-50">is Mobile</th>
+                                <th class="col text-white-50">is Desktop</th>
+                                <th class="col text-white-50">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for i, row in statistics %}
+                                <tr class="small">
+                                    <td class="text-white-50">{{ i+1 }}</td>
+                                    <td class="text-white-50">
+                                        <span title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</span>
+                                    </td>
+                                    <td class="text-white-50">{{ row.ipAddress ? row.ipAddress : '127.0.0.1' }}</td>
+                                    <td class="text-white-50">{{ row.browserName }}</td>
+                                    <td class="text-white-50">{{ row.referer }}</td>
+                                    <td class="text-white-50">{{ row.browserLang|capitalize }}</td>
+                                    <td class="text-white-50">{{ row.platform|capitalize }}</td>
+                                    <td class="text-white-50 opacity-07">
+                                        {{ row.isMobile ? circle('text-success small') : circle('text-secondary small') }}
+                                    </td>
+                                    <td class="text-white-50 opacity-07">
+                                        {{ row.isMobile ? circle('text-secondary small') : circle('text-success small') }}
+                                    </td>
+                                    <td>
+                                        <form action="{{ path('app_url_statistic_delete', {id:link.id}) }}"
+                                              method="post">
+                                            <div class="text-danger opacity-08 fs-14 pointer"
+                                                 onclick="this.closest('form').submit()"
+                                                 title="Delete Permanently?">
+                                                <span class="md-d-none">Remove</span> <span
+                                                        class="bi bi-trash fs-13"></span>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-white-50 pt-5 fs-15">
+                        <span class="bi bi-info-circle me-1 fs-15"></span> No data found! No one has visited your link
+                        yet.
+                    </p>
+
+                    <a href="{{ path('app_profile_my_urls') }}" class="small text-decoration-none">Back to URLs <span
+                                class="bi bi-arrow-left-circle-fill ps-1"></span></a>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+        <!-- <div class="row pb-5">
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <canvas id="limitChart"></canvas>
+                </div>
+            </div>
+        </div> -->
+    </div>
 
 
-<!-- <script src="{{asset('assets/js/chart.js?v=4.1.0')}}"></script> -->
+    <!-- <script src="{{ asset('assets/js/chart.js?v=4.1.0') }}"></script> -->
 
-<!-- <script>
-    const ctx = document.getElementById('limitChart');
+    <!-- <script>
+        const ctx = document.getElementById('limitChart');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Browser', 'Platform', 'Language', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Browser', 'Platform', 'Language', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
 
-</script> -->
+    </script> -->
 
 
-{% include 'layout/footer.html.twig' %}
+    {% include 'layout/footer.html.twig' %}
 
 {% endblock %}

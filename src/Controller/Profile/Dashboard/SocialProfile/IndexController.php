@@ -24,10 +24,10 @@ class IndexController extends AbstractController
     private const HOME_ROUTE = 'app_home';
 
     public function __construct(
-        private readonly ProfileService $profileService,
-        private readonly SocialProfileService $socialProfileService,
-        private readonly SocialProfileSettingService $socialProfileSettingService,
-        private readonly SocialProfileVisitorService $socialProfileVisitorService,
+        private readonly ProfileService                 $profileService,
+        private readonly SocialProfileService           $socialProfileService,
+        private readonly SocialProfileSettingService    $socialProfileSettingService,
+        private readonly SocialProfileVisitorService    $socialProfileVisitorService,
         private readonly SocialProfileStatisticsService $socialProfileStatisticsService,
     ) {
     }
@@ -40,14 +40,14 @@ class IndexController extends AbstractController
         if (!$socialProfileSetting || !$socialProfileSetting->isPublic() || !$this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
-        
+
         $currentUser = $this->getUser();
         $setting = $this->socialProfileSettingService->getByUser($currentUser);
 
         if ($setting && $socialProfileSetting->getMainName() !== $setting->getMainName()) {
             return $this->redirectToRoute('app_home');
         }
-        
+
         $user = $socialProfileSetting->getUser();
 
         $profileLinks = $this->socialProfileService->getAllByUser($user);
@@ -146,7 +146,7 @@ class IndexController extends AbstractController
         }
 
         if ($this->validateCheckbox($request->request->get('delete'))) {
-            $this->socialProfileStatisticsService->deleteAllByUserAndSocialProfile($user, $socialProfile);            
+            $this->socialProfileStatisticsService->deleteAllByUserAndSocialProfile($user, $socialProfile);
             $this->socialProfileService->delete($socialProfile);
             $this->addFlash('success', 'Social link has been deleted.');
             return $this->redirectToRoute(self::SOCIAL_PROFILE_ROUTE, $route);

@@ -19,7 +19,7 @@ class JobController extends AbstractController
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService          $linkService,
         private readonly LinkStatisticService $linkStatisticService,
     ) {
     }
@@ -34,7 +34,7 @@ class JobController extends AbstractController
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         if ($this->validateCheckbox($request->request->get('star'))) {
-            
+
             $id = $this->validateNumber($id);
 
             if ($link = $this->linkService->getById($id)) {

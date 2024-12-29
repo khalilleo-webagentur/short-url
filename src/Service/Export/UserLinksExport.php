@@ -13,8 +13,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 final class UserLinksExport
 {
     public function __construct(
-        private readonly UserService $userService,
-        private readonly LinkService $linkService,
+        private readonly UserService           $userService,
+        private readonly LinkService           $linkService,
         private readonly LinkCollectionService $linkCollectionService
     ) {
     }

@@ -21,7 +21,7 @@ class StatisticController extends AbstractController
     private const PROFILE_URLS_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService          $linkService,
         private readonly LinkStatisticService $linkStatisticService
     ) {
     }

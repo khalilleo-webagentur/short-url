@@ -6,11 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{path('app_search_urls')}}" method="post">
+                <form action="{{ path('app_search_urls') }}" method="post">
                     <div class="input-group mb-3">
                         <input type="search" class="form-control" placeholder="Search URLs .." aria-label="Search"
-                            aria-describedby="basic-search" name="keyword"
-                            value="{{keyword is defined and keyword ? keyword : ''}}" required autofocus>
+                               aria-describedby="basic-search" name="keyword"
+                               value="{{ keyword is defined and keyword ? keyword : '' }}" required autofocus>
                         <span class="input-group-text text" id="basic-search" onclick="this.closest('form').submit();">
                             <span class="bi bi-search pointer"></span>
                         </span>

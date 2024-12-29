@@ -20,12 +20,12 @@ class SearchController extends AbstractController
     private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
-        private readonly LinkService $linkService,
+        private readonly LinkService           $linkService,
         private readonly LinkCollectionService $linkCollectionService
     ) {
     }
 
-    #[Route('/q/e3x4r2l5h6b0h2a2', name: 'app_search_urls', methods:'POST')]
+    #[Route('/q/e3x4r2l5h6b0h2a2', name: 'app_search_urls', methods: 'POST')]
     public function saerch(Request $request): Response
     {
         $user = $this->getUser();
@@ -50,7 +50,7 @@ class SearchController extends AbstractController
         ]);
     }
 
-    #[Route('/f/e3x4r2l5h6b0h2a2', name: 'app_links_filter', methods:'POST')]
+    #[Route('/f/e3x4r2l5h6b0h2a2', name: 'app_links_filter', methods: 'POST')]
     public function filter(Request $request): Response
     {
         $user = $this->getUser();

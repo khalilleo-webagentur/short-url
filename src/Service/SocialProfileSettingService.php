@@ -14,7 +14,7 @@ final class SocialProfileSettingService
 {
     public function __construct(
         private readonly SocialProfileSettingRepository $socialProfileSettingRepository
-    ){
+    ) {
     }
 
     public function getById(int $id): ?SocialProfileSetting

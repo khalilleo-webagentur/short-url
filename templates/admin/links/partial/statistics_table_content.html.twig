@@ -1,44 +1,44 @@
 <div class="card-body table-responsive bg-white p-0 mb-3">
     <table class="table table-hover text-nowrap">
         <thead>
-            <tr class="fs-14">
-                <th>{{ 'Visited'|trans }}</th>
-                <th>{{ 'IP'|trans }}</th>
-                <th>{{ 'Browser'|trans }}</th>
-                <th>{{ 'Lang'|trans }}</th>
-                <th>{{ 'Platform'|trans }}</th>
-                <th>{{ 'isMobile'|trans }}</th>
-                <th>{{ 'isDesktop'|trans }}</th>
-                <th>{{ 'Action'|trans }}</th>
-            </tr>
+        <tr class="fs-14">
+            <th>{{ 'Visited'|trans }}</th>
+            <th>{{ 'IP'|trans }}</th>
+            <th>{{ 'Browser'|trans }}</th>
+            <th>{{ 'Lang'|trans }}</th>
+            <th>{{ 'Platform'|trans }}</th>
+            <th>{{ 'isMobile'|trans }}</th>
+            <th>{{ 'isDesktop'|trans }}</th>
+            <th>{{ 'Action'|trans }}</th>
+        </tr>
         </thead>
         <tbody>
-            {% for row in statistics %}
+        {% for row in statistics %}
             <tr class="fs-14">
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
                 <td>
                     {% if row.ipAddress and row.ipAddress != '_anonomyzed' %}
-                    {{row.ipAddress}} 
-                    <a href="https://api.iplocation.net/?ip={{row.ipAddress}}" target="_blank" rel="noindex">
+                        {{ row.ipAddress }}
+                        <a href="https://api.iplocation.net/?ip={{ row.ipAddress }}" target="_blank" rel="noindex">
                             <span class="fa fa-external-link-alt fa-sm"></span>
-                    </a>
+                        </a>
                     {% else %}
                         <span class="text-danger" title="IP is Local">127.0.0.1</span>
                     {% endif %}
                 </td>
-                <td>{{row.browserName}}</td>
-                <td>{{row.browserLang|upper}}</td>
-                <td>{{row.platform|capitalize}}</td>
-                <td>{{row.isMobile ? faThumbsUp() : faThumbsDown('text-secondary')}}</td>
-                <td>{{row.isMobile ? faThumbsDown('text-secondary') : faThumbsUp()}}</td>
+                <td>{{ row.browserName }}</td>
+                <td>{{ row.browserLang|upper }}</td>
+                <td>{{ row.platform|capitalize }}</td>
+                <td>{{ row.isMobile ? faThumbsUp() : faThumbsDown('text-secondary') }}</td>
+                <td>{{ row.isMobile ? faThumbsDown('text-secondary') : faThumbsUp() }}</td>
                 <td>
-                    <form action="{{path('app_admin_links_statistics_delete', {id:row.link.id})}}" method="post">
+                    <form action="{{ path('app_admin_links_statistics_delete', {id:row.link.id}) }}" method="post">
                         <small class="fa fa-trash fa-sm text-danger pointer" title="Delete?"
-                            onclick="this.closest('form').submit();"></small>
+                               onclick="this.closest('form').submit();"></small>
                     </form>
                 </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
 </div>

@@ -20,7 +20,7 @@ class LinkStatisticRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, LinkStatistic::class);
     }
-    
+
     public function save(LinkStatistic $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

@@ -1,5 +1,5 @@
 <div class="modal fade" id="MaliciousUrlModal" tabindex="-1" role="dialog" aria-labelledby="MaliciousUrlTitle"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <form action="{{ path('app_admin_links_malicious_new') }}" method="post">
             <div class="modal-content">
@@ -22,11 +22,11 @@
                     <div class="form-group">
                         <label for="mUrls">{{ 'Malicious URLs'|trans }}: <span class="text-danger">*</span></label>
                         <textarea class="form-control" id="mUrls" name="mUrls" rows="3"
-                            placeholder="0.0.0.0 ck.getcookiestxt.com
+                                  placeholder="0.0.0.0 ck.getcookiestxt.com
 eu1.clevertap-prod.com
 ..."
-                            required></textarea>
-                            <small class="text-secondary">Around 2.000 Lines per submit.</small>
+                                  required></textarea>
+                        <small class="text-secondary">Around 2.000 Lines per submit.</small>
                     </div>
                 </div>
                 <div class="modal-footer">

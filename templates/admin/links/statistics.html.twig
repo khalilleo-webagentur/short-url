@@ -4,65 +4,65 @@
 
 {% block body %}
 
-<div class="content-wrapper">
+    <div class="content-wrapper">
 
-    {% set countStatistics = count(statistics) %}
+        {% set countStatistics = count(statistics) %}
 
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-8">
-                    <h4 class="m-0 text-dark">
-                        Statistics <span class="sm-d-none">{{link.title ? 'For (' ~ link.title ~ ')' : ''}}</span>
-                    </h4>
-                </div>
-                <div class="col-4">
-                    <ol class="breadcrumb float-right">
-                        {% if countStatistics > 0 %}
-                        <li class="text-secondary" data-toggle="modal" data-target="#anonomizeModal">
-                            <a href="#Anonomize" class="text-secondary">Anonymize <span
-                                    class="fa fa-fingerprint"></span></a>
-                        </li>
-                        <span class="px-2 text-light-50">|</span>
-                        {% endif %}
-                       
-                        <li class="text-secondary">
-                            <a href="{{path('app_admin_links_index')}}" class="text-secondary">Close <span
-                                    class="fa fa-window-close"></span></a>
-                        </li>
-                    </ol>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-8">
+                        <h4 class="m-0 text-dark">
+                            Statistics <span class="sm-d-none">{{ link.title ? 'For (' ~ link.title ~ ')' : '' }}</span>
+                        </h4>
+                    </div>
+                    <div class="col-4">
+                        <ol class="breadcrumb float-right">
+                            {% if countStatistics > 0 %}
+                                <li class="text-secondary" data-toggle="modal" data-target="#anonomizeModal">
+                                    <a href="#Anonomize" class="text-secondary">Anonymize <span
+                                                class="fa fa-fingerprint"></span></a>
+                                </li>
+                                <span class="px-2 text-light-50">|</span>
+                            {% endif %}
+
+                            <li class="text-secondary">
+                                <a href="{{ path('app_admin_links_index') }}" class="text-secondary">Close <span
+                                            class="fa fa-window-close"></span></a>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <section class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        {% if countStatistics > 0 %}
+                            {% include 'admin/links/partial/statistics_table_content.html.twig' %}
+                        {% else %}
+                            <p>No data has been found!</p>
+                        {% endif %}
+
+                        <a href="{{ path('app_admin_links_index') }}">Back to Links <span
+                                    class="fa fa-arrow-alt-circle-left"></span></a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <section class="col-lg-7 connectedSortable"></section>
+                    <section class="col-lg-5 connectedSortable"></section>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <section class="content">
-        <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-lg-12">
-
-                    {% if countStatistics > 0 %}
-                    {% include 'admin/links/partial/statistics_table_content.html.twig' %}
-                    {% else %}
-                    <p>No data has been found!</p>
-                    {% endif %}
-
-                    <a href="{{path('app_admin_links_index')}}">Back to Links <span
-                            class="fa fa-arrow-alt-circle-left"></span></a>
-                </div>
-            </div>
-
-            <div class="row">
-                <section class="col-lg-7 connectedSortable"></section>
-                <section class="col-lg-5 connectedSortable"></section>
-            </div>
-        </div>
-    </section>
-</div>
-
-{% if countStatistics > 0 %}
-{% include 'admin/links/modal/statistic_anonomize.html.twig' with{linkId: link.id} %}
-{% endif %}
+    {% if countStatistics > 0 %}
+        {% include 'admin/links/modal/statistic_anonomize.html.twig' with{linkId: link.id} %}
+    {% endif %}
 
 {% endblock %}
