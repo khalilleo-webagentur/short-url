@@ -114,7 +114,7 @@
                                             <div class="card-body">
                                                 <h6 class="pt-2" title="{{ row.platform|capitalize }}">
                                                     <span class="text-white-25">@{{ row.username }}</span>
-                                                    <small class="text-white-50 me-2"
+                                                    <small class="text-white-50"
                                                            title="Platform">({{ row.platform|capitalize }})</small>
                                                 </h6>
                                             </div>
@@ -123,18 +123,18 @@
                                             <div class="text-end pe-3 pt-4">
 
                                                 <a href="{{ path('app_dashboard_social_profile_redirect_to', {nums: randomNumbers(), id: row.id, mainName: socialProfileSetting.mainName}) }}"
-                                                   class=" opacity-07" target="_blank" title="Visit Profile"><span
+                                                   class="opacity-07" target="_blank" title="Visit Profile"><span
                                                             class="bi bi-arrow-up-right-square fs-6"></span></a>
 
                                                 {% if app.user %}
                                                     <a href="{{ path('app_dashboard_social_profile_edit', {id: row.id}) }}"
-                                                       class=" opacity-07" title="Edit"><span
-                                                                class="bi bi-pencil-square ps-1 fs-6 ps-3"></span></a>
+                                                       class="opacity-07" title="Edit"><span
+                                                                class="bi bi-pencil-square fs-6 ms-2"></span></a>
 
                                                     <a href="{{ path('app_dashboard_social_profile_statistics_setting_index', {id: row.id}) }}"
-                                                       class=" opacity-07"
-                                                       title="View Statistics {{ not row.isStatisticsSeen ? '(new Visitors)' : '' }}">
-                                                        <span class="bi {{ not row.isStatisticsSeen ? 'bi-bar-chart-fill' : 'bi-bar-chart' }} ps-1 fs-6 ps-3"></span></a>
+                                                       class="opacity-07"
+                                                       title="View Statistics {{ not row.isStatisticsSeen ? '(new Visitors)' : '' }}"><span
+                                                                class="bi {{ not row.isStatisticsSeen ? 'bi-bar-chart-fill' : 'bi-bar-chart' }} fs-6 ms-2"></span></a>
                                                 {% endif %}
 
                                             </div>
