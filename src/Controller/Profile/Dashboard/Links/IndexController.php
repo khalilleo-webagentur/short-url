@@ -14,7 +14,6 @@ use App\Service\MonologService;
 use App\Service\TokenGeneratorService;
 use App\Service\UserSettingService;
 use App\Traits\FormValidationTrait;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -149,7 +148,7 @@ class IndexController extends AbstractController
                 ->setUser($user)
                 ->setCollection($collection)
                 ->setTitle($title)
-                ->setUrl($link)
+                ->setUrl($this->replaceAmpersand($link))
                 ->setToken($token)
                 ->setIsPublic($isPublic)
         );
@@ -272,7 +271,7 @@ class IndexController extends AbstractController
             $link
                 ->setTitle($title)
                 ->setCollection($collection)
-                ->setUrl($url)
+                ->setUrl($this->replaceAmpersand($url))
                 ->setToken($this->replaceSpecialChars($token))
                 ->setIsPublic($isPublic)
                 ->setIsFave($isFave)

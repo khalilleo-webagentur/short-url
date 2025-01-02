@@ -125,7 +125,7 @@ class IndexController extends AbstractController
                 ->setUser($targetUser)
                 ->setCollection($group)
                 ->setTitle($title)
-                ->setUrl($url)
+                ->setUrl($this->replaceAmpersand($url))
                 ->setToken($token)
                 ->setIsPublic($isPublic)
                 ->setCounter((int)$counter)

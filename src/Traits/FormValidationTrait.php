@@ -125,6 +125,11 @@ trait FormValidationTrait
         return $error;
     }
 
+    public function replaceAmpersand(string $var): string
+    {
+        return str_replace('amp;', '', $var);
+    }
+
     private function usernameError(?string $input): ?string
     {
         $error = null;

@@ -102,7 +102,7 @@ class LinkController extends AbstractController
         $this->linkService->save(
             $model
                 ->setUser($user)
-                ->setUrl($url)
+                ->setUrl($this->replaceAmpersand($url))
                 ->setToken($token)
         );
 
