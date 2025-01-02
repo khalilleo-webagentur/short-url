@@ -1,31 +1,3 @@
-#DirectoryIndex /xxxxxxxx/public/index.php
-#
-#RewriteEngine On
-#RewriteCond %{DOCUMENT_ROOT}/xxxxxxxx/public/$1 -f
-#RewriteRule ^(.*)$ xxxxxxxx/public/$1 [L]
-#RewriteCond %{THE_REQUEST} \s/xxxxxxxx/public/ [NC,OR]
-#RewriteCond $1 !^xxxxxxxx/public/
-#RewriteRule ^(.*)$ index.php [L]
-#
-#RewriteCond %{HTTP:Authorization} .+
-#RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
-#
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^ %{ENV:BASE}/index.php [L]
-
-# ------------------------------------------
-
-#DirectoryIndex /update/index.php
-
-#RewriteEngine On
-#RewriteCond %{DOCUMENT_ROOT}/update/$1 -f
-#RewriteRule ^(.*)$ update/$1 [L]
-#RewriteCond %{THE_REQUEST} \s/update/ [NC,OR]
-#RewriteCond $1 !^update/
-#RewriteRule ^(.*)$ index.php [L]
-
-#RewriteCond %{HTTP:Authorization} .+
-#RewriteRule ^ - [E=HTTP_AUTHORIZATION:%0]
-
-#RewriteCond %{REQUEST_FILENAME} !-f
-#RewriteRule ^ %{ENV:BASE}/index.php [L]
+#KONSOLEH AREA START - PLEASE DO NOT EDIT MANUALLY BETWEEN THESE LINES
+DirectoryIndex /index.php
+#KONSOLEH AREA END - PLEASE ADD MANUAL CHANGES BELOW
