@@ -3,8 +3,8 @@
         <thead class="small">
         <tr>
             <th class="col text-white-50">#</th>
-            <th class="col text-white-50">Title</th>
             <th class="col text-white-50">Star</th>
+            <th class="col text-white-50">Title</th>
             <th class="col text-white-50">Short</th>
             <th class="col text-white-50 md-d-none">URL</th>
             <th class="col text-white-50">Statistics</th>
@@ -20,16 +20,6 @@
         {% for i, link in links %}
             <tr class="small">
                 <td class="text-white-50">{{ i+1 }}</td>
-                <td class="text-white-50">
-                    {% if link.title %}
-                        <a class="text-white-50 text-decoration-none link-hover"
-                           href="{{ path('app_profile_my_urls_edit', {id:link.id}) }}">
-                            <span title="{{ link.title }}">{{ link.title|slice(0, 40) ~ '..' }}</span>
-                        </a>
-                    {% else %}
-                        ---
-                    {% endif %}
-                </td>
                 <td>
                     <form action="{{ path('app_profile_job_star_store', {id:link.id}) }}" class="pointer" method="post">
                         <span
@@ -39,6 +29,16 @@
                             <input type="hidden" name="star" value="on">
                         </div>
                     </form>
+                </td>
+                <td class="text-white-50">
+                    {% if link.title %}
+                        <a class="text-white-50 text-decoration-none link-hover"
+                           href="{{ path('app_profile_my_urls_edit', {id:link.id}) }}">
+                            <span title="{{ link.title }}">{{ link.title|slice(0, 40) ~ '..' }}</span>
+                        </a>
+                    {% else %}
+                        ---
+                    {% endif %}
                 </td>
                 {% set urlPath = app.request.schemeAndHttpHost ~ '/' ~ link.token %}
                 <td class="text-white-50" title="{{ urlPath }}">
