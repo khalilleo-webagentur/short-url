@@ -10,16 +10,29 @@ use App\Repository\UserSettingRepository;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class UserSettingService
+final readonly class UserSettingService
 {
     public function __construct(
-        private readonly UserSettingRepository $userSettingRepository,
+        private UserSettingRepository $userSettingRepository,
     ) {
+    }
+
+    public function getById(int $id): ?UserSetting
+    {
+        return $this->userSettingRepository->find($id);
     }
 
     public function getOneByUser(User $user): ?UserSetting
     {
         return $this->userSettingRepository->findOneBy(['user' => $user]);
+    }
+
+    /**
+     * @return UserSetting[]
+     */
+    public function getAll(): array
+    {
+        return $this->userSettingRepository->findBy([], ['createdAt' => 'DESC']);
     }
 
     public function allowDuplicatedUrls(User|UserInterface $user): bool

@@ -1,0 +1,95 @@
+{% extends 'admin/layout/base.html.twig' %}
+
+{% block title %} Dashboard :: Edit Setting Details {% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="m-0 text-dark">Edit Setting Details</h4>
+                    </div>
+                    <div class="col-4">
+                        <div class="breadcrumb float-right">
+                            <a href="{{ path('app_admin_settings_index') }}" class="text-secondary">
+                                Close <span class="fa fa-window-close"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid area-section">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form action="{{ path('app_admin_setting_store', {id:setting.id}) }}" method="post">
+
+                            <div class="mb-3">
+                                <label for="4jX2hV9xO3aD7v" class="form-label">
+                                    Username <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="4jX2hV9xO3aD7v" placeholder="Type token"
+                                       value="{{ setting.user.name }}" disabled>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="allowDuplicatedUrls"
+                                           name="allowDuplicatedUrls"
+                                            {{ setting.allowDuplicatedUrls ? 'checked' : '' }}>
+                                    <label class="form-check-label text-secondary" for="allowDuplicatedUrls">
+                                        Is duplicated long link allowed
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="allowLinkAlias"
+                                           name="allowLinkAlias"
+                                            {{ setting.allowLinkAlias ? 'checked' : '' }}>
+                                    <label class="form-check-label text-secondary" for="allowLinkAlias">
+                                        Link alias can be changed
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="allowRedirectAfterNewLink"
+                                           name="allowRedirectAfterNewLink"
+                                            {{ setting.allowRedirectAfterNewLink ? 'checked' : '' }}>
+                                    <label class="form-check-label text-secondary" for="allowRedirectAfterNewLink">
+                                        redirect user to a group when adding new Link
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="resetPrivateClicks"
+                                           name="resetPrivateClicks"
+                                            {{ setting.resetPrivateClicks ? 'checked' : '' }}>
+                                    <label class="form-check-label text-secondary" for="resetPrivateClicks">
+                                        allow to reset private link clicks
+                                    </label>
+                                </div>
+                            </div>
+
+                            {% include 'admin/component/form_save_btn.html.twig' %}
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

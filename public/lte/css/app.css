@@ -144,6 +144,16 @@ body {
     animation: fadein 2s;
 }
 
+@media (max-width: 868px) {
+    .md-text-center {
+        text-align: center !important;
+    }
+
+    .md-d-none {
+        display: none;
+    }
+}
+
 @keyframes fadein {
     from {
         opacity: 0;
