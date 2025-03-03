@@ -103,7 +103,7 @@ class IndexController extends AbstractController
                     'Malicious URL: %s %s by %s',
                     $maliciousUrl->getId(),
                     $maliciousUrl->getUrl(),
-                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user'
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Unknown user'
                 )
             );
 
@@ -147,7 +147,7 @@ class IndexController extends AbstractController
             $model
                 ->setUser($user)
                 ->setCollection($collection)
-                ->setTitle($title)
+                ->setTitle($this->replaceAmpersand($title))
                 ->setUrl($this->replaceAmpersand($link))
                 ->setToken($token)
                 ->setIsPublic($isPublic)
@@ -158,7 +158,7 @@ class IndexController extends AbstractController
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
 
-    #[Route('/eidt/{id}', name: 'app_profile_my_urls_edit')]
+    #[Route('/edit/{id}', name: 'app_profile_my_urls_edit')]
     public function edit(?string $id): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -269,7 +269,7 @@ class IndexController extends AbstractController
 
         $this->linkService->save(
             $link
-                ->setTitle($title)
+                ->setTitle($this->replaceAmpersand($title))
                 ->setCollection($collection)
                 ->setUrl($this->replaceAmpersand($url))
                 ->setToken($this->replaceSpecialChars($token))

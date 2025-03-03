@@ -49,7 +49,7 @@ trait FormValidationTrait
             return null;
         }
 
-        if (!str_contains($input, 'https') && !str_contains($input, 'http')) {
+        if (!str_contains($input, 'https') || !str_contains($input, 'http')) {
             $input = "https://" . $input;
         }
 

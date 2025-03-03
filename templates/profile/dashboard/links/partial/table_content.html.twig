@@ -34,7 +34,7 @@
                     {% if link.title %}
                         <a class="text-white-50 text-decoration-none link-hover"
                            href="{{ path('app_profile_my_urls_edit', {id:link.id}) }}">
-                            <span title="{{ link.title }}">{{ link.title|slice(0, 40) ~ '..' }}</span>
+                            <span>{{ link.title|slice(0, 40) ~ '..' }}</span>
                         </a>
                     {% else %}
                         ---
