@@ -4,7 +4,7 @@ php bin/console cache:clear
 
 echo '----------------------------------------'
 
-composer cc
+composer cc && composer upgrade -o
 
 echo '----------------------------------------'
 
