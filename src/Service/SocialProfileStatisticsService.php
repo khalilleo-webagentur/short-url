@@ -11,6 +11,7 @@ use App\Traits\RemoteTrait;
 use DateTime;
 use App\Entity\User;
 use Khalilleo\BrowserDetect\UserAgent;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class SocialProfileStatisticsService
 {
@@ -22,7 +23,7 @@ final class SocialProfileStatisticsService
     ) {
     }
 
-    public function getByUserAndId(User $user, int $id): ?SocialProfileStatistics
+    public function getByUserAndId(User|UserInterface $user, int $id): ?SocialProfileStatistics
     {
         return $this->socialProfileStatisticsRepository->findOneBy(['user' => $user, 'id' => $id]);
     }
@@ -38,7 +39,7 @@ final class SocialProfileStatisticsService
     /**
      * @return SocialProfileStatistics[]
      */
-    public function getAllBySocialProfileAndUser(SocialProfile $socialProfile, User $user): array
+    public function getAllBySocialProfileAndUser(SocialProfile $socialProfile, User|UserInterface $user): array
     {
         return $this->socialProfileStatisticsRepository->findBy(['socialProfile' => $socialProfile, 'user' => $user], ['id' => 'DESC']);
     }
@@ -84,7 +85,7 @@ final class SocialProfileStatisticsService
         return $isNotSeenYet;
     }
 
-    public function markAllAsSeen(User $user, SocialProfile $socialProfile): void
+    public function markAllAsSeen(User|UserInterface $user, SocialProfile $socialProfile): void
     {
         if ($statistics = $this->getAllNotSeenYet($user, $socialProfile)) {
 

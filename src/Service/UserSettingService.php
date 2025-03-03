@@ -22,7 +22,7 @@ final readonly class UserSettingService
         return $this->userSettingRepository->find($id);
     }
 
-    public function getOneByUser(User $user): ?UserSetting
+    public function getOneByUser(User|UserInterface $user): ?UserSetting
     {
         return $this->userSettingRepository->findOneBy(['user' => $user]);
     }
@@ -42,21 +42,21 @@ final readonly class UserSettingService
         return $setting && $setting->isAllowDuplicatedUrls();
     }
 
-    public function allowLinkAlias(User $user): bool
+    public function allowLinkAlias(User|UserInterface $user): bool
     {
         $setting = $this->getOneByUser($user);
 
         return $setting && $setting->isAllowLinkAlias();
     }
 
-    public function allowRedirectAfterNewLink(User $user): bool
+    public function allowRedirectAfterNewLink(User|UserInterface $user): bool
     {
         $setting = $this->getOneByUser($user);
 
         return $setting && $setting->allowRedirectAfterNewLink();
     }
 
-    public function resetPrivateClicks(User $user): bool
+    public function resetPrivateClicks(User|UserInterface $user): bool
     {
         $setting = $this->getOneByUser($user);
 

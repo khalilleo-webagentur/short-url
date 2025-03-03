@@ -71,7 +71,7 @@ class LinkController extends AbstractController
                     'Malicious URL: %s %s by %s',
                     $maliciousUrl->getId(),
                     $maliciousUrl->getUrl(),
-                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user')
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Unknown user')
             );
 
             $this->addFlash('warning', 'This URL is on Blacklist.');

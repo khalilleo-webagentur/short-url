@@ -8,6 +8,7 @@ use App\Entity\SocialProfile;
 use App\Entity\User;
 use App\Repository\SocialProfileRepository;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final readonly class SocialProfileService
 {
@@ -15,7 +16,7 @@ final readonly class SocialProfileService
     {
     }
 
-    public function getByUserAndId(User $user, int $id): ?SocialProfile
+    public function getByUserAndId(User|UserInterface $user, int $id): ?SocialProfile
     {
         return $this->socialShareRepository->findOneBy(['user' => $user, 'id' => $id]);
     }
@@ -41,7 +42,7 @@ final readonly class SocialProfileService
         return $this->socialShareRepository->findBy([], ['username' => 'ASC']);
     }
 
-    public function add(User $user, string $platform, string $username, string $url): SocialProfile
+    public function add(User|UserInterface $user, string $platform, string $username, string $url): SocialProfile
     {
         $model = new SocialProfile();
 

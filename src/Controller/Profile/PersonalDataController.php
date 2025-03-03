@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/profile/personal-data/u7k0s9bkngf6dba7')]
+#[Route('/profile/personal-data/u7k0s9bk5gf6dba7')]
 class PersonalDataController extends AbstractController
 {
     use FormValidationTrait;

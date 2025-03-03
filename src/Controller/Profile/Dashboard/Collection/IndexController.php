@@ -88,7 +88,7 @@ class IndexController extends AbstractController
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
 
-    #[Route('/eidt/{id}', name: 'app_links_collection_edit')]
+    #[Route('/edit/{id}', name: 'app_links_collection_edit')]
     public function edit(?string $id): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -98,7 +98,7 @@ class IndexController extends AbstractController
         $collection = $this->linkCollectionService->getByUserAndId($user, $this->validateNumber($id));
 
         if (!$collection) {
-            $this->addFlash('warning', 'Unkown Group');
+            $this->addFlash('warning', 'Unknown Group');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
@@ -117,7 +117,7 @@ class IndexController extends AbstractController
         $collection = $this->linkCollectionService->getByUserAndId($user, $this->validateNumber($id));
 
         if (!$collection) {
-            $this->addFlash('warning', 'Unkown Group');
+            $this->addFlash('warning', 'Unknown Group');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('admin/dashboard/malicious-links/9bmvk2s1k4d4p3u0')]
+#[Route('admin/dashboard/malicious-links/9b6vk2s1k4d4p3u0')]
 class MaliciousUrlsController extends AbstractController
 {
     use FormValidationTrait;

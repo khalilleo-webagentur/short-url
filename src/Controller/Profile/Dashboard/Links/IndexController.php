@@ -168,7 +168,7 @@ class IndexController extends AbstractController
         $link = $this->linkService->getByUserAndId($user, $this->validateNumber($id));
 
         if (!$link) {
-            $this->addFlash('warning', 'Unkown link');
+            $this->addFlash('warning', 'Unknown link');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
@@ -193,7 +193,7 @@ class IndexController extends AbstractController
         $link = $this->linkService->getByUserAndId($user, $this->validateNumber($id));
 
         if (!$link) {
-            $this->addFlash('warning', 'Unkown link');
+            $this->addFlash('warning', 'Unknown link');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
@@ -217,7 +217,7 @@ class IndexController extends AbstractController
                     'Malicious URL: %s %s by %s',
                     $maliciousUrl->getId(),
                     $maliciousUrl->getUrl(),
-                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Umknown user'
+                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Unknown user'
                 )
             );
 
@@ -240,13 +240,13 @@ class IndexController extends AbstractController
         $aliasLength = AppHelper::DEFAULT_ALIAS_LENGTH;
 
         if (empty($token) || strlen($token) < $aliasLength) {
-            $this->addFlash('warning', sprintf('Alias length must be geraeter or equal [8] chars.', $aliasLength));
+            $this->addFlash('warning', sprintf('Alias length [%s] must be grater or equal [8] chars.', $aliasLength));
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
         if ($token !== $link->getToken()) {
 
-            if ($token && $this->linkService->getByToken($token)) {
+            if ($this->linkService->getByToken($token)) {
                 $this->addFlash('warning', 'Token is not valid. Please try another one!');
                 return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
             }
@@ -293,14 +293,14 @@ class IndexController extends AbstractController
         $id = $this->validateNumber($request->request->get('id'));
 
         if ($id <= 0) {
-            $this->addFlash('warning', 'Unkown Id.');
+            $this->addFlash('warning', 'Unknown Id.');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 
         $link = $this->linkService->getByUserAndId($user, $id);
 
         if (!$link) {
-            $this->addFlash('warning', 'Unkown link');
+            $this->addFlash('warning', 'Unknown link');
             return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         }
 

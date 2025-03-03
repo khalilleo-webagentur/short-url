@@ -25,8 +25,6 @@ class LogoutSubscriber implements EventSubscriberInterface
 
         $request->getSession()->clear();
 
-        $response = $event->getResponse();
-
         $response = new RedirectResponse(
             $this->urlGenerator->generate('app_home'),
             RedirectResponse::HTTP_SEE_OTHER

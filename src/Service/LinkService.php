@@ -24,7 +24,7 @@ final class LinkService
         return $this->linkRepository->find($id);
     }
 
-    public function getByUserAndId(User $user, int $id): ?Link
+    public function getByUserAndId(User|UserInterface $user, int $id): ?Link
     {
         return $this->linkRepository->findOneBy(['user' => $user, 'id' => $id]);
     }
@@ -37,19 +37,19 @@ final class LinkService
     /**
      * @return Link[]
      */
-    public function getAllByUserAndCollection(User $user, LinkCollection $collection): array
+    public function getAllByUserAndCollection(User|UserInterface $user, LinkCollection $collection): array
     {
         return $this->linkRepository->findBy(['user' => $user, 'collection' => $collection], ['isFave' => 'DESC']);
     }
 
-    public function removeCollectionFromLinks(User $user, LinkCollection $collection): void
+    public function removeCollectionFromLinks(User|UserInterface $user, LinkCollection $collection): void
     {
         foreach ($this->getAllByUserAndCollection($user, $collection) as $link) {
             $this->save($link->setCollection(null));
         }
     }
 
-    public function deleteCollectionWithLinks(User $user, LinkCollection $collection): void
+    public function deleteCollectionWithLinks(User|UserInterface $user, LinkCollection $collection): void
     {
         foreach ($this->getAllByUserAndCollection($user, $collection) as $link) {
             $this->delete($link);
@@ -71,12 +71,12 @@ final class LinkService
     /**
      * @return Link[]
      */
-    public function getAllByUser(User $user): array
+    public function getAllByUser(User|UserInterface $user): array
     {
         return $this->linkRepository->findBy(['user' => $user], ['isFave' => 'DESC', 'id' => 'DESC']);
     }
 
-    public function getCountLinksByUser(User $user): int
+    public function getCountLinksByUser(User|UserInterface $user): int
     {
         return count($this->linkRepository->findBy(['user' => $user]));
     }
@@ -97,7 +97,7 @@ final class LinkService
         return $this->linkRepository->findBy([], ['id' => 'DESC']);
     }
 
-    public function moveLinksWithoutAnyAssociationsToCollection(User $user, LinkCollection $collection): int
+    public function moveLinksWithoutAnyAssociationsToCollection(User|UserInterface $user, LinkCollection $collection): int
     {
         $i = 0;
 
@@ -131,7 +131,7 @@ final class LinkService
     /**
      * @return Link[]
      */
-    public function searchByUserAndTitle(User $user, string $title): array
+    public function searchByUserAndTitle(User|UserInterface $user, string $title): array
     {
         return $this->linkRepository->searchByUserAndTitle($user, $title);
     }
@@ -139,7 +139,7 @@ final class LinkService
     /**
      * @return Link[]
      */
-    public function filterByUser(User $user, int $groupId, bool $isPublic, bool $hasClicks, bool $isFave): array
+    public function filterByUser(User|UserInterface $user, int $groupId, bool $isPublic, bool $hasClicks, bool $isFave): array
     {
         return $this->linkRepository->filterByUser($user, $groupId, $isPublic, $hasClicks, $isFave);
     }

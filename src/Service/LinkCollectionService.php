@@ -8,6 +8,7 @@ use App\Entity\LinkCollection;
 use App\Entity\User;
 use App\Repository\LinkCollectionRepository;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 final class LinkCollectionService
 {
@@ -21,12 +22,12 @@ final class LinkCollectionService
         return $this->linkCollectionRepository->find($id);
     }
 
-    public function getByUserAndName(User $user, string $name): ?LinkCollection
+    public function getByUserAndName(User|UserInterface $user, string $name): ?LinkCollection
     {
         return $this->linkCollectionRepository->findOneBy(['user' => $user, 'name' => $name]);
     }
 
-    public function getByUserAndId(User $user, int $id): ?LinkCollection
+    public function getByUserAndId(User|UserInterface $user, int $id): ?LinkCollection
     {
         return $this->linkCollectionRepository->findOneBy(['user' => $user, 'id' => $id]);
     }
@@ -34,17 +35,17 @@ final class LinkCollectionService
     /**
      * @return LinkCollection[]
      */
-    public function getAllByUser(?User $user): array
+    public function getAllByUser(?UserInterface $user): array
     {
         return $this->linkCollectionRepository->findBy(['user' => $user], ['id' => 'DESC']);
     }
 
-    public function getOneByUserAndDefaultCollection(User $user): ?LinkCollection
+    public function getOneByUserAndDefaultCollection(User|UserInterface $user): ?LinkCollection
     {
         return $this->linkCollectionRepository->findOneBy(['user' => $user, 'isDefault' => 1], ['id' => 'DESC']);
     }
 
-    public function resetAll(User $user): void
+    public function resetAll(User|UserInterface $user): void
     {
         foreach ($this->getAllByUser($user) as $model) {
             if ($model->isDefault()) {
@@ -53,7 +54,7 @@ final class LinkCollectionService
         }
     }
 
-    public function resetAndUpdateDefault(User $user, LinkCollection $collection): void
+    public function resetAndUpdateDefault(User|UserInterface $user, LinkCollection $collection): void
     {
         $this->resetAll($user);
         $this->save($collection->setIsDefault(true));

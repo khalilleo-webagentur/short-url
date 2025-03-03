@@ -26,7 +26,7 @@ class SearchController extends AbstractController
     }
 
     #[Route('/q/e3x4r2l5h6b0h2a2', name: 'app_search_urls', methods: 'POST')]
-    public function saerch(Request $request): Response
+    public function search(Request $request): Response
     {
         $user = $this->getUser();
 
@@ -63,21 +63,21 @@ class SearchController extends AbstractController
         // $timeTo = $this->validate($request->request->get('timeTo'));
 
         // if (!$dateFrom || !$timeFrom || $dateTo || $timeTo) {
-        //     $this->addFlash('warning', 'Datetime fileds are required.');
+        //     $this->addFlash('warning', 'Datetime filed is required.');
         //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         // }
 
         // $dateTimeFrom = DateTime::createFromFormat('Y-m-d H:i', $dateFrom . ' ' . $timeFrom);
 
         // if (false === $dateTimeFrom) {
-        //     $this->addFlash('warning', 'Datetime from is not vaild.');
+        //     $this->addFlash('warning', 'Datetime from is not valid.');
         //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         // }
 
         // $dateTimeTo = DateTime::createFromFormat('Y-m-d H:i', $dateTo . ' ' . $timeTo);
 
         // if (false === $dateTimeFrom) {
-        //     $this->addFlash('warning', 'Datetime from is not vaild.');
+        //     $this->addFlash('warning', 'Datetime from is not valid.');
         //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
         // }
 

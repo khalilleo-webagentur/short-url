@@ -12,6 +12,7 @@ use App\Service\ProfileService;
 use App\Service\SocialProfileSettingService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -64,7 +65,7 @@ class AvatarController extends AbstractController
                 return $this->redirectToRoute(self::PROFILE_ROUTE);
             }
 
-            /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            /** @var UploadedFile $file */
             $file = $request->files->get('avatar');
 
             if (!$file) {

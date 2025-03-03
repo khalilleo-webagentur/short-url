@@ -8,17 +8,15 @@ use App\Mails\AbstractMail;
 use App\Mails\MailInterface;
 use App\Service\ConfigService;
 use App\Service\Dev\Mailer;
-use App\Service\MonologService;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 
-final class NotifiyAbuseLinkMail extends AbstractMail implements MailInterface
+final class NotifyAbuseLinkMail extends AbstractMail implements MailInterface
 {
     public function __construct(
         private readonly MailerInterface $mailer,
-        private readonly ConfigService   $configService,
-        private readonly MonologService  $monolog
+        private readonly ConfigService   $configService
     ) {
     }
 

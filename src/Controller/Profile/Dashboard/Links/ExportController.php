@@ -59,7 +59,7 @@ class ExportController extends AbstractController
                 $data = '';
                 $this->monolog->logger->critical(
                     sprintf(
-                        'User %s  not exported links as %s-format. Err.:: ',
+                        'User %s  not exported links as %s-format. Err.:: %s',
                         $user->getUserIdentifier(),
                         $exportAsOption,
                         $e->getMessage()

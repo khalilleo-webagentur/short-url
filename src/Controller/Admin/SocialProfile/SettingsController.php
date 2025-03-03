@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin\SocialProfile;
 
-use App\Service\SocialProfileService;
 use App\Service\SocialProfileSettingService;
 use App\Traits\FormValidationTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

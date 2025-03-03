@@ -49,8 +49,8 @@ class JobController extends AbstractController
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
 
-    #[Route('/urls/anonomyze/m1j4j6g0d1t4q4v0', name: 'app_profile_anonomyze', methods: 'POST')]
-    public function anonomyze(): Response
+    #[Route('/urls/anonymize/m1j4j6g0d1t4q4v0', name: 'app_profile_anonymize', methods: 'POST')]
+    public function anonymized(): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -62,13 +62,13 @@ class JobController extends AbstractController
 
             foreach ($this->linkStatisticService->getAllByLink($link) as $row) {
 
-                if ($row->getIpAddress() !== '_anonomyzed') {
-                    $this->linkStatisticService->save($row->setIpAddress('_anonomyzed'));
+                if ($row->getIpAddress() !== '_anonymized') {
+                    $this->linkStatisticService->save($row->setIpAddress('_anonymized'));
                 }
             }
         }
 
-        $this->addFlash('notice', 'IPs has been anonomyzed in all statistics.');
+        $this->addFlash('notice', 'IPs has been anonymized in all statistics.');
 
         return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
     }
