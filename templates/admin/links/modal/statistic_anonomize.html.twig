@@ -12,7 +12,7 @@
                 <p>Are you sure to anonomize statistics?</p>
             </div>
             <div class="modal-footer">
-                <form action="{{ path('app_admin_links_anonomize_statistics_store') }}" method="post">
+                <form action="{{ path('app_admin_links_anonymize_statistics_store') }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <input type="hidden" name="linkId" value="{{ linkId is defined and linkId ? linkId : 0 }}">
                     <button type="button" class="btn btn-light btn-radius-50" data-dismiss="modal">Cancel</button>

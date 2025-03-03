@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class LogoutController extends AbstractController
 {
     #[Route('/logout', name: 'app_logout')]
-    public function logout(): never
+    public function logout(): void
     {
         //
     }

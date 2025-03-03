@@ -25,7 +25,7 @@ class JobsController extends AbstractController
     ) {
     }
 
-    #[Route('/anonomize-statistics', name: 'app_admin_links_anonomize_statistics_store', methods: 'POST')]
+    #[Route('/anonymize-statistics', name: 'app_admin_links_anonymize_statistics_store', methods: 'POST')]
     public function store(Request $request): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
@@ -39,7 +39,7 @@ class JobsController extends AbstractController
         $this->addFlash(
             'notice',
             sprintf(
-                'Statistics for [%s] has been anonomized.',
+                'Statistics for [%s] has been anonymized.',
                 $link->getTitle() ?? $link->getToken()
             )
         );

@@ -55,7 +55,7 @@ class IndexController extends AbstractController
 
             $this->linkService->delete($link);
 
-            $this->addFlash('success', 'Link and all accoiciated data (if any) has been deleted.');
+            $this->addFlash('success', 'Link and all emaciated data (if any) has been deleted.');
 
             return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
         }
