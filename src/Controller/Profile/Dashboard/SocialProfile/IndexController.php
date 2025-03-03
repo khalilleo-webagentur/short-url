@@ -35,17 +35,19 @@ class IndexController extends AbstractController
     #[Route('/u/{profile}', name: 'app_dashboard_social_profile_index')]
     public function index(?string $profile): Response
     {
-        $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile));
+        $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile) ?? '');
 
-        if (!$socialProfileSetting || !$socialProfileSetting->isPublic() || !$this->getUser()) {
+        // if user logged in and try to view other users profile then redirect this to home.
+        if ((!$socialProfileSetting || !$socialProfileSetting->isPublic()) && $this->getUser() !== $socialProfileSetting->getUser()) {
             return $this->redirectToRoute('app_home');
         }
 
-        $currentUser = $this->getUser();
-        $setting = $this->socialProfileSettingService->getByUser($currentUser);
+        if ($currentUser = $this->getUser()) {
+            $setting = $this->socialProfileSettingService->getByUser($currentUser);
 
-        if ($setting && $socialProfileSetting->getMainName() !== $setting->getMainName()) {
-            return $this->redirectToRoute('app_home');
+            if ($setting && $socialProfileSetting->getMainName() !== $setting->getMainName()) {
+                return $this->redirectToRoute('app_home');
+            }
         }
 
         $user = $socialProfileSetting->getUser();
