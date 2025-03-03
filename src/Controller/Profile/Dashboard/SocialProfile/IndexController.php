@@ -37,12 +37,19 @@ class IndexController extends AbstractController
     {
         $socialProfileSetting = $this->socialProfileSettingService->getByName($this->validate($profile) ?? '');
 
-        // if user logged in and try to view other users profile then redirect this to home.
-        if ((!$socialProfileSetting || !$socialProfileSetting->isPublic()) && $this->getUser() !== $socialProfileSetting->getUser()) {
+        if (!$socialProfileSetting) {
+            $this->addFlash('notice', sprintf('Social profile "%s" not found.', $profile));
             return $this->redirectToRoute('app_home');
         }
 
-        if ($currentUser = $this->getUser()) {
+        // if user logged in and try to view other users profile then redirect this to home.
+        if ((!$socialProfileSetting->isPublic()) && $this->getUser() !== $socialProfileSetting->getUser()) {
+            return $this->redirectToRoute('app_home');
+        }
+
+        $currentUser = $this->getUser();
+
+        if ($currentUser) {
             $setting = $this->socialProfileSettingService->getByUser($currentUser);
 
             if ($setting && $socialProfileSetting->getMainName() !== $setting->getMainName()) {
