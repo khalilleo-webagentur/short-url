@@ -39,6 +39,12 @@ final class UserService
         return $this->userRepository->findBy([], ['id' => 'DESC']);
     }
 
+    public function hasUserRequestedNewSecurityCode(): bool
+    {
+        $users = $this->userRepository->findTheLastRecentToken();
+        return count($users) > 0;
+    }
+
     public function save(User|UserInterface $model): ?User
     {
         $this->userRepository->save($model->setUpdatedAt(new DateTime()), true);

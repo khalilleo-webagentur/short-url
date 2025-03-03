@@ -38,4 +38,21 @@ class UserRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * @return User[]
+     */
+    public function findTheLastRecentToken(): array
+    {
+        $now = new \DateTime();
+        $now->modify('-30 minutes')->format('Y-m-d H:i:s');
+
+        return $this->createQueryBuilder('t1')
+            ->where('t1.token IS NOT NULL')
+            ->andWhere('t1.updatedAt >= :now')
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
