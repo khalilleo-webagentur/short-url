@@ -1,7 +1,7 @@
 <nav class="navbar d-dark-color border-body navbar navbar-expand-lg" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ app.request.schemeAndHttpHost }}">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="{{ appName() }}" height="32">
+            <img src="{{ asset('assets/img/logo.png?v=1.0') }}" alt="{{ appName() }}" height="32">
         </a>
 
         <div class="float-end d-flex">
@@ -15,7 +15,7 @@
                  aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasRightLabel">
-                        <img src="{{ asset('assets/img/logo.png') }}" height="32" alt="k24.ing">
+                        <img src="{{ asset('assets/img/logo.png?v=1.0') }}" height="32" alt="k24.ing">
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
@@ -43,7 +43,7 @@
                             <li class="nav-item dropdown me-2">
                                 <a class="nav-link dropdown-toggle text-muted fs-15" href="#" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('assets/img/avatar-40x40.png') }}" class="pe-1 rounded-circle"
+                                    <img src="{{ asset('assets/img/avatar-40x40.png?v=1.0') }}" class="pe-1 rounded-circle"
                                          height="16" alt="Avatar"> {{ app.user.name|capitalize }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">

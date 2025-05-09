@@ -14,3 +14,10 @@ $(document).ready(function () {
         });
     }
 });
+
+window.addEventListener('load', function() {
+    const image = document.querySelector('img');
+    if (image) {
+        image.style.filter = 'blur(0)';
+    }
+});
