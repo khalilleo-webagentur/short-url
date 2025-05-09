@@ -34,8 +34,9 @@ final class ContactFormNewMessageMail extends AbstractMail implements MailInterf
                 )
             )
             ->to(new address($webmasterEmail, $webmasterName))
-            ->subject('New Message Arrived')
+            ->subject('k24.ing | New Message Arrived')
             ->htmlTemplate('mails/admin/contact_form_new_message.html.twig')
+            ->textTemplate('mails/admin/contact_form_new_message.txt.twig')
             ->context([
                 'username' => $webmasterName
             ]);

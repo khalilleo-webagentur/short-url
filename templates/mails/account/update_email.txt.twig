@@ -1,0 +1,17 @@
+Hi {{ username|capitalize }},
+
+you have requested to update your email on {{ appName() }}, please verify your email.
+
+{{ absolute_url(path('app_profile_personal_data_email_verify', {token:token})) }}
+
+If you did not request this, please ignore this email. Maybe someone has mistyped his email.
+
+Best Regards,
+
+The {{ appName() }} Team
+
+..........................................................
+
+{{ 'Web'|trans }} {{ absolute_url(path('app_home')) }}
+Copyright {{ appName() }} {{ year() }} - {{ version() }}
+{{ 'All Rights Reserved'|trans }}

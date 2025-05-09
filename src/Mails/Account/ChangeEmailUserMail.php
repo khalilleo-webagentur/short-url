@@ -32,8 +32,9 @@ final class ChangeEmailUserMail extends AbstractMail implements MailInterface
                 )
             )
             ->to(new address($userEmail, $username))
-            ->subject('Email Verification')
+            ->subject('k24.ing | Email Verification')
             ->htmlTemplate('mails/account/update_email.html.twig')
+            ->textTemplate('mails/account/update_email.txt.twig')
             ->context([
                 'username' => $username,
                 'token' => $token,
