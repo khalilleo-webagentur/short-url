@@ -88,14 +88,21 @@
                             {% endif %}
                         </p>
 
-                        <p class="text-white-50 small" title="{{ socialProfileSetting.countViews }} views">
-                            <span class="bi bi-eye me-1"></span> {{ numberNotation(socialProfileSetting.countViews) }}
+                        <p class="text-white-50 small">
+
+                            <span title="{{ socialProfileSetting.countViews }} views">
+                                <span class="bi bi-eye me-1"></span> {{ numberNotation(socialProfileSetting.countViews) }}
+                            </span>
 
                             {% if app.user %}
                                 <br>
                                 <small class="d-danger-color ps-1">
                                     {{ socialProfileSetting.isPublic ? '' : '[PROFILE IS DISABLED]' }}
                                 </small>
+                                <a href="{{ path('app_dashboard_social_profile_settings_index') }}"
+                                   class="ps-2 text-decoration-none">
+                                    Settings <span class="bi bi-arrow-right"></span>
+                                </a>
                             {% endif %}
 
                         </p>
