@@ -53,7 +53,7 @@ class LinkController extends AbstractController
         $url = $this->validateURL($request->request->get('url'));
 
         if (!$url) {
-            $this->addFlash('warning', 'Please paste your URL or type it - something like [google.com]');
+            $this->addFlash('warning', 'Please paste your URL or type it.');
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 

@@ -1,10 +1,10 @@
 parameters:
-  appVersion: "1.4.6"
+  appVersion: "2.0.7"
   appName: "K24.ing"
   fullAppName: "K24.ing"
   noReply: "no-reply@k24.ing"
   webMasterName: "Webmaster"
-  webMasterEmail: "demo@khalilleo.com"
+  webMasterEmail: "dev@khalilleo.com"
   phoneNumber: '0163/616-5396'
   infoEmail: 'info@khalilleo.com'
   legalEmail: 'legal@khalilleo.com'
