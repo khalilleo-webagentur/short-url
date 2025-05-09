@@ -21,7 +21,17 @@
 
                     <div class="form-group">
                         <label for="mUrls">{{ 'Malicious URLs'|trans }}: <span class="text-danger">*</span></label>
-                        <textarea class="form-control" id="mUrls" name="mUrls" rows="3"
+                        <textarea class="form-control"
+                                  id="mUrls"
+                                  spellcheck="false"
+                                  ondragstart="return false"
+                                  ondrop="return false"
+                                  dir="auto"
+                                  autocapitalize="off"
+                                  autocomplete="off"
+                                  translate="no"
+                                  name="mUrls"
+                                  rows="3"
                                   placeholder="0.0.0.0 ck.getcookiestxt.com
 eu1.clevertap-prod.com
 ..."

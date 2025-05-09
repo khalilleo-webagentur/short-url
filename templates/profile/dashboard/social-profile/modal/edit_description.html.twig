@@ -11,7 +11,18 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="iDesc" class="form-label">About you: <span class="d-danger-color">*</span></label>
-                        <textarea type="text" class="form-control" id="iDesc" rows="3" name="iDesc"
+                        <textarea type="text"
+                                  class="form-control"
+                                  spellcheck="false"
+                                  ondragstart="return false"
+                                  ondrop="return false"
+                                  dir="auto"
+                                  autocapitalize="off"
+                                  autocomplete="off"
+                                  translate="no"
+                                  id="iDesc"
+                                  rows="3"
+                                  name="iDesc"
                                   placeholder="Add a short description about you"
                                   autofocus>{{ socialProfileSetting.description }}</textarea>
                         <small class="text-secondary">Field is required.</small>
