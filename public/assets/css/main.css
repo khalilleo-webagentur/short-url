@@ -2,6 +2,10 @@
     border-bottom: 0;
 }
 
+.min-vh-100 {
+    min-height: 90vh !important;
+}
+
 .modal-footer {
     border-top: 0;
 }
@@ -110,13 +114,14 @@ input[type="color"]:focus,
 }
 
 .d-dark-secondary-color {
-    background-color: rgb(29, 33, 37) !important;
+    /*background-color: rgb(29, 33, 37) !important;*/
+    background-color: rgba(29, 32, 36, 0.78) !important;
     border-top: 1px solid #242424;
     border-bottom: 1px solid #242424;
 }
 
 .d-dark-border-color {
-    border: 1px solid #242424;
+    border: 1px solid #242424 !important;
 }
 
 .d-btn-border-color, .btn-outline-secondary {
