@@ -7,9 +7,9 @@ namespace App\Service;
 use App\Helper\AppHelper;
 use Khalilleo\TokenGen\Token;
 
-final class TokenGeneratorService
+final readonly class TokenGeneratorService
 {
-    private readonly Token $tokenGen;
+    private Token $tokenGen;
 
     public function __construct()
     {

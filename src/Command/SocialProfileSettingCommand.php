@@ -11,10 +11,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-// $ php bin/console app:new-social-rofile-setting
+// $ php bin/console app:new-social-profile-setting
 
 #[AsCommand(
-    name: 'app:new-social-rofile-setting',
+    name: 'app:new-social-profile-setting',
     description: 'Add demo social profile setting for demonstration purposes.',
     hidden: false
 )]

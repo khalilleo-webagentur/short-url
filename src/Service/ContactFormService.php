@@ -35,7 +35,22 @@ final readonly class ContactFormService
      */
     public function getAll(): array
     {
-        return $this->contactFormRepository->findBy([], ['id' => 'DESC']);
+        return $this->contactFormRepository->findBy(['isDeleted' => 0], ['id' => 'DESC']);
+    }
+
+    public function create(string $name, string $email, string $subject, string $message, ?string $remote): ContactForm
+    {
+        $contactForm = new ContactForm();
+        $contactForm
+            ->setName($name)
+            ->setEmail($email)
+            ->setSubject($subject)
+            ->setMessage($message)
+            ->setRemote($remote);
+
+        $this->save($contactForm);
+
+        return $contactForm;
     }
 
     public function save(ContactForm $model): ContactForm

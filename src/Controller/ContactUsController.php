@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Mails\Admin\ContactFormNewMessageMail;
+use App\Service\ContactFormService;
 use App\Service\MonologService;
 use App\Traits\FormValidationTrait;
+use App\Traits\RemoteTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +17,13 @@ use Symfony\Component\Routing\Attribute\Route;
 class ContactUsController extends AbstractController
 {
     use FormValidationTrait;
+    use RemoteTrait;
 
     private const HOME_ROUTE = 'app_home';
     private const CONTACT_US_ROUTE = 'app_contact_us_index';
 
     public function __construct(
+        private readonly ContactFormService $contactFormService,
         private readonly MonologService $monolog
     ) {
     }
@@ -34,11 +38,8 @@ class ContactUsController extends AbstractController
     public function new(Request $request, ContactFormNewMessageMail $contactFormNewMessageMail): Response
     {
         $name = $this->validate($request->request->get('iName'));
-
         $email = $this->validate($request->request->get('iEmail'));
-
         $subject = $this->validate($request->request->get('iSubject'));
-
         $message = $this->validateTextarea($request->request->get('iMessage'));
 
         if (!$name || !$email || !$subject || !$message) {
@@ -46,9 +47,9 @@ class ContactUsController extends AbstractController
             return $this->redirectToRoute(self::CONTACT_US_ROUTE);
         }
 
-        $this->monolog->logger->debug(
-            sprintf('New Message from Contact Form: Name [%s], Email [%s], Subject [%s] and Message [%s]', $name, $email, $subject, $message)
-        );
+        $remote = $this->getUserAgent();
+
+        $this->contactFormService->create($name, $email, $subject, $message, $remote);
 
         $contactFormNewMessageMail->send([]);
 

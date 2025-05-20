@@ -8,10 +8,10 @@ use App\Entity\TempUser;
 use App\Repository\TempUserRepository;
 use DateTime;
 
-final class TempUserService
+final readonly class TempUserService
 {
     public function __construct(
-        private readonly TempUserRepository $tempUserRepository,
+        private TempUserRepository $tempUserRepository,
     ) {
     }
 
@@ -38,7 +38,7 @@ final class TempUserService
         return $this->tempUserRepository->findBy([], ['id' => 'DESC']);
     }
 
-    public function save(TempUser $model): ?TempUser
+    public function save(TempUser $model): TempUser
     {
         $this->tempUserRepository->save($model->setUpdatedAt(new DateTime()), true);
 
