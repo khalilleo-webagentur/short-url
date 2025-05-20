@@ -57,23 +57,7 @@ class LinkController extends AbstractController
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
 
-
-        $parseUrl = parse_url($url);
-
-        if ($maliciousUrl = $this->maliciousUrlsService->getOneByUrl($parseUrl['host'] ?? '')) {
-
-            $this->maliciousUrlsService->save(
-                $maliciousUrl->setCounter($maliciousUrl->getCounter() + 1)
-            );
-
-            $this->monolog->logger->debug(
-                sprintf(
-                    'Malicious URL: %s %s by %s',
-                    $maliciousUrl->getId(),
-                    $maliciousUrl->getUrl(),
-                    $this->getUser() ? $this->getUser()->getUserIdentifier() : 'Unknown user')
-            );
-
+        if ($this->maliciousUrlsService->isMaliciousUrl($url)) {
             $this->addFlash('warning', 'This URL is on Blacklist.');
             return $this->redirectToRoute(self::HOME_ROUTE);
         }
