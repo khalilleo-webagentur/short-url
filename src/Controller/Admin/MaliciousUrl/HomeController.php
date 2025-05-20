@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Admin\Links;
+namespace App\Controller\Admin\MaliciousUrl;
 
 use App\Entity\MaliciousUrl;
 use App\Service\MaliciousUrlsService;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('admin/dashboard/malicious-links/9b6vk2s1k4d4p3u0')]
-class MaliciousUrlsController extends AbstractController
+class HomeController extends AbstractController
 {
     use FormValidationTrait;
 
@@ -55,11 +55,13 @@ class MaliciousUrlsController extends AbstractController
             $maliciousModel = new MaliciousUrl();
 
             $url = str_replace(["0.0.0.0 ", "\n", "\r", "\r\n", "<br />"], '', $maliciousURL);
+            $url = $this->validateURL($url);
 
-            if ($this->validateURL($url) && !$this->maliciousUrlsService->getOneByUrl($url)) {
+            if ($url && !$this->maliciousUrlsService->getOneByUrl($url)) {
                 $this->maliciousUrlsService->save(
                     $maliciousModel
                         ->setUrl($url)
+                        ->setDomain($this->extractDomainFromUrl($url))
                 );
                 $count++;
             } else {
