@@ -18,6 +18,9 @@ class MaliciousUrl
     #[ORM\Column(length: 255)]
     private string $url;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $domain = null;
+
     #[ORM\Column]
     private int $counter = 0;
 
@@ -45,6 +48,18 @@ class MaliciousUrl
     public function setUrl(string $url): static
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+
+    public function setDomain(?string $domain): static
+    {
+        $this->domain = $domain;
 
         return $this;
     }
