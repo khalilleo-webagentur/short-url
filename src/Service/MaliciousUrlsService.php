@@ -9,11 +9,12 @@ use App\Entity\User;
 use App\Repository\MaliciousUrlRepository;
 use DateTime;
 
-final class MaliciousUrlsService
+final readonly class MaliciousUrlsService
 {
     public function __construct(
-        private readonly MaliciousUrlRepository $maliciousUrlRepository,
-    ) {
+        private MaliciousUrlRepository $maliciousUrlRepository,
+        private MonologService         $monolog
+    ){
     }
 
     public function getById(int $id): ?MaliciousUrl
@@ -21,9 +22,68 @@ final class MaliciousUrlsService
         return $this->maliciousUrlRepository->find($id);
     }
 
+    public function getOneByDomain(string $domain): ?MaliciousUrl
+    {
+        return $this->maliciousUrlRepository->findOneBy(['domain' => $domain]);
+    }
+
     public function getOneByUrl(string $url): ?MaliciousUrl
     {
         return $this->maliciousUrlRepository->findOneBy(['url' => $url]);
+    }
+
+    public function isMaliciousUrl(string $url): bool
+    {
+        $parseUrl = parse_url($url);
+        $domain = null;
+
+        if (is_string($parseUrl)) {
+            $domain = $parseUrl;
+        } elseif (is_array($parseUrl) && isset($parseUrl['host'])) {
+            $domain = $parseUrl['host'];
+        } elseif (is_array($parseUrl) && isset($parseUrl['path']) && !isset($parseUrl['host'])) {
+            $domain = $parseUrl['path'];
+        }
+
+        if ($maliciousUrl = $this->getOneByDomain($domain)) {
+
+            $this->monolog->logger->debug(
+                sprintf(
+                    'Malicious URL: %s: %s',
+                    $maliciousUrl->getId(),
+                    $maliciousUrl->getUrl())
+            );
+
+            $this->save($maliciousUrl->setCounter($maliciousUrl->getCounter() + 1));
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function updateDomains(int $limit): int
+    {
+        $i = 0;
+        $maliciousUrls = $this->maliciousUrlRepository->findBy(['domain' => null], ['id' => 'DESC'], $limit);
+
+        foreach ($maliciousUrls as $maliciousUrl) {
+
+            $parseUrl = parse_url($maliciousUrl->getUrl());
+
+            if (is_string($parseUrl)) {
+                $this->save($maliciousUrl->setDomain($parseUrl));
+                $i++;
+            } elseif (is_array($parseUrl) && isset($parseUrl['host'])) {
+                $this->save($maliciousUrl->setDomain($parseUrl['host']));
+                $i++;
+            } elseif (is_array($parseUrl) && isset($parseUrl['path']) && !isset($parseUrl['host'])) {
+                $this->save($maliciousUrl->setDomain($parseUrl['path']));
+                $i++;
+            }
+        }
+
+        return $i;
     }
 
     public function getCount(): string
