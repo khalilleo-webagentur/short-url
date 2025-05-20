@@ -1,0 +1,72 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %} K24.ing :: Verify source shorten Link {% endblock %}
+
+{% block body %}
+
+    {% include 'layout/navbar.html.twig' %}
+
+    {% include 'component/custom_type_message_top_fixed.html.twig' %}
+
+    <div class="container-fluid pb-5 d-dark-color min-vh-100">
+        <div class="container pb-5">
+            <div class="px-lg-5 pb-5">
+                <div class="row gx-lg-5 h-100 py-3 justify-content-center">
+                    <div class="col-lg-8">
+
+                        <h4 class="d-color font-weight-bold mt-lg-5 pt-5 mb-3">
+                            Verify Source our shorten Link
+                        </h4>
+
+                        <form action="{{ path('app_verify_source_shorten_link_check', {hash: hash(dateTime('Y-m-d H:i:s'))}) }}" method="post">
+                            <div class="mb-3">
+                                <label for="url" class="form-label text-white-50">
+                                    Shorten URL <span class="text-danger">*</span>
+                                </label>
+                                <input type="text"
+                                       class="form-control form-control-lg"
+                                       id="url"
+                                       placeholder="https://k24.ing/yOurLink"
+                                       required
+                                       name="url"
+                                       style="font-size: 15px; padding: 10px 12px">
+                                <small class="text-secondary">This Field is Required.</small>
+                            </div>
+                            <div class="gap-2">
+                                <button class="btn btn-outline-success" type="submit">
+                                    Show me source Link
+                                </button>
+                            </div>
+                        </form>
+
+                        <h4 class="d-color font-weight-bold mt-3 pt-5 mb-3">
+                            Important Security Warning
+                        </h4>
+
+                        <ol class="fs-15 text-white-50">
+                            <li class="mb-3"><b>Do Not Click</b> Avoid clicking on the link, as it may lead to harmful websites that
+                                can compromise your personal information or infect your device with malware. </li>
+                            <li class="mb-3"><b><a href="{{ path('app_verify_source_shorten_link_index') }}"
+                                    class="text-decoration-none">
+                                        Verify the Source
+                                    </a></b> Check the credibility of the source that provided the link. If
+                                it seems suspicious or unfamiliar, it's best to disregard it.</li>
+                            <li class="mb-3"><b>Use Security Software</b> Ensure that you have up-to-date antivirus and anti-malware
+                                software installed on your device. This can help protect you from potential threats.</li>
+                            <li class="mb-3"><b><a href="{{ path('app_report_abuse') }}" class="text-decoration-none">Report the Link</a>
+                                </b> If you believe the link is malicious, consider reporting it to your
+                                email provider or a cybersecurity organization to help protect others.</li>
+                            <li class="mb-3"><b>Stay Informed</b> Educate yourself about common online threats and phishing tactics to
+                                better recognize and avoid potential risks in the future. Your online safety is
+                                paramount!</li>
+                        </ol>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'layout/footer.html.twig' %}
+
+{% endblock %}
