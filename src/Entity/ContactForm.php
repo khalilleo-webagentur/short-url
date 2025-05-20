@@ -31,7 +31,7 @@ class ContactForm
     private ?string $remote = null;
 
     #[ORM\Column]
-    private ?bool $isDeleted = null;
+    private bool $isDeleted = false;
 
     #[ORM\Column]
     private ?DateTime $updatedAt = null;
@@ -109,7 +109,7 @@ class ContactForm
         return $this;
     }
 
-    public function isDeleted(): ?bool
+    public function isDeleted(): bool
     {
         return $this->isDeleted;
     }

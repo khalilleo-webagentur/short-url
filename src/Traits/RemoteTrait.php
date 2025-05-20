@@ -58,4 +58,9 @@ trait RemoteTrait
                 FILTER_FLAG_NO_RES_RANGE
             ) === false);
     }
+
+    private function getUserAgent(): string
+    {
+        return $this->getOS() . ' | ' . $this->getAgent() . ' | ' . $this->getRemote();
+    }
 }

@@ -52,7 +52,7 @@ class DummyURLsCommand extends Command
             $this->linkService->save(
                 $link
                     ->setUser($user)
-                    ->setTitle($faker->text(4))
+                    ->setTitle($faker->text(5))
                     ->setUrl($faker->url())
                     ->setToken($this->tokenGeneratorService->randomToken())
             );

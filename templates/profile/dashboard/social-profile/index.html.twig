@@ -96,13 +96,13 @@
 
                             {% if app.user %}
                                 <br>
-                                <small class="d-danger-color ps-1">
-                                    {{ socialProfileSetting.isPublic ? '' : '[PROFILE IS DISABLED]' }}
-                                </small>
-                                <a href="{{ path('app_dashboard_social_profile_settings_index') }}"
-                                   class="ps-2 text-decoration-none">
-                                    Settings <span class="bi bi-arrow-right"></span>
-                                </a>
+                                {% if not socialProfileSetting.isPublic %}
+                                    <small class="d-danger-color ps-1">[PROFILE IS DISABLED]</small>
+                                    <a href="{{ path('app_dashboard_social_profile_settings_index') }}"
+                                       class="ps-2 text-decoration-none">
+                                        Settings <span class="bi bi-arrow-right"></span>
+                                    </a>
+                                {% endif %}
                             {% endif %}
 
                         </p>

@@ -53,9 +53,41 @@ trait FormValidationTrait
             $input = "https://" . $input;
         }
 
-        $input = $this->escape($input);
+        return filter_var($input, FILTER_VALIDATE_URL) ? $input : null;
+    }
 
-        return (bool)filter_var($input, FILTER_VALIDATE_URL) === true ? $input : null;
+    private function extractDomainFromUrl(string $url): ?string
+    {
+        $parseUrl = parse_url($url);
+
+        if (empty($parseUrl)) {
+            return null;
+        }
+
+        if (!isset($parseUrl['host'])) {
+            return $url;
+        }
+
+        return $parseUrl['host'];
+    }
+
+    private function extractPathFromUrl(string $url): ?string
+    {
+        $parseUrl = parse_url($url);
+
+        if (empty($parseUrl)) {
+            return null;
+        }
+
+        if (!isset($parseUrl['host'])) {
+            return null;
+        }
+
+        if (!isset($parseUrl['path'])) {
+            return null;
+        }
+
+        return $parseUrl['path'];
     }
 
     private function validateCheckbox(?string $input): bool

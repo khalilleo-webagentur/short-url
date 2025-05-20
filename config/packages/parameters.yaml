@@ -3,8 +3,8 @@ parameters:
   appName: "K24.ing"
   fullAppName: "K24.ing"
   noReply: "no-reply@k24.ing"
-  webMasterName: "Webmaster"
-  webMasterEmail: "dev@khalilleo.com"
+  webMasterName: "K24.ing"
+  webMasterEmail: "ronijan@posteo.de"
   phoneNumber: '0163/616-5396'
   infoEmail: 'info@khalilleo.com'
   legalEmail: 'legal@khalilleo.com'

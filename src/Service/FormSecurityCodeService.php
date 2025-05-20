@@ -14,7 +14,7 @@ final class FormSecurityCodeService
 
     public function __construct(
         private readonly SessionInterface $session,
-        private string                    $sessionName
+        private readonly string $sessionName
     ) {
     }
 
