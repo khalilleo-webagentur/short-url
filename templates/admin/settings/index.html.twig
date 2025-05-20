@@ -23,6 +23,39 @@
         </div>
 
         <section class="content">
+            <div class="container-fluid">
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-4">
+{#                    <div class="col">
+                        <div class="card area-card shadow-sm" data-toggle="modal" data-target="#verifyModal">
+                            <div class="card-body" title="{{ true ? 'on' : 'off' }}">
+                                <span class="pointer">
+                                    Extract domain from URL
+                                </span>
+                                <div class="float-right">
+                                    {% include 'admin/component/toggle.html.twig' with{flag:false} %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>#}
+                    <div class="col">
+                        <div class="card area-card shadow-sm"
+                             title="This will update domain field in DB based on the entry URL. Limit per click is 500 Max.">
+                            <div class="card-body">
+                                Extract domain from URL
+                                <div class="float-right">
+                                    <form action="{{ path('app_admin_settings_extract_domain_from_url') }}" method="post">
+                                        <span class="pointer text-primary"
+                                        onclick="this.closest('form').submit();">Fix</span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
             <div class="container-fluid area-section">
                 <div class="row">
                     <h6 class="px-3 text-secondary">List of settings</h6>
