@@ -10,32 +10,21 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h5 class="m-0 text-dark mt-1">Users</h5>
+                        <h5 class="m-0 text-dark mt-1">Users overview</h5>
                     </div>
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <!-- <li class="text-secondary pointer">New <span class="fa fa-user-circle fa-sm"></span></li>
-                            <span class="px-2 text-light-50">|</span>
-                            <li class="text-secondary pointer">Deactivate <span class="fa fa-ban fa-sm"></span></li>
-                            <span class="px-2 text-light-50">|</span> -->
-                        </ol>
+                        <ol class="breadcrumb float-sm-right"></ol>
                     </div>
                 </div>
             </div>
         </div>
 
         <section class="content">
-            <div class="container-fluid">
-
+            <div class="container-fluid area-section">
                 <div class="row">
                     <div class="col-lg-12">
                         {% include 'admin/users/partial/table_content.html.twig' %}
                     </div>
-                </div>
-
-                <div class="row">
-                    <section class="col-lg-7 connectedSortable"></section>
-                    <section class="col-lg-5 connectedSortable"></section>
                 </div>
             </div>
         </section>

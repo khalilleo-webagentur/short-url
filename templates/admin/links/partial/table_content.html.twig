@@ -56,13 +56,13 @@
                 <td title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</td>
 
                 <td>
-                    <a href="{{ path('app_admin_link_edit', {id:row.id}) }}"><span class="fa fa-edit fa-sm pr-2"></span></a>
+                    <a href="{{ path('app_admin_link_edit', {id:row.id}) }}"><span class="fa fa-edit fa-sm pr-3"></span></a>
 
                     {% if row.counter > 0 %}
                         <a href="{{ path('app_admin_links_statistics_index', {id:row.id}) }}"><span
-                                    class="fa fa-chart-line text-dark fa-sm pr-2"></span></a>
+                                    class="fa fa-chart-line text-dark fa-sm pr-3"></span></a>
                     {% else %}
-                        <span class="fa fa-chart-line text-secondary fa-sm pr-2 cursor-help"
+                        <span class="fa fa-chart-line text-secondary fa-sm pr-3 cursor-help"
                               title="No statistics found!"></span>
                     {% endif %}
 
