@@ -1,0 +1,70 @@
+{% extends 'admin/layout/base.html.twig' %}
+
+{% block title %} Dashboard Search malicious URLs {% endblock %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+
+        {% set maliciousUrlsCount = count(maliciousUrls) %}
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="m-0 text-dark" title="{{ maliciousUrlsCount }}">
+                            Search Malicious URLs
+                        </h5>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="breadcrumb float-right">
+                            <a href="{{ path('app_admin_links_malicious_index') }}" class="text-secondary">
+                                Close <span class="fa fa-window-close"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid area-section">
+
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        {% if maliciousUrlsCount > 0 %}
+                            <p>
+                                Search Result for
+                                {% if maliciousUrlsCount > 0 %}
+                                    <b class="text-success">{{ keyword }}</b>
+                                    found
+                                    <b class="text-success">{{ maliciousUrlsCount }}</b>
+                                {% else %}
+                                    <b class="text-danger">{{ keyword }}</b>
+                                    found
+                                    <b class="text-danger">{{ maliciousUrlsCount }}</b>
+                                {% endif %}
+                            </p>
+                            {% include 'admin/malicious-urls/partial/table_content.html.twig' %}
+                        {% else %}
+                            <p>No data has been found!</p>
+                            <small>Search for URL or domain</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <a href="{{ path('app_admin_links_malicious_index') }}">
+                            <span class="fa fa-arrow-alt-circle-left"></span>
+                            Back to Links
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

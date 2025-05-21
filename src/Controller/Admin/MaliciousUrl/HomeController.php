@@ -18,6 +18,7 @@ class HomeController extends AbstractController
     use FormValidationTrait;
 
     private const ADMIN_MALICIOUS_LINKS_ROUTE = 'app_admin_links_malicious_index';
+    private const ADMIN_MALICIOUS_LINKS_SEARCH_ROUTE = 'app_admin_links_malicious_search';
 
     public function __construct(
         private readonly MaliciousUrlsService $maliciousUrlsService
@@ -29,10 +30,11 @@ class HomeController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-        $maliciousUrls = $this->maliciousUrlsService->getOneByCounter();
+        $maliciousUrls = $this->maliciousUrlsService->getAllByCounter();
 
-        return $this->render('admin/links/malicious-urls.html.twig', [
+        return $this->render('admin/malicious-urls/index.html.twig', [
             'maliciousUrls' => $maliciousUrls,
+            'searchUrl' => self::ADMIN_MALICIOUS_LINKS_SEARCH_ROUTE
         ]);
     }
 

@@ -45,4 +45,19 @@ class MaliciousUrlRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return MaliciousUrl[]
+     */
+    public function findAllByKeyword(string $keyword): array
+    {
+        return $this->createQueryBuilder('t1')
+            ->where('t1.domain LIKE :keyword')
+            ->setParameter('keyword', '%' . $keyword . '%')
+            ->orWhere('t1.url LIKE :url')
+            ->setParameter('url', '%' . $keyword . '%')
+            ->orderBy('t1.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

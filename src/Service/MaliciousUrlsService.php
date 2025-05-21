@@ -96,7 +96,7 @@ final readonly class MaliciousUrlsService
     /**
      * @return MaliciousUrl[]
      */
-    public function getOneByCounter(): array
+    public function getAllByCounter(): array
     {
         return $this->maliciousUrlRepository->findAllByCounter();
     }
@@ -125,6 +125,14 @@ final readonly class MaliciousUrlsService
     public function getAll(): array
     {
         return $this->maliciousUrlRepository->findBy([], ['id' => 'DESC']);
+    }
+
+    /**
+     * @return MaliciousUrl[]
+     */
+    public function search(string $keyword): array
+    {
+        return $this->maliciousUrlRepository->findAllByKeyword($keyword);
     }
 
     public function save(MaliciousUrl $model): MaliciousUrl

@@ -11,17 +11,37 @@
         </li>
     </ul>
 
-    <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                   aria-label="Search" disabled>
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
+    {% if searchUrl is defined and searchUrl %}
+        <form action="{{ path(searchUrl) }}"
+              method="post"
+              class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar"
+                       type="search"
+                       placeholder="Search"
+                       aria-label="Search"
+                       name="keyword"
+                       required>
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    {% else %}
+        <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                       aria-label="Search" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
 
     <ul class="navbar-nav ml-auto">
         <li class="mr-3 nav-item dropdown">
@@ -33,16 +53,16 @@
                 <span class="dropdown-item dropdown-header">
                     <b>Notifications</b>
                 </span>
-               {# <div class="dropdown-divider"></div>
+                {# <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                     <i class="fas fa-envelope mr-2"></i> 4 new messages
                     <span class="float-right text-muted text-sm">3 mins</span>
-                </a>#}
+                </a> #}
                 <span class="dropdown-item fs-14 text-secondary">
                     No Notification yet!
                 </span>
-                {#<div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>#}
+                {# <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> #}
             </div>
         </li>
     </ul>

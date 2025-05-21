@@ -11,15 +11,15 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h4 class="m-0 text-dark" title="{{ maliciousUrlsCount }}">
+                    <div class="col-6">
+                        <h5 class="m-0 text-dark" title="{{ maliciousUrlsCount }}">
                             Malicious URLs
-                        </h4>
+                        </h5>
                     </div>
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
+                        <ol class="breadcrumb float-right">
                             <li class="text-secondary" data-toggle="modal" data-target="#MaliciousUrlModal">
-                                <a href="#MaliciousUrlModal" class="text-secondary">Add URLS <span
+                                <a href="#MaliciousUrlModal" class="text-secondary pb-1">Add URLS <span
                                             class="fa fa-plus"></span></a>
                             </li>
                         </ol>
@@ -29,30 +29,20 @@
         </div>
 
         <section class="content">
-            <div class="container-fluid">
-
+            <div class="container-fluid area-section">
                 <div class="row">
                     <div class="col-lg-12">
-
                         {% if maliciousUrlsCount > 0 %}
-                            {% include 'admin/links/partial/malicious_url_table_content.html.twig' %}
+                            {% include 'admin/malicious-urls/partial/table_content.html.twig' %}
                         {% else %}
-                            <p>No data has been found!</p>
+                            <span class="text-secondary fs-15">No data has been found!</span>
                         {% endif %}
-
-                        <a href="{{ path('app_admin_links_index') }}">Back to Links <span
-                                    class="fa fa-arrow-alt-circle-left"></span></a>
                     </div>
-                </div>
-
-                <div class="row">
-                    <section class="col-lg-7 connectedSortable"></section>
-                    <section class="col-lg-5 connectedSortable"></section>
                 </div>
             </div>
         </section>
     </div>
 
-    {% include 'admin/links/modal/new_malicious_url.html.twig' %}
+    {% include 'admin/malicious-urls/modal/new_malicious_url.html.twig' %}
 
 {% endblock %}
