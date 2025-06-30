@@ -17,7 +17,7 @@ class SearchController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService           $linkService,
@@ -36,7 +36,7 @@ class SearchController extends AbstractController
 
         if (!$keyword || strlen($keyword) < 2) {
             $this->addFlash('notice', 'Keyword length must be greater than or equal 2 Chars.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $links = $this->linkService->searchByUserAndTitle($user, $keyword);
@@ -64,21 +64,21 @@ class SearchController extends AbstractController
 
         // if (!$dateFrom || !$timeFrom || $dateTo || $timeTo) {
         //     $this->addFlash('warning', 'Datetime filed is required.');
-        //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        //     return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         // }
 
         // $dateTimeFrom = DateTime::createFromFormat('Y-m-d H:i', $dateFrom . ' ' . $timeFrom);
 
         // if (false === $dateTimeFrom) {
         //     $this->addFlash('warning', 'Datetime from is not valid.');
-        //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        //     return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         // }
 
         // $dateTimeTo = DateTime::createFromFormat('Y-m-d H:i', $dateTo . ' ' . $timeTo);
 
         // if (false === $dateTimeFrom) {
         //     $this->addFlash('warning', 'Datetime from is not valid.');
-        //     return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        //     return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         // }
 
         $groupId = $this->validateNumber($request->request->get('group'));

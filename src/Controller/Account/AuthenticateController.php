@@ -19,10 +19,10 @@ class AuthenticateController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const HOME_ROUTE = 'app_home';
-    private const LOGIN_ROUTE = 'app_login';
-    private const AUTHENTICATE_ROUTE = 'app_auth';
-    private const PROFILE_ROUTE = 'app_profile';
+    private const string HOME_ROUTE = 'app_home';
+    private const string LOGIN_ROUTE = 'app_login';
+    private const string AUTHENTICATE_ROUTE = 'app_auth';
+    private const string PROFILE_ROUTE = 'app_profile';
 
     public function __construct(
         private readonly UserService           $userService,

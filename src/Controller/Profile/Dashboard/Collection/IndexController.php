@@ -20,7 +20,7 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService           $linkService,
@@ -40,7 +40,7 @@ class IndexController extends AbstractController
 
         if (!$collections) {
             $this->addFlash('warning', 'No group has been found.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         return $this->render('profile/dashboard/collections/index.html.twig', [
@@ -59,12 +59,12 @@ class IndexController extends AbstractController
 
         if (!$name || strlen($name) < 3) {
             $this->addFlash('notice', 'Name of Group length must be greater than or equal 3 Chars.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         if ($this->linkCollectionService->getByUserAndName($user, $name)) {
             $this->addFlash('notice', sprintf('Group [%s] is already exists.', $name));
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $collections = $this->linkCollectionService->getAllByUser($user);
@@ -85,7 +85,7 @@ class IndexController extends AbstractController
 
         $this->addFlash('success', sprintf('Group [%s] has been added.', $name));
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 
     #[Route('/edit/{id}', name: 'app_links_collection_edit')]
@@ -99,7 +99,7 @@ class IndexController extends AbstractController
 
         if (!$collection) {
             $this->addFlash('warning', 'Unknown Group');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         return $this->render('profile/dashboard/collections/edit.html.twig', [
@@ -118,7 +118,7 @@ class IndexController extends AbstractController
 
         if (!$collection) {
             $this->addFlash('warning', 'Unknown Group');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         if ($this->validateCheckbox($request->request->get('deleteAll'))) {
@@ -130,7 +130,7 @@ class IndexController extends AbstractController
             $this->linkService->deleteCollectionWithLinks($user, $collection);
             $this->addFlash('success', 'Group and all links within (if any) has been deleted.');
 
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         if ($this->validateCheckbox($request->request->get('delete'))) {
@@ -144,20 +144,20 @@ class IndexController extends AbstractController
 
             $this->addFlash('success', 'Group has been deleted.');
 
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $name = $this->validateAndReplaceSpace($request->request->get('iName'));
 
         if (!$name) {
             $this->addFlash('warning', 'Group name is required.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $this->linkCollectionService->save($collection->setName(ucfirst($name)));
 
         $this->addFlash('success', 'Group name has been updated.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 }

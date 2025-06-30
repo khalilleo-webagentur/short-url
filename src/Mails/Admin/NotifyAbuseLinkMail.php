@@ -26,7 +26,7 @@ final class NotifyAbuseLinkMail extends AbstractMail implements MailInterface
 
         $webmasterEmail = $this->configService->getParameter('webMasterEmail');
 
-        $email = (new TemplatedEmail())
+        $email = new TemplatedEmail()
             ->from(
                 new Address(
                     $this->configService->getParameter('noReply'),

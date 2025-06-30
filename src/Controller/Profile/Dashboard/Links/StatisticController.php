@@ -17,8 +17,8 @@ class StatisticController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
-    private const PROFILE_URLS_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string PROFILE_URLS_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService          $linkService,
@@ -37,7 +37,7 @@ class StatisticController extends AbstractController
 
         if (!$link) {
             $this->addFlash('notice', 'URL could not be found.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $statistics = $this->linkStatisticService->getAllByLink($link);

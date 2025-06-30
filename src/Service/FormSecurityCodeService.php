@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 final class FormSecurityCodeService
 {
-    private const FIRST_NUM = '_1';
-    private const SECOND_NUM = '_2';
+    private const string FIRST_NUM = '_1';
+    private const string SECOND_NUM = '_2';
 
     public function __construct(
         private readonly SessionInterface $session,

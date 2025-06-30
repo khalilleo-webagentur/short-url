@@ -16,7 +16,7 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const DASHBOARD_CONTACTS_ROUTE = 'app_dashboard_contacts_index';
+    private const string DASHBOARD_CONTACTS_ROUTE = 'app_dashboard_contacts_index';
 
     public function __construct(
         private readonly ContactFormService $contactFormService

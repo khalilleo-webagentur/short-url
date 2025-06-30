@@ -16,7 +16,7 @@ class JobController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService          $linkService,
@@ -41,12 +41,12 @@ class JobController extends AbstractController
                 $this->linkService->save($link->setIsFave(!$link->isFave()));
             }
 
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $this->addFlash('warning', 'Link cannot be stared.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 
     #[Route('/urls/anonymize/m1j4j6g0d1t4q4v0', name: 'app_profile_anonymize', methods: 'POST')]
@@ -70,6 +70,6 @@ class JobController extends AbstractController
 
         $this->addFlash('notice', 'IPs has been anonymized in all statistics.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 }

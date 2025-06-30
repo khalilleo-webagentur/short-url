@@ -15,7 +15,7 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const ADMIN_SOCIAL_PROFILE_ROUTE = 'app_admin_social_profile_index';
+    private const string ADMIN_SOCIAL_PROFILE_ROUTE = 'app_admin_social_profile_index';
 
     public function __construct(
         private readonly SocialProfileService $socialProfileService,

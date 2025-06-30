@@ -11,11 +11,11 @@ use App\Repository\LinkRepository;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class LinkService
+final readonly class LinkService
 {
     public function __construct(
-        private readonly LinkRepository        $linkRepository,
-        private readonly LinkCollectionService $linkCollectionService
+        private LinkRepository        $linkRepository,
+        private LinkCollectionService $linkCollectionService
     ) {
     }
 

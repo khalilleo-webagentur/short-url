@@ -15,7 +15,7 @@ class SettingsController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const ADMIN_SOCIAL_PROFILE_SETTINGS_ROUTE = 'app_admin_social_profile_settings_index';
+    private const string ADMIN_SOCIAL_PROFILE_SETTINGS_ROUTE = 'app_admin_social_profile_settings_index';
 
     public function __construct(
         private readonly SocialProfileSettingService $socialProfileSettingService,

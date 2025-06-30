@@ -9,10 +9,10 @@ use App\Repository\UserRepository;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class UserService
+final readonly class UserService
 {
     public function __construct(
-        private readonly UserRepository $userRepository,
+        private UserRepository $userRepository,
     ) {
     }
 

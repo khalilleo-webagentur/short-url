@@ -21,7 +21,7 @@ class ExportController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService    $linkService,
@@ -44,7 +44,7 @@ class ExportController extends AbstractController
 
         if (!in_array($exportAsOption, AppHelper::AVAILABLE_LINKS_EXPORT_OPTIONS, true)) {
             $this->addFlash('warning', 'Data could not be exported. Option is not defined.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $data = '';
@@ -77,7 +77,7 @@ class ExportController extends AbstractController
 
         if ($data === '') {
             $this->addFlash('warning', 'Data could not be exported.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         return new Response($data);

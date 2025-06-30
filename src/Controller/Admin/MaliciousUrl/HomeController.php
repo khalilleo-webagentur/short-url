@@ -17,8 +17,8 @@ class HomeController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const ADMIN_MALICIOUS_LINKS_ROUTE = 'app_admin_links_malicious_index';
-    private const ADMIN_MALICIOUS_LINKS_SEARCH_ROUTE = 'app_admin_links_malicious_search';
+    private const string ADMIN_MALICIOUS_LINKS_ROUTE = 'app_admin_links_malicious_index';
+    private const string ADMIN_MALICIOUS_LINKS_SEARCH_ROUTE = 'app_admin_links_malicious_search';
 
     public function __construct(
         private readonly MaliciousUrlsService $maliciousUrlsService

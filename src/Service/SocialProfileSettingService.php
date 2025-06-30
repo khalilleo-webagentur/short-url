@@ -10,10 +10,10 @@ use App\Repository\SocialProfileSettingRepository;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class SocialProfileSettingService
+final readonly class SocialProfileSettingService
 {
     public function __construct(
-        private readonly SocialProfileSettingRepository $socialProfileSettingRepository
+        private SocialProfileSettingRepository $socialProfileSettingRepository
     ) {
     }
 

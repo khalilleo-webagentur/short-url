@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RedirectController extends AbstractController
 {
-    private const HOME_ROUTE = 'app_home';
+    private const string HOME_ROUTE = 'app_home';
 
     public function __construct(
         private readonly LinkService          $linkService,

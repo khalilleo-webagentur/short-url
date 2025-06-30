@@ -20,8 +20,8 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
-    private const HOME_ROUTE = 'app_home';
+    private const string SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
+    private const string HOME_ROUTE = 'app_home';
 
     public function __construct(
         private readonly ProfileService                 $profileService,

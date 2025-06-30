@@ -23,7 +23,7 @@ class LinkController extends AbstractController
     use FormValidationTrait;
     use RemoteTrait;
 
-    private const HOME_ROUTE = 'app_home';
+    private const string HOME_ROUTE = 'app_home';
 
     public function __construct(
         private readonly LinkService           $linkService,

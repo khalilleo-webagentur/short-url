@@ -20,8 +20,8 @@ class UpdateEmailController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const APP_PROFILE = 'app_profile';
-    private const APP_AUTH = 'app_auth';
+    private const string APP_PROFILE = 'app_profile';
+    private const string APP_AUTH = 'app_auth';
 
     public function __construct(
         private readonly UserService           $userService,
@@ -66,7 +66,7 @@ class UpdateEmailController extends AbstractController
 
         $changeEmailUserMail->send($user->getName(), $user->getUserIdentifier(), $token);
 
-        $this->addFlash('notice', 'An email has been sent to your new Email. Verifiy your email now.');
+        $this->addFlash('notice', 'An email has been sent to your new Email. Verify your email now.');
 
         return $this->redirectToRoute(self::APP_PROFILE);
     }

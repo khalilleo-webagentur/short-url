@@ -17,7 +17,7 @@ class JobController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService           $linkService,
@@ -36,17 +36,17 @@ class JobController extends AbstractController
 
         if ($id === 0) {
             $this->linkCollectionService->resetAll($user);
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         if ($collection = $this->linkCollectionService->getByUserAndId($user, $id)) {
             $this->linkCollectionService->resetAndUpdateDefault($user, $collection);
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $this->addFlash('warning', 'Group could not be found.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 
     #[Route('/move', name: 'app_profile_dashboard_setting_job_move', methods: 'POST')]
@@ -67,13 +67,13 @@ class JobController extends AbstractController
             if ($collection = $this->linkCollectionService->getByUserAndId($user, $groupId)) {
                 $count = $this->linkService->moveLinksWithoutAnyAssociationsToCollection($user, $collection);
                 $this->addFlash('notice', sprintf('Links [%s] has been moved to group [%s].', $count, $collection->getName()));
-                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+                return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
             }
         }
 
 
         $this->addFlash('warning', 'Group could not be found.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 }

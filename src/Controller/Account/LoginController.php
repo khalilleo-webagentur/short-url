@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    private const AUTHENTICATE_ROUTE = 'app_auth';
+    private const string AUTHENTICATE_ROUTE = 'app_auth';
 
     public function __construct(
         private readonly UserService $userService

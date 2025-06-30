@@ -25,7 +25,7 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const URLS_DASHBOARD_ROUTE = 'app_profile_my_urls';
+    private const string LINKS_DASHBOARD_ROUTE = 'app_profile_my_urls';
 
     public function __construct(
         private readonly LinkService           $linkService,
@@ -87,7 +87,7 @@ class IndexController extends AbstractController
 
         if (!$link) {
             $this->addFlash('warning', 'Link field is required.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $parseUrl = parse_url($link);
@@ -108,7 +108,7 @@ class IndexController extends AbstractController
             );
 
             $this->addFlash('warning', 'This URL is on Blacklist.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $user = $this->getUser();
@@ -119,7 +119,7 @@ class IndexController extends AbstractController
 
             if (!$allowDuplicatedUrls) {
                 $this->addFlash('notice', 'You have to update your config [allowDuplicatedUrls] in setting.');
-                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+                return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
             }
         }
 
@@ -155,7 +155,7 @@ class IndexController extends AbstractController
 
         $this->addFlash('success', 'Link has been created.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 
     #[Route('/edit/{id}', name: 'app_profile_my_urls_edit')]
@@ -169,7 +169,7 @@ class IndexController extends AbstractController
 
         if (!$link) {
             $this->addFlash('warning', 'Unknown link');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $allowLinkAlias = $this->userSettingService->allowLinkAlias($user);
@@ -194,14 +194,14 @@ class IndexController extends AbstractController
 
         if (!$link) {
             $this->addFlash('warning', 'Unknown link');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $url = $this->validateURL($request->request->get('iUrl'));
 
         if (!$url) {
             $this->addFlash('warning', 'Long link field is required.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $parseUrl = parse_url($url);
@@ -222,7 +222,7 @@ class IndexController extends AbstractController
             );
 
             $this->addFlash('warning', 'This URL is on Blacklist.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         if ($this->linkService->getOneByUserAndUrl($user, $url) && $url !== $link->getUrl()) {
@@ -231,7 +231,7 @@ class IndexController extends AbstractController
 
             if (!$allowDuplicatedUrls) {
                 $this->addFlash('notice', 'You have to update your config [allowDuplicatedUrls] in setting.');
-                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+                return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
             }
         }
 
@@ -241,14 +241,14 @@ class IndexController extends AbstractController
 
         if (empty($token) || strlen($token) < $aliasLength) {
             $this->addFlash('warning', sprintf('Alias length [%s] must be grater or equal [8] chars.', $aliasLength));
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         if ($token !== $link->getToken()) {
 
             if ($this->linkService->getByToken($token)) {
                 $this->addFlash('warning', 'Token is not valid. Please try another one!');
-                return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+                return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
             }
         }
 
@@ -280,7 +280,7 @@ class IndexController extends AbstractController
 
         $this->addFlash('success', 'Link has been updated.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 
     #[Route('/delete', name: 'app_profile_my_urls_delete', methods: 'POST')]
@@ -294,14 +294,14 @@ class IndexController extends AbstractController
 
         if ($id <= 0) {
             $this->addFlash('warning', 'Unknown Id.');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $link = $this->linkService->getByUserAndId($user, $id);
 
         if (!$link) {
             $this->addFlash('warning', 'Unknown link');
-            return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+            return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
         }
 
         $this->linkStatisticService->deleteAllByLink($link);
@@ -310,6 +310,6 @@ class IndexController extends AbstractController
 
         $this->addFlash('success', 'Link and all associated statistics if any has been deleted.');
 
-        return $this->redirectToRoute(self::URLS_DASHBOARD_ROUTE);
+        return $this->redirectToRoute(self::LINKS_DASHBOARD_ROUTE);
     }
 }

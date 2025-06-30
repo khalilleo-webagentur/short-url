@@ -17,7 +17,7 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const ADMIN_USERS_ROUTE = 'app_admin_users_index';
+    private const string ADMIN_USERS_ROUTE = 'app_admin_users_index';
 
     public function __construct(
         private readonly UserService $userService

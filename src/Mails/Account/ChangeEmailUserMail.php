@@ -24,7 +24,7 @@ final class ChangeEmailUserMail extends AbstractMail implements MailInterface
     {
         [$username, $userEmail, $token] = $context;
 
-        $email = (new TemplatedEmail())
+        $email = new TemplatedEmail()
             ->from(
                 new Address(
                     $this->configService->getParameter('noReply'),

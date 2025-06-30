@@ -16,7 +16,7 @@ class MaliciousLinksController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const APP_ADMIN_SETTINGS_INDEX = 'app_admin_settings_index';
+    private const string APP_ADMIN_SETTINGS_INDEX = 'app_admin_settings_index';
 
     public function __construct(
         private readonly MaliciousUrlsService $maliciousUrlsService

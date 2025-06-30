@@ -16,8 +16,8 @@ class AbuseController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const ABUSE_ROUTE = 'app_report_abuse';
-    private const HOME_ROUTE = 'app_home';
+    private const string ABUSE_ROUTE = 'app_report_abuse';
+    private const string HOME_ROUTE = 'app_home';
 
     public function __construct(
         private readonly MonologService $monolog

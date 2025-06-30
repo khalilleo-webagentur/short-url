@@ -20,7 +20,7 @@ class IndexController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const ADMIN_LINKS_ROUTE = 'app_admin_links_index';
+    private const string ADMIN_LINKS_ROUTE = 'app_admin_links_index';
 
     public function __construct(
         private readonly LinkService           $linkService,

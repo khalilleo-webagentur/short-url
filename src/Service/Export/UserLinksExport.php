@@ -7,15 +7,13 @@ namespace App\Service\Export;
 use App\Entity\User;
 use App\Service\LinkCollectionService;
 use App\Service\LinkService;
-use App\Service\UserService;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class UserLinksExport
+final readonly class UserLinksExport
 {
     public function __construct(
-        private readonly UserService           $userService,
-        private readonly LinkService           $linkService,
-        private readonly LinkCollectionService $linkCollectionService
+        private LinkService           $linkService,
+        private LinkCollectionService $linkCollectionService
     ) {
     }
 
@@ -78,7 +76,7 @@ final class UserLinksExport
             foreach ($links as $row) {
                 $result[] = [
                     'link_title' => $row->getTitle(),
-                    'collection_name' => $row->getCollection() ? $row->getCollection()->getName() : null,
+                    'collection_name' => $row->getCollection()?->getName(),
                     'link_token' => $row->getToken(),
                     'link_url' => $row->getUrl(),
                     'link_clicks' => $row->getCounter(),

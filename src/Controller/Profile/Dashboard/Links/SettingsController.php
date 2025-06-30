@@ -16,7 +16,7 @@ class SettingsController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const PROFILE_USER_SETTING_ROUTE = 'app_profile_dashboard_setting_index';
+    private const string PROFILE_USER_SETTING_ROUTE = 'app_profile_dashboard_setting_index';
 
     public function __construct(
         private readonly UserSettingService    $userSettingService,

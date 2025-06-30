@@ -165,7 +165,7 @@ class TwigHelper extends AbstractExtension
 
     public function dateTime(string $format = 'd.m.Y'): string
     {
-        return (new DateTime('now'))->format($format);
+        return new DateTime('now')->format($format);
     }
 
     public function getStripTags(string $text): string
@@ -201,7 +201,7 @@ class TwigHelper extends AbstractExtension
 
     public function getYear(): string
     {
-        return (new DateTime())->format('Y');
+        return new DateTime()->format('Y');
     }
 
     public function circle(string $color): void

@@ -22,7 +22,7 @@ class AvatarController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const PROFILE_ROUTE = 'app_profile';
+    private const string PROFILE_ROUTE = 'app_profile';
 
     public function __construct(
         private readonly LinkService                 $linkService,

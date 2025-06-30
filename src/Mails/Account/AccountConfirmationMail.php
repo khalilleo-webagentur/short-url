@@ -24,7 +24,7 @@ final class AccountConfirmationMail extends AbstractMail implements MailInterfac
     {
         [$username, $userEmail, $token] = $context;
 
-        $email = (new TemplatedEmail())
+        $email = new TemplatedEmail()
             ->from(
                 new Address(
                     $this->configService->getParameter('noReply'),

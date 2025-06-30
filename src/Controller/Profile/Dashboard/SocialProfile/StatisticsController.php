@@ -18,8 +18,8 @@ class StatisticsController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const SOCIAL_PROFILE_STATISTICS_ROUTE = 'app_dashboard_social_profile_statistics_setting_index';
-    private const SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
+    private const string SOCIAL_PROFILE_STATISTICS_ROUTE = 'app_dashboard_social_profile_statistics_setting_index';
+    private const string SOCIAL_PROFILE_ROUTE = 'app_dashboard_social_profile_index';
 
     public function __construct(
         private readonly SocialProfileService           $socialProfileService,

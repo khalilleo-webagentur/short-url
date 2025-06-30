@@ -22,8 +22,8 @@ class VerifySourceLinkController extends AbstractController
     use FormValidationTrait;
     use RemoteTrait;
 
-    private const HOME_ROUTE = 'app_home';
-    private const VERIFY_SOURCE_LINK_ROUTE = 'app_verify_source_shorten_link_index';
+    private const string HOME_ROUTE = 'app_home';
+    private const string VERIFY_SOURCE_LINK_ROUTE = 'app_verify_source_shorten_link_index';
 
     public function __construct(
         private readonly LinkService           $linkService,

@@ -10,10 +10,10 @@ use App\Repository\LinkCollectionRepository;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-final class LinkCollectionService
+final readonly class LinkCollectionService
 {
     public function __construct(
-        private readonly LinkCollectionRepository $linkCollectionRepository,
+        private LinkCollectionRepository $linkCollectionRepository,
     ) {
     }
 

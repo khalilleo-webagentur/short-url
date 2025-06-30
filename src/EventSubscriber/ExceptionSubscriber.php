@@ -7,10 +7,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class ExceptionSubscriber implements EventSubscriberInterface
+readonly class ExceptionSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly MonologService $monolog
+        private MonologService $monolog
     ) {
     }
 

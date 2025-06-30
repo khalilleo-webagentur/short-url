@@ -19,7 +19,7 @@ class PersonalDataController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const APP_PROFILE = 'app_profile';
+    private const string APP_PROFILE = 'app_profile';
 
     public function __construct(
         private readonly UserService $userService

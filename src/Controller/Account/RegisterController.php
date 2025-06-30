@@ -23,11 +23,11 @@ class RegisterController extends AbstractController
 {
     use FormValidationTrait;
 
-    private const HOME_ROUTE = 'app_home';
-    private const LOGIN_ROUTE = 'app_login';
-    private const REGISTER_ROUTE = 'app_register';
-    private const PROFILE_ROUTE = 'app_profile';
-    private const AUTH_ROUTE = 'app_auth';
+    private const string HOME_ROUTE = 'app_home';
+    private const string LOGIN_ROUTE = 'app_login';
+    private const string REGISTER_ROUTE = 'app_register';
+    private const string PROFILE_ROUTE = 'app_profile';
+    private const string AUTH_ROUTE = 'app_auth';
 
     public function __construct(
         private readonly UserService                 $userService,
