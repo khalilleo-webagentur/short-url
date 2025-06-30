@@ -67,13 +67,18 @@ final class LinkStatisticService
         }
     }
 
-    public function deleteAllByLink(Link $model): void
+    public function deleteAllByLink(Link $model): int
     {
+        $i = 0;
+
         if (count($model->getLinkStatistics()) > 0) {
             foreach ($model->getLinkStatistics() as $statistic) {
                 $this->delete($statistic);
+                $i++;
             }
         }
+
+        return $i;
     }
 
     public function delete(LinkStatistic $model): void

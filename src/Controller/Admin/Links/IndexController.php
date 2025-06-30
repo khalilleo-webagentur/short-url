@@ -42,29 +42,6 @@ class IndexController extends AbstractController
         ]);
     }
 
-    #[Route('/delete', name: 'app_admin_link_delete', methods: 'POST')]
-    public function delete(Request $request): RedirectResponse
-    {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
-
-        $id = $this->validateNumber($request->request->get('linkId'));
-
-        if ($link = $this->linkService->getById($id)) {
-
-            $this->linkStatisticService->deleteAllByLink($link);
-
-            $this->linkService->delete($link);
-
-            $this->addFlash('success', 'Link and all emaciated data (if any) has been deleted.');
-
-            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
-        }
-
-        $this->addFlash('warning', 'ID is undefined.');
-
-        return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
-    }
-
     #[Route('/edit/{id}', name: 'app_admin_link_edit')]
     public function edit(?string $id): Response
     {
@@ -135,4 +112,30 @@ class IndexController extends AbstractController
 
         return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
     }
+
+    #[Route('/delete', name: 'app_admin_link_delete', methods: 'POST')]
+    public function delete(Request $request): RedirectResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
+        $id = $this->validateNumber($request->request->get('linkId'));
+
+        if ($link = $this->linkService->getById($id)) {
+
+            $count = $this->linkStatisticService->deleteAllByLink($link);
+
+            $this->linkService->delete($link);
+
+            $count > 0
+                ? $this->addFlash('success', sprintf('Link and all associated statistics [%s] has been deleted.', $count))
+                : $this->addFlash('notice', 'Link has been deleted.');
+
+            return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+        }
+
+        $this->addFlash('warning', 'ID is undefined.');
+
+        return $this->redirectToRoute(self::ADMIN_LINKS_ROUTE);
+    }
+
 }
