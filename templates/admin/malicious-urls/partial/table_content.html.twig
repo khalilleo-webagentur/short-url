@@ -13,7 +13,7 @@
         {% for row in maliciousUrls %}
             <tr class="fs-14">
                 <td>
-                    <code>{{ row.url }}</code>
+                    <code title="{{ row.url }}">{{ row.url|slice(0, 60) ~ ' ...' }}</code>
                 </td>
                 <td>{{ row.counter }}</td>
                 <td title="{{ row.updatedAt|date }}">{{ timeAgo(row.updatedAt) }}</td>
