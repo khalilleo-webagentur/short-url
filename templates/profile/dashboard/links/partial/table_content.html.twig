@@ -2,7 +2,6 @@
     <table class="table table-dark">
         <thead class="small">
         <tr>
-            <th class="col text-white-50">#</th>
             <th class="col text-white-50">Star</th>
             <th class="col text-white-50">Title</th>
             <th class="col text-white-50">Short</th>
@@ -18,8 +17,7 @@
         <tbody>
 
         {% for i, link in links %}
-            <tr class="small">
-                <td class="text-white-50">{{ i+1 }}</td>
+            <tr class="fs-14">
                 <td>
                     <form action="{{ path('app_profile_job_star_store', {id:link.id}) }}" class="pointer" method="post">
                         <span

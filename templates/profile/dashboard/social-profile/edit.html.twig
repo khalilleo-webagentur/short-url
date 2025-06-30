@@ -8,22 +8,23 @@
 
     {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-    <div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid min-vh-100 mt-4">
 
-        <div class="row py-3 d-dark-color">
-            <div class="col-6 col-lg-6">
-                <h6 class="text-white-50 pt-2">Social-Media Profile Edit</h6>
+        <div class="row justify-content-center mt-lg-5 mb-2">
+            <div class="col col-lg-5">
+                <h6 class="text-white-50">Social<span class="md-d-none">-Media</span> Profile Edit</h6>
             </div>
 
-            <div class="col-6 col-lg-6">
+            <div class="col col-lg-1">
                 <a href="{{ path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName}) }}"
-                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
-                    Close <span class="bi bi-x-square-fill ps-1 small"></span>
+                   class="float-end text-secondary text-decoration-none fs-15">
+                    <span class="md-d-none">Close</span>
+                    <span class="bi bi-x-square-fill ps-1 small"></span>
                 </a>
             </div>
         </div>
 
-        <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
+        <div class="row pb-5 mb-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="row row-cols-1 g-3">
                     <div class="col">
@@ -67,6 +68,11 @@
                                 </form>
                             </div>
                         </div>
+                        <p class="my-3 fs-14">
+                            <a href="{{ path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName}) }}"
+                                    class="small text-decoration-none">
+                                <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to Social-Profile
+                            </a>
                     </div>
                 </div>
             </div>

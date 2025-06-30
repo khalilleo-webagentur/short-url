@@ -8,25 +8,25 @@
 
     {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-    <div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid min-vh-100">
 
-        <div class="row py-3 d-dark-secondary-color">
-            <div class="col-6 col-lg-6">
-                <h5 class="text-white-50 pt-2">Groups Management</h5>
+        <div class="row justify-content-center mt-4 mb-2">
+            <div class="col col-lg-5">
+                <h5 class="text-white-50">Groups Management</h5>
             </div>
 
-            <div class="col-6 col-lg-6">
+            <div class="col col-lg-1">
                 <a href="{{ path('app_profile_my_urls') }}"
-                   class="float-end text-secondary text-decoration-none fs-15 pt-2">
+                   class="float-end text-secondary text-decoration-none fs-15">
                     Close <span class="bi bi-x-square-fill ps-1 small"></span>
                 </a>
             </div>
         </div>
 
-        <div class="row pb-5 mt-lg-5 mt-3 mb-5 justify-content-center">
-            <div class="col-lg-8">
+        <div class="row pb-5 mb-5 justify-content-center">
+            <div class="col-lg-6">
 
-                <div class="col my-3">
+                <div class="col mb-3">
                     <div class="card d-dark-secondary-color d-dark-border-color">
                         <div class="card-body">
                         <span class="text-white-50 pointer" data-bs-toggle="modal" data-bs-target="#moveModal">
@@ -40,7 +40,7 @@
                 <div class="accordion accordion-border" id="accordionCollections">
                     {% for i, collection in collections %}
                         <div class="accordion-item">
-                            <h2 class="accordion-header d-dark-color d-dark-border-color">
+                            <h2 class="accordion-header d-dark-secondary-color">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapse{{ i }}" aria-expanded="true"
                                         aria-controls="collapse{{ i }}">
@@ -58,8 +58,10 @@
                     {% endfor %}
                 </div>
 
-                <p class="my-3"><a href="{{ path('app_profile_my_urls') }}" class="small text-decoration-none">
-                        <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs</a>
+                <p class="my-3 fs-14">
+                    <a href="{{ path('app_profile_my_urls') }}" class="text-decoration-none">
+                        <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs
+                    </a>
                 </p>
             </div>
         </div>

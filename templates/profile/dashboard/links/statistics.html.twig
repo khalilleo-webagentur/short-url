@@ -8,9 +8,9 @@
 
     {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-    <div class="container-fluid d-dark-color">
+    <div class="container-fluid">
 
-        <div class="row py-3 d-dark-secondary-color">
+        <div class="row py-4">
             <div class="col-6 col-lg-6">
                 <h6 class="text-white-50 pt-2">Statistic {{ link.title ? '- ' ~ link.title|capitalize : '' }}</h6>
             </div>
@@ -88,6 +88,11 @@
 
                 {% endif %}
 
+                <p class="fs-14">
+                    <a href="{{ path('app_profile_my_urls') }}" class="text-decoration-none">
+                        <span class="bi bi-arrow-left-circle-fill pe-1"></span> Back to URLs
+                    </a>
+                </p>
             </div>
         </div>
 

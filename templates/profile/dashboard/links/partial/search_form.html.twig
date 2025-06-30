@@ -1,15 +1,15 @@
 <div class="md-d-none d-flex">
     <form action="{{ path('app_search_urls') }}" method="post" class="w-100 me-1">
         <div class="input-group">
-            <button class="btn btn-dark d-dark-border-color" type="submit">
+            <button class="btn btn-dark d-btn-border-color" type="submit">
                 <span class="bi bi-search text-secondary"></span>
             </button>
-            <input type="search" class="form-control d-dark-border-color" aria-label="Search Links" name="keyword"
+            <input type="search" class="form-control d-btn-border-color" aria-label="Search Links" name="keyword"
                    placeholder="Search Links .." value="{{ keyword is defined and keyword ? keyword : '' }}" required>
         </div>
     </form>
 
-    <button type="button" class="btn btn-dark d-dark-border-color"
+    <button type="button" class="btn btn-dark d-btn-border-color"
             data-bs-target="#filterModel" data-bs-toggle="modal">
         <span class="bi bi-funnel text-secondary"></span>
     </button>

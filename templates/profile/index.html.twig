@@ -8,31 +8,33 @@
 
     {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-    <div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid min-vh-100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
 
-                    <h5 class="text-white-50 mt-lg-5 mt-md-3">My Profile</h5>
-
-                    <div class="d-dark-secondary-color d-dark-border-color rounded-3">
-
-                        <small class="small float-end pt-1 pb-3 pe-2">
+                    <h5 class="text-white-50 mt-lg-5 mt-3">
+                        My Profile
+                        <span class="float-end pt-1 pb-3 pe-2">
                             <a href="{{ path('app_profile_my_urls') }}"
-                               class="d-color opacity-08 text-decoration-none small">My URLs</a>
+                               class="d-color opacity-08 text-decoration-none fs-13">
+                                <span class="md-d-none">My</span>URLs
+                            </a>
 
-                            <span class="small text-secondary px-1">|</span>
+                            <span class="fs-13 text-secondary px-1">|</span>
 
                             <a href="{{ path('app_dashboard_social_profile_index', {profile: socialProfileSetting.mainName}) }}"
-                               class="d-color opacity-08 text-decoration-none">Social Profile
+                               class="d-color opacity-08 text-decoration-none fs-13">Social Profile
                             </a>
 
                             {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                <span class="small text-secondary px-1">|</span>
-                                <a href="{{ path('app_admin_index') }}" class="d-color opacity-08 text-decoration-none">Dashboard</a>
+                                <span class="fs-13 text-secondary px-1">|</span>
+                                <a href="{{ path('app_admin_index') }}" class="fs-13 d-color opacity-08 text-decoration-none">Dashboard</a>
                             {% endif %}
-                        </small>
+                        </span>
+                    </h5>
 
+                    <div class="d-dark-secondary-color d-dark-border-color rounded-3">
                         <div class="d-flex p-3 mt-3">
                             <div class="">
                                 <img src="{{ asset('avatar/' ~ profile.avatarName) }}" height="140px" alt="Avatar"
@@ -46,10 +48,10 @@
                                 </div>
                             </div>
                             <div class="ms-3">
-                                <p class="text-white-50 pt-3"><span
+                                <p class="text-white-50 pt-3 small"><span
                                             class="md-d-none">Username: </span>{{ app.user.name }}</p>
-                                <p class="text-white-50"><span class="md-d-none">Email: </span>{{ app.user.email }}</p>
-                                <p class="text-white-50"><span
+                                <p class="text-white-50 small"><span class="md-d-none">Email: </span>{{ app.user.email }}</p>
+                                <p class="text-white-50 small"><span
                                             class="md-d-none">Created: </span>{{ app.user.createdAt|date('d.m.Y') }}</p>
                             </div>
                         </div>
@@ -116,7 +118,7 @@
 
                 <h5 class="text-white-50 mt-5">Support</h5>
 
-                <p class="text-white-50 fs-16">
+                <p class="text-white-50 fs-15">
                     If you have any questions about your account, please use the
                     <a href="{{ path('app_contact_us_index') }}" class="d-color opacity-08 text-decoration-none">contact
                         form</a> or

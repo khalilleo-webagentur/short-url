@@ -37,10 +37,6 @@
     font-size: 15px;
 }
 
-.d-dark-color {
-    background-color: #0000001c;
-}
-
 .bg-none {
     background-color: transparent !important;
 }
@@ -63,7 +59,6 @@ input[type="color"]:focus,
 .form-select:focus,
 .form-control .btn:active,
 .btn:focus .uneditable-input:focus {
-    border-color: none;
     outline: 0 none;
     border: 1px solid #a9d15898 !important;
     box-shadow: none !important;
@@ -71,7 +66,6 @@ input[type="color"]:focus,
 
 .d-color {
     color: #a9d158;
-    /* 6ea8fe; */
 }
 
 .pointer {
@@ -109,15 +103,8 @@ input[type="color"]:focus,
     border-radius: 5px;
 }
 
-.d-dark-color {
-    background-color: #0000000f !important;
-}
-
 .d-dark-secondary-color {
-    /*background-color: rgb(29, 33, 37) !important;*/
     background-color: rgba(29, 32, 36, 0.78) !important;
-    border-top: 1px solid #242424;
-    border-bottom: 1px solid #242424;
 }
 
 .d-dark-border-color {

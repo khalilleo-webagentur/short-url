@@ -8,61 +8,61 @@
 
     {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-    <div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid min-vh-100">
 
-        <div class="row py-3 d-dark-secondary-color">
-            <div class="col-6">
-                <h6 class="text-white-50 pt-2">Social-Media Profiles</h6>
-            </div>
-            <div class="col-6">
-                <div class="text-white-50 text-end me-2">
+        <div class="container mt-3 mt-lg-4 pb-5 mb-sm-4">
 
-                    {% if app.user %}
-                        <div class="d-flex float-end">
-                            <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
-                                    data-bs-target="#socialProfileModal">
-                                <span class="md-d-none">Social Link</span> <span
-                                        class="bi bi-plus-circle ps-lg-1"></span>
-                            </button>
-                            <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
-                                    data-bs-target="#socialProfileSettingModal">
-                                <span class="md-d-none">Profile Name</span> <span
-                                        class="bi bi-pencil-square ps-lg-1"></span>
-                            </button>
-                            <div class="dropdown mt-1 me-2">
-                                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                    <span class="bi bi-three-dots-vertical"></span>
+            <div class="row justify-content-center">
+                <div class="col col-md-5">
+                    <h6 class="text-white-50 pt-2">Social <span class="md-d-none">-Media</span> Profiles</h6>
+                </div>
+                <div class="col col-md-5">
+                    <div class="text-white-50 float-end">
+                        {% if app.user %}
+                            <div class="d-flex float-end">
+                                <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
+                                        data-bs-target="#socialProfileModal">
+                                    <span class="md-d-none">Social Link</span> <span
+                                            class="bi bi-plus-circle ps-lg-1"></span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li class="small">
-                                        <a class="dropdown-item"
-                                           href="{{ path('app_dashboard_social_profile_settings_index') }}">
-                                            <span class="bi bi-gear pe-1"></span> Settings
-                                        </a>
-                                    </li>
+                                <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
+                                        data-bs-target="#socialProfileSettingModal">
+                                    <span class="md-d-none">Profile Name</span> <span
+                                            class="bi bi-pencil-square ps-lg-1"></span>
+                                </button>
+                                <div class="dropdown mt-1">
+                                    <button class="btn btn-outline-secondary btn-sm" type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        <span class="bi bi-three-dots-vertical"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-dark">
+                                        <li class="small">
+                                            <a class="dropdown-item"
+                                               href="{{ path('app_dashboard_social_profile_settings_index') }}">
+                                                <span class="bi bi-gear pe-1"></span> Settings
+                                            </a>
+                                        </li>
 
-                                    <li class="small">
-                                        <a class="dropdown-item" href="{{ path('app_contact_us_index') }}">
-                                            <span class="bi bi-question-circle pe-1"></span> Help
-                                        </a>
-                                    </li>
-                                </ul>
+                                        <li class="small">
+                                            <a class="dropdown-item" href="{{ path('app_contact_us_index') }}">
+                                                <span class="bi bi-question-circle pe-1"></span> Help
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    {% else %}
-                        <a href="{{ path('app_auth') }}" class="text-decoration-none mt-5 text-white-50 fs-15">
-                            Edit <span class="bi bi-pencil-square ps-1"></span>
-                        </a>
-                    {% endif %}
-
+                        {% else %}
+                            <a href="{{ path('app_auth') }}" class="text-decoration-none mt-5 text-white-50 fs-15">
+                                Edit <span class="bi bi-pencil-square ps-1"></span>
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container pb-5 mt-3 mb-sm-4">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col col-md-10">
 
                     <div class="text-center d-dark-secondary-color d-dark-border-color rounded-3 mb-3 mt-1">
                         <div class="mb-1 pt-4">
@@ -185,8 +185,8 @@
 
                         {% if not app.user %}
                             <p class="mt-2 pb-3 md-text-center fs-14"><a href="{{ path('app_register') }}"
-                                                                   rel="follow"
-                                                                   class="text-decoration-none d-color opacity-07">
+                                                                         rel="follow"
+                                                                         class="text-decoration-none d-color opacity-07">
                                     <span class="bi bi-plus-circle-fill pe-1"></span>
                                     Create your own Social-Profiles</a>
                             </p>

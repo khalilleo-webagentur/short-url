@@ -8,9 +8,9 @@
 
     {% include 'component/custom_type_message_top_fixed.html.twig' %}
 
-    <div class="container-fluid d-dark-color min-vh-100">
+    <div class="container-fluid min-vh-100">
 
-        <div class="row d-dark-secondary-color py-3">
+        <div class="row py-3">
             <div class="col-4 col-lg-4">
                 <h6 class="text-white-50 pt-2"> List of URLs</h6>
             </div>
@@ -22,13 +22,13 @@
 
             <div class="col-4">
                 <div class="d-flex float-end pt-1">
-                    <button class="btn btn-outline-secondary d-btn-border-color btn-sm mt-1 me-1" data-bs-toggle="modal"
+                    <button class="btn btn-outline-secondary d-btn-border-color btn-md mt-1 me-1" data-bs-toggle="modal"
                             data-bs-target="#newModal">
                         <span class="md-d-none">New Link</span> <span class="bi bi-plus-circle ps-lg-1"></span>
                     </button>
 
                     {% if count(collections) > 0 %}
-                        <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button"
+                        <button class="btn btn-outline-secondary btn-md mt-1 me-1" type="button"
                                 data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasRightGroups" aria-controls="offcanvasRightGroups">
                             <span class="md-d-none pe-1">Groups </span>
@@ -36,20 +36,20 @@
                         </button>
                         {% include 'profile/dashboard/collections/canvas/groups.html.twig' %}
                     {% else %}
-                        <button class="btn btn-outline-secondary btn-sm mt-1 me-1" type="button" data-bs-toggle="modal"
+                        <button class="btn btn-outline-secondary btn-md mt-1 me-1" type="button" data-bs-toggle="modal"
                                 data-bs-target="#newGroupModal">
                             <span class="md-d-none pe-1">New Group</span>
                             <span class="bi bi-collection"></span>
                         </button>
                     {% endif %}
 
-                    <button class="btn btn-outline-secondary btn-sm mt-1 me-1 d-md-none" data-bs-toggle="modal"
+                    <button class="btn btn-outline-secondary btn-md mt-1 me-1 d-md-none" data-bs-toggle="modal"
                             data-bs-target="#searchModal">
                         <span class="bi bi-search"></span>
                     </button>
 
                     <div class="dropdown mt-1 me-2">
-                        <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="dropdown"
+                        <button class="btn btn-outline-secondary btn-md" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                             <span class="bi bi-three-dots-vertical"></span>
                         </button>
