@@ -9,8 +9,15 @@
 
             <form action="{{ path('app_profile_change_avatar') }}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
+
+                    <p class="modal-warning">
+                        If you choose to upload a profile image, please be aware that it will be visible to the public.
+                        Ensure that you are comfortable with this image being shared and accessible by other users.
+                        Would you like to proceed with the upload?
+                    </p>
+
                     <div class="mb-2">
-                        <p class="text-secondary">{{ 'Image size 175x175 max. 1 MB & only'|trans }}
+                        <p class="text-secondary">{{ 'Image size 140x140 px max. 1 MB & only'|trans }}
                             <span class="d-danger-color">.png</span>,
                             <span class="d-danger-color">.jpeg</span> {{ 'or'|trans }}
                             <span class="d-danger-color">.jpg</span>

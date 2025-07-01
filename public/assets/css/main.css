@@ -28,6 +28,36 @@ html, body {
     border-top: 0;
 }
 
+.modal-info {
+    color: #3984f0;
+    background-color: rgba(24, 44, 72, 0.62);
+    border-left: 3px solid #033377;
+    padding: 12px;
+    border-top-right-radius: 16px;
+    margin-top: 0;
+    font-size: 15px;
+}
+
+.modal-danger {
+    color: #cc4b4b;
+    background-color: #4a323259;
+    border-left: 3px solid #460b0b;
+    padding: 12px;
+    border-top-right-radius: 16px;
+    margin-top: 0;
+    font-size: 15px;
+}
+
+.modal-warning {
+    color: #b79617;
+    background-color: rgba(51, 50, 45, 0.58);
+    border-left: 3px solid #55461a;
+    padding: 12px;
+    border-top-right-radius: 16px;
+    margin-top: 0;
+    font-size: 15px;
+}
+
 .alert {
     border-radius: 0;
 }
