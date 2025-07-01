@@ -7,6 +7,7 @@ namespace App\Service\Export;
 use App\Entity\User;
 use App\Service\LinkCollectionService;
 use App\Service\LinkService;
+use DateTimeInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 final readonly class UserLinksExport
@@ -44,7 +45,7 @@ final readonly class UserLinksExport
                 'link_clicks',
                 'is_link_star',
                 'is_link_public',
-                'is_link_repoted',
+                'is_link_reported',
                 'link_updated_at',
                 'link_created_at',
             ];
@@ -62,7 +63,7 @@ final readonly class UserLinksExport
     private function exportAsJsonByUser(UserInterface|User $user): array
     {
         return [
-            'URLs' => $this->getUserLinksTableData($user),
+            'Links' => $this->getUserLinksTableData($user),
             'Collections' => $this->getUserLinkCollectionsTableData($user),
         ];
     }
@@ -72,21 +73,19 @@ final readonly class UserLinksExport
         $links = $this->linkService->getAllByUser($user);
         $result = [];
 
-        if (null !== $links) {
-            foreach ($links as $row) {
-                $result[] = [
-                    'link_title' => $row->getTitle(),
-                    'collection_name' => $row->getCollection()?->getName(),
-                    'link_token' => $row->getToken(),
-                    'link_url' => $row->getUrl(),
-                    'link_clicks' => $row->getCounter(),
-                    'is_link_star' => $row->isFave(),
-                    'is_link_public' => $row->isPublic(),
-                    'is_link_repoted' => $row->isReported(),
-                    'link_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
-                    'link_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
-                ];
-            }
+        foreach ($links as $row) {
+            $result[] = [
+                'link_title' => $row->getTitle(),
+                'collection_name' => $row->getCollection()?->getName(),
+                'link_token' => $row->getToken(),
+                'link_url' => $row->getUrl(),
+                'link_clicks' => $row->getCounter(),
+                'is_link_star' => $row->isFave(),
+                'is_link_public' => $row->isPublic(),
+                'is_link_reported' => $row->isReported(),
+                'link_updated_at' => ($row->getUpdatedAt())->format(DateTimeInterface::ATOM),
+                'link_created_at' => ($row->getCreatedAt())->format(DateTimeInterface::ATOM),
+            ];
         }
 
         return $result;
@@ -97,14 +96,12 @@ final readonly class UserLinksExport
         $collections = $this->linkCollectionService->getAllByUser($user);
         $result = [];
 
-        if (null !== $collections) {
-            foreach ($collections as $row) {
-                $result[] = [
-                    'collection_name' => $row->getName(),
-                    'collection_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
-                    'collection_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
-                ];
-            }
+        foreach ($collections as $row) {
+            $result[] = [
+                'collection_name' => $row->getName(),
+                'collection_updated_at' => ($row->getUpdatedAt())->format(DateTimeInterface::ATOM),
+                'collection_created_at' => ($row->getCreatedAt())->format(DateTimeInterface::ATOM),
+            ];
         }
 
         return $result;

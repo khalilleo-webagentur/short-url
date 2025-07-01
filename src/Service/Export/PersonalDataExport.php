@@ -6,6 +6,7 @@ namespace App\Service\Export;
 
 use App\Entity\User;
 use App\Service\UserService;
+use DateTimeInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 final readonly class PersonalDataExport
@@ -37,12 +38,12 @@ final readonly class PersonalDataExport
         if (null !== $row) {
             $result = [
                 'user_name' => $row->getName(),
-                'email_ddress' => $row->getEmail(),
+                'email_address' => $row->getEmail(),
                 'user_role' => strtolower(str_replace('_', '-', $row->getRoles()[0])),
                 'is_account_verified' => $row->isVerified(),
                 'is_account_deleted' => $row->isDeleted(),
-                'last_updated_at' => ($row->getUpdatedAt())->format('Y-m-d H:i:s'),
-                'account_created_at' => ($row->getCreatedAt())->format('Y-m-d H:i:s'),
+                'last_updated_at' => ($row->getUpdatedAt())->format(DateTimeInterface::ATOM),
+                'account_created_at' => ($row->getCreatedAt())->format(DateTimeInterface::ATOM),
             ];
         }
 
