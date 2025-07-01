@@ -93,6 +93,10 @@ class IndexController extends AbstractController
             $token = null;
         }
 
+        if ($token && $isVerified) {
+            $token = null;
+        }
+
         $this->userService->save(
             $user
                 ->setName($name)
