@@ -29,7 +29,7 @@ class Link
     #[ORM\Column(length: 100, unique: true)]
     private ?string $token = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $url = null;
 
     #[ORM\Column]
