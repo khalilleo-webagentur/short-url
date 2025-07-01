@@ -1,5 +1,13 @@
+html, body {
+    font-family: Arial, Roboto, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
 .modal-header {
     border-bottom: 0;
+}
+
+.user-select-none {
+    user-select: none !important;
 }
 
 .min-vh-100 {
