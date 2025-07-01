@@ -2,6 +2,16 @@ html, body {
     font-family: Arial, Roboto, "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+::selection {
+    background-color: #000000;
+    color: #a9d158;
+}
+
+::-moz-selection {
+    background-color: #000000;
+    color: #a9d158;
+}
+
 .modal-header {
     border-bottom: 0;
 }
