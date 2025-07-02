@@ -8,11 +8,14 @@
         <div class="container p-0">
             <div class="row justify-content-center pt-5">
                 <div class="col-lg-4 pt-5">
+
+                    {% include 'component/account_form_app_name.html.twig' %}
+
                     <div class="d-dark-secondary-color rounded-3 p-4">
 
                         {% include 'component/account_form_back_link.html.twig' %}
 
-                        <div class="text-center pt-3">
+                        <div class="text-center">
                             <a href="{{ app.request.schemeAndHttpHost }}">
                                 <img src="{{ asset('assets/img/logo.png?v=1.0') }}" alt="k24.ing">
                             </a>
@@ -49,7 +52,7 @@
 
                         <div class="my-3 text-center pb-3">
                             <p class="text-white-50 fs-15">No OTP yet? <a href="{{ path('app_auth') }}"
-                                                                          class="d-color text-decoration-none opacity-08">
+                                                                          class="text-decoration-none opacity-08">
                                     Request new one!</a>
                             </p>
                         </div>
