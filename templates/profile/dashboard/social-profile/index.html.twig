@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         {% else %}
-                            <a href="{{ path('app_auth') }}" class="text-decoration-none mt-5 text-white-50 fs-15">
+                            <a href="{{ path('app_auth') }}" class="text-decoration-none text-white-50 fs-14">
                                 Edit <span class="bi bi-pencil-square ps-1"></span>
                             </a>
                         {% endif %}
@@ -66,7 +66,8 @@
 
                     <div class="text-center d-dark-secondary-color d-dark-border-color rounded-3 mb-3 mt-1">
                         <div class="mb-1 pt-4">
-                            <img src="{{ asset('avatar/' ~ profile.avatarName) }}" height="140px" width="140px" alt="Avatar"
+                            <img src="{{ asset('avatar/' ~ profile.avatarName) }}" height="140px" width="140px"
+                                 alt="Avatar"
                                  style="border-radius: 50%;">
                         </div>
 
@@ -184,11 +185,13 @@
                         </div>
 
                         {% if not app.user %}
-                            <p class="mt-2 pb-3 md-text-center fs-14"><a href="{{ path('app_register') }}"
-                                                                         rel="follow"
-                                                                         class="text-decoration-none d-color opacity-07">
+                            <p class="my-3 pb-3 md-text-center fs-14">
+                                <a href="{{ path('app_register') }}"
+                                   rel="follow"
+                                   class="text-decoration-none d-color opacity-07 fs-14">
                                     <span class="bi bi-plus-circle-fill pe-1"></span>
-                                    Create your own Social-Profiles</a>
+                                    Create your own Social-Profiles
+                                </a>
                             </p>
                         {% endif %}
 
