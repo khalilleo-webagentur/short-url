@@ -1,3 +1,3 @@
 User-agent: *
 
-Sitemap: https://k24.ing/sitemap.xml
+Sitemap: https://go.khalilleo.com/sitemap.xml
