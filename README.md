@@ -1,4 +1,4 @@
-# K24.ing
+# k24ing
 
 __URL shortener and social profile connector__
 

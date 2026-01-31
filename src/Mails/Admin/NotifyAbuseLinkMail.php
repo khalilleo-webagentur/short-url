@@ -34,7 +34,7 @@ final class NotifyAbuseLinkMail extends AbstractMail implements MailInterface
                 )
             )
             ->to(new address($webmasterEmail, $webmasterName))
-            ->subject('k24.ing | New Notification Webmaster')
+            ->subject('k24ing | New Notification Webmaster')
             ->htmlTemplate('mails/admin/notify_abuse_link.html.twig')
             ->textTemplate('mails/admin/notify_abuse_link.txt.twig')
             ->context([

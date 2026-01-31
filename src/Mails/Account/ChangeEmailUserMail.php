@@ -32,7 +32,7 @@ final class ChangeEmailUserMail extends AbstractMail implements MailInterface
                 )
             )
             ->to(new address($userEmail, $username))
-            ->subject('k24.ing | Email Verification')
+            ->subject('k24ing | Email Verification')
             ->htmlTemplate('mails/account/update_email.html.twig')
             ->textTemplate('mails/account/update_email.txt.twig')
             ->context([

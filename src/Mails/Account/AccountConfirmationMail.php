@@ -32,7 +32,7 @@ final class AccountConfirmationMail extends AbstractMail implements MailInterfac
                 )
             )
             ->to(new address($userEmail, $username))
-            ->subject('k24.ing | Email Verification')
+            ->subject('k24ing | Email Verification')
             ->htmlTemplate('mails/account/confirmation_email.html.twig')
             ->textTemplate('mails/account/confirmation_email.txt.twig')
             ->context([
