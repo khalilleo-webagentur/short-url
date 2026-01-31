@@ -4,12 +4,19 @@ All not able changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+-
+
+---
+
+## [8.0.3] 2026-01-31
+
 - upgrade Symfony to 8.0
 - entities table name prefix
 - dashboard show only active users
 - update khl 'about us' link
 - dashboard delete user and all related data - job
-- ip location as link
+- ip location as link 
+- sitemap and robots txt
 
 ---
 
