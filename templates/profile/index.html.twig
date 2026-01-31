@@ -29,7 +29,8 @@
 
                             {% if is_granted('ROLE_SUPER_ADMIN') %}
                                 <span class="fs-13 text-secondary px-1">|</span>
-                                <a href="{{ path('app_admin_index') }}" class="fs-13 d-color opacity-08 text-decoration-none">Dashboard</a>
+                                <a href="{{ path('app_admin_index') }}"
+                                   class="fs-13 d-color opacity-08 text-decoration-none">Dashboard</a>
                             {% endif %}
                         </span>
                     </h5>
@@ -37,7 +38,8 @@
                     <div class="d-dark-secondary-color d-dark-border-color rounded-3">
                         <div class="d-flex p-3 mt-3">
                             <div class="">
-                                <img src="{{ asset('avatar/' ~ profile.avatarName) }}" height="140px" width="140px" alt="Avatar"
+                                <img src="{{ asset('avatar/' ~ profile.avatarName) }}" height="140px" width="140px"
+                                     alt="Avatar"
                                      style="border-radius: 10px;">
                                 <div class="pt-3 ps-4" data-bs-target="#avatarModal" data-bs-toggle="modal">
                                     <p class="pointer my-1">
@@ -49,10 +51,11 @@
                             </div>
                             <div class="ms-3">
                                 <p class="text-white-50 pt-3 small"><span
-                                            class="md-d-none">Username: </span>{{ app.user.name }}</p>
-                                <p class="text-white-50 small"><span class="md-d-none">Email: </span>{{ app.user.email }}</p>
+                                        class="md-d-none">Username: </span>{{ app.user.name }}</p>
                                 <p class="text-white-50 small"><span
-                                            class="md-d-none">Created: </span>{{ app.user.createdAt|date('d.m.Y') }}</p>
+                                        class="md-d-none">Email: </span>{{ app.user.email }}</p>
+                                <p class="text-white-50 small"><span
+                                        class="md-d-none">Created: </span>{{ app.user.createdAt|date('d.m.Y') }}</p>
                             </div>
                         </div>
 

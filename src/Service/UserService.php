@@ -7,11 +7,13 @@ namespace App\Service;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use DateTime;
+use Exception;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 final readonly class UserService
 {
     public function __construct(
+        private MonologService $monologService,
         private UserRepository $userRepository,
     ) {
     }
@@ -39,6 +41,14 @@ final readonly class UserService
         return $this->userRepository->findBy([], ['id' => 'DESC']);
     }
 
+    /**
+     * @return User[]
+     */
+    public function getAllDeletedUsers(): array
+    {
+        return $this->userRepository->findBy(['isDeleted' => true], ['id' => 'DESC']);
+    }
+
     public function hasUserRequestedNewSecurityCode(): bool
     {
         $users = $this->userRepository->findTheLastRecentToken();
@@ -60,5 +70,23 @@ final readonly class UserService
     public function isPasswordValid(User $user, string $text): bool
     {
         return password_verify($text, $user->getPassword());
+    }
+
+    public function delete(User|UserInterface $user): bool
+    {
+        try {
+            $userId = $user->getId();
+            $this->userRepository->remove($user, true);
+            return true;
+        } catch (Exception $e) {
+            $this->monologService->logger->error(
+                sprintf(
+                    "The user with ID: %s could not be deleted. \n Error: %s",
+                    $userId,
+                    $e->getMessage()
+                )
+            );
+            return false;
+        }
     }
 }

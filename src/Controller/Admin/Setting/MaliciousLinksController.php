@@ -28,7 +28,7 @@ class MaliciousLinksController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-       $countUpdated = $this->maliciousUrlsService->updateDomains(AppHelper::MAX_LIMIT_TO_EXTRACT_DOMAINS_FROM_URLS);
+        $countUpdated = $this->maliciousUrlsService->updateDomains(AppHelper::MAX_LIMIT_TO_EXTRACT_DOMAINS_FROM_URLS);
 
         $this->addFlash('success', sprintf('Malicious [%s] domains from URLS.', $countUpdated));
 

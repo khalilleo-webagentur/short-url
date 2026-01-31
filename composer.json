@@ -7,30 +7,28 @@
         "php": ">=8.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3",
-        "doctrine/doctrine-bundle": "^2.11",
-        "doctrine/doctrine-migrations-bundle": "^3.3",
-        "doctrine/orm": "^3.1",
+        "doctrine/doctrine-bundle": "^3.2.2",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/orm": "^3.6.2",
+        "dompdf/dompdf": "^3.1.4",
         "khalilleo-webagentur/browser-detect": "^1.0",
-        "khalilleo-webagentur/monolog": "*",
-        "khalilleo-webagentur/token-gen": "^1.0",
-        "symfony/asset": "7.3.*",
-        "symfony/console": "7.3.*",
-        "symfony/dotenv": "7.3.*",
-        "symfony/flex": "^2",
-        "symfony/framework-bundle": "7.3.*",
-        "symfony/mailer": "7.3.*",
-        "symfony/mime": "7.3.*",
-        "symfony/runtime": "7.3.*",
-        "symfony/security-bundle": "7.3.*",
-        "symfony/twig-bundle": "7.3.*",
-        "symfony/yaml": "7.3.*"
+        "khalilleo-webagentur/monolog": "^1.0.1",
+        "khalilleo-webagentur/sql-connector": "^1.0",
+        "khalilleo-webagentur/token-gen": "^1.0.1",
+        "symfony/asset": "8.0.*",
+        "symfony/console": "8.0.*",
+        "symfony/dotenv": "8.0.*",
+        "symfony/flex": "^2.10",
+        "symfony/framework-bundle": "8.0.*",
+        "symfony/mailer": "8.0.*",
+        "symfony/runtime": "8.0.*",
+        "symfony/security-bundle": "8.0.*",
+        "symfony/twig-bundle": "8.0.*",
+        "symfony/yaml": "8.0.*"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.23",
-        "symfony/maker-bundle": "^1.55",
-        "symfony/stopwatch": "7.3.*",
-        "symfony/web-profiler-bundle": "7.3.*"
+        "fakerphp/faker": "^1.24.1",
+        "symfony/maker-bundle": "^1.65.1"
     },
     "config": {
         "allow-plugins": {
@@ -38,6 +36,7 @@
             "symfony/flex": true,
             "symfony/runtime": true
         },
+        "bump-after-update": true,
         "sort-packages": true
     },
     "autoload": {
@@ -58,7 +57,9 @@
         "symfony/polyfill-php74": "*",
         "symfony/polyfill-php80": "*",
         "symfony/polyfill-php81": "*",
-        "symfony/polyfill-php82": "*"
+        "symfony/polyfill-php82": "*",
+        "symfony/polyfill-php83": "*",
+        "symfony/polyfill-php84": "*"
     },
     "scripts": {
         "auto-scripts": {
@@ -78,7 +79,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.3.*"
+            "require": "8.0.*"
         }
     }
 }

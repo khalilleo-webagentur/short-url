@@ -46,7 +46,7 @@ class NewAdminCommand extends Command
 
         $faker = Factory::create();
 
-        $email = 'dev@khalilleo.com'; // $faker->safeEmail();
+        $email = $faker->safeEmail();
 
         if (!$this->userService->getByEmail($email)) {
 
@@ -67,11 +67,8 @@ class NewAdminCommand extends Command
             );
 
             $userSetting = new UserSetting();
-
             $this->userSettingService->save($userSetting->setUser($user));
-
             $this->socialProfileSettingService->add($user, $name);
-
             $this->profileService->add($user);
 
             $output->writeln(sprintf('Admin added. E:: %s and OTP:: %s', $email, $code));

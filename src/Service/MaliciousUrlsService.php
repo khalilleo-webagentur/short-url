@@ -14,7 +14,7 @@ final readonly class MaliciousUrlsService
     public function __construct(
         private MaliciousUrlRepository $maliciousUrlRepository,
         private MonologService         $monolog
-    ){
+    ) {
     }
 
     public function getById(int $id): ?MaliciousUrl

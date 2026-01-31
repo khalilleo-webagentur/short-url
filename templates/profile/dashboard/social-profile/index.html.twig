@@ -23,12 +23,12 @@
                                 <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
                                         data-bs-target="#socialProfileModal">
                                     <span class="md-d-none">Social Link</span> <span
-                                            class="bi bi-plus-circle ps-lg-1"></span>
+                                        class="bi bi-plus-circle ps-lg-1"></span>
                                 </button>
                                 <button class="btn btn-outline-secondary btn-sm mt-1 me-1" data-bs-toggle="modal"
                                         data-bs-target="#socialProfileSettingModal">
                                     <span class="md-d-none">Profile Name</span> <span
-                                            class="bi bi-pencil-square ps-lg-1"></span>
+                                        class="bi bi-pencil-square ps-lg-1"></span>
                                 </button>
                                 <div class="dropdown mt-1">
                                     <button class="btn btn-outline-secondary btn-sm" type="button"
@@ -92,7 +92,8 @@
                         <p class="text-white-50 small">
 
                             <span title="{{ socialProfileSetting.countViews }} views">
-                                <span class="bi bi-eye me-1"></span> {{ numberNotation(socialProfileSetting.countViews) }}
+                                <span
+                                    class="bi bi-eye me-1"></span> {{ numberNotation(socialProfileSetting.countViews) }}
                             </span>
 
                             {% if app.user %}
@@ -132,17 +133,17 @@
 
                                                 <a href="{{ path('app_dashboard_social_profile_redirect_to', {nums: randomNumbers(), id: row.id, mainName: socialProfileSetting.mainName}) }}"
                                                    class="opacity-07" target="_blank" title="Visit Profile"><span
-                                                            class="bi bi-arrow-up-right-square fs-6"></span></a>
+                                                        class="bi bi-arrow-up-right-square fs-6"></span></a>
 
                                                 {% if app.user %}
                                                     <a href="{{ path('app_dashboard_social_profile_edit', {id: row.id}) }}"
                                                        class="opacity-07" title="Edit"><span
-                                                                class="bi bi-pencil-square fs-6 ms-2"></span></a>
+                                                            class="bi bi-pencil-square fs-6 ms-2"></span></a>
 
                                                     <a href="{{ path('app_dashboard_social_profile_statistics_setting_index', {id: row.id}) }}"
                                                        class="opacity-07"
                                                        title="View Statistics {{ not row.isStatisticsSeen ? '(new Visitors)' : '' }}"><span
-                                                                class="bi {{ not row.isStatisticsSeen ? 'bi-bar-chart-fill' : 'bi-bar-chart' }} fs-6 ms-2"></span></a>
+                                                            class="bi {{ not row.isStatisticsSeen ? 'bi-bar-chart-fill' : 'bi-bar-chart' }} fs-6 ms-2"></span></a>
                                                 {% endif %}
 
                                             </div>

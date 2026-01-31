@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\TempUser;
+use App\Entity\User;
 use App\Repository\TempUserRepository;
 use DateTime;
 
@@ -28,6 +29,11 @@ final readonly class TempUserService
     public function getByToken(string $token): ?TempUser
     {
         return $this->tempUserRepository->findOneBy(['token' => $token]);
+    }
+
+    public function getByUser(User $user): ?TempUser
+    {
+        return $this->tempUserRepository->findOneBy(['user' => $user]);
     }
 
     /**

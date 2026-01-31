@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LinkStatisticRepository::class)]
+#[ORM\Table(name: '`k24_link_statistic`')]
 class LinkStatistic
 {
     #[ORM\Id]

@@ -23,8 +23,8 @@
                 <td>
                     <form action="{{ path('app_dashboard_contact_remove_store', {id:row.id}) }}" method="post">
                         <span class="pointer"
-                            title="The message will be removed!"
-                            onclick="this.closest('form').submit();">
+                              title="The message will be removed!"
+                              onclick="this.closest('form').submit();">
                             {% include 'admin/component/toggle.html.twig' %}
                         </span>
                     </form>

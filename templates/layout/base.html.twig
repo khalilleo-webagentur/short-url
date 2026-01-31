@@ -16,7 +16,7 @@
 
     <title> {% block title %}{% endblock %} </title>
 
-    {% set _route = app.request.get('_route') %}
+    {% set _route = app.request.attributes.get('_route') %}
 
     {% if _route == 'app_home' or _route == 'app_contact_us_index' or _route == 'app_features_index' or _route == 'app_report_abuse' %}
         <meta content="index,follow" name="robots">

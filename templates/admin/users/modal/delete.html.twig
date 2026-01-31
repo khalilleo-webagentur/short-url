@@ -1,0 +1,50 @@
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog"
+     aria-labelledby="deleteUserModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{{ path('app_admin_users_job_delete') }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-title-upper" id="deleteUserModalTitle">
+                        Delete User Permanently
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="4jX2hV9xO3aD7v" class="form-label">E-mail</label>
+                        <input type="text" class="form-control" id="4jX2hV9xO3aD7v" placeholder="Type email"
+                               name="email">
+                        <span class="text-secondary fs-13">
+                            Please enter the email address of the user to be deleted.
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <span class="separator">Or</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="4lN3jG3gE9oB3o"
+                                   name="spamUsers">
+                            <label class="form-check-label text-secondary" for="4lN3jG3gE9oB3o">
+                                Permanently delete all spam users
+                            </label>
+                            <span class="fa fa-info-circle fa-sm cursor-help text-secondary"
+                                  title="This will delete all users that have the flag (deleted)."></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-radius-50" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger btn-radius-50">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

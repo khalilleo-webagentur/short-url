@@ -5,7 +5,6 @@ namespace App\Security;
 use App\Service\TempUserService;
 use App\Service\TwoFactorAuthService;
 use App\Service\UserService;
-use App\Traits\FormValidationTrait;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,15 +13,16 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginAuthenticator extends AbstractLoginFormAuthenticator
+class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
-    use FormValidationTrait;
 
     public const string LOGIN_ROUTE = 'app_login';
 
@@ -36,11 +36,9 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $this->validate($request->request->get('_username', ''));
-
-        $otp = $this->validate($request->request->get('otp', ''));
-
-        $csrfToken = $this->validate($request->request->get('_csrf_token', ''));
+        $email = $request->getPayload()->getString('email');
+        $otp = $request->getPayload()->getString('otp');
+        $csrfToken = $request->getPayload()->getString('_csrf_token');
 
         if (!$email || !$otp || !$csrfToken) {
             throw new CustomUserMessageAuthenticationException('All fields are required.');
@@ -48,17 +46,22 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         $user = $this->userService->getByEmail($email);
 
-        if (!$user || $otp !== $user->getToken()) {
-            $email = 'no@token.yet';
+        if (!$user) {
+            throw new CustomUserMessageAuthenticationException('Unknown user.');
         }
 
-        $request->getSession()->set('_username', $email);
+        if ($otp !== $user->getToken()) {
+            throw new CustomUserMessageAuthenticationException('Unknown OTP (One Time Password).');
+        }
+
+        $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
 
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($email),
             [
                 new CsrfTokenBadge('authenticate', $csrfToken),
+                new RememberMeBadge(),
             ]
         );
     }

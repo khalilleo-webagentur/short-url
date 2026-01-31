@@ -24,7 +24,7 @@ class ContactUsController extends AbstractController
 
     public function __construct(
         private readonly ContactFormService $contactFormService,
-        private readonly MonologService $monolog
+        private readonly MonologService     $monolog
     ) {
     }
 

@@ -19,4 +19,5 @@ final class AppHelper
     public const string DEFAULT_AVATAR_NAME = 'avatar-160x160.png';
 
     public const int MAX_LIMIT_TO_EXTRACT_DOMAINS_FROM_URLS = 1500;
+    public const string ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
 }

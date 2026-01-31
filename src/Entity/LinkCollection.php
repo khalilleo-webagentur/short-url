@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LinkCollectionRepository::class)]
+#[ORM\Table(name: '`k24_link_collection`')]
 class LinkCollection
 {
     #[ORM\Id]

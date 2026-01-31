@@ -50,7 +50,17 @@
                                     <td class="text-white-50">
                                         <span title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</span>
                                     </td>
-                                    <td class="text-white-50">{{ row.ipAdress ? row.ipAdress : '127.0.0.1' }}</td>
+                                    <td class="text-white-50">
+                                        {% if row.ipAdress %}
+                                            <a class="link-primary"
+                                               href="https://api.iplocation.net/?ip={{ row.ipAdress }}"
+                                               target="_blank"
+                                               rel="noindex">{{ row.ipAdress }}
+                                            </a>
+                                        {% else %}
+                                            <span>127.0.0.1</span>
+                                        {% endif %}
+                                    </td>
                                     <td class="text-white-50">{{ row.browserName }}</td>
                                     <td class="text-white-50">{{ row.browserLang|capitalize }}</td>
                                     <td class="text-white-50">{{ row.platform|capitalize }}</td>
@@ -61,13 +71,13 @@
                                         {{ row.isMobil ? circle('text-secondary small') : circle('d-success-color small') }}
                                     </td>
                                     <td>
-                                        <form action="{{ path('app_dashboard_social_profile_statistics_delete', {id: row.id}) }}"
-                                              method="post">
-                                            <div class="d-danger-color fs-14 pointer"
+                                        <form
+                                            action="{{ path('app_dashboard_social_profile_statistics_delete', {id: row.id}) }}"
+                                            method="post">
+                                            <div class="d-danger-color pointer"
                                                  onclick="this.closest('form').submit()"
                                                  title="Delete Permanently?">
-                                                <span class="md-d-none">Remove</span> <span
-                                                        class="bi bi-trash fs-13"></span>
+                                                <span class="text-decoration-underline fs-13">Remove</span>
                                             </div>
                                         </form>
                                     </td>

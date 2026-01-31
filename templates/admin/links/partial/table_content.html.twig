@@ -19,13 +19,14 @@
         {% for row in links %}
             <tr class="fs-14">
                 <td>
-                    <span class="fa {{ row.isFave ? 'fa-solid fa-star text-warning' : 'fa-star text-light-50' }}"></span>
+                    <span
+                        class="fa {{ row.isFave ? 'fa-solid fa-star text-warning' : 'fa-star text-light-50' }}"></span>
                 </td>
                 <td><span title="{{ row.url }}">{{ row.url|slice(0, 20) ~ '...' }}</span></td>
                 <td>
                     {% set link = app.request.schemeAndHttpHost ~ '/' ~ row.token %}
                     {{ row.token }} <a href="{{ link }}" target="_blank"><span
-                                class="fa fa-external-link-alt fa-sm"></span></a>
+                            class="fa fa-external-link-alt fa-sm"></span></a>
                 </td>
                 <td>
                     {% if row.user %}
@@ -60,7 +61,7 @@
 
                     {% if row.counter > 0 %}
                         <a href="{{ path('app_admin_links_statistics_index', {id:row.id}) }}"><span
-                                    class="fa fa-chart-line text-dark fa-sm pr-3"></span></a>
+                                class="fa fa-chart-line text-dark fa-sm pr-3"></span></a>
                     {% else %}
                         <span class="fa fa-chart-line text-secondary fa-sm pr-3 cursor-help"
                               title="No statistics found!"></span>

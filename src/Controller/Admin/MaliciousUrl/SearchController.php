@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class SearchController extends AbstractController
 {
     use FormValidationTrait;
+
     private const string ADMIN_MALICIOUS_LINKS_ROUTE = 'app_admin_links_malicious_index';
 
     public function __construct(

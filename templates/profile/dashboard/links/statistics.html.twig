@@ -50,7 +50,17 @@
                                     <td class="text-white-50">
                                         <span title="{{ row.createdAt|date }}">{{ timeAgo(row.createdAt) }}</span>
                                     </td>
-                                    <td class="text-white-50">{{ row.ipAddress ? row.ipAddress : '127.0.0.1' }}</td>
+                                    <td class="text-white-50">
+                                        {% if row.ipAddress %}
+                                            <a class="link-primary"
+                                               href="https://api.iplocation.net/?ip={{ row.ipAddress }}"
+                                               target="_blank"
+                                               rel="noindex">{{ row.ipAddress }}
+                                            </a>
+                                        {% else %}
+                                            <span>127.0.0.1</span>
+                                        {% endif %}
+                                    </td>
                                     <td class="text-white-50">{{ row.browserName }}</td>
                                     <td class="text-white-50">{{ row.referer }}</td>
                                     <td class="text-white-50">{{ row.browserLang|capitalize }}</td>
@@ -64,11 +74,10 @@
                                     <td>
                                         <form action="{{ path('app_url_statistic_delete', {id:link.id}) }}"
                                               method="post">
-                                            <div class="text-danger opacity-08 fs-14 pointer"
+                                            <div class="text-danger opacity-08 pointer"
                                                  onclick="this.closest('form').submit()"
                                                  title="Delete Permanently?">
-                                                <span class="md-d-none">Remove</span> <span
-                                                        class="bi bi-trash fs-13"></span>
+                                                <span class="text-decoration-underline fs-13">Remove</span>
                                             </div>
                                         </form>
                                     </td>
@@ -84,7 +93,7 @@
                     </p>
 
                     <a href="{{ path('app_profile_my_urls') }}" class="small text-decoration-none">Back to URLs <span
-                                class="bi bi-arrow-left-circle-fill ps-1"></span></a>
+                            class="bi bi-arrow-left-circle-fill ps-1"></span></a>
 
                 {% endif %}
 

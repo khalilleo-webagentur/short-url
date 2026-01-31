@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SocialProfileSettingRepository::class)]
+#[ORM\Table(name: '`k24_social_profile_setting`')]
 class SocialProfileSetting
 {
     #[ORM\Id]

@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
+#[ORM\Table(name: '`k24_link`')]
 class Link
 {
     #[ORM\Id]

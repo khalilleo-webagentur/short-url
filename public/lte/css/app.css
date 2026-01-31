@@ -62,12 +62,30 @@ label, label:not(.form-check-label):not(.custom-file-label){
     cursor: pointer;
 }
 
+.fs-13 {
+    font-size: 13px !important;
+}
+
 .fs-14 {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .fs-15 {
-    font-size: 15px;
+    font-size: 15px !important;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid #ced4da;
+    margin: 0 10px;
 }
 
 .alert-fixed-z-index {

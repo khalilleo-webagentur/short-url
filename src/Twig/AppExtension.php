@@ -13,7 +13,7 @@ use Exception;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class TwigHelper extends AbstractExtension
+class AppExtension extends AbstractExtension
 {
     public function __construct(
         private readonly ConfigService               $configService,

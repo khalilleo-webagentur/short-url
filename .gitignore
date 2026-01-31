@@ -1,6 +1,5 @@
 
 ###> symfony/framework-bundle ###
-/.env
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -10,8 +9,12 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+/storage/logs/*
+/storage/mailer/*
 /todo.md
 /prod.*
 /dev.*
-/dumps_*
+/*.sql
+/*.zip
 /.idea
+/.env.dev

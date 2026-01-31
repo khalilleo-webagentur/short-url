@@ -33,9 +33,12 @@
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                             <div class="mb-3">
-                                <input class="form-control" type="email" placeholder="Email" aria-label="Email"
-                                       name="_username" required value="{{ email }}"
-                                >
+                                <input class="form-control"
+                                       type="email"
+                                       placeholder="Email"
+                                       aria-label="Email"
+                                       name="email"
+                                       required value="{{ email }}">
                             </div>
                             <div class="mb-3">
                                 <input class="form-control" type="text" placeholder="Security code" aria-label="OTP"
