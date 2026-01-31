@@ -17,6 +17,7 @@ All not able changes to this project will be documented in this file.
 - dashboard delete user and all related data - job
 - ip location as link 
 - sitemap and robots txt
+- rename app-name
 
 ---
 
